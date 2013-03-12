@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf13624214738430" configfile="/Innovation/WebContent/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="*" id="pf13624841170786" outlinks="pf13624841170787" path="*"/>
+  <nodes xsi:type="pageflow:PFPage" name="bemVindo.xhtml" id="pf13624841170788" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf13624841170787" path="bemVindo.xhtml"/>
+  <links id="pf13624841170787" target="pf13624841170788" source="pf13624841170786" outcome="BemVindo"/>
+</pageflow:Pageflow>
