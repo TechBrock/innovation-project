@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf13624214738430" configfile="/Innovation/WebContent/WEB-INF/faces-config.xml">
-  <nodes xsi:type="pageflow:PFPage" name="*" id="pf13624841170786" outlinks="pf13624841170787" path="*"/>
-  <nodes xsi:type="pageflow:PFPage" name="bemVindo.xhtml" id="pf13624841170788" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf13624841170787" path="bemVindo.xhtml"/>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf13624214738430" configfile="/Innovation2/WebContent/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="*" id="pf13624841170786" outlinks="pf13624841170787 pf13684616251872" path="*"/>
+  <nodes xsi:type="pageflow:PFPage" name="bemVindo.xhtml" id="pf13624841170788" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" inlinks="pf13624841170787" path="bemVindo.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="inn000/templateMenu.xhtml" id="pf13684616251873" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" inlinks="pf13684616251872" path="/inn000/templateMenu.xhtml"/>
   <links id="pf13624841170787" target="pf13624841170788" source="pf13624841170786" outcome="BemVindo"/>
+  <links id="pf13684616251872" target="pf13684616251873" source="pf13624841170786" outcome="menu"/>
 </pageflow:Pageflow>
