@@ -14,6 +14,13 @@
 		</navigation-case>
 	</navigation-rule>
 	
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>menu</from-outcome>
+			<to-view-id>/inn000/templateMenu.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
 	<managed-bean>
 		<managed-bean-name>LoginMb</managed-bean-name>
 		<managed-bean-class>br.com.mb.LoginMb</managed-bean-class>
