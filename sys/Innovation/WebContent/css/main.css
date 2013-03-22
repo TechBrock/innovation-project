@@ -7,7 +7,7 @@ html, body {
 	color:black;
     padding: 0px;
     xoverflow: hidden;
-/*     background:#d9dad9; */
+    background:#CD2626;
 	
 }
 
@@ -132,32 +132,39 @@ input[type=button] {
 /* 	background-color: #FF4500; */
 	border: dotted;
 	border-color: #FF4500;
-	width: 50%;
-    height:15px;
+	width: 80%;
+    height:auto;
      box-shadow: 1px 2px 6px rgba(0, 0, 0, 0.5);
 	-moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
 	-webkit-box-shadow: 3px 3px 9px rgba(0, 0, 0, 0.5);
      -webkit-border-radius: 8px;  
+     background-color: white;
 }
 
+.links{
+	color: white;
+}
 .fieldset {
 	margin-top:30px;
     border-color: #747573;
-    width: 350px;
+    width: 700px;
     height:60px;
 	 box-shadow: 1px 2px 6px rgba(0, 0, 0, 0.5);
 	-moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
 	-webkit-box-shadow: 3px 3px 9px rgba(0, 0, 0, 0.5);
-    -webkit-border-radius: 8px;  
+    -webkit-border-radius: 8px; 
+    background-color: white; 
 }
 
-.fieldsetNormal {
+.fieldsetContent{
 	 box-shadow: 1px 2px 6px rgba(0, 0, 0, 0.5);
 	-moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
 	-webkit-box-shadow: 3px 3px 9px rgba(0, 0, 0, 0.5);
 	-moz-border-radius: 8px; 
     -webkit-border-radius: 8px; 
-    overflow: auto;
+     width: 700px;
+    height:60px;
+    background-color: white;
 }
 
 .fieldsetModal {
@@ -169,6 +176,7 @@ input[type=button] {
 	-webkit-box-shadow: 3px 3px 9px rgba(0, 0, 0, 0.5);
     -moz-border-radius: 8px; 
     -webkit-border-radius: 8px; 
+    background-color: white;
 
 }
 
