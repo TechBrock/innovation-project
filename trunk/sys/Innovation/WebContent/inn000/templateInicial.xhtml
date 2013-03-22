@@ -21,91 +21,65 @@
 	</head>
 	<body>
 		<a4j:form>
-		<div align="center">
-			<fieldset class="fieldsetLog">
-				<h:commandLink value="Cadastre-se"/>
-				<rich:spacer width="15px"/>
-				<h:commandLink value="Faça login"/>
-				<rich:spacer width="15px"/>
-				<h:commandLink value="Atendimento"/>
-			</fieldset>
-			
-		</div>
-						
-			
-			<rich:spacer height="5px"/>
-			<table width="100%">
-				<tr>
-<!-- 					<td width="25%"> -->
-<!-- 						<fieldset class="fieldsetLado"> -->
-						
-<!-- 						</fieldset> -->
-<!-- 					</td> -->
-					<td width="50%">
-						<div id="sliderFrame">
-							<div id="ribbon"/>
-							<div id="slider">
-								<img src="../images/promocao/pro4.jpg" alt="Customizable Transition Effects"/>
-					 			<img src="../images/promocao/pro2.jpg" alt="Easy to use" /> 
-					 			<img src="../images/promocao/pro3.jpg"	alt="Pure Javascript. No jQuery. No flash." />
-							</div>
+			<div align="center">
+				<fieldset class="fieldsetLog" >
+					<div id="sliderFrame" align="center">
+						<div id="ribbon"/>
+						<div id="slider">
+							<img src="../images/promocao/pro4.jpg" alt="Customizable Transition Effects"/>
+					 		<img src="../images/promocao/pro2.jpg" alt="Easy to use" /> 
+					 		<img src="../images/promocao/pro3.jpg"	alt="Pure Javascript. No jQuery. No flash." />
 						</div>
-					</td>
-<!-- 					<td width="25%"> -->
-<!-- 						<fieldset class="fieldsetLado"> -->
-<!-- 							<h:commandLink value=""/> -->
-<!-- 						</fieldset> -->
-<!-- 					</td> -->
-				</tr>
-			</table>
-			
-			
-			
-			<rich:spacer height="50px"/>
-			<table>
-				<tr>
-					<td>
+					</div>
+					<br/><br/><br/><br/>
+					
+					<table align="left" width="1000px" >
+						<tr>
+							<td width="100px">
+								<h:panelGrid columns="2" columnClasses="cols,cols" width="200px">
+		   								<rich:panelMenu style="width:200px"  mode="ajax" 
+		       								iconExpandedGroup="disc" iconCollapsedGroup="disc" 
+		       								iconExpandedTopGroup="chevronUp" iconGroupTopPosition="right" 
+		       								iconCollapsedTopGroup="chevronDown">
+		       		
+		       								<rich:panelMenuGroup label="Bicicletas">
+		           								<rich:panelMenuItem label="Cor">
+			               							<f:param name="current" value="Item 1.1"/>
+		           								</rich:panelMenuItem>
+		           								<rich:panelMenuItem label="Modelo">
+			               							<f:param name="current" value="Item 1.2"/>
+		           								</rich:panelMenuItem>
+		           								<rich:panelMenuItem label="Fabricante">
+			               							<f:param name="current" value="Fabricante"/>
+		           								</rich:panelMenuItem>
+		       								</rich:panelMenuGroup>
+		       			
+		       								<rich:panelMenuGroup label="Patinetes">
+			           							<rich:panelMenuItem label="Cor">
+		               								<f:param name="current" value="Item 1.1"/>
+		           								</rich:panelMenuItem>
+		           								<rich:panelMenuItem label="Modelo">
+			               							<f:param name="current" value="Item 1.2"/>
+		           								</rich:panelMenuItem>
+		           								<rich:panelMenuItem label="Fabricante">
+			               							<f:param name="current" value="Fabricante"/>
+		           								</rich:panelMenuItem>
+		       								</rich:panelMenuGroup>
+		   								</rich:panelMenu>
+		   							</h:panelGrid>
+							</td>
+							
+							<td width="700px">
+							<fieldset class="fieldsetContent">
+							</fieldset>
+							</td>
+						</tr>
+					</table>
 					<div align="left">
-						<h:panelGrid columns="2" columnClasses="cols,cols" width="400">
-	   						<rich:panelMenu style="width:200px"  mode="ajax" 
-	       						iconExpandedGroup="disc" iconCollapsedGroup="disc" 
-	       						iconExpandedTopGroup="chevronUp" iconGroupTopPosition="right" 
-	       						iconCollapsedTopGroup="chevronDown">
-	       		
-	       							<rich:panelMenuGroup label="Bicicletas">
-	           							<rich:panelMenuItem label="Cor">
-	               							<f:param name="current" value="Item 1.1"/>
-	           							</rich:panelMenuItem>
-	           							<rich:panelMenuItem label="Modelo">
-	               							<f:param name="current" value="Item 1.2"/>
-	           							</rich:panelMenuItem>
-	           							<rich:panelMenuItem label="Fabricante">
-	               							<f:param name="current" value="Fabricante"/>
-	           							</rich:panelMenuItem>
-	       							</rich:panelMenuGroup>
-	       			
-	       							<rich:panelMenuGroup label="Patinetes">
-	           							<rich:panelMenuItem label="Cor">
-	               							<f:param name="current" value="Item 1.1"/>
-	           							</rich:panelMenuItem>
-	           							<rich:panelMenuItem label="Modelo">
-	               							<f:param name="current" value="Item 1.2"/>
-	           							</rich:panelMenuItem>
-	           							<rich:panelMenuItem label="Fabricante">
-	               							<f:param name="current" value="Fabricante"/>
-	           							</rich:panelMenuItem>
-	       							</rich:panelMenuGroup>
-	   							</rich:panelMenu>
-	   						</h:panelGrid>
-						</div>
-					</td>
-					<td>
-						<div align="right">
-							<fieldset></fieldset>
-						</div>
-					</td>
-				</tr>
-			</table>
+					
+					</div>
+				</fieldset>
+			</div>
 		</a4j:form>
 	</body>
 </html>
