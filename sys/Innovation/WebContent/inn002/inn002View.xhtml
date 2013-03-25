@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	template="/inn000/templateMaster.xhtml">
+
+	<ui:define name="corpo">
+		<table>
+			<tr>
+				<td colspan="2" align="center">
+					<h:outputText value="Indentificação" style="color: red; font-size: 20px;" />
+				</td>
+			</tr>
+			<tr>
+				<td colspan="1">
+					<fieldset class="fieldsetLogin">
+						<table>
+							<tr>
+								<td colspan="2" align="center">
+									<h:outputText value="Já sou cadastrado" />
+								</td>
+							</tr>
+							<tr>
+								<td style="height: 60px">
+									<h:outputText value="Digite seu email" styleClass="outputTextTitulo" />
+									<br/><br/>
+									<h:inputText size="50" styleClass="inputText" />
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<h:outputText value="Digite sua senha" styleClass="outputTextTitulo" />
+								<br/><br/>
+									<h:inputSecret size="50" styleClass="inputText"/>
+								</td>
+							</tr>
+							<tr>
+								<td align="center">
+									<h:commandButton value="Entrar"/>
+								</td>
+							</tr>
+						</table>
+					</fieldset>
+				</td>
+
+				<td colspan="1">
+					<fieldset class="fieldsetLogin">
+
+						<table>
+							<tr>
+								<td colspan="2" align="center">
+									<h:outputText value="Quero me cadastrar" />
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<h:outputText value="Digite seu email" styleClass="outputTextTitulo" />
+								<br/><br/>
+									<h:inputText size="50" styleClass="inputText"/>
+								</td>
+							</tr>
+							<tr>
+								<td align="center">
+									<h:commandButton value="Continuar"/>
+								</td>
+							</tr>
+						</table>
+					</fieldset>
+				</td>
+			</tr>
+		</table>
+	</ui:define>
+</ui:composition>

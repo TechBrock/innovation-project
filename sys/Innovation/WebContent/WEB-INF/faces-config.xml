@@ -21,6 +21,21 @@
 		</navigation-case>
 	</navigation-rule>
 	
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>inn001</from-outcome>
+			<to-view-id>/inn001/inn01View.xhtml</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>inn002</from-outcome>
+			<to-view-id>/inn002/inn002View.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
 	<managed-bean>
 		<managed-bean-name>LoginMb</managed-bean-name>
 		<managed-bean-class>br.com.mb.LoginMb</managed-bean-class>
