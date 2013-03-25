@@ -36,6 +36,13 @@
 		</navigation-case>
 	</navigation-rule>
 	
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>inn003</from-outcome>
+			<to-view-id>/inn003/inn003View.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
 	<managed-bean>
 		<managed-bean-name>LoginMb</managed-bean-name>
 		<managed-bean-class>br.com.mb.LoginMb</managed-bean-class>
