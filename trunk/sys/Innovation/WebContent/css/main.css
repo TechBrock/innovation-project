@@ -11,111 +11,13 @@ html, body {
 	
 }
 
-.rich-sdt-row-selected {
-	background-color: #E8E8E8;
+.btnMenu{
+	width: 100px;
+	height: 40px;
+	background-color: red;
+	border: none;
 }
 
-
-.rich-sdt-inlinebox{
-	height: 25px;
-	
-}
-
-textarea[type="textarea"], input[type="text"], input[type="password"], select {
-border-color: #B6AD84;
-font-size: 11px;
-font-family: Arial,Verdana,sans-serif;
-color: black;
-background-color: white;
-background-image: url(../images/work/input.png);
-}
-
-*|textarea {
-border-color: #B6AD84;
-font-size: 11px;
-font-family: Arial,Verdana,sans-serif;
-color: black;
-background-color: white;
-background-image: url(../images/work/input.png);
-}
-/**Mudando estilo do rich:calendar
-*/
-.rich-calendar-tool {
-background-color: #4f514e;
-font-size: 11px;
-font-family: Arial,Verdana,sans-serif;
-font-weight: bold;
-color: white;
-}
-
-.rich-calendar-input { width: 110px; }
-
-.rich-calendar-month {
-background-color: #4f514e;
-font-size: 11px;
-font-family: Arial,Verdana,sans-serif;
-font-weight: bold;
-color: white;
-white-space: nowrap;
-}
-
-.rich-calendar-days {
-border-bottom-color:#c3c4c2;
-border-right-color: #B6AD84;
-background: #c3c4c2;
-font-size: 11px;
-font-family: Arial,Verdana,sans-serif;
-}
-
-.rich-calendar-toolfooter {
-background: #c3c4c2;
-font-size: 11px;
-font-family: Arial,Verdana,sans-serif;
-
-background-repeat: no-repeat;
-background-position: right center;
-}
-/*dia atual, cor do botão
-*/
-.rich-calendar-today {
-background-color: #4f514e;
-color: white;
-font-weight: bold;
-}
-
-/**
-	este css é para mudar a cor da fonte da aba do componente rich:tab
-*/
-.rich-tab-active {
-	color:black;
-	font-weight: bold;
-}
-
-.rich-sdt-header-cell-body {
-	padding-left: 3px;
-	padding-right: 3px;
-	
-} 
-
-.rich-sdt-column-cell-body {
-	padding: 3px;
-	color: black;
-	
-} 
-
-.colunaScrollabe {
-	background-color: #EAF0F8;
-}
-
-.colunaScrollabeAbc {
-	background-color: #CAE1FF;
-}
-
-input[type=button] {
-	padding-left: 6px;
-	padding-right: 6px;
-	
-}
 .fieldsetLado{
 	background-color: #FF4500;
 	border: dotted;
@@ -129,15 +31,14 @@ input[type=button] {
 }
 
 .fieldsetLogin{
-/* 	background-color: #FF4500; */
-	border: none;
-/* 	border-color: #FFD700; */
-	width: 400px;
-    height:200px;
-     box-shadow: 1px 2px 6px rgba(0, 0, 0, 0.5);
-	-moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
-	-webkit-box-shadow: 3px 3px 9px rgba(0, 0, 0, 0.5);
-/*      -webkit-border-radius: 8px;   */
+	
+	height: 20px; 
+	margin: 0px; 
+	border: none; 
+    background-color: white;
+    margin: 0;
+     
+     
 }
 
 .fieldsetLog {
@@ -152,7 +53,9 @@ input[type=button] {
 }
 
 .links{
-	color: white;
+	color: #4F4F4F;
+	text-decoration: none;
+	font-size: 15px;
 }
 .fieldset {
 	margin-top:30px;
@@ -179,290 +82,29 @@ input[type=button] {
     position: relative;
 }
 
-.fieldsetModal {
-	color:black;
-    border-color: #747573;
-    font-size:11px;
-	box-shadow: 1px 2px 6px rgba(0, 0, 0, 0.5);
-	-moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
-	-webkit-box-shadow: 3px 3px 9px rgba(0, 0, 0, 0.5);
-    -moz-border-radius: 8px; 
-    -webkit-border-radius: 8px; 
-    background-color: white;
-    
-
+.outputTitulo{
+	font-size: 20px;
+	color: red; 
+	
 }
 
-
-.fieldsetCreate {
-	margin-top:30px;
-    border-color: #747573;
-    width: 350px;
-    height:60px;
-	 box-shadow: 1px 2px 6px rgba(0, 0, 0, 0.5);
-	-moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
-	-webkit-box-shadow: 3px 3px 9px rgba(0, 0, 0, 0.5);
-    -moz-border-radius: 8px; 
-    -webkit-border-radius: 8px;  
-}
-
-#form-container {
-border: 2px dotted #747573;
-padding: 30px 80px;
-box-shadow: 1px 2px 6px rgba(0, 0, 0, 0.5);
--moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
--webkit-box-shadow: 3px 3px 9px rgba(0, 0, 0, 0.5);
-width: 330px;
-}
-
-.errorClass {
-	color:red;
-	font-size: 10px;
-}
-
-/*
-	ajuda nas mensagens na table 
-*/
- td.clean {
-	padding: 0 5px;
-}
-
-.filter {
-	margin-top:15px;
-	margin-bottom:20px;
-    border-color: #747573;
-    background-color: white;
-    box-shadow: 1px 2px 6px rgba(0, 0, 0, 0.5);
-	-moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
-	-webkit-box-shadow: 3px 3px 9px rgba(0, 0, 0, 0.5);
-    -moz-border-radius: 8px; 
-    -webkit-border-radius: 8px;
-}
-
-.actions {
-	margin-bottom:20px;
-    border-color: #747573;
-    background-color: white;
-    box-shadow: 1px 2px 6px rgba(0, 0, 0, 0.5);
-	-moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
-	-webkit-box-shadow: 3px 3px 9px rgba(0, 0, 0, 0.5);
-    -moz-border-radius: 8px; 
-    -webkit-border-radius: 8px;
-}
-
-.messageEmail {
-	color:red;
-    border-color: #747573;
-    
-    font-size:12px;
-	 box-shadow: 1px 2px 6px rgba(0, 0, 0, 0.5);
-	-moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
-	-webkit-box-shadow: 3px 3px 9px rgba(0, 0, 0, 0.5);
-    -moz-border-radius: 8px; 
-    -webkit-border-radius: 8px; }
-    
-.messageLimit {
-	color:red;
-    font-size:12px;
-	margin-top:15px;
-	height:30px; 
-	width: auto''; }
-
-/*
-	utilizado para definir o tamanho e cor do fundo onde vai o conteudo dos templates
-*/
-.panelview {
-	position:absolute;		
-	margin-left:8px;
-	margin-right:8px;
-    border-color: #747573;
-    padding-bottom:30px;
-    background-color: white;
-    width: 97%;
-    height:86%;
-     box-shadow: 1px 2px 6px rgba(0, 0, 0, 0.5);
-	-moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
-	-webkit-box-shadow: 3px 3px 9px rgba(0, 0, 0, 0.5);
-    -moz-border-radius: 8px; 
-    -webkit-border-radius: 8px;	    
-}
-
-textarea[type="textarea"]:hover, input[type="text"]:hover, input[type="password"]:hover, select:hover {
-	border-color: black;
-	background-color: white;
-}
-
-*:focus {
- outline:none;
-}
-
-textarea.active, input.active, select.active {
-	border-color: #95989a;
-	border-width: 1px;
-	background-color: red;
-}
-
-.rich-mpnl-body {
-	background-color: white;
-	background-image: none;
-}
-
-.tolbar {
-	width:45px;
-	height:550px;
-	position:absolute;
-	border-top:solid 1px #747573 ;
-	border-right: solid 1px #747573;
-	border-left: solid 1pt #747573;
-	border-bottom: solid 1px #747573;
-	padding-top: inherit;
-	margin-top: 15px;
-}
-
-.legend {
-  font-size: 12px;
-  color:#747573;
-  font-weight: bold;
-  font-position: left;
-}
-
-.logo {
-   height: 40px;
-   width: 100%;
-   background-image: url("../images/sigra_nome.jpg");
-   background-repeat: no-repeat;
-   background-position: right;
-   xposition: absolute;
-}
-
-.linha{
-	background-color: #747573;
-	margin-top: 3px;
-	margin-bottom:4px;
-	width: 100%;
-	height: 1px;
-}
-
-.outputTextMenu{
-	color: white;
-
-}
-
-.outputTextTitulo{
-	font-family: sans-serif;
-	font:bold;
+.outputBike{
 	font-size: 15px;
-
-}
-
-.inputText{
-	height: 20px;
-	border: none;
-	box-shadow: 1px 2px 6px rgba(0, 0, 0, 0.5);
-	-moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
-	-webkit-box-shadow: 3px 3px 9px rgba(0, 0, 0, 0.5);
+	color: #FF1493; 
+	text-decoration: underline;
 	
 }
 
-.outputLinkMenu{
-	color: red;
-
-}
-
-.outputLinkMenu{
-	color: red;
+.outputValor{
+	font-size: 12px;
+	color: red; 
+	text-decoration: inherit;
+	font: bolder;
 	
-
 }
-
-table.layout {
-    width: 100%;
-    height: 100%;
-    background-color: #F3F2F2;
+.panel{
+	height: 400px;
+	width: 20px;
+	background-image: url(../images/work/separa.jpg);
+	
 }
-
-input[type=button]:HOVER,input[type=submit]:HOVER {
-    color:#000000;
-    cursor: pointer;
-    cursor: hand;
-}
-
-img.imageHover:HOVER {
-    cursor: pointer; 
-    cursor: hand; 
-    width: 20px;           
-}
-
-.data, .numero {
-    text-align: right;
-}
-
-.green .rich-progress-bar-completed{
-background-image: url('../images/work/green.png');
-background-color: #E79A00;
-text-color: white;
-
-}
-
-.red .rich-progress-bar-completed{
-background-image: url('../images/work/red.png');
-background-color: #E79A00;
-text-color: white;
-color:white;
-}
-
-.yellow .rich-progress-bar-completed{
-	background-image: url('../images/work/yellow.png');
-background-color: #E79A00;
-text-color: white;
-}
-
-.gray .rich-progress-bar-completed{
-	background-image: url('../images/work/gray.png');
-background-color: #E79A00;
-}
-
-.blue .rich-progress-bar-completed{
-background-image: url('../images/work/blue.png');
-background-color: #E79A00;
-text-color: white;
-
-}
-
-.orange .rich-progress-bar-completed{
-background-image: url('../images/work/orange.png');
-background-color: #E79A00;
-text-color: white;
-
-}
-
-.center {
-    text-align: center;
-}
-
-.fonte-table {
- font: bold;
-}
-/*
-input[type=text] {
-   text-transform: uppercase;
-}*/
-
-/*FF*/
-div {-moz-user-select: none;}
-
-button[type="button"], button[type="reset"], button[type="submit"], input[type="reset"], input[type="submit"], input[type="button"] {
-font-weight: bold;
-border-color: silver;
-font-size: 11px;
-font-family: Arial,Verdana,sans-serif;
-color: white;
-background-color: #93C4E5;
-padding: 2px 2px 2px 2px;
-background-position: 0 50%;
-background-image: url(../images/button.png);
-}
-
-table.createUpdate td { vertical-align: bottom; }
-
-

@@ -13,11 +13,9 @@
 		<div id="sliderFrame">
 			<div id="ribbon" />
 			<div id="slider">
-				<img src="../images/promocao/pro2a.jpg"
-					alt="Customizable Transition Effects" /> <img
-					src="../images/promocao/pro1a.jpg" alt="Easy to use" /> <img
-					src="../images/promocao/pro3a.jpg"
-					alt="Pure Javascript. No jQuery. No flash." />
+				<img src="../images/promocao/pro1a.jpg"	alt="Bicicleta Caloi - 29" /> 
+				<img src="../images/promocao/pro2a.jpg" alt="Bicileta Caloi Urbe" /> 
+				<img src="../images/promocao/pro3a.jpg" alt="Bicileta Mormaii Innovation" />
 			</div>
 		</div>
 		<rich:spacer height="100px"></rich:spacer>
@@ -56,14 +54,68 @@
 			</h:panelGrid>
 		</div>
 		<div style="left: 100px; width: 600px">
-			<rich:dataTable columns="3" rows="9">
-			<rich:column>
-					<f:facet name="header">
-						<h:outputText value="Id-Cliente"/>
-					</f:facet>
-						<h:outputText id="ldboCcliIdNome" value="Caloi	" />
-				</rich:column>
-			</rich:dataTable>
+		
+			<table>
+				<tr>
+					<td>
+						<h:graphicImage value="/images/bicicletas/caloi_supra.jpg" width="200px" height="200px"/>
+						<h:outputText value="Bicicleta Caloi Supra" styleClass="outputBike"/><br/>
+						<h:outputText value="De:"/><h:outputText value="1299,00"/> <br/>
+						<h:outputText value="Por:"/><h:outputText value="1199,00" styleClass="outputValor"/>
+						
+					</td>
+					<td>
+						<h:graphicImage value="/images/bicicletas/caloi_iluminium.jpg" width="200px" height="200px"/>
+						<h:outputText value="Bicicleta Caloi Aluminum" styleClass="outputBike"/><br/>
+						<h:outputText value="De:"/><h:outputText value="499,00"/><br/>
+						<h:outputText value="Por:"/><h:outputText value="359,00" styleClass="outputValor"/>
+					</td>
+					<td>
+						<h:graphicImage value="/images/bicicletas/caloi_ks.jpg" width="200px" height="200px"/>
+						<h:outputText value="Bicicleta Caloi KS - Aro 26" styleClass="outputBike"/><br/>
+						<h:outputText value="De:"/><h:outputText value="699,00"/><br/>
+						<h:outputText value="Por:"/><h:outputText value="599,00" styleClass="outputValor"/>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<h:graphicImage value="/images/bicicletas/caloi_trs.jpg" width="200px" height="200px"/>
+						<h:outputText value="Bicicleta Caloi TRS - Aro 26" styleClass="outputBike"/><br/>
+						<h:outputText value="De:"/><h:outputText value="699,00"/><br/>
+						<h:outputText value="Por:"/><h:outputText value="599,00" styleClass="outputValor"/>
+					</td>
+					<td>
+						<h:graphicImage value="/images/bicicletas/caloi_xrt.jpg" width="200px" height="200px"/>
+						<h:outputText value="Bicicleta Caloi XRT - Aro 26" styleClass="outputBike"/><br/>
+						<h:outputText value="Por apenas: "/><h:outputText value="799,00" styleClass="outputValor"/>
+					</td>
+					<td>
+						<h:graphicImage value="/images/bicicletas/giant.jpg" width="200px" height="200px"/>
+						<h:outputText value="Bicicleta Giant MTB Flight Mini 0 Unisize - Aro 26" styleClass="outputBike"/><br/>
+						<h:outputText value="De:"/><h:outputText value="6199,00"/><br/>
+						<h:outputText value="Por:"/><h:outputText value="5589,00" styleClass="outputValor"/>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<h:graphicImage value="/images/bicicletas/mormai_brance.jpg" width="200px" height="200px"/>
+						<h:outputText value="Bicicleta Mormaii B-Range - Aro 26" styleClass="outputBike"/><br/>
+						<h:outputText value="Por apenas:"/><h:outputText value="699,00" styleClass="outputValor"/>
+					</td>
+					<td>
+						<h:graphicImage value="/images/bicicletas/mormaii_venice.jpg" width="200px" height="200px"/>
+						<h:outputText value="Bicicleta Mormaii Venice - Aro 26" styleClass="outputBike"/><br/>
+						<h:outputText value="De:"/><h:outputText value="2199,00"/><br/>
+						<h:outputText value="Por:"/><h:outputText value="1199,00" styleClass="outputValor"/>
+					</td>
+					<td>
+						<h:graphicImage value="/images/bicicletas/track300.jpg" width="200px" height="200px"/>
+						<h:outputText value="Bicicleta Track Bikes TB 300 MTB - Aro 26" styleClass="outputBike"/><br/>
+						<h:outputText value="De:"/><h:outputText value="599,00"/><br/>
+						<h:outputText value="Por:"/><h:outputText value="499,00" styleClass="outputValor"/>
+					</td>
+				</tr>
+			</table>
 		</div>
 	</ui:define>
 

@@ -12,62 +12,62 @@
 	<ui:define name="corpo">
 		<table>
 			<tr>
-				<td colspan="2" align="center">
-					<h:outputText value="Indentificação" style="color: red; font-size: 20px;" />
+				<td colspan="1" align="center" class="outputTitulo">
+					<h:outputText value="Já sou cadastrado" />
 				</td>
-			</tr>
+				<td colspan="1" align="center" class="outputTitulo">
+					<h:outputText value="Quero me cadastrar" />
+				</td>
+			</tr>				
 			<tr>
-				<td colspan="1">
-					<fieldset class="fieldsetLogin">
+				<td>
+					<fieldset style="width: 600; height: 200px">
 						<table>
 							<tr>
-								<td colspan="2" align="center">
-									<h:outputText value="Já sou cadastrado" />
-								</td>
-							</tr>
-							<tr>
-								<td style="height: 60px">
-									<h:outputText value="Digite seu email" styleClass="outputTextTitulo" />
-									<br/><br/>
+								<td style="height: 60px"><h:outputText
+									value="Digite seu email" styleClass="outputTextTitulo" /> 
+									<br />
+									<br /> 
 									<h:inputText size="50" styleClass="inputText" />
 								</td>
 							</tr>
 							<tr>
 								<td>
-									<h:outputText value="Digite sua senha" styleClass="outputTextTitulo" />
-								<br/><br/>
-									<h:inputSecret size="50" styleClass="inputText"/>
+									<h:outputText value="Digite sua senha" styleClass="outputTextTitulo" /> 
+									<br />
+									<br /> 
+									<h:inputSecret size="50" styleClass="inputText" />
 								</td>
 							</tr>
 							<tr>
 								<td align="center">
-									<h:commandButton value="Entrar"/>
+									<a4j:commandButton image="/images/botoes/entrar.png" 
+										style="width: 100px;height: 30px;"/>
 								</td>
 							</tr>
 						</table>
 					</fieldset>
 				</td>
-
-				<td colspan="1">
-					<fieldset class="fieldsetLogin">
-
+				<td>
+					<fieldset style="width: 600; height: 200px">
 						<table>
 							<tr>
-								<td colspan="2" align="center">
-									<h:outputText value="Quero me cadastrar" />
-								</td>
-							</tr>
-							<tr>
 								<td>
-									<h:outputText value="Digite seu email" styleClass="outputTextTitulo" />
-								<br/><br/>
-									<h:inputText size="50" styleClass="inputText"/>
+									<h:outputText value="Digite seu email" styleClass="outputTextTitulo" /> 
+									<br />
+									<br /> 
+									<h:inputText size="50" styleClass="inputText" />
 								</td>
 							</tr>
 							<tr>
 								<td align="center">
-									<h:commandButton value="Continuar"/>
+									<a4j:commandButton image="/images/botoes/continuar.png" 
+										style="width: 100px;height: 30px;"
+										action="inn003"/>
 								</td>
+							</tr>
+							<tr>
+							
 							</tr>
 						</table>
 					</fieldset>

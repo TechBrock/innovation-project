@@ -21,27 +21,28 @@
 </head>
 <body>
 	<a4j:form>
-
-
 		<div align="center">
 			<fieldset class="fieldsetContent">
-				<fieldset
-					style="height: 40px; margin: 0px; border: none; background-color: gray;">
-					<table width="50%" align="center">
+				<fieldset class="fieldsetLogin">
+					<table width="70%" align="center">
 						<tr>
-							<td width="20%"><h:commandLink value="Meu cadastro"  action="inn002" styleClass="outputTextMenu" />
+							<td width="20%">
+								<h:commandLink value="Meu cadastro"  styleClass="links" />
 							</td>
-							<td width="20%"><h:outputText value="Meus preferidos"
-									styleClass="outputTextMenu" /></td>
-							<td width="20%"><h:outputText value="Meus pedidos"
-									styleClass="outputTextMenu" /></td>
-							<td width="40%"><h:outputText
-									value="Olá visitante, identifique-se:"
-									styleClass="outputTextMenu" /> <h:commandLink value="Aqui"
-									styleClass="outputLinkMenu" /></td>
+							<td width="20%">
+								<h:commandLink value="Meus preferidos" styleClass="links" />
+							</td>
+							<td width="20%">
+								<h:commandLink value="Meus pedidos" styleClass="links" />
+							</td>
+							<td width="40%">
+								<h:outputText value="Olá visitante, identifique-se:" styleClass="outputTextMenu" />
+								<h:commandLink value="Aqui" action="inn002" styleClass="links" style="color: red;" />
+							</td>
 						</tr>
 					</table>
 				</fieldset>
+				<rich:spacer height="50px"/>
 				<div>
 					<ui:insert name="corpo"/>
 				</div>
