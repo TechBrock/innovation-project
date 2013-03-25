@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><h:outputText value="metodo.com.br" /></title>
+<link rel="stylesheet" type="text/css" href="../css/main.css" />
+<script type="text/javascript"
+	src="/WebContent/js/jquery.maskedinput-1.3.min.js" />
+<link href="../themes/1/js-image-slider.css" rel="stylesheet"
+	type="text/css" />
+<script src="../themes/1/js-image-slider.js" type="text/javascript" />
+<link rel="stylesheet" type="text/css" href="../generic.css" />
+</head>
+<body>
+	<a4j:form>
+
+
+		<div align="center">
+			<fieldset class="fieldsetContent">
+				<fieldset
+					style="height: 40px; margin: 0px; border: none; background-color: gray;">
+					<table width="50%" align="center">
+						<tr>
+							<td width="20%"><h:commandLink value="Meu cadastro"  action="inn002" styleClass="outputTextMenu" />
+							</td>
+							<td width="20%"><h:outputText value="Meus preferidos"
+									styleClass="outputTextMenu" /></td>
+							<td width="20%"><h:outputText value="Meus pedidos"
+									styleClass="outputTextMenu" /></td>
+							<td width="40%"><h:outputText
+									value="Olá visitante, identifique-se:"
+									styleClass="outputTextMenu" /> <h:commandLink value="Aqui"
+									styleClass="outputLinkMenu" /></td>
+						</tr>
+					</table>
+				</fieldset>
+				<div>
+					<ui:insert name="corpo"/>
+				</div>
+			</fieldset>
+		</div>
+	</a4j:form>
+</body>
+</html>
