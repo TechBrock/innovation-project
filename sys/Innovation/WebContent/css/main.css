@@ -83,12 +83,26 @@ html, body {
     position: relative;
 }
 
+.fieldsetDetalhe{
+	border-color: #FFD700;
+    width: 400px;
+    height: auto;
+    background-color: white	;
+    position: relative;
+}
+
+
 .outputTitulo{
 	font-size: 25px;
 	color: red; 
 	
 }
 
+.outputDescricao{
+	font-size: 12px;
+	font-family: arial;
+	
+}
 .outputBike{
 	font-size: 15px;
 	color: #FF1493; 
