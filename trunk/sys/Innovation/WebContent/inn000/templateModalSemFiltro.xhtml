@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:rich="http://richfaces.org/rich"
+    xmlns:a4j="http://richfaces.org/a4j">
+	
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8"/>
+		<a4j:loadScript src="../js/jquery.maskedinput-1.3.min.js" />
+		<a4j:loadScript src="/js/min-teste.js"/>
+	</head>
+	
+	<a4j:form id="formModal">
+		<div align="left" style="margin-left: 15px;font-size:14px; color:#747573;">
+			<rich:spacer width="10"/>
+			<ui:insert name="headerModalCrUp"/>
+		</div>
+		<div class="linha"/>
+		<div class="conteudo" align="center" style="margin: 2px auto 2px auto; width: auto;">
+		  <fieldset class="fieldsetModal">
+		  	<div align="left" style="max-height:60px; overflow:auto;">
+		  	</div>
+				<ui:insert name="corpoModal"/>
+			</fieldset>
+		</div>
+		<div  align="center" class="messageLimit">
+			<ui:insert name="contentMessage"/>
+		</div>
+		<div align="center">
+			<ui:insert name="actionsModalCrUp"/>
+		</div>
+	</a4j:form>
+</html>

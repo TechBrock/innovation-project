@@ -31,6 +31,13 @@
 	
 	<navigation-rule>
 		<navigation-case>
+			<from-outcome>inn001Detalhe</from-outcome>
+			<to-view-id>/inn001/inn01Detalhe.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<navigation-case>
 			<from-outcome>inn002</from-outcome>
 			<to-view-id>/inn002/inn002View.xhtml</to-view-id>
 		</navigation-case>
