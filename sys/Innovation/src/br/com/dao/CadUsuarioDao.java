@@ -2,130 +2,183 @@ package br.com.dao;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.sql.Statement;
 
-import br.com.conect.Conexao;
 import br.com.vo.CadUsuarioVo;
 
 public class CadUsuarioDao {
-	Connection conn = null;
-	Statement stm = null;
-	ResultSet rset = null;
 
-	public String insert(CadUsuarioVo usuVo){
+	private Connection conn = null;
+	private Statement stm = null;
+	private ResultSet rset = null;
 
+	public void insert(CadUsuarioVo cusuVo){
 		StringBuilder query = new StringBuilder();
+
 		query.append("INSERT INTO TB_USUARIO(");
-		query.append("nome,");
-		query.append("sobrenome,");
-		query.append("data_de_nascimento,");
-		query.append("sexo,");
-		query.append("cpf,");
-		query.append("apelido,");
-		query.append("email,");
-		query.append("senha,");
-		query.append("data_de_entrada_sistema,");
-		query.append("data_ultima_modificacao,");
-		query.append("ativo,");
-		query.append("perfil) values(");
-		query.append("'"+usuVo.getNome()+"',");
-		query.append("'"+usuVo.getSobrenome()+"',");
-		query.append(new java.sql.Date(usuVo.getDataNascimento().getTime())+",");
-		query.append("'"+usuVo.getSexo()+"',");
-		query.append("'"+usuVo.getCpf()+"',");
-		query.append("'"+usuVo.getApelido()+"',");
-		query.append("'"+usuVo.getEmail()+"',");
-		query.append("'"+usuVo.getSenha()+"',");
-		query.append("now(),");
-		query.append("now(),");
-		query.append("'S'");
-		query.append(usuVo.getPerfil());
+		query.append(" NOME");
+		query.append(" ,SOBRENOME");
+		query.append(" ,DATA_NASCIMENTO");
+		query.append(" ,SEXO");
+		query.append(" ,CPF");
+		query.append(" ,APELIDO");
+		query.append(" ,EMAIL");
+		query.append(" ,SENHA");
+		query.append(" ,DATA_ENTRADA");
+		query.append(" ,DATA_ULTIMA_MODIFICACAO");
+		query.append(" ,ATIVO");
+		query.append(" ,RECEBER_EMAIL");
+		query.append(" ,ESPECIAL");
+		query.append(" ,ID_PERFIL");
+		query.append(") VALUES(");
+		query.append( "'"+cusuVo.getNome()+"',");
+		query.append( "'"+cusuVo.getSobrenome()+"',");
+		query.append( new java.sql.Date(cusuVo.getDataNasc().getTime())+",");
+		query.append( "'"+cusuVo.getSexo()+"',");
+		query.append( "'"+cusuVo.getCpf()+"',");
+		query.append( "'"+cusuVo.getApelido()+"',");
+		query.append( "'"+cusuVo.getEmail()+"',");
+		query.append( "'"+cusuVo.getSenha()+"',");
+		query.append( new java.sql.Date(cusuVo.getDataEntrada().getTime())+",");
+		query.append( new java.sql.Date(cusuVo.getDataModif().getTime())+",");
+		query.append( "'"+cusuVo.getAtivo()+"',");
+		query.append( "'"+cusuVo.getReceberEmail()+"',");
+		query.append( "'"+cusuVo.getEspecial()+"',");
+		query.append( cusuVo.getIdPerfil()+")");
 
 		try{
-			conn = Conexao.open(conn);
-			stm = conn.createStatement();
+			conn = Conexao.open;
+			stm =conn.createStatement();
 			stm.executeUpdate(query.toString());
 
 		}catch (Exception e) {
 			System.out.println(e.getMessage());
-			System.out.println("CadUsuarioDao().isert()");
-		}finally{
-			Conexao.close(rset, stm, conn);
 		}
 
-		return "sucess";
 	}
 
-	public String update(CadUsuarioVo usuVo){
+	public void insert(CadUsuarioVo cusuVo){
 		StringBuilder query = new StringBuilder();
-		query.append("UPDATE TB_USUARIO ");
-		query.append("nome = '"+usuVo.getNome()+"'");
-		query.append(",sobrenome='"+usuVo.getSobrenome()+"'");
-		query.append(",data_de_nascimento = "+new java.sql.Date(usuVo.getDataNascimento().getTime()));
-		query.append(",sexo = '"+usuVo.getSexo()+"'");
-		query.append(",cpf = '"+usuVo.getCpf()+"'");
-		query.append(",apelido = '"+usuVo.getApelido()+"'");
-		query.append(",email = '"+usuVo.getEmail()+"'");
-		query.append("senha = '"+usuVo.getSenha()+"'");
-		query.append("data_de_entrada_sistema = "+ new java.sql.Date(usuVo.getDataEntradaSistema().getTime()));
-		query.append("data_ultima_modificacao = now()");
-		query.append("ativo ='"+usuVo.getAtivo()+"'");
-		query.append("perfil ="+usuVo.getPerfil());
+
+		query.append("INSERT INTO TB_USUARIO(");
+		query.append(" NOME");
+		query.append(" ,SOBRENOME");
+		query.append(" ,DATA_NASCIMENTO");
+		query.append(" ,SEXO");
+		query.append(" ,CPF");
+		query.append(" ,APELIDO");
+		query.append(" ,EMAIL");
+		query.append(" ,SENHA");
+		query.append(" ,DATA_ENTRADA");
+		query.append(" ,DATA_ULTIMA_MODIFICACAO");
+		query.append(" ,ATIVO");
+		query.append(" ,RECEBER_EMAIL");
+		query.append(" ,ESPECIAL");
+		query.append(" ,ID_PERFIL");
+		query.append(") VALUES(");
+		query.append( "'"+cusuVo.getNome()+"',");
+		query.append( "'"+cusuVo.getSobrenome()+"',");
+		query.append( new java.sql.Date(cusuVo.getDataNasc().getTime())+",");
+		query.append( "'"+cusuVo.getSexo()+"',");
+		query.append( "'"+cusuVo.getCpf()+"',");
+		query.append( "'"+cusuVo.getApelido()+"',");
+		query.append( "'"+cusuVo.getEmail()+"',");
+		query.append( "'"+cusuVo.getSenha()+"',");
+		query.append( new java.sql.Date(cusuVo.getDataEntrada().getTime())+",");
+		query.append( new java.sql.Date(cusuVo.getDataModif().getTime())+",");
+		query.append( "'"+cusuVo.getAtivo()+"',");
+		query.append( "'"+cusuVo.getReceberEmail()+"',");
+		query.append( "'"+cusuVo.getEspecial()+"',");
+		query.append( cusuVo.getIdPerfil()+")");
 
 		try{
-			conn = Conexao.open(conn);
-			stm = conn.createStatement();
+			conn = Conexao.open;
+			stm =conn.createStatement();
 			stm.executeUpdate(query.toString());
 
 		}catch (Exception e) {
 			System.out.println(e.getMessage());
-			System.out.println("CadUsuarioDao().update()");
 		}finally{
-			Conexao.close(rset, stm, conn);
+			Conexao.close(rset,stm,conn);
 		}
 
-		return "sucess";
 	}
 
-	public CadUsuarioVo getUsuario(String cpfParam){
+	public void update(CadUsuarioVo cusuVo){
 		StringBuilder query = new StringBuilder();
-		CadUsuarioVo cusuVo = new CadUsuarioVo();
 
-		query.append(" SELECT * FROM TAB_USUARIO");
-		query.append(" WHERE UPPER(CPF) LIKE UPPER ('"+cpfParam+"')");
+		query.append("UPDATE INTO TB_USUARIO SET ");
+		query.append(" NOME = '"+cusuVo.getNome()+"'");
+		query.append(" ,SOBRENOME = '"+cusuVo.getSobrenome()+"'");
+		query.append(" ,DATA_NASCIMENTO = "+cusuVo.getDataNasc());
+		query.append(" ,SEXO = '"+cusuVo.getSexo()+"'");
+		query.append(" ,CPF = '"+cusuVo.getCpf()+"'");
+		query.append(" ,APELIDO = '"+cusuVo.getApelido()+"'");
+		query.append(" ,EMAIL = '"+cusuVo.getEmail()+"'");
+		query.append(" ,SENHA = '"+cusuVo.getSenha()+"'");
+		query.append(" ,DATA_ENTRADA = "+cusuVo.getDataEntrada());
+		query.append(" ,DATA_ULTIMA_MODIFICACAO = "+cusuVo.getDataModif());
+		query.append(" ,ATIVO = '"+cusuVo.getAtivo()+"'");
+		query.append(" ,RECEBER_EMAIL = '"+cusuVo.getReceberEmail()+"'");
+		query.append(" ,ESPECIAL = '"+cusuVo.getEspecial()+"'");
+		query.append(" ,ID_PERFIL = '"+cusuVo.getIdPerfil()+"'");
+
 
 		try{
-			conn = Conexao.open(conn);
-			stm = conn.createStatement();
+			conn = Conexao.open;
+			stm =conn.createStatement();
+			stm.executeUpdate(query.toString());
+
+		}catch (Exception e) {
+			System.out.println(e.getMessage());
+		}finally{
+			Conexao.close(rset,stm,conn);
+		}
+
+	}
+
+	public CadUsuarioVo getUsuario(String cpf){
+		StringBuilder query = new StringBuilder();
+		CadUsuarioVo cusuResult = new CadUsuarioVo();
+
+		query.append("SELECT * FROM TB_USUARIO");
+		query.append(" WHERE CPF LIKE "+cpf);
+
+
+		try{
+			conn = Conexao.open;
+			stm =conn.createStatement();
 			rset = stm.executeQuery(query.toString());
 
 			while(rset.next()){
-				cusuVo.setId(rset.getInt("id"));
-				cusuVo.setNome(rset.getString("nome"));
-				cusuVo.setSobrenome(rset.getString("sobrenome"));
-				cusuVo.setDataNascimento(rset.getTimestamp("data_de_nascimento"));
-				cusuVo.setSexo(rset.getString("sexo"));
-				cusuVo.setCpf(rset.getString("cpf"));
-				cusuVo.setApelido(rset.getString("apelido"));
-				cusuVo.setEmail(rset.getString("email"));
-				cusuVo.setSenha(rset.getString("senha"));
-				cusuVo.setDataEntradaSistema(rset.getTimestamp("data_de_entrada_sistema"));
-				cusuVo.setDataModificacao(rset.getTimestamp("data_ultima_modificacao,"));
-				cusuVo.setAtivo(rset.getString("ativo"));
-				cusuVo.setPerfil(rset.getInt("perfil"));
-
+				cusuResult = new CadUsuarioVo();
+				cusuResult.setId(rset.getInt("ID"));
+				cusuResult.setNome(rset.getString("NOME"));
+				cusuResult.setSobrenome(rset.getString("SOBRENOME"));
+				cusuResult.setDataNasc(rset.getTimestamp("DATA_NASCIMENTO"));
+				cusuResult.setSexo(rset.getCharacterStream("SEXO"));
+				cusuResult.setCpf(rset.getString("CPF"));
+				cusuResult.setApelido(rset.getString("APELIDO"));
+				cusuResult.setEmail(rset.getString("EMAIL"));
+				cusuResult.setSenha(rset.getString("SENHA"));
+				cusuResult.setDataEntrada(rset.getTimestamp("DATA_ENTRADA"));
+				cusuResult.setDataModif(rset.getTimestamp("DATA_ULTIMA_MODIFICACAO"));
+				cusuResult.setAtivo(rset.getCharacterStream("ATIVO"));
+				cusuResult.setReceberEmail(rset.getCharacterStream("RECEBER_EMAIL"));
+				cusuResult.setEspecial(rset.getCharacterStream("ESPECIAL"));
+				cusuResult.setIdPerfil(rset.getInt("ID_PERFIL"));
 			}
-
 
 		}catch (Exception e) {
 			System.out.println(e.getMessage());
-			System.out.println("CadUsuarioDao().update()");
 		}finally{
-			Conexao.close(rset, stm, conn);
+			Conexao.close(rset,stm,conn);
 		}
 
-		return cusuVo;
+		return cusuResult;
+
 	}
+
+
 
 }
