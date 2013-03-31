@@ -6,16 +6,18 @@ public class CadUsuarioVo {
 	private Integer id;
 	private String nome;
 	private String sobrenome;
-	private Date dataNascimento;
-	private Date dataEntradaSistema;
-	private Date dataModificacao;
-	private String sexo;
-	private String ativo;
+	private Date dataNasc;
+	private char sexo;
 	private String cpf;
 	private String apelido;
 	private String email;
 	private String senha;
-	private Integer perfil;
+	private Date dataEntrada;
+	private Date dataModif;
+	private char ativo;
+	private char receberEmail;
+	private char Especial;
+	private Integer idPerfil;
 	
 	public Integer getId() {
 		return id;
@@ -29,22 +31,23 @@ public class CadUsuarioVo {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+	
 	public String getSobrenome() {
 		return sobrenome;
 	}
 	public void setSobrenome(String sobrenome) {
 		this.sobrenome = sobrenome;
 	}
-	public Date getDataNascimento() {
-		return dataNascimento;
+	public Date getDataNasc() {
+		return dataNasc;
 	}
-	public void setDataNascimento(Date dataNascimento) {
-		this.dataNascimento = dataNascimento;
+	public void setDataNasc(Date dataNasc) {
+		this.dataNasc = dataNasc;
 	}
-	public String getSexo() {
+	public char getSexo() {
 		return sexo;
 	}
-	public void setSexo(String sexo) {
+	public void setSexo(char sexo) {
 		this.sexo = sexo;
 	}
 	public String getCpf() {
@@ -71,30 +74,44 @@ public class CadUsuarioVo {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	public Integer getPerfil() {
-		return perfil;
+	public Date getDataEntrada() {
+		return dataEntrada;
 	}
-	public void setPerfil(Integer perfil) {
-		this.perfil = perfil;
+	public void setDataEntrada(Date dataEntrada) {
+		this.dataEntrada = dataEntrada;
 	}
-	public Date getDataEntradaSistema() {
-		return dataEntradaSistema;
+	public Date getDataModif() {
+		return dataModif;
 	}
-	public void setDataEntradaSistema(Date dataEntradaSistema) {
-		this.dataEntradaSistema = dataEntradaSistema;
+	public void setDataModif(Date dataModif) {
+		this.dataModif = dataModif;
 	}
-	public String getAtivo() {
+	public char getAtivo() {
 		return ativo;
 	}
-	public void setAtivo(String ativo) {
+	public void setAtivo(char ativo) {
 		this.ativo = ativo;
 	}
-	public Date getDataModificacao() {
-		return dataModificacao;
+	public char getReceberEmail() {
+		return receberEmail;
 	}
-	public void setDataModificacao(Date dataModificacao) {
-		this.dataModificacao = dataModificacao;
+	public void setReceberEmail(char receberEmail) {
+		this.receberEmail = receberEmail;
 	}
+	public char getEspecial() {
+		return Especial;
+	}
+	public void setEspecial(char especial) {
+		Especial = especial;
+	}
+	public Integer getIdPerfil() {
+		return idPerfil;
+	}
+	public void setIdPerfil(Integer idPerfil) {
+		this.idPerfil = idPerfil;
+	}
+	
+	
 	
 	
 
