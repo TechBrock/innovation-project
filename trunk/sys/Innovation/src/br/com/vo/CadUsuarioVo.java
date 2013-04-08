@@ -1,6 +1,7 @@
 package br.com.vo;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 
 public class CadUsuarioVo implements Serializable{
@@ -23,6 +24,7 @@ public class CadUsuarioVo implements Serializable{
 	private char receberEmail;
 	private char especial;
 	private Integer idPerfil;
+	 
 	
 	public Integer getId() {
 		return id;
