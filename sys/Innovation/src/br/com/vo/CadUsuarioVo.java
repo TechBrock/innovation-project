@@ -1,22 +1,27 @@
 package br.com.vo;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class CadUsuarioVo {
+public class CadUsuarioVo implements Serializable{
+
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -6717663066413493948L;
 	private Integer id;
 	private String nome;
 	private String sobrenome;
-	private Date dataNasc;
+	private Date dataNascimento;
 	private char sexo;
 	private String cpf;
 	private String apelido;
 	private String email;
 	private String senha;
 	private Date dataEntrada;
-	private Date dataModif;
 	private char ativo;
 	private char receberEmail;
-	private char Especial;
+	private char especial;
 	private Integer idPerfil;
 	
 	public Integer getId() {
@@ -31,18 +36,17 @@ public class CadUsuarioVo {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	
 	public String getSobrenome() {
 		return sobrenome;
 	}
 	public void setSobrenome(String sobrenome) {
 		this.sobrenome = sobrenome;
 	}
-	public Date getDataNasc() {
-		return dataNasc;
+	public Date getDataNascimento() {
+		return dataNascimento;
 	}
-	public void setDataNasc(Date dataNasc) {
-		this.dataNasc = dataNasc;
+	public void setDataNascimento(Date dataNascimento) {
+		this.dataNascimento = dataNascimento;
 	}
 	public char getSexo() {
 		return sexo;
@@ -80,12 +84,6 @@ public class CadUsuarioVo {
 	public void setDataEntrada(Date dataEntrada) {
 		this.dataEntrada = dataEntrada;
 	}
-	public Date getDataModif() {
-		return dataModif;
-	}
-	public void setDataModif(Date dataModif) {
-		this.dataModif = dataModif;
-	}
 	public char getAtivo() {
 		return ativo;
 	}
@@ -99,10 +97,10 @@ public class CadUsuarioVo {
 		this.receberEmail = receberEmail;
 	}
 	public char getEspecial() {
-		return Especial;
+		return especial;
 	}
 	public void setEspecial(char especial) {
-		Especial = especial;
+		this.especial = especial;
 	}
 	public Integer getIdPerfil() {
 		return idPerfil;
@@ -110,6 +108,10 @@ public class CadUsuarioVo {
 	public void setIdPerfil(Integer idPerfil) {
 		this.idPerfil = idPerfil;
 	}
+	
+	
+	
+	
 	
 	
 	
