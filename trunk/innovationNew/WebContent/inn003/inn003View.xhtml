@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	template="/inn000/templateMaster.xhtml">
+
+	<ui:define name="corpo">
+		<table>
+			<tr>
+				<td colspan="2" align="center">
+					<h:outputText value="Meus dados" styleClass="outputTitulo"/>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<h:outputText value="Como prefere ser chamado"/>
+				</td>
+				<td>
+					<h:inputText size="70"/>
+				</td>
+			</tr>
+			
+			<tr>
+				<td>
+					<h:outputText value="Nome"/>
+				</td>
+				<td>
+					<h:inputText size="70"/>
+				</td>
+			</tr>
+			
+			<tr>
+				<td>
+					<h:outputText value="Sobrenome"/>
+				</td>
+				<td>
+					<h:inputText size="70"/>
+				</td>
+			</tr>
+			
+			<tr>
+				<td>
+					<h:outputText value="Sobrenome"/>
+				</td>
+				<td>
+					<h:inputText size="70"/>
+				</td>
+			</tr>
+			
+			
+			<tr>
+				<td>
+					<h:outputText value="Data de Nascimento"></h:outputText>
+					
+				</td>
+				<td>
+					<h:inputText size="2"/><h:inputText size="2"/><h:inputText size="4"/>
+				</td>
+			</tr>
+			
+			<tr>
+				<td>
+					<h:outputText value="Sexo"/>
+				</td>
+				<td>
+					<h:selectOneRadio>
+						<f:selectItem  itemLabel="Feminino"/>
+						<f:selectItem  itemLabel="Masculino"/>
+					</h:selectOneRadio>
+				</td>
+			</tr>
+			
+			<tr>
+				<td>
+					<h:outputText value="CPF"/>
+				</td>
+				<td>
+					<h:inputText size="11"/>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<h:outputText value="Telefone Residencial"/>
+				</td>
+				<td>
+					<h:inputText size="2"/><h:inputText size="4"/>-<h:inputText size="4"/>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<h:outputText value="Telefone Comercia"/>
+				</td>
+				<td>
+					<h:inputText size="2"/><h:inputText size="4"/>-<h:inputText size="4"/>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<h:outputText value="Telefone Celular"/>
+				</td>
+				<td>
+					<h:inputText size="2"/><h:inputText size="4"/>-<h:inputText size="4"/>
+				</td>
+			</tr>
+			<tr>
+				<td>
+				
+				</td>
+			</tr>
+			
+			
+			<tr>
+				<td colspan="2" align="center">
+					<h:outputText value="Meu endereço" styleClass="outputTitulo"/>
+				</td>
+			</tr>
+			
+			<tr>
+				<td>
+					<h:outputText value="Rua"/>
+				</td>
+				<td>
+					<h:inputSecret size="70"/>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<h:outputText value="Endereço"/>
+				</td>
+				<td>
+					<h:inputSecret size="70"/>
+				</td>
+			</tr>
+			
+			<tr>
+				<td>
+					<h:outputText value="Numero"/>
+				</td>
+				<td>
+					<h:inputSecret size="5"/>
+				</td>
+			</tr>
+			
+			<tr>
+				<td>
+					<h:outputText value="Complemento"/>
+				</td>
+				<td>
+					<h:inputSecret size="5"/>
+				</td>
+			</tr>
+			
+			<tr>
+				<td>
+					<h:outputText value="Bairro"/>
+				</td>
+				<td>
+					<h:inputSecret size="50"/>
+				</td>
+			</tr>
+			
+			<tr>
+				<td>
+					<h:outputText value="Cidade"/>
+				</td>
+				<td>
+					<h:inputSecret size="50"/>
+				</td>
+			</tr>
+			
+			<tr>
+				<td>
+					<h:outputText value="Estado"/>
+				</td>
+				<td>
+					<h:inputSecret size="50"/>
+				</td>
+			</tr>
+			
+			<tr>
+				<td>
+					<h:outputText value="País"/>
+				</td>
+				<td>
+					<h:inputSecret size="50"/>
+				</td>
+			</tr>
+			
+			<tr>
+				<td align="center">
+					<h:outputText value="Informações de referência" />
+				</td>
+				<td>
+					<h:inputTextarea rows="5" cols="70" />
+				</td>
+			</tr>
+			
+			<tr>
+				<td colspan="2" align="center">
+					<h:outputText value="Meus dados de acesso" styleClass="outputTitulo"/>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<h:outputText value="Email"/>
+				</td>
+				<td>
+					<h:inputText size="70"/>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<h:outputText value="Senha"/>
+				</td>
+				<td>
+					<h:inputSecret size="20"/>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<h:outputText value="Confime sua senha"/>
+				</td>
+				<td>
+					<h:inputSecret size="20"/>
+				</td>
+			</tr>
+		</table>
+		<br/><br/><br/>
+		<table width="90%">
+			<tr>
+				<td align="left">
+					<a4j:commandButton image="/images/botoes/cancelar.png" 
+						style="width: 100px;height: 30px;"
+						action="inn001"/>
+				</td>
+				<td align="right">
+					<a4j:commandButton image="/images/botoes/continuar.png" 
+						style="width: 100px;height: 30px;"/>
+				</td>
+			</tr>
+		</table>
+	</ui:define>
+</ui:composition>
