@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf13659569834420" configfile="/Innovation/WebContent/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="*" x="122" y="1138" id="pf13659595575801" outlinks="pf13659595575802 pf13659595575803 pf13659595575804 pf13659595575805 pf13659595575806 pf13659595575807" path="*"/>
+  <nodes xsi:type="pageflow:PFPage" name="bemVindo" x="338" y="178" id="pf13659595575808" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf13659595575802" path="bemVindo.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="inn000/templateMenu" x="338" y="562" id="pf13659595575809" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" inlinks="pf13659595575803" path="/inn000/templateMenu.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="inn001/inn01View" x="338" y="946" id="pf136595955758010" referenceLink="//@navigationRule.2/@navigationCase.0/@toViewId|" inlinks="pf13659595575804" path="/inn001/inn01View.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="inn001/inn01Detalhe" x="338" y="1330" id="pf136595955758011" referenceLink="//@navigationRule.3/@navigationCase.0/@toViewId|" inlinks="pf13659595575805" path="/inn001/inn01Detalhe.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="inn002/inn002View" x="338" y="1714" id="pf136595955758012" referenceLink="//@navigationRule.4/@navigationCase.0/@toViewId|" inlinks="pf13659595575806" path="/inn002/inn002View.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="inn003/inn003View" x="338" y="2098" id="pf136595955758113" referenceLink="//@navigationRule.5/@navigationCase.0/@toViewId|" inlinks="pf13659595575807" path="/inn003/inn003View.xhtml"/>
+  <links id="pf13659595575802" target="pf13659595575808" source="pf13659595575801" outcome="BemVindo"/>
+  <links id="pf13659595575803" target="pf13659595575809" source="pf13659595575801" outcome="menu"/>
+  <links id="pf13659595575804" target="pf136595955758010" source="pf13659595575801" outcome="inn001" redirect="true"/>
+  <links id="pf13659595575805" target="pf136595955758011" source="pf13659595575801" outcome="inn001Detalhe"/>
+  <links id="pf13659595575806" target="pf136595955758012" source="pf13659595575801" outcome="inn002"/>
+  <links id="pf13659595575807" target="pf136595955758113" source="pf13659595575801" outcome="inn003"/>
+</pageflow:Pageflow>

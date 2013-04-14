@@ -9,6 +9,7 @@ public class UsuarioVo implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 8751826646345716326L;
+	
 	private Integer usuario;
 	private Integer idPerfil;
 	private String nome;
@@ -17,7 +18,7 @@ public class UsuarioVo implements Serializable{
 	private String apelido;
 	private String email;
 	private String senha;
-	private Date dataNascimento;
+	private String dataNascimento;
 	private Date dataEntrada;
 	private char sexo;
 	private char ativo;
@@ -73,10 +74,10 @@ public class UsuarioVo implements Serializable{
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	public Date getDataNascimento() {
+	public String getDataNascimento() {
 		return dataNascimento;
 	}
-	public void setDataNascimento(Date dataNascimento) {
+	public void setDataNascimento(String dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
 	public Date getDataEntrada() {

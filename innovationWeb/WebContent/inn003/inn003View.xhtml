@@ -21,7 +21,10 @@
 					<h:outputText value="Como prefere ser chamado"/>
 				</td>
 				<td>
-					<h:inputText size="70"/>
+					<h:inputText id="usuApelido" size="70" value="#{UsuarioBo.usuVo.apelido}" 
+						requerid="true" requiredMessage="Digite um Apelido">
+						<a4j:support action="#{UsuarioBo.validaApelido}" event="onblur" reRender="form1"/>
+					</h:inputText>
 				</td>
 			</tr>
 			
@@ -30,36 +33,30 @@
 					<h:outputText value="Nome"/>
 				</td>
 				<td>
-					<h:inputText size="70"/>
+					<h:inputText size="70" value="#{UsuarioBo.usuVo.nome}" requerid="true" requiredMessage="Digite um Nome">
+						
+					</h:inputText>
 				</td>
 			</tr>
 			
 			<tr>
 				<td>
-					<h:outputText value="Sobrenome"/>
+					<h:outputText value="Sobrenome" requerid="true" requiredMessage="Digite um Sobrenome"/>
 				</td>
 				<td>
-					<h:inputText size="70"/>
+					<h:inputText id="usuSobrenome" size="70" value="#{UsuarioBo.usuVo.sobrenome}" requered="true"/>
 				</td>
 			</tr>
 			
 			<tr>
 				<td>
-					<h:outputText value="Sobrenome"/>
-				</td>
-				<td>
-					<h:inputText size="70"/>
-				</td>
-			</tr>
-			
-			
-			<tr>
-				<td>
-					<h:outputText value="Data de Nascimento"></h:outputText>
+					<h:outputText value="Data de Nascimento"/>
 					
 				</td>
 				<td>
-					<h:inputText size="2"/><h:inputText size="2"/><h:inputText size="4"/>
+					<h:inputText size="2" value="#{UsuarioBo.diaNasc}"/>
+					<h:inputText size="2" value="#{UsuarioBo.mesNasc}"/>
+					<h:inputText size="4" value="#{UsuarioBo.anoNasc}"/>
 				</td>
 			</tr>
 			
@@ -80,7 +77,7 @@
 					<h:outputText value="CPF"/>
 				</td>
 				<td>
-					<h:inputText size="11"/>
+					<h:inputText size="11" value="#{UsuarioBo.usuVo.cpf}"/>
 				</td>
 			</tr>
 			<tr>
@@ -88,7 +85,8 @@
 					<h:outputText value="Telefone Residencial"/>
 				</td>
 				<td>
-					<h:inputText size="2"/><h:inputText size="4"/>-<h:inputText size="4"/>
+					<h:inputText size="2" value="#{UsuarioBo.telResidencial.ddd}"/>
+					<h:inputText size="8" value="#{UsuarioBo.telResidencial.numero}"/>
 				</td>
 			</tr>
 			<tr>
@@ -96,7 +94,8 @@
 					<h:outputText value="Telefone Comercia"/>
 				</td>
 				<td>
-					<h:inputText size="2"/><h:inputText size="4"/>-<h:inputText size="4"/>
+					<h:inputText size="2" value="#{UsuarioBo.telComercial.ddd}"/>
+					<h:inputText size="8" value="#{UsuarioBo.telComercial.numero}"/>
 				</td>
 			</tr>
 			<tr>
@@ -104,7 +103,8 @@
 					<h:outputText value="Telefone Celular"/>
 				</td>
 				<td>
-					<h:inputText size="2"/><h:inputText size="4"/>-<h:inputText size="4"/>
+					<h:inputText size="2" value="#{UsuarioBo.telCelular.ddd}"/>
+					<h:inputText size="8" value="#{UsuarioBo.telCelular.numero}"/>
 				</td>
 			</tr>
 			<tr>
@@ -133,7 +133,7 @@
 					<h:outputText value="Endereço"/>
 				</td>
 				<td>
-					<h:inputSecret size="70"/>
+					<h:inputSecret size="70" />
 				</td>
 			</tr>
 			
@@ -207,18 +207,18 @@
 			</tr>
 			<tr>
 				<td>
-					<h:outputText value="Email"/>
+					<h:outputText value="Email" />
 				</td>
 				<td>
-					<h:inputText size="70"/>
+					<h:inputText size="70" value="#{UsuarioBo.usuVo.email}"/>
 				</td>
 			</tr>
 			<tr>
 				<td>
-					<h:outputText value="Senha"/>
+					<h:outputText value="Senha" />
 				</td>
 				<td>
-					<h:inputSecret size="20"/>
+					<h:inputSecret size="20" value="#{UsuarioBo.usuVo.senha}"/>
 				</td>
 			</tr>
 			<tr>
@@ -240,7 +240,8 @@
 				</td>
 				<td align="right">
 					<a4j:commandButton image="/images/botoes/continuar.png" 
-						style="width: 100px;height: 30px;"/>
+						style="width: 100px;height: 30px;"
+						action="#{UsuarioBo.inserir}"/>
 				</td>
 			</tr>
 		</table>
