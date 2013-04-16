@@ -133,7 +133,7 @@ public class UsuarioBo implements Serializable {
 	//validações
 		public  void validaApelido(){
 			if(usuVo.getApelido().equals(null) || usuVo.getApelido().equals("")){
-				MessagesUtil.exibeMensagemErro("Apelido obrigatório", "usuApelido");
+				MessagesUtil.exibeMensagemErro("Apelido obrigatório", "validaApelido");
 			}
 		}
 		

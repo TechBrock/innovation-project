@@ -7,7 +7,8 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:rich="http://richfaces.org/rich"
 	xmlns:a4j="http://richfaces.org/a4j"
-	template="/inn000/templateMaster.xhtml">
+	template="/inn000/templateMaster.xhtml"
+	xmlns:t="http://myfaces.apache.org/tomahawk">
 
 	<ui:define name="corpo">
 		<table>
@@ -22,20 +23,27 @@
 				</td>
 				<td>
 					<h:inputText id="usuApelido" size="70" value="#{UsuarioBo.usuVo.apelido}" 
-						requerid="true" requiredMessage="Digite um Apelido">
-						<a4j:support action="#{UsuarioBo.validaApelido}" event="onblur" reRender="form1"/>
+						requerid="true" requiredMessage="aiiin">
+						<rich:ajaxValidator event="onblur" reRender="form1"/>
+						<h:message for="usuApelido"></h:message>
 					</h:inputText>
 				</td>
-			</tr>
+				<td>
+					
+				</td>
+				</tr>
 			
 			<tr>
 				<td>
 					<h:outputText value="Nome"/>
 				</td>
 				<td>
-					<h:inputText size="70" value="#{UsuarioBo.usuVo.nome}" requerid="true" requiredMessage="Digite um Nome">
+					<h:inputText size="70" value="#{UsuarioBo.usuVo.nome}" requerid="true" >
 						
 					</h:inputText>
+				</td>
+				<td>
+					<h:messages id="validaNome"/>
 				</td>
 			</tr>
 			
