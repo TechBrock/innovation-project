@@ -133,9 +133,50 @@ public class UsuarioBo implements Serializable {
 	//validações
 		public  void validaApelido(){
 			if(usuVo.getApelido().equals(null) || usuVo.getApelido().equals("")){
-				MessagesUtil.exibeMensagemErro("Apelido obrigatório", "validaApelido");
+				MessagesUtil.exibeMensagemErro("Apelido obrigatório", "teste");
 			}
 		}
+		
+		public  void validaNome(){
+			if(usuVo.getNome().equals(null) || usuVo.getNome().equals("")){
+				MessagesUtil.exibeMensagemErro("Nome obrigatório", "validaNome");
+			}
+		}
+		
+		public  void validaSobrenome(){
+			if(usuVo.getSobrenome().equals(null) || usuVo.getSobrenome().equals("")){
+				MessagesUtil.exibeMensagemErro("Sobrenome obrigatório", "validaNome");
+			}
+		}
+		
+		public  void validaDataNasc(){
+			if(diaNasc.equals(null)|| diaNasc.equals("")
+					|| mesNasc.equals(null) || mesNasc.equals("")
+					|| anoNasc.equals(null) || anoNasc.equals("")){
+				MessagesUtil.exibeMensagemErro("Data de Nascimento obrigatória", "validaNome");
+			}
+		}
+		
+		public  void validaCPF(){
+			if(usuVo.getCpf().equals(null) || usuVo.getCpf().equals("")){
+				MessagesUtil.exibeMensagemErro("CPF obrigatório", "validaNome");
+			}
+		}
+		
+		public  void validaEmail(){
+			if(usuVo.getEmail().equals(null) || usuVo.getEmail().equals("")){
+				MessagesUtil.exibeMensagemErro("Email obrigatório", "validaNome");
+			}
+		}
+		
+		public  void validaSenha(){
+			if(usuVo.getSenha().equals(null) || usuVo.getSenha().equals("")){
+				MessagesUtil.exibeMensagemErro("Senha obrigatório", "validaNome");
+			}
+		}
+		
+
+		
 		
 		
 

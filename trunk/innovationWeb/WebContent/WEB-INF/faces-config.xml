@@ -52,6 +52,14 @@
 		</navigation-case>
 	</navigation-rule>
 	
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>inn004</from-outcome>
+			<to-view-id>/inn004/inn004view.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	
 	<managed-bean>
 		<managed-bean-name>UsuarioBo</managed-bean-name>
 		<managed-bean-class>br.com.innovation.bo.UsuarioBo</managed-bean-class>
