@@ -22,14 +22,14 @@
 					<h:outputText value="Como prefere ser chamado"/>
 				</td>
 				<td>
-					<h:inputText id="usuApelido" size="70" value="#{UsuarioBo.usuVo.apelido}" 
-						requerid="true" requiredMessage="aiiin">
-						<rich:ajaxValidator event="onblur" reRender="form1"/>
-						<h:message for="usuApelido"></h:message>
-					</h:inputText>
+						<h:inputText id="usuApelido" size="70" value="#{UsuarioBo.usuVo.apelido}" 
+							maxlength="30" required="true" requiredMessage="Campo Obrigatório!">
+							<a4j:support event="submit"  reRender="form1" />
+						</h:inputText>
+					
 				</td>
 				<td>
-					
+					<rich:message for="usuApelido" />
 				</td>
 				</tr>
 			
@@ -38,12 +38,13 @@
 					<h:outputText value="Nome"/>
 				</td>
 				<td>
-					<h:inputText size="70" value="#{UsuarioBo.usuVo.nome}" requerid="true" >
-						
+					<h:inputText id="usuNome" size="70" value="#{UsuarioBo.usuVo.nome}" 
+						maxlength="30" required="true" requiredMessage="Campo Obrigatório!">
+						<a4j:support event="submit"  reRender="form1" />
 					</h:inputText>
 				</td>
 				<td>
-					<h:messages id="validaNome"/>
+					<rich:message for="usuNome" />
 				</td>
 			</tr>
 			
@@ -52,7 +53,13 @@
 					<h:outputText value="Sobrenome" requerid="true" requiredMessage="Digite um Sobrenome"/>
 				</td>
 				<td>
-					<h:inputText id="usuSobrenome" size="70" value="#{UsuarioBo.usuVo.sobrenome}" requered="true"/>
+					<h:inputText id="usuSobrenome" size="70" value="#{UsuarioBo.usuVo.sobrenome}" 
+						maxlength="30" required="true" requiredMessage="Campo Obrigatório!">
+						<a4j:support event="submit"  reRender="form1" />
+					</h:inputText>
+				</td>
+				<td>
+					<rich:message for="usuSobrenome" />
 				</td>
 			</tr>
 			
@@ -62,10 +69,17 @@
 					
 				</td>
 				<td>
-					<h:inputText size="2" value="#{UsuarioBo.diaNasc}"/>
-					<h:inputText size="2" value="#{UsuarioBo.mesNasc}"/>
-					<h:inputText size="4" value="#{UsuarioBo.anoNasc}"/>
+					<h:inputText size="2" value="#{UsuarioBo.diaNasc}" maxlength="2"/>
+					<h:inputText size="2" value="#{UsuarioBo.mesNasc}" maxlength="2"/>
+					<h:inputText id="usuDataNasc" size="4" value="#{UsuarioBo.anoNasc}"
+						maxlength="4" required="true" requiredMessage="Campo Obrigatório!">
+						<a4j:support event="submit"  reRender="form1" />
+					</h:inputText>
 				</td>
+				<td>
+					<rich:message for="usuDataNasc" />
+				</td>
+				
 			</tr>
 			
 			<tr>
@@ -85,7 +99,13 @@
 					<h:outputText value="CPF"/>
 				</td>
 				<td>
-					<h:inputText size="11" value="#{UsuarioBo.usuVo.cpf}"/>
+					<h:inputText id="usuCpf" size="11" value="#{UsuarioBo.usuVo.cpf}"
+						maxlength="4" required="true" requiredMessage="Campo Obrigatório!">
+						<a4j:support event="submit"  reRender="form1" />
+					</h:inputText>
+				</td>
+				<td>
+					<rich:message for="usuCpf" />
 				</td>
 			</tr>
 			<tr>
@@ -93,13 +113,19 @@
 					<h:outputText value="Telefone Residencial"/>
 				</td>
 				<td>
-					<h:inputText size="2" value="#{UsuarioBo.telResidencial.ddd}"/>
-					<h:inputText size="8" value="#{UsuarioBo.telResidencial.numero}"/>
+					<h:inputText size="2" value="#{UsuarioBo.telResidencial.ddd}" maxlength="2"/>
+					<h:inputText id="usuTelefoneResid" size="8" value="#{UsuarioBo.telResidencial.numero}" 
+						maxlength="8" required="true" requiredMessage="Campo Obrigatório!">
+						<a4j:support event="submit"  reRender="form1" />
+					</h:inputText>
+				</td>
+				<td>
+					<rich:message for="usuTelefoneResid" />
 				</td>
 			</tr>
 			<tr>
 				<td>
-					<h:outputText value="Telefone Comercia"/>
+					<h:outputText value="Telefone Comercial"/>
 				</td>
 				<td>
 					<h:inputText size="2" value="#{UsuarioBo.telComercial.ddd}"/>
