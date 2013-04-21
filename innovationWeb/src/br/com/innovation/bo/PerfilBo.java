@@ -14,14 +14,23 @@ public class PerfilBo implements Serializable{
 	 */
 	private static final long serialVersionUID = -1766114382514865603L;
 	private PerfilVo perfilVo = new PerfilVo();
+	private PerfilVo perfilEdit = new PerfilVo();
 	private ArrayList<PerfilVo> perfilAl = new ArrayList<PerfilVo>();
 	private String descInsert;
+	private Integer idDelete;
 
 	public PerfilVo getPerfilVo() {
 		return perfilVo;
 	}
 	public void setPerfilVo(PerfilVo perfilVo) {
 		this.perfilVo = perfilVo;
+	}
+	
+	public PerfilVo getPerfilEdit() {
+		return perfilEdit;
+	}
+	public void setPerfilEdit(PerfilVo perfilEdit) {
+		this.perfilEdit = perfilEdit;
 	}
 	public ArrayList<PerfilVo> getPerfilAl() {
 		return perfilAl;
@@ -36,6 +45,14 @@ public class PerfilBo implements Serializable{
 	public void setDescInsert(String descInsert) {
 		this.descInsert = descInsert;
 	}
+	
+	public Integer getIdDelete() {
+		return idDelete;
+	}
+	public void setIdDelete(Integer idDelete) {
+		this.idDelete = idDelete;
+	}
+	
 	public String inserir(){
 		int countInsert = 0;
 		countInsert = new PerfilDao().insertPerfil(descInsert);
@@ -45,6 +62,17 @@ public class PerfilBo implements Serializable{
 
 		return "inn005return";
 	}
+	
+	public String editar(){
+		int count  = 0;
+		count = new PerfilDao().editPerfil(perfilEdit);
+		if(count > 0){
+			MessagesUtil.exibeMensagemInf("Perfil editado com sucesso!");
+		}
+
+		return "inn005return";
+	}
+
 
 	public String buscar(){
 		if(perfilVo.getId() == null || perfilVo.getId() <= 0
@@ -60,4 +88,15 @@ public class PerfilBo implements Serializable{
 
 		return null;
 	}
+	
+	public String deletar(){
+		int count = 0;
+		count = new PerfilDao().deletePerfil(idDelete);
+		if(count > 0){
+			MessagesUtil.exibeMensagemInf("Perfil deletado com sucesso!");
+		}
+		return "inn005return";
+	}
+	
+	
 }

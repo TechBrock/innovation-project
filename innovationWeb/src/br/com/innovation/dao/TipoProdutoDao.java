@@ -5,13 +5,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-
 import br.com.innovation.utils.Conexao;
-import br.com.innovation.vo.PerfilVo;
+import br.com.innovation.vo.TipoProdutoVo;
 
-public class PerfilDao {
+public class TipoProdutoDao {
 
-	public int insertPerfil(String descricao){
+	public int insertTipoProduto(String nome){
 
 		Connection conn = null;
 		Statement stm = null;
@@ -19,7 +18,7 @@ public class PerfilDao {
 		StringBuilder query = new StringBuilder();
 		int countInsert = 0;
 
-		query.append("INSERT INTO TB_PERFIL(descricao) VALUES('"+descricao+"')");
+		query.append("INSERT INTO TB_TIPO_ITEM(nome) VALUES('"+nome+"')");
 
 		try{
 			conn = Conexao.connect();
@@ -27,11 +26,11 @@ public class PerfilDao {
 			countInsert = stm.executeUpdate(query.toString());
 
 		}catch (SQLException sqlex) {
-			System.out.println("ERRO: "+getClass().getCanonicalName()+".insertPerfil()");
+			System.out.println("ERRO: "+getClass().getCanonicalName()+".insertTipoProduto()");
 			sqlex.printStackTrace();
 
 		} catch(Exception e) {
-			System.out.println("ERRO: "+getClass().getCanonicalName()+".insertPerfil()");
+			System.out.println("ERRO: "+getClass().getCanonicalName()+".insertTipoProduto()");
 			e.printStackTrace();
 
 		} finally {
@@ -41,15 +40,15 @@ public class PerfilDao {
 
 	}
 
-	public int editPerfil(PerfilVo perfilVo){
+	public int editTipoProduto(TipoProdutoVo tipoProdutoVo){
 		Connection conn = null;
 		Statement stm = null;
 		ResultSet rset = null;
 		StringBuilder query = new StringBuilder();
 		int countUpdate = 0;
 
-		query.append("UPDATE TB_PERFIL SET descricao = '"+perfilVo.getDescricao()+"'");
-		query.append(" WHERE id = "+perfilVo.getId());
+		query.append("UPDATE TB_TIPO_ITEM SET nome = '"+tipoProdutoVo.getNome()+"'");
+		query.append(" WHERE id = "+tipoProdutoVo.getId());
 
 		try{
 
@@ -58,11 +57,11 @@ public class PerfilDao {
 			countUpdate = stm.executeUpdate(query.toString());
 
 		}catch (SQLException sqlex) {
-			System.out.println("ERRO: "+getClass().getCanonicalName()+".editPerfil()");
+			System.out.println("ERRO: "+getClass().getCanonicalName()+".editTipoProduto()");
 			sqlex.printStackTrace();
 
 		} catch(Exception e) {
-			System.out.println("ERRO: "+getClass().getCanonicalName()+".editPerfil()");
+			System.out.println("ERRO: "+getClass().getCanonicalName()+".editTipoProduto()");
 			e.printStackTrace();
 
 		} finally {
@@ -71,27 +70,27 @@ public class PerfilDao {
 		return countUpdate;
 	}
 
-	public ArrayList<PerfilVo> getPerfil(PerfilVo perfilVo){
+	public ArrayList<TipoProdutoVo> getTipoProduto (TipoProdutoVo tipoProdutoVo){
 
 		Connection conn = null;
 		Statement stm = null;
 		ResultSet rset = null;
 		StringBuilder query = new StringBuilder();
 		StringBuilder filtro = new StringBuilder();
-		PerfilVo perfil = new PerfilVo();
-		ArrayList<PerfilVo> perfilAl = new ArrayList<PerfilVo>();
+		TipoProdutoVo tipo = new TipoProdutoVo();
+		ArrayList<TipoProdutoVo> tipoProdutoAl = new ArrayList<TipoProdutoVo>();
 
-		if(!perfilVo.getDescricao().equals(null) && !perfilVo.getDescricao().equals("")){
-			filtro.append(" AND UPPER(descricao) LIKE UPPER('%"+perfilVo.getDescricao()+"%')"); 
+		if(!tipoProdutoVo.getNome().equals(null) && !tipoProdutoVo.getNome().equals("")){
+			filtro.append(" AND UPPER(nome) LIKE UPPER('%"+tipoProdutoVo.getNome()+"%')"); 
 		}
 
-		if(perfilVo.getId() != null && perfilVo.getId() > 0){
-			filtro.append(" AND id = "+perfilVo.getId());
+		if(tipoProdutoVo.getId() != null && tipoProdutoVo.getId() > 0){
+			filtro.append(" AND id = "+tipoProdutoVo.getId());
 		}
 
 		query.append("SELECT id");
-		query.append(" ,descricao");
-		query.append(" FROM TB_PERFIL");
+		query.append(" ,nome");
+		query.append(" FROM TB_TIPO_ITEM");
 		query.append(" WHERE 1=1");
 		query.append(filtro);
 
@@ -101,34 +100,34 @@ public class PerfilDao {
 			rset = stm.executeQuery(query.toString());
 
 			while(rset.next()){
-				perfil = new PerfilVo();
-				perfil.setId(rset.getInt("id"));
-				perfil.setDescricao(rset.getString("descricao"));
-				perfilAl.add(perfil);
+				tipo = new TipoProdutoVo();
+				tipo.setId(rset.getInt("id"));
+				tipo.setNome(rset.getString("nome"));
+				tipoProdutoAl.add(tipo);
 			}
 		}catch (SQLException sqlex) {
-			System.out.println("ERRO: "+getClass().getCanonicalName()+".getPerfil()");
+			System.out.println("ERRO: "+getClass().getCanonicalName()+".getTipoProduto()");
 			sqlex.printStackTrace();
 
 		} catch(Exception e) {
-			System.out.println("ERRO: "+getClass().getCanonicalName()+".getPerfil()");
+			System.out.println("ERRO: "+getClass().getCanonicalName()+".getTipoProduto()");
 			e.printStackTrace();
 
 		} finally {
 			Conexao.disconnect(rset, stm, conn);
 		}
-		return perfilAl;
+		return tipoProdutoAl;
 	}
 
-	public int deletePerfil(int id){
-		
+	public int deleteTipoProduto(int id){
+
 		Connection conn = null;
 		Statement stm = null;
 		ResultSet rset = null;
 		StringBuilder query = new StringBuilder();
 		int countdelete = 0;
 
-		query.append("DELETE FROM TB_PERFIL WHERE id = "+id);
+		query.append("DELETE FROM tb_tipo_item WHERE id = "+id);
 
 		try{
 			conn = Conexao.connect();
@@ -136,11 +135,11 @@ public class PerfilDao {
 			countdelete = stm.executeUpdate(query.toString());
 
 		}catch (SQLException sqlex) {
-			System.out.println("ERRO: "+getClass().getCanonicalName()+".deletePerfil()");
+			System.out.println("ERRO: "+getClass().getCanonicalName()+".deleteTipoProduto()");
 			sqlex.printStackTrace();
 
 		} catch(Exception e) {
-			System.out.println("ERRO: "+getClass().getCanonicalName()+".deletePerfil()");
+			System.out.println("ERRO: "+getClass().getCanonicalName()+".deleteTipoProduto()");
 			e.printStackTrace();
 
 		} finally {
@@ -150,3 +149,4 @@ public class PerfilDao {
 	}
 
 }
+
