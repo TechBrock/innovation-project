@@ -75,6 +75,22 @@
 		</navigation-case>
 	</navigation-rule>
 	
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>inn006</from-outcome>
+			<to-view-id>/inn006/inn006view.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>inn006return</from-outcome>
+			<to-view-id>/inn006/inn006view.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	
 	<managed-bean>
 		<managed-bean-name>UsuarioBo</managed-bean-name>
 		<managed-bean-class>br.com.innovation.bo.UsuarioBo</managed-bean-class>
@@ -84,6 +100,12 @@
 	<managed-bean>
 		<managed-bean-name>PerfilBo</managed-bean-name>
 		<managed-bean-class>br.com.innovation.bo.PerfilBo</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+	
+	<managed-bean>
+		<managed-bean-name>TipoProdutoBo</managed-bean-name>
+		<managed-bean-class>br.com.innovation.bo.TipoProdutoBo</managed-bean-class>
 		<managed-bean-scope>request</managed-bean-scope>
 	</managed-bean>
 
