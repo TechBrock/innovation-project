@@ -7,106 +7,108 @@
 	xmlns:rich="http://richfaces.org/rich"
 	xmlns:a4j="http://richfaces.org/a4j">
 
-	<head>
-		<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>
-			<h:outputText value="metodo.com.br" />
-		</title>
-		
-		<link rel="stylesheet" type="text/css" href="../css/main.css" />
-		<link rel="stylesheet" type="text/css" href="../css/menu.css" />
-		<script type="text/javascript" src="/WebContent/js/jquery.maskedinput-1.3.min.js" />
-		<link rel="stylesheet" type="text/css" href="../generic.css" />
-		
-		<ui:insert name="head"/>
-	</head>
-	<body>
+<head>
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title><h:outputText value="metodo.com.br" /></title>
+
+<link rel="stylesheet" type="text/css" href="../css/main.css" />
+<link rel="stylesheet" type="text/css" href="../css/menu.css" />
+<script type="text/javascript"
+	src="/WebContent/js/jquery.maskedinput-1.3.min.js" />
+<link rel="stylesheet" type="text/css" href="../generic.css" />
+
+<ui:insert name="head" />
+</head>
+<body>
+	<f:view>
 		<a4j:form id="form1">
-	
-			
 			<div align="center">
 				<fieldset class="fieldsetContent">
-<!-- 					<fieldset class="fieldsetLogin"> -->
-<!-- 						<table width="100%" align="center"> -->
-<!-- 							<tr> -->
-<!-- 								<td width="20%"> -->
-<!-- 									<h:commandLink value="Meu cadastro"  styleClass="links" /> -->
-<!-- 								</td> -->
-<!-- 								<td width="20%"> -->
-<!-- 									<h:commandLink value="Meus preferidos" styleClass="links" /> -->
-<!-- 								</td> -->
-<!-- 								<td width="20%"> -->
-<!-- 									<h:commandLink value="Meus pedidos" styleClass="links" /> -->
-<!-- 								</td> -->
-<!-- 								<td width="40%"> -->
-<!-- 									<h:outputText value="Olá visitante, identifique-se:" styleClass="links" /> -->
-<!-- 									<h:commandLink value="Aqui" action="inn002" styleClass="links" style="color: blue;" /> -->
-<!-- 								</td> -->
-<!-- 							</tr> -->
-<!-- 						</table> -->
-						
-<!-- 						</fieldset> -->
-       					<rich:toolBar>
-            				<rich:dropDownMenu>
-                				<f:facet name="label"> 
-                    				<h:panelGroup>
-                        				<h:outputText value="Cadastrar"/>
-                   				 	</h:panelGroup>
-                				</f:facet>
-                				<rich:menuItem submitMode="ajax" value="Produto"
-                    				action="inn004">
-                				</rich:menuItem>
-                				<rich:menuItem submitMode="ajax" value="Cor"
-                    				action="inn004">
-                				</rich:menuItem>
-                				<rich:menuItem submitMode="ajax" value="Tipo Produto"
-                    				action="inn004">
-                				</rich:menuItem>
-                				<rich:menuItem submitMode="ajax" value="Classificação"
-                    				action="inn004">
-                				</rich:menuItem>
-           					</rich:dropDownMenu>
-           					
-           					<rich:dropDownMenu>
-                				<f:facet name="label"> 
-                    				<h:panelGroup>
-                        				<h:outputText value="Relatórios"/>
-                   				 	</h:panelGroup>
-                				</f:facet>
-                				<rich:menuItem submitMode="ajax" value="Produto"
-                    				action="inn004">
-                				</rich:menuItem>
-                				<rich:menuItem submitMode="ajax" value="Faturamento"
-                    				action="inn004">
-                				</rich:menuItem>
-                				<rich:menuItem submitMode="ajax" value="Estoque"
-                    				action="inn004">
-                				</rich:menuItem>
-           					</rich:dropDownMenu>
-           					
-           					<rich:dropDownMenu>
-                				<f:facet name="label"> 
-                    				<h:panelGroup>
-                        				<h:outputText value="Sistema"/>
-                   				 	</h:panelGroup>
-                				</f:facet>
-                				<rich:menuItem submitMode="ajax" value="Home"
-                    				action="inn001">
-                				</rich:menuItem>
-                				
-                				<rich:menuItem submitMode="ajax" value="Sair"
-                    				action="inn004">
-                				</rich:menuItem>
-           					</rich:dropDownMenu>
-           					
-       					</rich:toolBar>
-						<rich:spacer height="20px"/>
+					<!-- 					<fieldset class="fieldsetLogin"> -->
+					<!-- 						<table width="100%" align="center"> -->
+					<!-- 							<tr> -->
+					<!-- 								<td width="20%"> -->
+					<!-- 									<h:commandLink value="Meu cadastro"  styleClass="links" /> -->
+					<!-- 								</td> -->
+					<!-- 								<td width="20%"> -->
+					<!-- 									<h:commandLink value="Meus preferidos" styleClass="links" /> -->
+					<!-- 								</td> -->
+					<!-- 								<td width="20%"> -->
+					<!-- 									<h:commandLink value="Meus pedidos" styleClass="links" /> -->
+					<!-- 								</td> -->
+					<!-- 								<td width="40%"> -->
+					<!-- 									<h:outputText value="Olá visitante, identifique-se:" styleClass="links" /> -->
+					<!-- 									<h:commandLink value="Aqui" action="inn002" styleClass="links" style="color: blue;" /> -->
+					<!-- 								</td> -->
+					<!-- 							</tr> -->
+					<!-- 						</table> -->
+
+					<!-- 						</fieldset> -->
+					<rich:toolBar>
+						<rich:dropDownMenu>
+							<f:facet name="label">
+								<h:panelGroup>
+									<h:outputText value="Cadastrar" />
+								</h:panelGroup>
+							</f:facet>
+							<rich:menuItem submitMode="ajax" value="Produto" action="inn004">
+							</rich:menuItem>
+							<rich:menuItem submitMode="ajax" value="Cor" action="inn004">
+							</rich:menuItem>
+							<rich:menuItem submitMode="ajax" value="Tipo Produto"
+								action="inn004">
+							</rich:menuItem>
+							<rich:menuItem submitMode="ajax" value="Classificação"
+								action="inn004">
+							</rich:menuItem>
+
+							<rich:menuItem submitMode="ajax" value="Perfil" action="inn005">
+							</rich:menuItem>
+						</rich:dropDownMenu>
+
+						<rich:dropDownMenu>
+							<f:facet name="label">
+								<h:panelGroup>
+									<h:outputText value="Relatórios" />
+								</h:panelGroup>
+							</f:facet>
+							<rich:menuItem submitMode="ajax" value="Produto" action="inn004">
+							</rich:menuItem>
+							<rich:menuItem submitMode="ajax" value="Faturamento"
+								action="inn004">
+							</rich:menuItem>
+							<rich:menuItem submitMode="ajax" value="Estoque" action="inn004">
+							</rich:menuItem>
+						</rich:dropDownMenu>
+
+						<rich:dropDownMenu>
+							<f:facet name="label">
+								<h:panelGroup>
+									<h:outputText value="Sistema" />
+								</h:panelGroup>
+							</f:facet>
+							<rich:menuItem submitMode="ajax" value="Home" action="inn001">
+							</rich:menuItem>
+
+							<rich:menuItem submitMode="ajax" value="Sair" action="inn004">
+							</rich:menuItem>
+						</rich:dropDownMenu>
+
+					</rich:toolBar>
+					<rich:spacer height="20px" />
 					<div>
-						<ui:insert name="corpo"/>
+						<ui:insert name="corpo" />
+						<h:panelGroup>
+							
+						</h:panelGroup>
 					</div>
 				</fieldset>
 			</div>
 		</a4j:form>
-	</body>
+	</f:view>
+	<div>
+		<ui:insert name="modal" />
+	</div>
+</body>
 </html>

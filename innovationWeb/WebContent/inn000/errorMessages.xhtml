@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:rich="http://richfaces.org/rich"
+    xmlns:a4j="http://richfaces.org/a4j"> 
+	
+	<rich:messages style="padding:2px 0 5px; font-size:12px; font-weight: bold;">
+		<f:facet name="errorMarker">
+		    <h:panelGroup>
+		        <h:graphicImage value="../images/work/error.png" style="width:40px;height:40px;"/>
+		        <rich:spacer width="10"/>
+		     </h:panelGroup>
+		</f:facet>
+		
+		<f:facet name="infoMarker">
+		    <h:panelGroup>
+		         <h:graphicImage value="../images/work/info.png" style="width:40px;height:40px;"/>
+		         <rich:spacer width="10"/>
+		    </h:panelGroup>
+		</f:facet>
+		
+		<f:facet name="warnMarker">
+		    <h:panelGroup>
+		         <h:graphicImage value="../images/work/alert.png" style="width:40px;height:40px;"/>
+		         <rich:spacer width="10"/>
+	        </h:panelGroup>
+		</f:facet>
+		
+		<f:facet name="fatalMarker">
+		    <h:panelGroup>
+		         <h:graphicImage value="../images/work/question.png" style="width:40px;height:40px;"/>
+		         <rich:spacer width="10"/>
+		    </h:panelGroup>
+		</f:facet>
+	</rich:messages>
+</ui:composition>
