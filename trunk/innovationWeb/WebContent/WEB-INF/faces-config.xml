@@ -60,9 +60,30 @@
 		</navigation-case>
 	</navigation-rule>
 	
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>inn005</from-outcome>
+			<to-view-id>/inn005/inn005View.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>inn005return</from-outcome>
+			<to-view-id>/inn005/inn005View.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
 	<managed-bean>
 		<managed-bean-name>UsuarioBo</managed-bean-name>
 		<managed-bean-class>br.com.innovation.bo.UsuarioBo</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+	
+	<managed-bean>
+		<managed-bean-name>PerfilBo</managed-bean-name>
+		<managed-bean-class>br.com.innovation.bo.PerfilBo</managed-bean-class>
 		<managed-bean-scope>request</managed-bean-scope>
 	</managed-bean>
 
