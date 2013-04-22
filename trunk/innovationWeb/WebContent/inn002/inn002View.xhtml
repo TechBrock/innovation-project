@@ -7,9 +7,11 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:rich="http://richfaces.org/rich"
 	xmlns:a4j="http://richfaces.org/a4j"
-	template="/inn000/templateMaster.xhtml">
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	template="/inn000/templateViewSemFiltro.xhtml">
 
-	<ui:define name="corpo">
+	<ui:define name="conteudo">
+	<t:saveState value="#{UsuarioBo}"/>
 		<table>
 			<tr>
 				<td colspan="1" align="center" class="outputTitulo">
@@ -28,7 +30,7 @@
 									value="Digite seu email" styleClass="outputTextTitulo" /> 
 									<br />
 									<br /> 
-									<h:inputText size="50" styleClass="inputText" />
+									<h:inputText size="50" styleClass="inputText" value="#{UsuarioBo.usuVo.email}"/>
 								</td>
 							</tr>
 							<tr>
@@ -36,13 +38,14 @@
 									<h:outputText value="Digite sua senha" styleClass="outputTextTitulo" /> 
 									<br />
 									<br /> 
-									<h:inputSecret size="50" styleClass="inputText" />
+									<h:inputSecret size="50" styleClass="inputText" value="#{UsuarioBo.usuVo.senha}"/>
 								</td>
 							</tr>
 							<tr>
 								<td align="center">
 									<a4j:commandButton image="/images/botoes/entrar.png" 
-										style="width: 100px;height: 30px;"/>
+										style="width: 100px;height: 30px;"
+										action="#{UsuarioBo.login}"/>
 								</td>
 							</tr>
 						</table>
@@ -56,14 +59,14 @@
 									<h:outputText value="Digite seu email" styleClass="outputTextTitulo" /> 
 									<br />
 									<br /> 
-									<h:inputText size="50" styleClass="inputText" />
+									<h:inputText size="50" styleClass="inputText" value="#{UsuarioBo.email}"/>
 								</td>
 							</tr>
 							<tr>
 								<td align="center">
 									<a4j:commandButton image="/images/botoes/continuar.png" 
 										style="width: 100px;height: 30px;"
-										action="inn003"/>
+										action="#{UsuarioBo.buscaEmail}"/>
 								</td>
 							</tr>
 							<tr>

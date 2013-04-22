@@ -27,7 +27,6 @@ public class UsuarioDao {
 		query.append("EMAIL,");
 		query.append("SENHA,");
 		query.append("DATA_ENTRADA,");
-		query.append("DATA_ULTIMA_MODIFICACAO,");
 		query.append("ATIVO,");
 		query.append("RECEBER_EMAIL,");
 		query.append("ESPECIAL,");
@@ -41,7 +40,6 @@ public class UsuarioDao {
 		query.append("'"+usu.getApelido()+"',");
 		query.append("'"+usu.getEmail()+"',");
 		query.append("'"+usu.getSenha()+"',");
-		query.append("NOW(),");
 		query.append("NOW(),");
 		query.append("'"+usu.getAtivo()+"',");
 		query.append("'"+usu.getReceberEmail()+"',");
@@ -74,11 +72,12 @@ public class UsuarioDao {
 	}
 
 	public String getEmailExist(String email){
-		
+
 		Connection conn = null;
 		Statement stm = null;
 		ResultSet rset = null;
 		StringBuilder query = new StringBuilder();
+		UsuarioVo usuVo = new UsuarioVo();
 
 		query.append("SELECT email FROM TB_USUARIO WHERE EMAIL LIKE('"+email+"')");
 
@@ -87,11 +86,10 @@ public class UsuarioDao {
 			stm = conn.createStatement();
 			rset = stm.executeQuery(query.toString());
 
-			if(rset.next()){
-				return rset.getString("email");	
-			}else{
-				return null;
+			while(rset.next()){
+				usuVo.setEmail(rset.getString("email"));
 			}
+
 		} catch (SQLException sqlex) {
 			System.out.println("ERRO: "+getClass().getCanonicalName()+".insertUsuario()");
 			sqlex.printStackTrace();
@@ -103,6 +101,46 @@ public class UsuarioDao {
 		} finally {
 			Conexao.disconnect(rset, stm, conn);
 		}
-		return null;
+		return usuVo.getEmail();
+	}
+
+	public UsuarioVo getLogin(UsuarioVo usu){
+		Connection conn = null;
+		Statement stm = null;
+		ResultSet rset = null;
+		StringBuilder query = new StringBuilder();
+		UsuarioVo usuVo = new UsuarioVo();
+
+		query.append("SELECT email");
+		query.append(" ,senha");
+		query.append(" ,apelido");
+		query.append(" FROM TB_USUARIO");
+		query.append(" WHERE UPPER(email) LIKE UPPER('"+usu.getEmail()+"')");
+		query.append(" AND UPPER(senha) LIKE UPPER('"+usu.getSenha()+"')");
+
+		try{
+			conn = Conexao.connect();
+			stm = conn.createStatement();
+			rset = stm.executeQuery(query.toString());
+
+			if(rset.next()){
+				
+				usuVo.setEmail(rset.getString("email"));
+				usuVo.setSenha(rset.getString("senha"));
+				usuVo.setApelido(rset.getString("apelido"));
+
+			}
+		} catch (SQLException sqlex) {
+			System.out.println("ERRO: "+getClass().getCanonicalName()+".getLogin()");
+			sqlex.printStackTrace();
+
+		} catch(Exception e) {
+			System.out.println("ERRO: "+getClass().getCanonicalName()+".getLogin()");
+			e.printStackTrace();
+
+		} finally {
+			Conexao.disconnect(rset, stm, conn);
+		}
+		return usuVo;
 	}
 }

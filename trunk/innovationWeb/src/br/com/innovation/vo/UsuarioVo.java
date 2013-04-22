@@ -18,6 +18,7 @@ public class UsuarioVo implements Serializable{
 	private String apelido;
 	private String email;
 	private String senha;
+	private String confirmaSenha;
 	private String dataNascimento;
 	private Date dataEntrada;
 	private char sexo;
@@ -73,6 +74,13 @@ public class UsuarioVo implements Serializable{
 	}
 	public void setSenha(String senha) {
 		this.senha = senha;
+	}
+	
+	public String getConfirmaSenha() {
+		return confirmaSenha;
+	}
+	public void setConfirmaSenha(String confirmaSenha) {
+		this.confirmaSenha = confirmaSenha;
 	}
 	public String getDataNascimento() {
 		return dataNascimento;

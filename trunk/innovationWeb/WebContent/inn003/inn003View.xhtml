@@ -7,10 +7,10 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:rich="http://richfaces.org/rich"
 	xmlns:a4j="http://richfaces.org/a4j"
-	template="/inn000/templateMaster.xhtml"
-	xmlns:t="http://myfaces.apache.org/tomahawk">
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	template="/inn000/templateViewSemFiltro.xhtml">
 
-	<ui:define name="corpo">
+	<ui:define name="conteudo">
 		<table>
 			<tr>
 				<td colspan="2" align="center">
@@ -87,9 +87,9 @@
 					<h:outputText value="Sexo"/>
 				</td>
 				<td>
-					<h:selectOneRadio>
-						<f:selectItem  itemLabel="Feminino"/>
-						<f:selectItem  itemLabel="Masculino"/>
+					<h:selectOneRadio value="#{UsuarioBo.usuVo.sexo}">
+						<f:selectItem  itemLabel="Feminino" itemValue="F"/>
+						<f:selectItem  itemLabel="Masculino" itemValue="M"/>
 					</h:selectOneRadio>
 				</td>
 			</tr>
@@ -260,7 +260,18 @@
 					<h:outputText value="Confime sua senha"/>
 				</td>
 				<td>
-					<h:inputSecret size="20"/>
+					<h:inputSecret size="20" value="#{UsuarioBo.usuVo.confirmaSenha}"/>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<h:outputText value="Deseja receber email?"/>
+				</td>
+				<td colspan="2">
+					<h:selectOneRadio value="#{UsuarioBo.usuVo.receberEmail}">
+						<f:selectItem  itemLabel="Sim" itemValue="S"/>
+						<f:selectItem  itemLabel="Não" itemValue="N"/>
+					</h:selectOneRadio>
 				</td>
 			</tr>
 		</table>
