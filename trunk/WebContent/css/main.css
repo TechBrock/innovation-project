@@ -1,0 +1,149 @@
+html, body {
+    height: 100% auto;
+    width:100% auto;
+    margin: 0px;
+    font-family: "Lucida Grande", Tahoma, Helvetica, sans-serif;
+	font-size: 11px;
+	color:black;
+    padding: 0px;
+    xoverflow: hidden;
+    background:#1C1C1C;
+	
+}
+
+.linha{
+	background-color: #747573;
+	margin-top: 3px;
+	margin-bottom:4px;
+	width: 100%;
+	height: 1px;
+}	
+
+.btnMenu{
+	width: 100px;
+	height: 40px;
+	background-color: red;
+	border: none;
+}
+
+.fieldsetLado{
+	background-color: #FF4500;
+	border: dotted;
+	border-color: #FFD700;
+	width: 90%;
+    height:295px;
+     box-shadow: 1px 2px 6px rgba(0, 0, 0, 0.5);
+	-moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+	-webkit-box-shadow: 3px 3px 9px rgba(0, 0, 0, 0.5);
+     -webkit-border-radius: 8px;  
+}
+
+.fieldsetLogin{
+	
+	height: 40px; 
+	margin: 0px; 
+	border: none; 
+    background-color: white;
+    margin: 0;
+    -webkit-border-radius: 8px;  
+     
+     
+}
+
+.fieldsetLog {
+	width: 80%;
+    height:auto;
+    min-height: 2000px;
+     box-shadow: 1px 2px 6px rgba(0, 0, 0, 0.5);
+	-moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+	-webkit-box-shadow: 3px 3px 9px rgba(0, 0, 0, 0.5);
+     -webkit-border-radius: 8px;  
+     background-color: white;
+}
+
+.links{
+	color: #4F4F4F;
+	text-decoration: none;
+	font-size: 20px;
+}
+.fieldset {
+	margin-top:30px;
+    border-color: #747573;
+    width: 700px;
+    height:60px;
+	 box-shadow: 1px 2px 6px rgba(0, 0, 0, 0.5);
+	-moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+	-webkit-box-shadow: 3px 3px 9px rgba(0, 0, 0, 0.5);
+    -webkit-border-radius: 8px; 
+    background-color: white; 
+}
+
+.fieldsetContent{
+	 box-shadow: 1px 2px 6px rgba(0, 0, 0, 0.5);
+	-moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+	-webkit-box-shadow: 3px 3px 9px rgba(0, 0, 0, 0.5);
+	-moz-border-radius: 8px; 
+    -webkit-border-radius: 8px; 
+     width: 1000px;
+    height:auto;
+    min-height: 1300px;
+    background-color: white;
+    position: relative;
+}
+
+.fieldsetDetalhe{
+	border-color: #FFD700;
+    width: 400px;
+    height: auto;
+    background-color: white	;
+    position: relative;
+}
+
+
+.outputTitulo{
+	font-size: 25px;
+	color: red; 
+	
+}
+
+.outputDescricao{
+	font-size: 12px;
+	font-family: arial;
+	
+}
+.outputBike{
+	font-size: 15px;
+	color: #FF1493; 
+	text-decoration: underline;
+	
+}
+
+.outputValor{
+	font-size: 12px;
+	color: red; 
+	text-decoration: inherit;
+	font: bolder;
+	
+}
+.panel{
+	height: 400px;
+	width: 20px;
+	background-image: url(../images/work/separa.jpg);
+	
+}
+
+.inputPesquisa{
+	height: 30px;
+	border: solid;
+	border-color:#1E90FF;
+	 box-shadow: 1px 2px 6px rgba(0, 0, 0, 0.5);
+	-moz-box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.5);
+	-webkit-box-shadow: 3px 3px 9px rgba(0, 0, 0, 0.5);
+	 -webkit-border-radius: 10px; 
+	
+}
+
+.fieldBikes{
+	border: none;
+	
+}

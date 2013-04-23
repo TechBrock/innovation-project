@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	template="/inn000/templateViewSemFiltro.xhtml">
+
+	<ui:define name="conteudo">
+	<t:saveState value="#{UsuarioBo}"/>
+		<table>
+			<tr>
+				<td colspan="1" align="center" class="outputTitulo">
+					<h:outputText value="Já sou cadastrado" />
+				</td>
+				<td colspan="1" align="center" class="outputTitulo">
+					<h:outputText value="Quero me cadastrar" />
+				</td>
+			</tr>				
+			<tr>
+				<td>
+					<fieldset style="width: 600; height: 200px">
+						<table>
+							<tr>
+								<td style="height: 60px"><h:outputText
+									value="Digite seu email" styleClass="outputTextTitulo" /> 
+									<br />
+									<br /> 
+									<h:inputText size="50" styleClass="inputText" value="#{UsuarioBo.usuVo.email}"/>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<h:outputText value="Digite sua senha" styleClass="outputTextTitulo" /> 
+									<br />
+									<br /> 
+									<h:inputSecret size="50" styleClass="inputText" value="#{UsuarioBo.usuVo.senha}"/>
+								</td>
+							</tr>
+							<tr>
+								<td align="center">
+									<a4j:commandButton image="/images/botoes/entrar.png" 
+										style="width: 100px;height: 30px;"
+										action="#{UsuarioBo.login}"/>
+								</td>
+							</tr>
+						</table>
+					</fieldset>
+				</td>
+				<td>
+					<fieldset style="width: 600; height: 200px">
+						<table>
+							<tr>
+								<td>
+									<h:outputText value="Digite seu email" styleClass="outputTextTitulo" /> 
+									<br />
+									<br /> 
+									<h:inputText size="50" styleClass="inputText" value="#{UsuarioBo.email}"/>
+								</td>
+							</tr>
+							<tr>
+								<td align="center">
+									<a4j:commandButton image="/images/botoes/continuar.png" 
+										style="width: 100px;height: 30px;"
+										action="#{UsuarioBo.buscaEmail}"/>
+								</td>
+							</tr>
+							<tr>
+							
+							</tr>
+						</table>
+					</fieldset>
+				</td>
+			</tr>
+		</table>
+	</ui:define>
+</ui:composition>
