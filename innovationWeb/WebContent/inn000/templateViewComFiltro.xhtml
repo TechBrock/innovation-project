@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	template="/inn000/templateMaster.xhtml">
+
+	<ui:define name="corpo">
+		<div align="left">
+			<ui:insert name="tituloTela"/>
+		</div>
+		
+		<div class="linha"/>
+		<div align="left" style="overflow: auto; max-height: 100px;">
+			<table align="center">
+				<tr>
+					<td>
+						<a4j:include viewId="/inn000/errorMessages.xhtml"/>
+					</td>
+				</tr>
+			</table>
+		</div>
+		<rich:spacer height="25px"/>
+			
+		<div align="center">
+			<fieldset style="width: 500px;">
+				<ui:insert name="conteudoFiltro"/>
+			</fieldset>
+		</div>
+		<rich:spacer height="25px"/>
+		
+		<div align="center">
+			<ui:insert name="conteudoResult"/>
+		</div>
+		<rich:spacer height="50px"/>
+		<div>
+			<ui:insert name="conteudoAcoes"/>
+		</div>
+	</ui:define>
+</ui:composition>
