@@ -1,0 +1,223 @@
+	width: 100%;
+	height: 35px;
+.wrapper1{
+	}
+	.wrapper1 a{
+		font-family:Verdana;
+		font-size:11px;
+		color: #E5F2FB;
+		text-decoration: none;
+		font-weight: bold;
+		padding-top: -15px;
+		
+	}
+	.wrapper1 a:hover {
+		color: #09548B;
+	}
+	/*.wrapper1 p {
+		margin: 0 0 17px;
+		padding: 0;
+		line-height: 18px;
+	}*/
+	
+.wrapper {
+	/*width: 710px;*/
+	margin: -2px auto;
+	width: 100%;
+}
+.nav {
+	background: #fff url(../images/men/nav_bg.png) repeat-x;
+	float: left;
+	height: 35px;
+	margin-left: -30px;
+}
+.nev-wrapper {
+	width: 100%;
+}
+
+.nav-right {
+	margin-left:-15px;
+	background-color:#292c2c;
+	width: 100% auto;
+	height: 35px;
+}
+.nav ul {
+	/*width: 648px;*/
+	height: 38px;
+	float: left;
+	margin: 0;
+	padding-top: 2px;
+	list-style: none;
+	font-size: 15px;
+}
+.nav li {
+	float: left;
+	padding: 0 7px;
+	background: url(../images/men/split.png) no-repeat right center;
+	position: relative;
+	z-index: 1;
+}
+.nav li.last {
+	background:none;
+}
+.nav li:hover {
+	z-index:2;
+}
+.nav li a {
+	display: block;
+	line-height: 38px;
+	overflow: hidden;
+	float: left;
+}
+a .menu-left {
+	background: url(../images/men/menu_left.gif) no-repeat left top;
+	width: 8px;
+	height: 32px;
+	line-height: 35px;
+	display: block;
+	float: left;
+}
+a .menu-mid {
+	background: url(../images/men/menu_mid.gif) repeat-x top left;
+	height: 32px;
+	line-height: 35px;
+	display: block;
+	float: left;
+}
+a .menu-right {
+	background: url(../images/men/menu_right.gif) no-repeat top left;
+	width: 8px;
+	height: 32px;
+	line-height: 35px;
+	display: block;
+	float: left;
+}
+.nav li a:hover .menu-left,
+.nav li.active a .menu-left,
+.nav li:hover a .menu-left,
+.nav li a:hover .menu-mid,
+.nav li.active a .menu-mid,
+.nav li:hover a .menu-mid,
+.nav li a:hover .menu-right,
+.nav li.active a .menu-right,
+.nav li:hover a .menu-right {
+	background-position: 0 -37px;
+	line-height: 35px;
+}
+.nav li a:hover,
+.nav li.active a,
+.nav li.hover a,
+.nav li:hover a {
+	color: #363837;
+}
+.nav li:hover .sub,
+.nav li.hover .sub {
+	display:block;
+}
+.nav li .sub {
+	display: none;
+	position: absolute;
+	top: 27px;
+	left: 6px;
+	background: url(../images/men/submenu_top.png) no-repeat;
+	width: 186px;
+	padding-top: 9px;
+}
+.nav li ul {
+	background: url(../images/men/submenu_bg.png) repeat-y;
+	width: 162px;
+	height: auto;
+	margin: 0;
+	padding: 0 12px 10px;
+	list-style: none;
+	font-size: 14px;
+}
+
+.nav li:hover li,
+.nav li.active li {
+	width: 100%;
+	padding: 1px 0 2px;
+	border-bottom: 1px #C1D9F0 dashed;
+	background: none !important;
+}
+.nav li:hover li a,
+.nav li.active li a {
+	color: #363837;
+	background: none !important;
+	line-height: normal;
+	width: 156px;
+	padding: 8px 3px 3px;
+	text-indent: 1px;
+}
+.nav li:hover li a:hover,
+.nav li.active li a:hover {
+	color: #fff;
+	background: #666766 !important;
+	text-decoration: none;
+	line-height: normal;
+}
+/*IE*/
+.nav li li a:hover,
+.nav li li a:hover {
+	color: #fff;
+	background: #165B9F !important;
+	text-decoration: none;
+	line-height: normal;
+}
+/**/
+.nav .btm-bg {
+	background: url(../images/men/submenu_bottom.png) no-repeat;
+	width: 205px;
+	height: 9px;
+	overflow: hidden;
+	clear: both;
+}
+.content {
+	width: 670px;
+	
+	float: left;
+/*	padding: 10px 20px;*/
+}
+.content h1 {
+	color: #333;
+	font-weight: 400;
+	text-transform: uppercase;
+	font-size: 18px;
+	border-bottom: 1px dashed #C1D9F0;
+}
+.content h2 {
+	font-weight: 400;
+	text-transform: uppercase;
+	font-size: 14px;
+	padding-left: 10px;
+	margin-bottom: -5px;
+}
+.content p {
+	padding: 0 15px;
+	text-align: justify;	
+}
+.content-bottom {
+	width: 1px;
+	background: transparent url(../images/men/content_bottom.png) no-repeat;
+	height: 13px;
+	float: left;
+}
+
+.botoes{
+background-color: transparent;
+}
+
+.botaoMenu{
+	background: url(../images/men/menu_mid.gif) repeat-x top left;
+	height: 32px;
+	line-height: 35px;
+	display: block;
+	float: left;
+}
+
+ .btn:active, .btn.active {
+    background-color: #2c3e50;
+    color: rgba(255, 255, 255, 0.75);
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none; }
