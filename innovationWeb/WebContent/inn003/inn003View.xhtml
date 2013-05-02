@@ -11,9 +11,15 @@
 	template="/inn000/templateViewSemFiltro.xhtml">
 
 	<ui:define name="conteudo">
-		<h:panelGroup>
-			<h:outputText value="#{Usuario.erroSubmit}" rendered="#{Usuario.erroSubmit  != null}"/>
-		</h:panelGroup>
+		<h:panelGrid styleClass="panelErro">
+			<h:outputText value="teste Erro" />
+		</h:panelGrid>
+		<h:panelGrid styleClass="panelInf">
+			<h:outputText value="Teste Info" />
+		</h:panelGrid>
+		<h:panelGrid styleClass="panelAlert">
+			<h:outputText value="Tete Alert"/>
+		</h:panelGrid>
 	
 		<table>
 			<tr>
@@ -27,13 +33,21 @@
 								<div class="login-form">
 									<table>
 										<tr>
+											<td colspan="3" align="center">
+												<h:panelGrid styleClass="panelTitulos">
+													<h:outputText value="Dados pessoais" styleClass="outputTextTitulo"/>
+												</h:panelGrid>
+											</td>
+										</tr>
+										<tr>
 											<td>
 												<h:outputText value="Como prefere ser chamado"/>
 											</td>
 											<td>
 												<h:inputText id="usuApelido" size="70" value="#{UsuarioBo.usuVo.apelido}" maxlength="30"
 													 styleClass="login-field"/>
-												<h:outputText value="Preencha o campo APELIDO" rendered="#{!UsuarioBo.apelidoValido}"/>
+												<h:outputText value="● Preencha o campo APELIDO" styleClass="outputTextErro" 
+													rendered="#{!UsuarioBo.apelidoValido}"/>
 											</td>		
 										</tr>
 										<tr>
@@ -42,7 +56,8 @@
 											</td>
 											<td>
 												<h:inputText id="usuNome" size="70" value="#{UsuarioBo.usuVo.nome}" maxlength="30" styleClass="login-field"/>
-												<h:outputText value="Preencha o campo NOME" rendered="#{!UsuarioBo.nomeValido}"/>
+												<h:outputText value="● Preencha o campo NOME" styleClass="outputTextErro" 
+													rendered="#{!UsuarioBo.nomeValido}"/>
 											</td>
 										</tr>
 										<tr>
@@ -51,7 +66,8 @@
 											</td>
 											<td>
 												<h:inputText id="usuSobrenome" size="70" value="#{UsuarioBo.usuVo.sobrenome}" maxlength="30" styleClass="login-field"/>
-												<h:outputText value="Preencha o campo SOBRENOME!" rendered="#{!UsuarioBo.sobrenomeValido}"/>
+												<h:outputText value="● Preencha o campo SOBRENOME!" styleClass="outputTextErro" 
+													rendered="#{!UsuarioBo.sobrenomeValido}"/>
 											</td>
 										</tr>	
 										<tr>
@@ -61,15 +77,6 @@
 											<td>
 												<table>
 													<tr>
-														<td>
-															<rich:inputNumberSpinner minValue="1" maxValue="31" inputSize="1" value="#{UsuarioBo.diaNasc}"/>
-														</td>
-														<td>
-															<rich:inputNumberSpinner minValue="1" maxValue="12" inputSize="1" value="#{UsuarioBo.mesNasc}" />
-														</td>
-														<td>
-															<rich:inputNumberSpinner minValue="1900" maxValue="1995" inputSize="2" value="#{UsuarioBo.anoNasc}" />
-														</td>
 														<td>
 															<rich:calendar></rich:calendar>
 														</td>
@@ -95,7 +102,8 @@
 											<td>
 												<h:inputText id="usuCpf" size="11" value="#{UsuarioBo.usuVo.cpf}" maxlength="11"
 													styleClass="login-field"/>
-												<h:outputText value="Preencha o campo CPF" rendered="#{!UsuarioBo.cpfValido}"/>
+												<h:outputText value="● Preencha o campo CPF" styleClass="outputTextErro"
+													rendered="#{!UsuarioBo.cpfValido}"/>
 											</td>
 										</tr>
 										<tr>
@@ -107,7 +115,8 @@
 													styleClass="login-field"/>
 												<h:inputText id="usuTelefoneResid" size="8" value="#{UsuarioBo.telResidencial.numero}" maxlength="8"
 													styleClass="login-field"/>
-												<h:outputText value="Preencha o campo TELEFONE RESIDENCIAL" rendered="#{!UsuarioBo.telefoneValido}"/>
+												<h:outputText value="● Preencha o campo TELEFONE RESIDENCIAL" styleClass="outputTextErro"
+													rendered="#{!UsuarioBo.telefoneValido}"/>
 											</td>
 										</tr>
 										<tr>
@@ -147,11 +156,18 @@
 								<div class="login-form">
 									<table>
 										<tr>
+											<td colspan="3" align="center">
+												<h:panelGrid styleClass="panelTitulos">
+													<h:outputText value="Endereço" styleClass="outputTextTitulo"/>
+												</h:panelGrid>
+											</td>
+										</tr>
+										<tr>
 											<td>
 												<h:outputText value="Rua"/>
 											</td>
 											<td>
-												<h:inputSecret size="70"
+												<h:inputText size="70"
 													styleClass="login-field"/>
 											</td>
 										</tr>
@@ -160,7 +176,7 @@
 												<h:outputText value="Endereço"/>
 											</td>
 											<td>
-												<h:inputSecret size="70" 
+												<h:inputText size="70" 
 													styleClass="login-field"/>
 											</td>
 										</tr>
@@ -172,14 +188,14 @@
 															<h:outputText value="Numero"/>
 														</td>
 														<td>
-															<h:inputSecret size="5"
+															<h:inputText size="5"
 																styleClass="login-field"/>
 														</td>
 														<td>
 															<h:outputText value="Complemento"/>
 														</td>
 														<td>
-															<h:inputSecret size="5"
+															<h:inputText size="5"
 																styleClass="login-field"/>
 														</td>
 													</tr>
@@ -247,13 +263,21 @@
 								<div class="login-form">
 									<table>
 										<tr>
+											<td colspan="3" align="center">
+												<h:panelGrid styleClass="panelTitulos">
+													<h:outputText value="Acesso" styleClass="outputTextTitulo"/>
+												</h:panelGrid>
+											</td>
+										</tr>
+										<tr>
 											<td>
 												<h:outputText value="Email" />
 											</td>
 											<td>
 												<h:inputText size="70" value="#{UsuarioBo.usuVo.email}"
 													styleClass="login-field"/>
-												<h:outputText value="Preencha o campo EMAIL" rendered="#{!UsuarioBo.emailValido}"/>
+												<h:outputText value="● Preencha o campo EMAIL" styleClass="outputTextErro"
+													rendered="#{!UsuarioBo.emailValido}"/>
 											</td>
 										</tr>
 										<tr>
@@ -261,8 +285,7 @@
 												<h:outputText value="Senha" />
 											</td>
 											<td>
-												<h:inputSecret size="20" value="#{UsuarioBo.usuVo.senha}"
-													styleClass="login-field"/>
+											<h:inputSecret size="20" styleClass="login-field" value="#{UsuarioBo.usuVo.senha}"/>
 												<h:outputText value="Preencha o campo SENHA" rendered="#{!UsuarioBo.senhaValido}"/>
 											</td>
 										</tr>
@@ -271,8 +294,9 @@
 												<h:outputText value="Confime sua senha"/>
 											</td>
 											<td>
-												<h:inputSecret size="20" value="#{UsuarioBo.usuVo.confirmaSenha}"/>
-												<h:outputText value="Preencha o campo CONFIRMAÇÃO DE SENHA" rendered="#{!UsuarioBo.confirmValido}"/>
+												<h:inputSecret size="20" styleClass="login-field" value="#{UsuarioBo.usuVo.confirmaSenha}"/>
+												<h:outputText value="● Preencha o campo CONFIRMAÇÃO DE SENHA" styleClass="outputTextErro"
+													rendered="#{!UsuarioBo.confirmValido}"/>
 											</td>
 										</tr>
 										<tr>
