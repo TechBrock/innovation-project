@@ -49,6 +49,7 @@
 		<navigation-case>
 			<from-outcome>inn002</from-outcome>
 			<to-view-id>/inn002/inn002View.xhtml</to-view-id>
+			<redirect/>
 		</navigation-case>
 	</navigation-rule>
 
