@@ -162,8 +162,7 @@
 	border-radius: 6px;
 	padding: 24px 23px 20px;
 	position: relative;
-	width: 350px;
-	height: 200px;
+	height: auto;
 }
 
 .login-form {
@@ -235,25 +234,25 @@
 .rich-table {
 	background-color: white;
 	border-radius: 6px;
-	
 }
-.outputTextTitulo{
+
+.outputTextTitulo {
 	color: #34495e;
 	font: bold;
 	font-size: 20px;
-	
 }
 
-.outputTextErro{
+.outputTextErro {
 	font: bold;
 	height: 12px;
 	font-size: 12px;
 }
 
-.outputTextDefault{
+.outputTextDefault {
+	
 }
 
-.panelTitulos{
+.panelTitulos {
 	border-style: solid;
 	border-color: #34495e;
 	border-radius: 6px;
@@ -262,7 +261,7 @@
 }
 
 .rich-calendar-input {
- border-color: transparent;
+	border-color: transparent;
 	font-size: 12px;
 	padding-bottom: 11px;
 	padding-top: 11px;
@@ -275,29 +274,40 @@
 	-moz-box-shadow: none;
 	box-shadow: none;
 }
-.rich-calendar-tool{
-	background-color: #ECC03C;
-}
-.rich-calendar-month{
-	background-color: #ECC03C;
-}
-.rich-calendar-today{
-	background-color: #ECC03C;
-}
-/* .rich-sdt-header-cell-body{ */
-/* 	height: 30px; */
-/* 	color: #ECC03C; */
-/* 	font: bold; */
-/* 	font-size: 20px; */
-/* 	border-color: transparent #eceff1 transparent transparent; */
-	
-/* 	background-color: white; */
-/* } */
 
-/* .rich-table-subheadercell{ */
-/* 	border-color: transparent #eceff1 transparent transparent; */
-/* } */
-/* .rich-sdt-column-cell-body{ */
-/* 	border-color: transparent #eceff1 transparent transparent; */
-/* } */
+.rich-calendar-tool {
+	background-color: #ECC03C;
+}
+
+.rich-calendar-month {
+	background-color: #ECC03C;
+}
+
+.rich-calendar-today {
+	background-color: #ECC03C;
+}
+.rich-sdt-header-cell-body{
+	height: 20px;
+	font: bold;
+	font-size: 20px;
+	border: solid;
+	border-color: transparent #eceff1 transparent transparent;
+	background-color: #eceff1;
+	border-right: none;
+}
+.rich-sdt-column-cell   {
+	height: 15px;
+	color: #ECC03C;
+	font: bold;
+	font-size: 20px;
+	border: solid;
+	border-color: #eceff1;	
+	
+}
+.rich-sdt-hsep {
+	background-image:none;
+	height: 0px;
+	width: 0px;
+}
+
 
