@@ -238,7 +238,6 @@
 	
 }
 .outputTextTitulo{
-	font-family: consolas;
 	color: #34495e;
 	font: bold;
 	font-size: 20px;
@@ -246,9 +245,9 @@
 }
 
 .outputTextErro{
-	color: red;
 	font: bold;
-	height: 8;
+	height: 12px;
+	font-size: 12px;
 }
 
 .outputTextDefault{
@@ -262,26 +261,43 @@
 	height: 40px;
 }
 
-.panelErro{
-	border-style: solid;
-	border-color: red;
+.rich-calendar-input {
+ border-color: transparent;
+	font-size: 12px;
+	padding-bottom: 11px;
+	padding-top: 11px;
+	text-indent: 3px;
+	padding: 8px 0 9px 10px;
+	-webkit-border-radius: 6px;
+	-moz-border-radius: 6px;
 	border-radius: 6px;
-	width: 800px;
-	height: 40px;
+	-webkit-box-shadow: none;
+	-moz-box-shadow: none;
+	box-shadow: none;
 }
+.rich-calendar-tool{
+	background-color: #ECC03C;
+}
+.rich-calendar-month{
+	background-color: #ECC03C;
+}
+.rich-calendar-today{
+	background-color: #ECC03C;
+}
+/* .rich-sdt-header-cell-body{ */
+/* 	height: 30px; */
+/* 	color: #ECC03C; */
+/* 	font: bold; */
+/* 	font-size: 20px; */
+/* 	border-color: transparent #eceff1 transparent transparent; */
+	
+/* 	background-color: white; */
+/* } */
 
-.panelInf{
-	border-style: solid;
-	border-color: orange;
-	border-radius: 6px;
-	width: 800px;
-	height: 40px;
-}
+/* .rich-table-subheadercell{ */
+/* 	border-color: transparent #eceff1 transparent transparent; */
+/* } */
+/* .rich-sdt-column-cell-body{ */
+/* 	border-color: transparent #eceff1 transparent transparent; */
+/* } */
 
-.panelAlert{
-	border-style: solid;
-	border-color: aqua;
-	border-radius: 6px;
-	width: 800px;
-	height: 40px;
-}
