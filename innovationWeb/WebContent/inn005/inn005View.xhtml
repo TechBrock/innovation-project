@@ -8,42 +8,46 @@
 	xmlns:rich="http://richfaces.org/rich"
 	xmlns:a4j="http://richfaces.org/a4j"
 	xmlns:t="http://myfaces.apache.org/tomahawk"
-	template="/inn000/templateViewComFiltro.xhtml">
+	template="/inn000/templateViewSemFiltro.xhtml">
 	<ui:define name="tituloTela">
 		<h:outputText value="Perfil"	/>
 	</ui:define>
 
-	<ui:define name="conteudoFiltro">
+	<ui:define name="conteudo">
 	<t:saveState value="#{PerfilBo}"/>
-		<table>
+	
+		<div class="login_ident" style="height: 100px;">
+			<table>
 			<tr>
 				<td>
-					<h:outputText value="Id"/>
-					<h:inputText id="perfilId" value="#{PerfilBo.perfilVo.id}"/>
+					<h:outputText value="Id" styleClass="outputTextTitulo" />
+					<h:inputText id="perfilId" value="#{PerfilBo.perfilVo.id}" size="5"  styleClass="login-field" />
 				</td>
 				<td>
-					<h:outputText value="Nome"/>
-					<h:inputText id="perfilNome" value="#{PerfilBo.perfilVo.descricao}"/>
+					<h:outputText value="Nome" styleClass="outputTextTitulo"/>
+					<h:inputText id="perfilNome" value="#{PerfilBo.perfilVo.descricao}" size="30"  styleClass="login-field"/>
 				</td>
 			</tr>
 			<tr>
 				<td colspan="2" align="right">
 					<a4j:commandButton value="Pesquisar" action="#{PerfilBo.buscar}"
-						reRender="form1"/>
+						styleClass="btn btn-large btn-block btn-danger" reRender="form1"/>
 				</td>
 			</tr>
 		</table>
-	</ui:define>
-	<ui:define name="conteudoResult">
+		</div>
+		
 		<br/>
 		<rich:scrollableDataTable id="tablePerfil" value="#{PerfilBo.perfilAl}"
 			var="lista" 
-			width="460px;"
+			width="600px;"
 			height="125px"
 			rows="5"
-			rendered="#{not empty PerfilBo.perfilAl}">
+			styleClass="rich-table">
+<!-- 			rendered="#{not empty PerfilBo.perfilAl}" -->
 			
-			<rich:column width="50px">
+			
+			<rich:column width="100px">
 				<f:facet name="header">
 					<h:outputText value="Id"/>
 				</f:facet>
@@ -52,7 +56,7 @@
 				</div>
 			</rich:column>
 			
-			<rich:column width="350px">
+			<rich:column width="400px">
 				<f:facet name="header">
 					<h:outputText value="Nome"/>
 				</f:facet>
@@ -61,7 +65,7 @@
 				</div>
 			</rich:column>
 			
-			<rich:column width="50px">
+			<rich:column width="100px">
 				<f:facet name="header">
 					<h:outputText value="Ações"/>
 				</f:facet>
