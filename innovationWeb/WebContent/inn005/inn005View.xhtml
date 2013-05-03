@@ -16,7 +16,7 @@
 	<ui:define name="conteudo">
 	<t:saveState value="#{PerfilBo}"/>
 	
-		<div class="login_ident" style="height: 100px;">
+		<div class="login_ident" style="width:400px; height: 100px;">
 			<table>
 			<tr>
 				<td>
@@ -86,7 +86,7 @@
 		</rich:scrollableDataTable>
 	</ui:define>
 	<ui:define name="conteudoAcoes">
-		<a4j:commandButton value="Novo"
+		<a4j:commandButton value="Novo" styleClass="btn btn-large btn-block btn-danger" style="width: 200x;" 
 			oncomplete="Richfaces.showModalPanel('modalInsert')"/>
 	</ui:define>
 	<ui:define name="modal">
