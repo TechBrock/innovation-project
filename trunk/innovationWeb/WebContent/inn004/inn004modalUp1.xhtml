@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<f:subview id="viewModalUp1"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"	 
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	xmlns:a4j="http://richfaces.org/a4j">
+	
+	<rich:modalPanel id="modalUp1" autosized="true" top="55"
+		resizeable="false" minWidth="400" minHeight="40" keepVisualState="true">
+	<h:form enctype="multipart/form-data">
+		<t:inputFileUpload value="#{ModeloBo.img1}"/>
+		<h:commandButton value="OK" action="#{ModeloBo.uploadImg1}"/>
+	</h:form>		
+			
+	</rich:modalPanel>
+</f:subview>
