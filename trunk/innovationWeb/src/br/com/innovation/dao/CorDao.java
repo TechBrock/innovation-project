@@ -164,7 +164,7 @@ public class CorDao implements Serializable{
 
 		query.append("SELECT id,");
 		query.append(" nome");
-		query.append(" FROM TB_COR");
+		query.append("  TB_COR");
 
 		try{
 			conn = Conexao.connect();

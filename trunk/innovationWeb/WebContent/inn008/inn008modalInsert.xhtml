@@ -21,7 +21,7 @@
 									<h:outputText value="Descrição" styleClass="outputTextTitulo" />
 								</td>
 								<td>
-									<h:inputText value="#{ClassificacaoBo.nome}" styleClass="login-field" />
+									<h:inputText value="#{CorBo.nome}" styleClass="login-field" />
 									<h:outputText value="● Preencha o campo DESCRIÇÃO" 
 										styleClass="outputTextErro"
 										rendered="#{!ClassificacaoBo.descValida}"/>
@@ -29,7 +29,7 @@
 							</tr>
 							<tr>
 								<td colspan="2" align="center">
-									<a4j:commandButton value="Salvar" action="#{ClassificacaoBo.inserir}" 
+									<a4j:commandButton value="Salvar" action="#{CorBo.inserir}" 
 										styleClass="btn btn-large btn-block btn-danger"
 										reRender="viewModalInsert:formModal, form1"/>
 									<a4j:commandButton value="Cancelar" action="inn009return"
