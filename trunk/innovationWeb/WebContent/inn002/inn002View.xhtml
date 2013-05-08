@@ -42,7 +42,9 @@
 							</tr>
 							<tr>
 								<td colspan="2" align="center">
-									<h:outputText value="Nome de usuário incorreto ou senha incorreta" rendered="#{!LoginBo.cadValido}"/>
+									<h:outputText value="● Nome de usuário incorreto ou senha incorreta" 
+										styleClass="outputTextErro"
+										rendered="#{!LoginBo.cadValido}"/>
 								</td>
 							</tr>
 							
