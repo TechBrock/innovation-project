@@ -7,6 +7,7 @@ import javax.faces.model.SelectItem;
 import br.com.innovation.dao.TelefoneDao;
 import br.com.innovation.dao.UsuarioDao;
 import br.com.innovation.enums.TipoTelefoneEnum;
+import br.com.innovation.vo.LoginVo;
 import br.com.innovation.vo.TelefoneVo;
 import br.com.innovation.vo.UsuarioVo;
 
@@ -200,6 +201,7 @@ public class UsuarioBo implements Serializable {
 		boolean insere = true;
 		
 		validaUsuario();
+		LoginVo login = new LoginVo();
 		if(apelidoValido && nomeValido && sobrenomeValido && dataNascValido && cpfValido &&
 				telefoneValido && emailValido && senhaValido && confirmValido){
 			usuVo.setCpf(usuVo.getCpf().replaceAll("-",""));
@@ -213,7 +215,7 @@ public class UsuarioBo implements Serializable {
 			
 			cpfExist = new UsuarioDao().getCPF(usuVo.getCpf());
 			if(cpfExist > 0){
-				setErroSubmit("CPF já cadasttrado!");
+				setErroSubmit("CPF já cadastrado!");
 				insere = false;
 			}
 			
@@ -223,10 +225,14 @@ public class UsuarioBo implements Serializable {
 			}
 			
 			if(insere){
-//				idUsuario = new UsuarioDao().insertUsuario(usuVo);
+				idUsuario = new UsuarioDao().insertUsuario(usuVo);
 				if(idUsuario > 0){
 					inserirTel(idUsuario);
 					setErroSubmit("Cadastro efetuado com sucesso!");
+					login.setEmail(usuVo.getEmail());
+					login.setSenha(usuVo.getSenha());
+					new LoginBo().loginCad(login);
+					return "inn002";
 
 				}
 			}

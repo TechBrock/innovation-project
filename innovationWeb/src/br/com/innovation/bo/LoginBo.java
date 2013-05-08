@@ -68,6 +68,25 @@ public class LoginBo {
 		}
 		return null;
 	}
+	
+	public void loginCad(LoginVo loginVo){
+		if(validaDados()){
+			emailValido = true;
+			senhaValida = true;
+			loginReturn = new LoginDao().getLogin(loginVo);
+			if(loginReturn.getId() == null || loginReturn.getId() <= 0){
+				cadValido = false;
+			}else{
+				if(loginReturn.getIdPerfil() == 1){
+					cliente = true;
+				}else{
+					cliente = false;
+				}
+
+			}
+		}
+	}
+
 
 	public String logout(){
 		loginReturn = new LoginVo();
