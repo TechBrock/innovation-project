@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	template="/inn000/templateViewSemFiltro.xhtml">
+	<ui:define name="tituloTela">
+		<h:outputText value="Classificação"/>
+	</ui:define>
+
+	<ui:define name="conteudo">
+	<t:saveState value="#{ClassificacaoBo}"/>
+		<h:outputText value="#{ClassificacaoBo.erroSubmit}"/>
+	
+		<div class="login_ident" style="width:400px; height: 100px;">
+			<table>
+			<tr>
+				<td>
+					<h:outputText value="Id" styleClass="outputTextTitulo" />
+					<h:inputText id="tipoId" value="#{ClassificacaoBo.classVo.id}" size="5"  styleClass="login-field" />
+				</td>
+				<td>
+					<h:outputText value="Descrição" styleClass="outputTextTitulo"/>
+					<h:inputText id="tipoDescrição" value="#{ClassificacaoBo.classVo.nome}" size="30"  styleClass="login-field"/>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center">
+					<h:outputText value="● Preencha um Id ou Descrição para pesquisa" 
+						styleClass="outputTextErro"
+						rendered="#{!ClassificacaoBo.pesqValida}"/>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" align="right">
+					<a4j:commandButton value="Pesquisar" action="#{ClassificacaoBo.buscar}"
+						styleClass="btn btn-large btn-block btn-danger" reRender="form1"/>
+				</td>
+			</tr>
+		</table>
+		</div>
+		
+		<br/>
+		<rich:scrollableDataTable id="tablePerfil" value="#{ClassificacaoBo.classAl}"
+			var="lista" 
+			width="650px;"
+			height="125px"
+			rows="5"
+			styleClass="rich-table">
+<!-- 			rendered="#{not empty TipoProdutoBo.tipoProdutoAl}" -->
+			
+			
+			<rich:column width="100px">
+				<f:facet name="header">
+					<h:outputText value="Id"/>
+				</f:facet>
+				<div align="right">
+					<h:outputText value="#{lista.id}"/>
+				</div>
+			</rich:column>
+			
+			<rich:column width="400px">
+				<f:facet name="header">
+					<h:outputText value="Descrição"/>
+				</f:facet>
+				<div align="left">
+					<h:outputText value="#{lista.nome}"/>
+				</div>
+			</rich:column>
+			
+			<rich:column width="150px">
+				<f:facet name="header">
+					<h:outputText value="Ações"/>
+				</f:facet>
+				<div align="center">
+					<a4j:commandButton image="/images/work/delete.png"
+						style="width:20px; heigth: 20px;"
+						oncomplete="Richfaces.showModalPanel('modalDelete')">
+						<f:setPropertyActionListener value="#{lista.id}" target="#{ClassificacaoBo.id}"/>
+					</a4j:commandButton>
+						<a4j:commandButton image="/images/work/edit.png"
+						style="width:20px; heigth: 20px;"
+						oncomplete="Richfaces.showModalPanel('modalEdit')"
+						reRender="viewModalEdit:formModal"
+						immediate="true" ajaxSingle="true">
+						<f:setPropertyActionListener value="#{lista}" target="#{ClassificacaoBo.classEdit}"/>
+					</a4j:commandButton>
+				</div>
+			</rich:column>
+		</rich:scrollableDataTable>
+	</ui:define>
+	<ui:define name="conteudoAcoes">
+		<a4j:commandButton value="Novo" styleClass="btn btn-large btn-block btn-danger" style="width: 200x;" 
+			oncomplete="Richfaces.showModalPanel('modalInsert')"
+			reRender="form1"/>
+	</ui:define>
+	<ui:define name="modal">
+		<ui:include src="/inn009/inn009modalInsert.xhtml"/>
+		<ui:include src="/inn009/inn009modalDelete.xhtml"/>
+		<ui:include src="/inn009/inn009modalEdit.xhtml"/>
+	</ui:define>
+</ui:composition>
