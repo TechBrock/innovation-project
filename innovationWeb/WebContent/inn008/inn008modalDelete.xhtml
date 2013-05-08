@@ -14,22 +14,25 @@
 			<ui:decorate template="/inn000/templateModalSemFiltro.xhtml">
 			<ui:define name="corpoModal">
 				<h:panelGroup>
-					<table>
-						<tr>
-							<td>
-								<h:outputText value="Deseja relamente apagar essa tipo de Cor?"/>
-							</td>
-						</tr>
-						<tr>
-							<td align="center">
-								<a4j:commandButton value="Sim" action="#{CorBo.deletar}"  
-									styleClass="btn btn-large btn-block btn-danger"
-									reRender="viewModalInsert:formModal, form1"/>
-								<a4j:commandButton value="Não" action="inn008return"
-									styleClass="btn btn-large btn-block btn-danger"/>
-							</td>
-						</tr>
-				</table>
+					<div class="login_ident" style="width: 600px; height: 80px;">
+						<table>
+							<tr>
+								<td>
+									<h:outputText value="Deseja relamente apagar essa tipo de Cor?"/>
+								</td>
+							</tr>
+							<tr>
+								<td align="center">
+									<a4j:commandButton value="Sim" action="#{CorBo.deletar}"  
+										styleClass="btn btn-large btn-block btn-danger"
+										reRender="viewModalInsert:formModal, form1"/>
+											
+									<a4j:commandButton value="Não" action="inn008return"
+										styleClass="btn btn-large btn-block btn-danger"/>
+								</td>
+							</tr>
+						</table>
+					</div>
 				</h:panelGroup>
 			</ui:define>
 			

@@ -50,7 +50,9 @@
 										<h:panelGroup id="panelSLog" rendered="#{LoginBo.loginReturn.apelido != null}">
 											<h:outputText value="Olá " styleClass="links" />
 											<h:outputText value="#{LoginBo.loginReturn.apelido}" styleClass="links" />
-											<h:commandLink value="Sair" action="#{LoginBo.logout}" styleClass="links" style="color: #ECC03C;"/>
+											<rich:spacer width="3px" />
+											<h:commandLink value="Sair" action="#{LoginBo.logout}" styleClass="links" 
+												style="color: #ECC03C;"/>
 										</h:panelGroup>
 									</td>
 								</tr>
@@ -66,12 +68,12 @@
 									</h:panelGroup>
 								</f:facet>
 								
-								<rich:menuItem submitMode="ajax" value="Produto" action="inn004"/>
-								<rich:menuItem submitMode="ajax" value="Perfil" action="inn005"/>
-								<rich:menuItem submitMode="ajax" value="Tipo Produto" action="inn006"/>
-								<rich:menuItem submitMode="ajax" value="Usuario" action="inn007"/>
-								<rich:menuItem submitMode="ajax" value="Cor" action="inn008"/>
 								<rich:menuItem submitMode="ajax" value="Classificação" action="inn009"/>
+								<rich:menuItem submitMode="ajax" value="Cor" action="inn008"/>
+								<rich:menuItem submitMode="ajax" value="Perfil" action="inn005"/>
+								<rich:menuItem submitMode="ajax" value="Produto" action="inn004"/>
+								<rich:menuItem submitMode="ajax" value="Tipo Produto" action="inn006"/>
+								
 							</rich:dropDownMenu>
 
 							<rich:dropDownMenu>
