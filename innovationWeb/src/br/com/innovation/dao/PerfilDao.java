@@ -128,7 +128,7 @@ public class PerfilDao {
 		StringBuilder query = new StringBuilder();
 		int countdelete = 0;
 
-		query.append("DELETE FROM TB_PERFIL WHERE id = "+id);
+		query.append("DELETE FROM TB_TIPO_ITEM WHERE id = "+id);
 
 		try{
 			conn = Conexao.connect();

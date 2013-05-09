@@ -1,13 +1,14 @@
 package br.com.innovation.bo;
 
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStream;
 import java.io.Serializable;
 
 import org.apache.myfaces.custom.fileupload.UploadedFile;
 
-import br.com.innovation.dao.ModeloDao;
 import br.com.innovation.vo.ModeloVo;
-
 public class ModeloBo implements Serializable{
 
 	/**
@@ -41,7 +42,7 @@ public class ModeloBo implements Serializable{
 	private boolean corValido = true;
 	private boolean tipoValido = true;
 	private boolean classValido = true;
-	
+
 	public ModeloVo getModeloInsert() {
 		return modeloInsert;
 	}
@@ -102,7 +103,7 @@ public class ModeloBo implements Serializable{
 	public void setImg4Valida(boolean img4Valida) {
 		this.img4Valida = img4Valida;
 	}
-	
+
 	public boolean isHide1() {
 		return hide1;
 	}
@@ -199,8 +200,8 @@ public class ModeloBo implements Serializable{
 	public void setTipoValido(boolean tipoValido) {
 		this.tipoValido = tipoValido;
 	}
-	
-	
+
+
 	public boolean isClassValido() {
 		return classValido;
 	}
@@ -209,19 +210,40 @@ public class ModeloBo implements Serializable{
 	}
 	public String insereProduto(){
 		try {
-			if(validaDados()){
-				new ModeloDao().insertModelo(modeloInsert);
-			}
-			
-			
-			
+			uploads();
 		} catch (IOException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-//		new ModeloDao().insertModelo(modeloInsert);
+		//		int idProduto = 0;
+		//
+		//		try {
+		//			if(validaDados()){
+		//				idProduto = new ModeloDao().insertModelo(modeloInsert);
+		//
+		//				if(idProduto > 0){
+		//
+		//				}
+		//
+		//			}
+		//		} catch (IOException e) {
+		//			// TODO Auto-generated catch block
+		//			e.printStackTrace();
+		//		}
 		return null;
 	}
-	
+
+	private void uploads() throws IOException{
+		FileOutputStream destino = null;
+
+		String nome = "testeImagem";
+		destino = new FileOutputStream("C:\\newWork\\imagens_produto\\"+nome+".jpeg");
+		destino.write(img1.getBytes(), 0, img1.getBytes().length);
+		destino.flush();
+		destino.close();
+
+	}
+
 	public String uploadImg() throws IOException{
 		if(img1 != null ){
 			modeloInsert.setImg1(img1.getBytes());
@@ -238,7 +260,7 @@ public class ModeloBo implements Serializable{
 		return "inn004ins";
 
 	}
-	
+
 	public String uploadImg1() throws IOException{
 		if(img1 != null ){
 			modeloInsert.setImg1(img1.getBytes());
@@ -263,75 +285,67 @@ public class ModeloBo implements Serializable{
 		}
 		return "inn004ins";
 	}
-	
+
 	public boolean validaDados() throws IOException{
 		boolean ok = true;
-		
+
 		if(img1 == null ){
 			img1Valida = false;
 			ok = false;
-		}else{
-			modeloInsert.setImg1(img1.getBytes());
 		}
 		if(img2 == null ){
 			img2Valida = false;
 			ok = false;
-		}else{
-			modeloInsert.setImg2(img2.getBytes());
 		}
 		if(img3 == null ){
 			img3Valida = false;
 			ok = false;
-		}else{
-			modeloInsert.setImg3(img3.getBytes());
 		}
 		if(img4 == null ){
 			img4Valida = false;
 			ok = false;	
-		}else{
-			modeloInsert.setImg4(img4.getBytes());
 		}
-		
+
 		if(modeloInsert.getNome() == null || modeloInsert.getNome().equals("")){
 			nomeValido = false;
 			ok = false;
 		}
-		
+
 		if(modeloInsert.getQuantidade() == null || modeloInsert.getQuantidade() <= 0){
 			qtdValido = false;
 			ok = false;
 		}
-		
+
 		if(modeloInsert.getCaract() == null || modeloInsert.getCaract().equals("")){
 			carcValido = false;
 			ok = false;
 		}
-		
+
 		if(modeloInsert.getTamanho() == null || modeloInsert.getTamanho() <= 0){
 			tamValido = false;
 			ok = false;
 		}
-		
+
 		if(modeloInsert.getAro() == null || modeloInsert.getAro() <= 0){
 			aroValido = false;
 		}
-		
+
 		if(modeloInsert.getDimensao() == null || modeloInsert.getDimensao().equals("")){
 			dimValido = false;
 		}
-		
+
 		if(modeloInsert.getPeso() == null || modeloInsert.getPeso() <= 0){
 			pesoValido = false;
 		}
-		
+
 		if(modeloInsert.getInfAdc() == null || modeloInsert.getInfAdc().equals("")){
 			infAdcValido = false;
 		}
-		
+
 		if(modeloInsert.getGarantia() == null || modeloInsert.getGarantia().equals("")){
 			garantiaValido = false;
 		}
-		
+
 		if(modeloInsert.getMaterial() == null || modeloInsert.getMaterial().equals("")){
 			materialValido = false;
 		}
@@ -347,9 +361,9 @@ public class ModeloBo implements Serializable{
 		if(modeloInsert.getIdClassificacao() == null || modeloInsert.getIdClassificacao() <= 0){
 			classValido = false;
 		}
-		
+
 		return ok;
 	}
-	
+
 
 }
