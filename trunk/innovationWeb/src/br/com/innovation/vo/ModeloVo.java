@@ -17,7 +17,7 @@ public class ModeloVo implements Serializable{
 	private Double peso;
 	private Integer aro;
 	private String infAdc;
-	private String garantia;
+	private Double garantia;
 	private String material;
 	private Integer idClassificacao;
 	private Integer idCor;
@@ -82,10 +82,10 @@ public class ModeloVo implements Serializable{
 	public void setInfAdc(String infAdc) {
 		this.infAdc = infAdc;
 	}
-	public String getGarantia() {
+	public Double getGarantia() {
 		return garantia;
 	}
-	public void setGarantia(String garantia) {
+	public void setGarantia(Double garantia) {
 		this.garantia = garantia;
 	}
 	public String getMaterial() {

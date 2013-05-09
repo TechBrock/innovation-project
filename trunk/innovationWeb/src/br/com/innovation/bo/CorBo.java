@@ -95,6 +95,7 @@ public class CorBo implements Serializable{
 			count = new CorDao().insertCor(nome);
 			if(count > 0){
 				erroSubmit = "Cor inserida com sucesso!";
+				nome = null;
 				return "inn008return";
 			}
 		}
@@ -104,12 +105,13 @@ public class CorBo implements Serializable{
 	public String editar(){
 		int count = 0;
 
-		if(nome == null || nome.equals("")){
+		if(corEdit.getNome() == null || corEdit.getNome().equals("")){
 			descValida = false;
 		}else{
 			count = new CorDao().edtitCor(corEdit);
 			if(count > 0){
 				erroSubmit = "Cor editada com sucesso!";
+				corEdit = new CorVo();
 				return "inn008return";
 			}
 		}

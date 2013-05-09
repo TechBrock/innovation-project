@@ -86,7 +86,7 @@ public class TipoProdutoBo implements Serializable{
 			count = new TipoProdutoDao().insertTipoProduto(nome);
 			if(count > 0){
 				erroSubmit = "Tipo de Produto inserido com sucesso!";
-				buscar();
+				nome = "";
 				return "inn006return";
 			}
 		}
@@ -101,7 +101,7 @@ public class TipoProdutoBo implements Serializable{
 			count = new TipoProdutoDao().editTipoProduto(tipoEdit);
 			if(count > 0){
 				erroSubmit = "Tipo de Produto editado com sucesso!";
-				buscar();
+				tipoEdit = new TipoProdutoVo();
 			}
 			return "inn006return";
 		}

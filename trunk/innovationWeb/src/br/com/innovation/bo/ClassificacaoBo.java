@@ -94,6 +94,7 @@ public class ClassificacaoBo implements Serializable{
 			count = new ClassificacaoDao().insertClass(nome);
 			if(count > 0){
 				erroSubmit = "Classificação inserida com sucesso!";
+				nome ="";
 				return "inn009return";
 			}
 		}
@@ -109,6 +110,7 @@ public class ClassificacaoBo implements Serializable{
 			count = new ClassificacaoDao().edtitClass(classEdit);
 			if(count > 0){
 				erroSubmit = "Classificação editada com sucesso!";
+				nome = null;
 				return "inn009return";
 			}
 		}

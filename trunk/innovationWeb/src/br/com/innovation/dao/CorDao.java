@@ -136,7 +136,7 @@ public class CorDao implements Serializable{
 			rset = stm.executeQuery(query.toString());
 
 			while(rset.next()){
-				corVo = new CorVo();
+				cor = new CorVo();
 				cor.setId(rset.getInt("id"));
 				cor.setNome(rset.getString("nome"));
 				corAl.add(cor);
@@ -164,7 +164,7 @@ public class CorDao implements Serializable{
 
 		query.append("SELECT id,");
 		query.append(" nome");
-		query.append("  TB_COR");
+		query.append("  FROM TB_COR");
 
 		try{
 			conn = Conexao.connect();

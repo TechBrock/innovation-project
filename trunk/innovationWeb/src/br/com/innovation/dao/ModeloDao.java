@@ -1,12 +1,12 @@
 package br.com.innovation.dao;
 
-import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import br.com.innovation.utils.Conexao;
 import br.com.innovation.vo.ModeloVo;
@@ -15,10 +15,10 @@ public class ModeloDao {
 
 	public int insertModelo(ModeloVo modelo){
 		Connection conn = null;
-		PreparedStatement pstm = null;
+		Statement stm = null;
 		ResultSet rset = null;
 		StringBuilder query = new StringBuilder();
-		int idProduto = 0;
+		int idModelo= 0;
 
 		query.append("INSERT INTO TB_MODELO(");
 		query.append("	nome, ");
@@ -32,36 +32,31 @@ public class ModeloDao {
 		query.append("	material,"); 
 		query.append("	id_classificacao,"); 
 		query.append("	id_cor,"); 
-		query.append("	id_tipo,"); 
-		query.append("	img_1,");
-		query.append("	img_2,");
-		query.append("	img_3,");
-		query.append("	img_1) VALUES (");
-		query.append("	'"+modelo.getNome()+"',");
-		query.append(modelo.getQuantidade()+",");
-		query.append(modelo.getTamanho()+",");
-		query.append(modelo.getDimensao()+",");
-		query.append(modelo.getPeso()+",");
-		query.append(modelo.getAro()+",");
+		query.append("	id_tipo)VALUES ("); 
+		query.append("'"+modelo.getNome()+"',");
+		query.append(modelo.getQuantidade()+","); 
+		query.append(modelo.getTamanho()+","); 
+		query.append("'"+modelo.getDimensao()+"',"); 
+		query.append(modelo.getPeso()+","); 
+		query.append(modelo.getAro()+","); 
 		query.append("'"+modelo.getInfAdc()+"',");
-		query.append("'"+modelo.getGarantia()+"',");
-		query.append("'"+modelo.getMaterial()+"',");
-		query.append(modelo.getIdClassificacao()+",");
+		query.append(+modelo.getGarantia()+",");
+		query.append("'"+modelo.getMaterial()+"',"); 
+		query.append(modelo.getIdClassificacao()+","); 
 		query.append(modelo.getIdCor()+",");
-		query.append(modelo.getIdTipo()+",");
-		query.append(modelo.getImg1()+",");
-		query.append(modelo.getImg2()+",");
-		query.append(modelo.getImg3()+",");
-		query.append(modelo.getImg4()+")");
+		query.append(modelo.getIdTipo()+")");
 
 		try{
 			conn = Conexao.connect();
-			conn.setAutoCommit(false);
-			pstm = conn.prepareStatement(query.toString());
+			stm = conn.createStatement();
+			stm.executeUpdate(query.toString(), Statement.RETURN_GENERATED_KEYS);
+			rset = stm.getGeneratedKeys();
 
 			if(rset.next()){
-				idProduto = rset.getInt(1);
+				idModelo = rset.getInt(1);
 			}
+
+
 		} catch (SQLException sqlex) {
 
 			System.out.println("ERRO: "+getClass().getCanonicalName()+".insertModelo()");
@@ -69,10 +64,41 @@ public class ModeloDao {
 
 		}finally{
 
-			Conexao.disconnect(rset, pstm, conn);
+			Conexao.disconnect(rset, stm, conn);
 
 		}
-		return idProduto;
+		return idModelo;
+	}
+
+	public void updateImage(ArrayList<String> caminhoImg, Integer id){
+		Connection conn = null;
+		Statement stm = null;
+		ResultSet rset = null;
+		StringBuilder query = new StringBuilder();
+
+		query.append("UPDATE TB_MODELO SET ");
+		query.append("IMG1 = "+caminhoImg.get(0)+",");
+		query.append("IMG2 = "+caminhoImg.get(1)+",");
+		query.append("IMG3 = "+caminhoImg.get(2)+",");
+		query.append("IMG4 = "+caminhoImg.get(3));
+		query.append(" 	WHERE ID = "+id);
+
+		try{
+			conn = Conexao.connect();
+			stm = conn.createStatement();
+			stm.executeUpdate(query.toString());
+
+		} catch (SQLException sqlex) {
+
+			System.out.println("ERRO: "+getClass().getCanonicalName()+".updateImage()");
+			sqlex.printStackTrace();
+
+		}finally{
+
+			Conexao.disconnect(rset, stm, conn);
+
+		}
+
 	}
 
 	public int updateModelo( ModeloVo modelo){
@@ -118,70 +144,6 @@ public class ModeloDao {
 		}
 		return idProduto;
 	}
-
-
-	public ArrayList<ModeloVo> getModelo(ModeloVo modelo){
-
-		Connection conn = null;
-		Statement stm = null;
-		ResultSet rset = null;
-		StringBuilder query = new StringBuilder();
-		StringBuilder filtro = new StringBuilder();
-		ModeloVo modeloVo = new ModeloVo();
-		ArrayList<ModeloVo> modeloAl = new ArrayList<ModeloVo>();
-
-		query.append("SELECT ");
-		query.append("	nome");
-		query.append("	,quantidade"); 
-		query.append("	,tamanho"); 
-		query.append("	,dimensao"); 
-		query.append("	,peso"); 
-		query.append("	,aro"); 
-		query.append("	,informacoes_adicionais");
-		query.append("	,garantia");
-		query.append("	,material"); 
-		query.append("	,id_classificacao"); 
-		query.append("	,id_cor"); 
-		query.append("	,id_tipo");
-		query.append(" FROM TB_MODELO");
-		query.append(" WHERE 1=1");
-		query.append(filtro);
-
-		try{
-
-			conn = Conexao.connect();
-			stm = conn.createStatement();
-			rset = stm.executeQuery(query.toString());
-
-			while(rset.next()){
-
-				modeloVo = new ModeloVo();
-				modeloVo.setNome(rset.getString("nome"));
-				modelo.setQuantidade(rset.getInt("quantidade"));
-				modelo.setTamanho(rset.getDouble("tamanho"));
-				modelo.setDimensao(rset.getString("dimensão"));
-				modelo.setPeso(rset.getDouble("peso"));
-				modelo.setAro(rset.getInt("aro"));
-				modelo.setInfAdc(rset.getString("informacoes_adicionais"));
-				modelo.setGarantia(rset.getString("garantia"));
-				modelo.setMaterial(rset.getString("material"));
-				modelo.setIdClassificacao(rset.getInt("id_classificacao"));
-				modelo.setIdCor(rset.getInt("id_cor"));
-				modelo.setIdTipo(rset.getInt("id_tipo"));
-				modeloAl.add(modeloVo);
-
-
-			}
-		} catch (SQLException sqlex) {
-
-			System.out.println("ERRO: "+getClass().getCanonicalName()+".getModelo()");
-			sqlex.printStackTrace();
-
-		}finally{
-
-			Conexao.disconnect(rset, stm, conn);
-
-		}
-		return modeloAl;
-	}
 }
+
+

@@ -48,7 +48,7 @@ public class UsuarioBo implements Serializable {
 	private Boolean senhaValido = true;
 	private Boolean confirmValido = true;
 	private Boolean telValido = true;
-	private String erroSubmit = "teste";
+	private String erroSubmit;
 
 	public UsuarioVo getUsuVo() {
 		return usuVo;
