@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F25E65"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin" >
+		
+		<TextView
+	        android:id="@+id/numeroPedido"
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content"
+	        android:gravity="center"
+	        android:background="#FFFFFF"
+	        android:textColor="#F25E65"
+	        android:text="00000000"/>
+		
+		<LinearLayout
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:orientation="horizontal" >
+		    
+		    <TextView
+		        android:id="@+id/lblDataPedido"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="Data Efetuado:   "
+		        android:textColor="#FFFFFF"
+		        android:textStyle="bold" />
+		    
+		    <TextView
+		        android:id="@+id/vDataPedido"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text=""
+		        android:textColor="#FFFFFF" />
+		</LinearLayout>
+		
+		<LinearLayout
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:orientation="horizontal" >
+		    
+		    <TextView
+		        android:id="@+id/lblItensPedido"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="Itens:   "
+		        android:textColor="#FFFFFF"
+		        android:textStyle="bold" />
+		    
+		    <TextView
+		        android:id="@+id/vItensPedido"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text=""
+		        android:textColor="#FFFFFF" />
+		</LinearLayout>
+		
+		<LinearLayout
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:orientation="horizontal" >
+		    
+		    <TextView
+		        android:id="@+id/lblQtdItenPedido"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="Quantidade:   "
+		        android:textColor="#FFFFFF"
+		        android:textStyle="bold" />
+		    
+		    <TextView
+		        android:id="@+id/vQtdItenPedido"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text=""
+		        android:textColor="#FFFFFF" />
+		</LinearLayout>
+		
+		<LinearLayout
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:orientation="horizontal" >
+		    
+		    <TextView
+		        android:id="@+id/lblValorCompra"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="Valor:   "
+		        android:textColor="#FFFFFF"
+		        android:textStyle="bold" />
+		    
+		    <TextView
+		        android:id="@+id/vValorCompra"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text=""
+		        android:textColor="#FFFFFF" />
+		</LinearLayout>
+		
+		<LinearLayout
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:orientation="horizontal" >
+		    
+		    <TextView
+		        android:id="@+id/lblValorFrete"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="Valor Frete:   "
+		        android:textColor="#FFFFFF"
+		        android:textStyle="bold" />
+		    
+		    <TextView
+		        android:id="@+id/vValorFrete"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text=""
+		        android:textColor="#FFFFFF" />
+		</LinearLayout>
+		
+		<LinearLayout
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:orientation="horizontal" >
+		    
+		    <TextView
+		        android:id="@+id/lblTipoFrete"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="Tipo Frete:   "
+		        android:textColor="#FFFFFF"
+		        android:textStyle="bold" />
+		    
+		    <TextView
+		        android:id="@+id/vTipoFrete"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text=""
+		        android:textColor="#FFFFFF" />
+		</LinearLayout>
+		
+		<LinearLayout
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:orientation="horizontal" >
+		    
+		    <TextView
+		        android:id="@+id/lblMeioPagamento"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="Meio Pagamento:   "
+		        android:textColor="#FFFFFF"
+		        android:textStyle="bold" />
+		    
+		    <TextView
+		        android:id="@+id/vMeioPagamento"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text=""
+		        android:textColor="#FFFFFF" />
+		</LinearLayout>
+		
+		<LinearLayout
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:orientation="horizontal" >
+		    
+		    <TextView
+		        android:id="@+id/lblQtdParcelas"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="Quantidade de parcelas:   "
+		        android:textColor="#FFFFFF"
+		        android:textStyle="bold" />
+		    
+		    <TextView
+		        android:id="@+id/vQtdParcelas"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text=""
+		        android:textColor="#FFFFFF" />
+		</LinearLayout>
+		
+		<LinearLayout
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:orientation="horizontal" >
+		    
+		    <TextView
+		        android:id="@+id/lblPrazo"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="Prazo entrega:   "
+		        android:textColor="#FFFFFF"
+		        android:textStyle="bold" />
+		    
+		    <TextView
+		        android:id="@+id/vPrazo"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text=""
+		        android:textColor="#FFFFFF" />
+		</LinearLayout>
+		
+		<LinearLayout
+		    android:layout_width="match_parent"
+		    android:layout_height="wrap_content"
+		    android:orientation="horizontal" >
+		    
+		    <TextView
+		        android:id="@+id/lblDataEntrega"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text="Data entregue:   "
+		        android:textColor="#FFFFFF"
+		        android:textStyle="bold" />
+		    
+		    <TextView
+		        android:id="@+id/vDataEntrega"
+		        android:layout_width="wrap_content"
+		        android:layout_height="wrap_content"
+		        android:text=""
+		        android:textColor="#FFFFFF" />
+		</LinearLayout>
+
+</LinearLayout>
