@@ -7,11 +7,14 @@ import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 
+import com.sun.org.apache.bcel.internal.generic.GETSTATIC;
+
 import br.com.innovation.utils.Conexao;
 import br.com.innovation.vo.UsuarioVo;
 
 
 public class UsuarioDao {
+	DateFormat frm = new SimpleDateFormat("yyyy-MM-yy");
 
 	public Integer insertUsuario(UsuarioVo usu){
 		Connection conn = null;
@@ -19,7 +22,7 @@ public class UsuarioDao {
 		ResultSet rset = null;
 		StringBuilder query = new StringBuilder();
 		Integer idUsuario = null;
-		DateFormat frm = new SimpleDateFormat("yyyy-MM-yy");
+		
 		query.append("INSERT INTO TB_USUARIO (");
 		query.append("NOME,");
 		query.append("SOBRENOME,");
@@ -74,6 +77,154 @@ public class UsuarioDao {
 
 	}
 
+	public UsuarioVo getUsuarioById(Integer id){
+		Connection conn = null;
+		Statement stm = null;
+		ResultSet rset = null;
+		StringBuilder query = new StringBuilder();
+		UsuarioVo usuVo = new UsuarioVo();
+
+
+		query.append("SELECT id,");
+		query.append("	nome, ");
+		query.append("	sobrenome,");
+		query.append("	data_nascimento,");
+		query.append("	sexo,");
+		query.append("	cpf,");
+		query.append("	apelido,");
+		query.append("	email,");
+		query.append("	senha,");
+		query.append("	data_entrada,");
+		query.append("	ativo,");
+		query.append("	receber_email,");
+		query.append("	id_perfil");
+		query.append("	from TB_USUARIO");
+		query.append("	WHERE id = "+id);
+
+		try{
+			conn = Conexao.connect();
+			stm = conn.createStatement();
+			rset = stm.executeQuery(query.toString());
+
+
+			while(rset.next()){
+				usuVo = new UsuarioVo();
+				usuVo.setId(rset.getInt("id"));
+				usuVo.setNome(rset.getString("nome"));
+				usuVo.setSobrenome(rset.getString("sobrenome"));
+				usuVo.setDataNascimento(rset.getDate("data_nascimento"));
+
+				if(rset.getString("sexo").equals("F")){
+					usuVo.setSexo('F');
+				}else{
+					usuVo.setSexo('M');
+				}
+
+				usuVo.setCpf(rset.getString("cpf"));
+				usuVo.setApelido(rset.getString("apelido"));
+				usuVo.setEmail(rset.getString("email"));
+				usuVo.setSenha(rset.getString("senha"));
+
+				if(rset.getString("receber_email").equals("S")){
+					usuVo.setReceberEmail('S');
+				}else{
+					usuVo.setReceberEmail('N');
+				}
+			}
+
+		} catch (SQLException sqlex) {
+			System.out.println("ERRO: "+getClass().getCanonicalName()+".getUsuario()");
+			sqlex.printStackTrace();
+
+		} catch(Exception e) {
+			System.out.println("ERRO: "+getClass().getCanonicalName()+".getUsuario()");
+			e.printStackTrace();
+
+		} finally {
+			Conexao.disconnect(rset, stm, conn);
+		}
+		return usuVo;
+
+	}
+
+	public int edit(UsuarioVo usu){
+
+		Connection conn = null;
+		Statement stm = null;
+		ResultSet rset = null;
+		StringBuilder query = new StringBuilder();
+		StringBuilder filtro = new StringBuilder();
+		Integer countUp = null;
+		
+		if(usu.getSenhaNova() != null && !usu.getSenhaNova().equals("")){
+			filtro.append("SENHA = '"+usu.getSenhaNova()+"',");
+		}
+
+		query.append("UPDATE TB_USUARIO SET ");
+		query.append("NOME = '"+usu.getNome()+"',");
+		query.append("SOBRENOME = '"+usu.getSobrenome()+"',");
+		query.append("DATA_NASCIMENTO = '"+frm.format(usu.getDataNascimento())+"',");
+		query.append("SEXO = '"+usu.getSexo()+"',");
+		query.append("CPF = '"+usu.getCpf()+"',");
+		query.append("APELIDO = '"+usu.getApelido()+"',");
+		query.append("EMAIL = '"+usu.getEmail()+"',");
+		query.append(filtro);
+		query.append("RECEBER_EMAIL = '"+usu.getReceberEmail()+"'");
+		query.append(" WHERE ID = '"+usu.getId()+"'");
+
+		try{
+			conn = Conexao.connect();
+			stm = conn.createStatement();
+			countUp = stm.executeUpdate(query.toString());
+			
+		} catch (SQLException sqlex) {
+			System.out.println("ERRO: "+getClass().getCanonicalName()+".edit()");
+			sqlex.printStackTrace();
+
+		} catch(Exception e) {
+			System.out.println("ERRO: "+getClass().getCanonicalName()+".edit()");
+			e.printStackTrace();
+
+		} finally {
+			Conexao.disconnect(rset, stm, conn);
+		}
+		return countUp;
+
+	}
+	
+	
+	public String getSenhaAtual(Integer id){
+		Connection conn = null;
+		Statement stm = null;
+		ResultSet rset = null;
+		StringBuilder query = new StringBuilder();
+		String senhaReturn = "";
+		
+		query.append("SELECT senha FROM TB_USUARIO WHERE id = "+id);
+		
+		try{
+			conn = Conexao.connect();
+			stm = conn.createStatement();
+			rset = stm.executeQuery(query.toString());
+			
+			while(rset.next()){
+				senhaReturn = rset.getString("senha");
+			}
+		} catch (SQLException sqlex) {
+			System.out.println("ERRO: "+getClass().getCanonicalName()+".getSenhaAtual()");
+			sqlex.printStackTrace();
+
+		} catch(Exception e) {
+			System.out.println("ERRO: "+getClass().getCanonicalName()+".getSenhaAtual()");
+			e.printStackTrace();
+
+		} finally {
+			Conexao.disconnect(rset, stm, conn);
+		}
+		return senhaReturn;
+	}
+		
+
 	public String getEmailExist(String email){
 
 		Connection conn = null;
@@ -106,26 +257,34 @@ public class UsuarioDao {
 		}
 		return usuVo.getEmail();
 	}
-	
-	public int getCPF(String cpf){
-		
+
+	public int getCPF(String cpf, Integer idUsuario){
+
 		Connection conn = null;
 		Statement stm = null;
 		ResultSet rset = null;
 		StringBuilder query = new StringBuilder();
+		StringBuilder filtro = new StringBuilder();
 		int id = 0;
 		
-		query.append(" SELECT id FROM TB_USUARIO WHERE upper(cpf) LIKE UPPER('"+cpf+"')");
+		if(idUsuario > 0){
+			filtro.append(" AND ID != "+idUsuario);
+		}
 		
+		
+
+		query.append(" SELECT id FROM TB_USUARIO WHERE upper(cpf) LIKE UPPER('"+cpf+"')");
+		query.append(filtro);
+
 		try{
 			conn = Conexao.connect();
 			stm = conn.createStatement();
 			rset = stm.executeQuery(query.toString());
-			
+
 			if(rset.next()){
 				id = rset.getInt("id");
 			}
-			
+
 		} catch (SQLException sqlex) {
 			System.out.println("ERRO: "+getClass().getCanonicalName()+".getCPF()");
 			sqlex.printStackTrace();
@@ -161,7 +320,7 @@ public class UsuarioDao {
 			rset = stm.executeQuery(query.toString());
 
 			if(rset.next()){
-				
+
 				usuVo.setEmail(rset.getString("email"));
 				usuVo.setSenha(rset.getString("senha"));
 				usuVo.setApelido(rset.getString("apelido"));

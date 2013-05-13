@@ -19,12 +19,15 @@ public class UsuarioVo implements Serializable{
 	private String email;
 	private String senha;
 	private String confirmaSenha;
+	private String senhaNova;
 	private Date dataNascimento;
 	private Date dataEntrada;
 	private char sexo;
 	private char ativo;
 	private char receberEmail;
 	private char especial;
+	private Integer id;
+	
 	
 	
 	public Integer getUsuario() {
@@ -81,6 +84,13 @@ public class UsuarioVo implements Serializable{
 	public void setConfirmaSenha(String confirmaSenha) {
 		this.confirmaSenha = confirmaSenha;
 	}
+	
+	public String getSenhaNova() {
+		return senhaNova;
+	}
+	public void setSenhaNova(String senhaNova) {
+		this.senhaNova = senhaNova;
+	}
 	public Date getDataNascimento() {
 		return dataNascimento;
 	}
@@ -116,6 +126,12 @@ public class UsuarioVo implements Serializable{
 	}
 	public void setEspecial(char especial) {
 		this.especial = especial;
+	}
+	public Integer getId() {
+		return id;
+	}
+	public void setId(Integer id) {
+		this.id = id;
 	}
 	
 }

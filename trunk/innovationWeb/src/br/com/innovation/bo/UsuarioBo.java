@@ -22,10 +22,16 @@ public class UsuarioBo implements Serializable {
 
 	//Objetos
 	UsuarioVo usuVo = new UsuarioVo();
+	UsuarioVo usuEdit = new UsuarioVo();
 	UsuarioVo usuLogin = new UsuarioVo();
 	TelefoneVo telResidencial = new TelefoneVo();
 	TelefoneVo telComercial = new TelefoneVo();
 	TelefoneVo telCelular = new TelefoneVo();
+	TelefoneVo telResidencialEdit = new TelefoneVo();
+	TelefoneVo telComercialEdit = new TelefoneVo();
+	TelefoneVo telCelularEdit = new TelefoneVo();
+
+
 
 	//Arrays
 	private ArrayList<TelefoneVo> telAl = new ArrayList<TelefoneVo>();
@@ -49,10 +55,20 @@ public class UsuarioBo implements Serializable {
 	private Boolean confirmValido = true;
 	private Boolean telValido = true;
 	private String erroSubmit;
+	private Integer idUser;
 
 	public UsuarioVo getUsuVo() {
 		return usuVo;
 	}
+
+	public UsuarioVo getUsuEdit() {
+		return usuEdit;
+	}
+
+	public void setUsuEdit(UsuarioVo usuEdit) {
+		this.usuEdit = usuEdit;
+	}
+
 	public TelefoneVo getTelResidencial() {
 		return telResidencial;
 	}
@@ -71,6 +87,30 @@ public class UsuarioBo implements Serializable {
 	public void setTelCelular(TelefoneVo telCelular) {
 		this.telCelular = telCelular;
 	}
+	public TelefoneVo getTelResidencialEdit() {
+		return telResidencialEdit;
+	}
+
+	public void setTelResidencialEdit(TelefoneVo telResidencialEdit) {
+		this.telResidencialEdit = telResidencialEdit;
+	}
+
+	public TelefoneVo getTelComercialEdit() {
+		return telComercialEdit;
+	}
+
+	public void setTelComercialEdit(TelefoneVo telComercialEdit) {
+		this.telComercialEdit = telComercialEdit;
+	}
+
+	public TelefoneVo getTelCelularEdit() {
+		return telCelularEdit;
+	}
+
+	public void setTelCelularEdit(TelefoneVo telCelularEdit) {
+		this.telCelularEdit = telCelularEdit;
+	}
+
 	public void setUsuVo(UsuarioVo usuVo) {
 		this.usuVo = usuVo;
 	}
@@ -196,11 +236,20 @@ public class UsuarioBo implements Serializable {
 	public void setErroSubmit(String erroSubmit) {
 		this.erroSubmit = erroSubmit;
 	}
+	public Integer getIdUser() {
+		return idUser;
+	}
+
+	public void setIdUser(Integer idUser) {
+		this.idUser = idUser;
+	}
+
+
 	public String inserir(){
 		int cpfExist = 0;
 		boolean insere = true;
-		
-		validaUsuario();
+
+		validaUsuario(usuVo, telResidencial);
 		LoginVo login = new LoginVo();
 		if(apelidoValido && nomeValido && sobrenomeValido && dataNascValido && cpfValido &&
 				telefoneValido && emailValido && senhaValido && confirmValido){
@@ -212,18 +261,18 @@ public class UsuarioBo implements Serializable {
 			}
 			usuVo.setAtivo('S');
 			usuVo.setEspecial('N');
-			
-			cpfExist = new UsuarioDao().getCPF(usuVo.getCpf());
+
+			cpfExist = new UsuarioDao().getCPF(usuVo.getCpf(), 0);
 			if(cpfExist > 0){
 				setErroSubmit("CPF já cadastrado!");
 				insere = false;
 			}
-			
+
 			if(!usuVo.getSenha().equals(usuVo.getConfirmaSenha())){
 				setErroSubmit("As senhas estão diferentes!");
 				insere = false;
 			}
-			
+
 			if(insere){
 				idUsuario = new UsuarioDao().insertUsuario(usuVo);
 				if(idUsuario > 0){
@@ -242,6 +291,100 @@ public class UsuarioBo implements Serializable {
 		return "inn003return";
 	}
 
+
+	public String buscaUsuario(){
+		ArrayList<TelefoneVo> telUser = new ArrayList<TelefoneVo>();
+		usuEdit = new UsuarioDao().getUsuarioById(idUsuario);
+		telUser = buscaTelefone(idUsuario);
+
+		for (TelefoneVo telefoneVo : telUser){
+
+			if(telefoneVo.getIdTipoTelefone() == TipoTelefoneEnum.CELULAR.ordinal()+1){
+				telCelularEdit.setDdd(telefoneVo.getDdd());
+				telCelularEdit.setId(telefoneVo.getId());
+				telCelularEdit.setIdTipoTelefone(telefoneVo.getIdTipoTelefone());
+				telCelularEdit.setIdUsuario(telefoneVo.getIdUsuario());
+				telCelularEdit.setNumero(telefoneVo.getNumero());
+
+			}else if(telefoneVo.getIdTipoTelefone() == TipoTelefoneEnum.COMERCIAL.ordinal()+1){
+				telComercialEdit.setDdd(telefoneVo.getDdd());
+				telComercialEdit.setId(telefoneVo.getId());
+				telComercialEdit.setIdTipoTelefone(telefoneVo.getIdTipoTelefone());
+				telComercialEdit.setIdUsuario(telefoneVo.getIdUsuario());
+				telComercialEdit.setNumero(telefoneVo.getNumero());
+
+			}else if(telefoneVo.getIdTipoTelefone() == TipoTelefoneEnum.RESIDENCIAL.ordinal()+1){
+				telResidencialEdit.setDdd(telefoneVo.getDdd());
+				telResidencialEdit.setId(telefoneVo.getId());
+				telResidencialEdit.setIdTipoTelefone(telefoneVo.getIdTipoTelefone());
+				telResidencialEdit.setIdUsuario(telefoneVo.getIdUsuario());
+				telResidencialEdit.setNumero(telefoneVo.getNumero());
+
+			}
+		}
+
+		return "inn003Edit";
+	}
+
+	public ArrayList<TelefoneVo> buscaTelefone(Integer id){
+
+		ArrayList<TelefoneVo> telAl = new ArrayList<TelefoneVo>();
+		telAl = new TelefoneDao().getTelefoneByUser(id);
+		return telAl;
+	}
+
+
+	public void editar(){
+		int cpfExist = 0;
+		boolean insere = true;
+		int count = 0;
+		validaUsuario(usuEdit, telResidencialEdit);
+
+		if(apelidoValido && nomeValido && sobrenomeValido && dataNascValido && cpfValido &&
+				telefoneValido && emailValido && senhaValido && confirmValido){
+
+		}
+		usuEdit.setCpf(usuEdit.getCpf().replaceAll("-",""));
+		usuEdit.setCpf(usuEdit.getCpf().replace(".",""));
+
+		cpfExist = new UsuarioDao().getCPF(usuEdit.getCpf(), usuEdit.getId());
+		if(cpfExist > 0){
+			setErroSubmit("CPF já cadastrado!");
+			insere = false;
+		}
+		
+		if(usuEdit.getSenha() != null && !usuEdit.getSenha().equals("")){
+			insere = editarSenha(usuEdit.getId());
+		}
+		
+
+		if(insere){
+			count = new UsuarioDao().edit(usuEdit);
+			if(count > 0){
+				inserirTel(idUsuario);
+				setErroSubmit("Informações editadas com sucesso!");
+			}
+		}
+		
+		
+
+	}
+	
+	private boolean editarSenha(Integer id){
+		String senhaAtual;
+		
+		senhaAtual = new UsuarioDao().getSenhaAtual(id);
+		if(senhaAtual.equals(usuEdit.getSenha())){
+			if(usuEdit.getSenhaNova().equals(usuEdit.getConfirmaSenha())){
+				return true;
+			}else{
+				setErroSubmit("As senhas estão diferentes!");
+			}
+		}else{
+			setErroSubmit("As senha atual está incorreta!");
+		}
+		return false;
+	}	
 
 	private void inserirTel(int idUsuario){
 		if(telResidencial.getDdd() != null && telResidencial.getDdd() > 0){
@@ -285,35 +428,32 @@ public class UsuarioBo implements Serializable {
 
 
 	//validações
-	public  void validaUsuario(){
-		if(usuVo.getApelido().equals(null) || usuVo.getApelido().equals("")){
+	public  void validaUsuario( UsuarioVo usu, TelefoneVo tel){
+		if(usu.getApelido().equals(null) || usu.getApelido().equals("")){
 			apelidoValido = false;
 		}
 
-		if(usuVo.getNome().equals(null) || usuVo.getNome().equals("")){
+		if(usu.getNome().equals(null) || usu.getNome().equals("")){
 			nomeValido = false;
 		}
-		if(usuVo.getSobrenome().equals(null) || usuVo.getSobrenome().equals("")){
+		if(usu.getSobrenome().equals(null) || usu.getSobrenome().equals("")){
 			sobrenomeValido = false;
 
 		}
 
-		if(usuVo.getCpf() == null || usuVo.getCpf().equals("")){
+		if(usu.getCpf() == null || usu.getCpf().equals("")){
 			cpfValido = false;
 
 		}
 
-		if(usuVo.getEmail().equals(null) || usuVo.getEmail().equals("")){
+		if(usu.getEmail().equals(null) || usu.getEmail().equals("")){
 			emailValido = false;
 		}
 
-		if(usuVo.getSenha().equals(null) || usuVo.getSenha().equals("")){
-			senhaValido = false;
-		}
 
-		if(telResidencial.getDdd() == null || telResidencial.getDdd() <= 0
-				|| telResidencial.getNumero().equals(null) || telResidencial .getNumero() <= 0 ){
-			telefoneValido = false;
+		if(tel.getDdd() == null || tel.getDdd() <= 0
+				|| tel.getNumero().equals(null) || tel .getNumero() <= 0 ){
+			telValido = false;
 		}
 
 	}

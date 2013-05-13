@@ -12,6 +12,7 @@
 
 	<ui:define name="conteudo">
 		<t:saveState value="#{ModeloBo}"/>
+		<h:outputText value="#{ModeloBo.erroSubmit}" />
 		<div class="login_ident" style="height: 800px; width: 800px;">
 			<table>
 				<tr>
@@ -100,6 +101,17 @@
 					</tr>
 					<tr>
 						<td width="200px">
+							<h:outputText value="Material"/>
+						</td>
+						<td width="600px">
+							<h:inputText styleClass="login-field" value="#{ModeloBo.modeloInsert.material}"/>
+							<h:outputText value="● Preencha o campo MATERIAL" 
+								styleClass="outputTextErro"
+								rendered="#{!ModeloBo.materialValido}"/>
+						</td>
+					</tr>
+					<tr>
+						<td width="200px">
 							<h:outputText value="Garantia"/>
 						</td>
 						<td width="600px">
@@ -157,6 +169,17 @@
 								rendered="#{!ModeloBo.tipoValido}"/>
 						</td>
 					</tr>
+					<tr>
+						<td>
+							<h:outputText value="Preço"/>
+						</td>
+						<td>
+							<h:inputText value="#{ModeloBo.modeloInsert.precoAtual}"/>
+							<h:outputText value="Preencha o campo PREÇO" 
+								rendered="#{!ModeloBo.tipoValido}"/>
+						</td>
+					</tr>
+		
 		
 					<tr>
 						<td width="200px">
@@ -192,7 +215,8 @@
 					</tr>
 				<tr>
 					<td colspan="2">
-						<a4j:commandButton value="Salvar" action="#{ModeloBo.insereProduto}" reRender="form1"/>
+						<a4j:commandButton value="Salvar" 
+							action="#{ModeloBo.insereProduto}" reRender="form1"/>
 					</td>
 				</tr>
 			</table>

@@ -1,13 +1,15 @@
 package br.com.innovation.bo;
 
-import java.io.FileNotFoundException;
+import java.awt.Color;
+import java.awt.Graphics2D;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.Serializable;
+import java.util.ArrayList;
 
 import org.apache.myfaces.custom.fileupload.UploadedFile;
-
+import br.com.innovation.dao.ModeloDao;
+import br.com.innovation.dao.PrecoDao;
 import br.com.innovation.vo.ModeloVo;
 public class ModeloBo implements Serializable{
 
@@ -42,7 +44,11 @@ public class ModeloBo implements Serializable{
 	private boolean corValido = true;
 	private boolean tipoValido = true;
 	private boolean classValido = true;
-
+	private String erroSubmit = "";
+	ArrayList<String> caminhosAl = new ArrayList<String>();
+	ArrayList<ModeloVo> modeloAl = new ArrayList<ModeloVo>();
+	Graphics2D  g2d = null;
+	
 	public ModeloVo getModeloInsert() {
 		return modeloInsert;
 	}
@@ -200,66 +206,102 @@ public class ModeloBo implements Serializable{
 	public void setTipoValido(boolean tipoValido) {
 		this.tipoValido = tipoValido;
 	}
-
-
+	public String getErroSubmit() {
+		return erroSubmit;
+	}
+	public void setErroSubmit(String erroSubmit) {
+		this.erroSubmit = erroSubmit;
+	}
+	public ArrayList<ModeloVo> getModeloAl() {
+		return modeloAl;
+	}
+	public void setModeloAl(ArrayList<ModeloVo> modeloAl) {
+		this.modeloAl = modeloAl;
+	}
 	public boolean isClassValido() {
 		return classValido;
 	}
+	
 	public void setClassValido(boolean classValido) {
 		this.classValido = classValido;
 	}
+	
+	public Graphics2D getG2d() {
+		return g2d;
+	}
+	public void setG2d(Graphics2D g2d) {
+		this.g2d = g2d;
+	}
+	
 	public String insereProduto(){
-		try {
-			uploads();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		//		int idProduto = 0;
-		//
-		//		try {
-		//			if(validaDados()){
-		//				idProduto = new ModeloDao().insertModelo(modeloInsert);
-		//
-		//				if(idProduto > 0){
-		//
-		//				}
-		//
-		//			}
-		//		} catch (IOException e) {
-		//			// TODO Auto-generated catch block
-		//			e.printStackTrace();
-		//		}
+				int idProduto = 0;
+		
+				try {
+					if(validaDados()){
+						idProduto = new ModeloDao().insertModelo(modeloInsert);
+						if(idProduto > 0){
+							new PrecoDao().insert(modeloInsert.getPrecoAtual(), idProduto);
+							uploads(idProduto);
+							if(caminhosAl.size() > 0){
+								new ModeloDao().updateImage(caminhosAl, idProduto);
+								erroSubmit = "Produto inserido com sucesso!";
+								return "inn004ins";
+							}
+						}
+					}
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 		return null;
 	}
 
-	private void uploads() throws IOException{
+	private void uploads(Integer idProduto) throws IOException{
+		caminhosAl = new ArrayList<String>();
 		FileOutputStream destino = null;
+		
+		if(modeloInsert.getImg1() == null){
+			img1Valida = false;
+		}else{
+			destino = new FileOutputStream("C:\\newWork\\innovation\\WebContent\\images\\produtos\\"+idProduto+"principal.jpeg");
+			destino.write(img1.getBytes(), 0, img1.getBytes().length);
+			destino.flush();
+			destino.close();
+			caminhosAl.add("'C:/newWork/imagens_produto/"+idProduto+"principal.jpeg'");
+		}
+		
+		if(modeloInsert.getImg2() != null){
+			destino = new FileOutputStream("C:\\newWork\\innovation\\WebContent\\images\\produtos\\"+idProduto+"detalhe1.jpeg");
+			destino.write(img1.getBytes(), 0, img1.getBytes().length);
+			destino.flush();
+			destino.close();
+			caminhosAl.add("'C:/newWork/imagens_produto/"+idProduto+"detalhe1.jpeg'");
+		}
+		
+		if(modeloInsert.getImg3() != null){
+			destino = new FileOutputStream("C:\\newWork\\innovation\\WebContent\\images\\produtos\\"+idProduto+"detalhe2.jpeg");
+			destino.write(img1.getBytes(), 0, img1.getBytes().length);
+			destino.flush();
+			destino.close();
+			caminhosAl.add("'C:/newWork/imagens_produto/"+idProduto+"detalhe2.jpeg'");
+		}
 
-		String nome = "testeImagem";
-		destino = new FileOutputStream("C:\\newWork\\imagens_produto\\"+nome+".jpeg");
-		destino.write(img1.getBytes(), 0, img1.getBytes().length);
-		destino.flush();
-		destino.close();
-
+		if(modeloInsert.getImg4() != null){
+			destino = new FileOutputStream("C:\\newWork\\innovation\\WebContent\\images\\produtos\\"+idProduto+"detalhe3.jpeg");
+			destino.write(img1.getBytes(), 0, img1.getBytes().length);
+			destino.flush();
+			destino.close();
+			caminhosAl.add("'C:/newWork/imagens_produto/"+idProduto+"detalhe3.jpeg'");
+		}
 	}
-
-	public String uploadImg() throws IOException{
-		if(img1 != null ){
-			modeloInsert.setImg1(img1.getBytes());
-		}
-		if(img2 != null ){
-			modeloInsert.setImg1(img2.getBytes());
-		}
-		if(img3 != null ){
-			modeloInsert.setImg1(img3.getBytes());
-		}
-		if(img4 != null ){
-			modeloInsert.setImg1(img4.getBytes());
-		}
-		return "inn004ins";
-
-	}
+	
+	public void paint2() {  
+		
+	    g2d.setBackground(Color.yellow);  
+	    g2d.setColor(Color.red);  
+	    g2d.drawLine(0, 0, 100, 100);  
+	  
+	}  
 
 	public String uploadImg1() throws IOException{
 		if(img1 != null ){
@@ -288,23 +330,6 @@ public class ModeloBo implements Serializable{
 
 	public boolean validaDados() throws IOException{
 		boolean ok = true;
-
-		if(img1 == null ){
-			img1Valida = false;
-			ok = false;
-		}
-		if(img2 == null ){
-			img2Valida = false;
-			ok = false;
-		}
-		if(img3 == null ){
-			img3Valida = false;
-			ok = false;
-		}
-		if(img4 == null ){
-			img4Valida = false;
-			ok = false;	
-		}
 
 		if(modeloInsert.getNome() == null || modeloInsert.getNome().equals("")){
 			nomeValido = false;
@@ -363,6 +388,28 @@ public class ModeloBo implements Serializable{
 		}
 
 		return ok;
+	}
+	
+	public void getModelo(){
+		modeloAl = new ModeloDao().getModeloPesq(new ModeloVo());
+		ArrayList<Double> precoAl = new ArrayList<Double>();
+		for (ModeloVo modelo : modeloAl) {
+			precoAl = new PrecoDao().getPrecoByModelo(modelo.getId());
+			if(precoAl.size() == 1){
+				modelo.setPrecoAtual(precoAl.get(0));
+			}else if(precoAl.size() > 1){
+				if(precoAl.get(0) > precoAl.get(1)){
+					modelo.setPrecoAtual(precoAl.get(0));
+					modelo.setPrecoMaior(0.0);
+				}else{
+					modelo.setPrecoAtual(precoAl.get(0));
+					modelo.setPrecoMaior(precoAl.get(1));
+				}
+			}
+		}
+		
+		
+		
 	}
 
 
