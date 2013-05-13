@@ -3,10 +3,7 @@ package br.com.innovation.bo;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.faces.model.SelectItem;
-
-import br.com.innovation.dao.ClassificacaoDao;
 import br.com.innovation.dao.CorDao;
 import br.com.innovation.utils.MessagesUtil;
 import br.com.innovation.vo.CorVo;

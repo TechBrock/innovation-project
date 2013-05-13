@@ -3,11 +3,8 @@ package br.com.innovation.bo;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.faces.model.SelectItem;
-
 import br.com.innovation.dao.ClassificacaoDao;
-import br.com.innovation.dao.TipoProdutoDao;
 import br.com.innovation.vo.ClassificacaoVo;
 
 public class ClassificacaoBo implements Serializable{

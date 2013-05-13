@@ -3,6 +3,11 @@ package br.com.innovation.vo;
 import java.io.Serializable;
 
 public class PrecoVo implements Serializable{
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private Integer idModelo;
 	private Double preco;

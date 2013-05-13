@@ -1,12 +1,9 @@
 package br.com.innovation.bo;
 
-import java.awt.Color;
-import java.awt.Graphics2D;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.ArrayList;
-
 import org.apache.myfaces.custom.fileupload.UploadedFile;
 import br.com.innovation.dao.ModeloDao;
 import br.com.innovation.dao.PrecoDao;
@@ -47,7 +44,6 @@ public class ModeloBo implements Serializable{
 	private String erroSubmit = "";
 	ArrayList<String> caminhosAl = new ArrayList<String>();
 	ArrayList<ModeloVo> modeloAl = new ArrayList<ModeloVo>();
-	Graphics2D  g2d = null;
 	
 	public ModeloVo getModeloInsert() {
 		return modeloInsert;
@@ -226,12 +222,6 @@ public class ModeloBo implements Serializable{
 		this.classValido = classValido;
 	}
 	
-	public Graphics2D getG2d() {
-		return g2d;
-	}
-	public void setG2d(Graphics2D g2d) {
-		this.g2d = g2d;
-	}
 	
 	public String insereProduto(){
 				int idProduto = 0;
@@ -295,14 +285,6 @@ public class ModeloBo implements Serializable{
 		}
 	}
 	
-	public void paint2() {  
-		
-	    g2d.setBackground(Color.yellow);  
-	    g2d.setColor(Color.red);  
-	    g2d.drawLine(0, 0, 100, 100);  
-	  
-	}  
-
 	public String uploadImg1() throws IOException{
 		if(img1 != null ){
 			modeloInsert.setImg1(img1.getBytes());
