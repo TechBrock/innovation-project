@@ -77,9 +77,16 @@
 	
 	<navigation-rule>
 		<navigation-case>
+			<from-outcome>inn003Edit</from-outcome>
+			<to-view-id>/inn003/inn003viewEdit.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<navigation-case>
 			<from-outcome>inn004</from-outcome>
-			<to-view-id>/inn004/inn004view.xhtml</to-view-id>
-			<redirect />
+			<to-view-id>/inn004/inn04insert.xhtml</to-view-id>
+			<redirect/>
 		</navigation-case>
 	</navigation-rule>
 	

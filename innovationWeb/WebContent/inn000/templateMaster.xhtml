@@ -33,7 +33,12 @@
 										
 									</td>
 									<td width="20%">
-										<h:commandLink value="Meu cadastro"  styleClass="links" />
+										<a4j:commandLink value="Meu cadastro" 
+											styleClass="links" action="#{UsuarioBo.buscaUsuario}"
+											reRender="form1">
+											<f:setPropertyActionListener value="#{LoginBo.loginReturn.id}" 
+												target="#{UsuarioBo.idUsuario}"/>										
+										</a4j:commandLink>
 									</td>
 									<td width="20%">
 										<h:commandLink value="Meus preferidos" styleClass="links" />

@@ -26,7 +26,12 @@ public class ModeloVo implements Serializable{
 	private byte[] img2;
 	private byte[] img3;
 	private byte[] img4;
-	
+	private String img1Caminho;
+	private String img2Caminho;
+	private String img3Caminho;
+	private String img4Caminho;
+	private Double precoAtual;
+	private Double precoMaior;
 	
 	public Integer getId() {
 		return id;
@@ -136,6 +141,40 @@ public class ModeloVo implements Serializable{
 	public void setImg4(byte[] img4) {
 		this.img4 = img4;
 	}
-	
-	
+	public String getImg1Caminho() {
+		return img1Caminho;
+	}
+	public void setImg1Caminho(String img1Caminho) {
+		this.img1Caminho = img1Caminho;
+	}
+	public String getImg2Caminho() {
+		return img2Caminho;
+	}
+	public void setImg2Caminho(String img2Caminho) {
+		this.img2Caminho = img2Caminho;
+	}
+	public String getImg3Caminho() {
+		return img3Caminho;
+	}
+	public void setImg3Caminho(String img3Caminho) {
+		this.img3Caminho = img3Caminho;
+	}
+	public String getImg4Caminho() {
+		return img4Caminho;
+	}
+	public void setImg4Caminho(String img4Caminho) {
+		this.img4Caminho = img4Caminho;
+	}
+	public Double getPrecoAtual() {
+		return precoAtual;
+	}
+	public void setPrecoAtual(Double precoAtual) {
+		this.precoAtual = precoAtual;
+	}
+	public Double getPrecoMaior() {
+		return precoMaior;
+	}
+	public void setPrecoMaior(Double precoMaior) {
+		this.precoMaior = precoMaior;
+	}
 }

@@ -7,6 +7,7 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:rich="http://richfaces.org/rich"
 	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
 	template="/inn000/templateMaster.xhtml">
 	
 	<ui:define name="head">
@@ -23,23 +24,24 @@
 				<img src="../images/promocao/pro3a.jpg" alt="Bicileta Mormaii Innovation" />
 			</div>
 		</div>
+		<a4j:commandButton value="Buscar" action="#{ModeloBo.getModelo}" reRender="form1:gridProdutos"/>
 		<rich:spacer height="100px"></rich:spacer>
-
 			<div align="center" style="width: 100%;"	>
-			<rich:dataTable  value="#{ModeloBo.modeloInsert}" style="border: none; border-right: none; border-left: none;border-bottom:none;">
-				<rich:column width="250px">
-					<h:graphicImage url="../images/bicicletas/caloi_iluminium.jpg" width="300px" height="300px"/>
-				</rich:column>
-				<rich:column width="250px">
-					<h:graphicImage url="../images/bicicletas/caloi_iluminium.jpg" width="300px" height="300px"/>
-				</rich:column >
-				<rich:column width="250px">
-					<h:graphicImage url="../images/bicicletas/caloi_iluminium.jpg" width="300px" height="300px"/>
-				</rich:column>
-				<rich:column width="250px">
-					<h:graphicImage url="../images/bicicletas/caloi_iluminium.jpg" width="300px" height="300px"/>
-				</rich:column>
-			</rich:dataTable>
+			 <rich:dataGrid
+			 	id="gridProdutos" 
+			 	value="#{ModeloBo.modeloAl}" 
+			 	var="lista" 
+			 	columns="5" 
+			 	elements="20" 
+			 	width="600px">
+				 
+				<h:panelGroup>
+					<h:outputText value="#{lista.nome}"/>
+					<br/>
+					<h:outputText value="Por apenas: "/>
+					<h:outputText value="#{lista.precoAtual}"/>
+				</h:panelGroup>
+			</rich:dataGrid>
 			</div>
 	</ui:define>
 
