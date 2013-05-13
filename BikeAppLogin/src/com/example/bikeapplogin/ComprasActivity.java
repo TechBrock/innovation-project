@@ -7,6 +7,8 @@ import com.example.bikeapplogin.ItensActivity.ItemListAdapter;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -16,12 +18,14 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class ComprasActivity extends Activity{
 
 	private ArrayList<String> pedido;
 	public ItemListAdapter pdAdapter;
 	public TextView nPedido;
+	private DBHelper db;
 	
 	public ComprasActivity (){
 		// TODO Auto-generated constructor stub
@@ -71,6 +75,27 @@ public class ComprasActivity extends Activity{
     }
     
     public void callLogin (View v){
+    	Cursor crs = null;
+        
+        try{
+        
+        	db = new DBHelper(this);
+
+        	SQLiteDatabase slc = db.getReadableDatabase();
+        	SQLiteDatabase dlt = db.getWritableDatabase();
+        	crs = slc.rawQuery("SELECT USUARIO FROM LOGIN", null);
+        	crs.moveToFirst();
+
+        	if (crs.getCount() > 0){
+        		dlt.delete("LOGIN", null, null);
+        		goToActivity(PerfilActivity.class);
+        	}
+        }catch(Exception ex){
+        	Toast.makeText(this, "Campo Usuário ou senha em branco !", Toast.LENGTH_SHORT).show();
+        }finally{
+        	crs.close();
+        }
+    	
     	goToActivity(MainActivity.class);
     }
     

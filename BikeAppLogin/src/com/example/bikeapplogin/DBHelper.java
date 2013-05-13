@@ -13,7 +13,7 @@ public class DBHelper extends SQLiteOpenHelper {
 	@Override
 	public void onCreate(SQLiteDatabase db) {
 		// TODO Auto-generated method stub
-		db.execSQL("CREATE TABLE TAREFAS (ID INTEGER PRIMARY KEY, DESCRICAO TEXT);");
+		db.execSQL("CREATE TABLE LOGIN (ID INTEGER PRIMARY KEY, USUARIO TEXT, SENHA TEXT, IDUSUARIO INTEGER);");
 	}
 	
 	@Override
