@@ -8,11 +8,11 @@ import android.app.Activity;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
 
-public class buscaPerfil extends Activity{
+public class buscaPerfilTeste extends Activity{
 	
 	WebUsuario user;
 	
-	public buscaPerfil() {
+	public buscaPerfilTeste() {
 		// TODO Auto-generated constructor stub
 		
 		user = new WebUsuario();
@@ -33,7 +33,7 @@ public class buscaPerfil extends Activity{
 			// TODO Auto-generated method stub
 			super.onPreExecute();
 			
-			barraCarregar = new ProgressDialog(buscaPerfil.this);
+			barraCarregar = new ProgressDialog(buscaPerfilTeste.this);
 			barraCarregar.show();
 		}
 		
