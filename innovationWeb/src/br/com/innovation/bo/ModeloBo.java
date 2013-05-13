@@ -1,7 +1,11 @@
 package br.com.innovation.bo;
 
+import java.io.ByteArrayOutputStream;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.OutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import org.apache.myfaces.custom.fileupload.UploadedFile;
@@ -44,7 +48,7 @@ public class ModeloBo implements Serializable{
 	private String erroSubmit = "";
 	ArrayList<String> caminhosAl = new ArrayList<String>();
 	ArrayList<ModeloVo> modeloAl = new ArrayList<ModeloVo>();
-	
+
 	public ModeloVo getModeloInsert() {
 		return modeloInsert;
 	}
@@ -217,39 +221,39 @@ public class ModeloBo implements Serializable{
 	public boolean isClassValido() {
 		return classValido;
 	}
-	
+
 	public void setClassValido(boolean classValido) {
 		this.classValido = classValido;
 	}
-	
-	
+
+
 	public String insereProduto(){
-				int idProduto = 0;
-		
-				try {
-					if(validaDados()){
-						idProduto = new ModeloDao().insertModelo(modeloInsert);
-						if(idProduto > 0){
-							new PrecoDao().insert(modeloInsert.getPrecoAtual(), idProduto);
-							uploads(idProduto);
-							if(caminhosAl.size() > 0){
-								new ModeloDao().updateImage(caminhosAl, idProduto);
-								erroSubmit = "Produto inserido com sucesso!";
-								return "inn004ins";
-							}
-						}
+		int idProduto = 0;
+
+		try {
+			if(validaDados()){
+				idProduto = new ModeloDao().insertModelo(modeloInsert);
+				if(idProduto > 0){
+					new PrecoDao().insert(modeloInsert.getPrecoAtual(), idProduto);
+					uploads(idProduto);
+					if(caminhosAl.size() > 0){
+						new ModeloDao().updateImage(caminhosAl, idProduto);
+						erroSubmit = "Produto inserido com sucesso!";
+						return "inn004ins";
 					}
-				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
 				}
+			}
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		return null;
 	}
 
 	private void uploads(Integer idProduto) throws IOException{
 		caminhosAl = new ArrayList<String>();
 		FileOutputStream destino = null;
-		
+
 		if(modeloInsert.getImg1() == null){
 			img1Valida = false;
 		}else{
@@ -259,7 +263,7 @@ public class ModeloBo implements Serializable{
 			destino.close();
 			caminhosAl.add("'C:/newWork/imagens_produto/"+idProduto+"principal.jpeg'");
 		}
-		
+
 		if(modeloInsert.getImg2() != null){
 			destino = new FileOutputStream("C:\\newWork\\innovation\\WebContent\\images\\produtos\\"+idProduto+"detalhe1.jpeg");
 			destino.write(img1.getBytes(), 0, img1.getBytes().length);
@@ -267,7 +271,7 @@ public class ModeloBo implements Serializable{
 			destino.close();
 			caminhosAl.add("'C:/newWork/imagens_produto/"+idProduto+"detalhe1.jpeg'");
 		}
-		
+
 		if(modeloInsert.getImg3() != null){
 			destino = new FileOutputStream("C:\\newWork\\innovation\\WebContent\\images\\produtos\\"+idProduto+"detalhe2.jpeg");
 			destino.write(img1.getBytes(), 0, img1.getBytes().length);
@@ -284,7 +288,7 @@ public class ModeloBo implements Serializable{
 			caminhosAl.add("'C:/newWork/imagens_produto/"+idProduto+"detalhe3.jpeg'");
 		}
 	}
-	
+
 	public String uploadImg1() throws IOException{
 		if(img1 != null ){
 			modeloInsert.setImg1(img1.getBytes());
@@ -371,7 +375,7 @@ public class ModeloBo implements Serializable{
 
 		return ok;
 	}
-	
+
 	public void getModelo(){
 		modeloAl = new ModeloDao().getModeloPesq(new ModeloVo());
 		ArrayList<Double> precoAl = new ArrayList<Double>();
@@ -389,10 +393,37 @@ public class ModeloBo implements Serializable{
 				}
 			}
 		}
-		
-		
-		
 	}
 
+	public void montaImagem(OutputStream strem, Object id){
+		FileInputStream origem = null;
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
+		String caminho = null;
+		byte[] array;
+		int x;
+
+		//		caminho = new ModeloDao().getCaminho((Integer) id);
+		//		caminho = caminho.replace("/", "\\");
+
+		try {
+			origem = new FileInputStream("C:\\newWork\\imagens_produto\\15principal.jpeg");
+		} catch (FileNotFoundException e1) {
+			e1.printStackTrace();
+		}
+
+		try {
+			while((x = origem.read()) > -1){
+				out.write(x);
+			}
+
+			out.close();
+			origem.close();
+			array = out.toByteArray();
+			strem.write(array);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
 
 }
