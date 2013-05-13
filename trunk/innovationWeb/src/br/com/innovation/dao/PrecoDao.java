@@ -7,7 +7,6 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import br.com.innovation.utils.Conexao;
-import br.com.innovation.vo.PrecoVo;
 
 public class PrecoDao {
 	public int insert(Double preco, Integer idModelo){

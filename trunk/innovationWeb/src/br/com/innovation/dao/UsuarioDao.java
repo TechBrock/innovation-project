@@ -6,9 +6,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
-
-import com.sun.org.apache.bcel.internal.generic.GETSTATIC;
-
 import br.com.innovation.utils.Conexao;
 import br.com.innovation.vo.UsuarioVo;
 
