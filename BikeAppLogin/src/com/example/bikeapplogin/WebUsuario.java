@@ -1,8 +1,14 @@
 package com.example.bikeapplogin;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
+import android.annotation.SuppressLint;
+import android.os.Parcel;
+import android.os.Parcelable;
 
-public class WebUsuario {
+@SuppressLint("SimpleDateFormat")
+public class WebUsuario implements Parcelable {
 	
 	private int id;
 	private String nome;
@@ -17,6 +23,12 @@ public class WebUsuario {
 	private char receberEmail;
 	private int idPerfil;
 	
+	SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy"); 
+	
+	public WebUsuario() {
+		// TODO Auto-generated constructor stub
+	}
+ 
 	public int getId() {
 		return id;
 	}
@@ -89,5 +101,50 @@ public class WebUsuario {
 	public void setIdPerfil(int idPerfil) {
 		this.idPerfil = idPerfil;
 	}
+	
+	public WebUsuario (Parcel in) throws ParseException {  
+		readFromParcel(in);  
+    } 
+
+	@Override
+	public int describeContents() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void writeToParcel(Parcel out, int flags) {
+		// TODO Auto-generated method stub
+		
+		out.writeInt(id);  
+        out.writeString(nome);
+        out.writeString(sobrenome);
+        out.writeString(dataNascimento.toString());
+        out.writeLong(sexo);
+        out.writeString(cpf);
+        out.writeString(apelido);
+        out.writeString(email);
+        out.writeString(senha);
+        out.writeLong(ativo);
+        out.writeLong(receberEmail);
+        out.writeInt(idPerfil);
+        
+	}
+	
+	private void readFromParcel(Parcel in) throws ParseException {  
+		  
+        id = in.readInt();
+        nome = in.readString();  
+        sobrenome = in.readString();
+        dataNascimento = (Date) format.parse(in.readString());
+        //sexo = (Character) in.readLong();
+        cpf = in.readString();
+        apelido = in.readString();
+        email = in.readString();
+        senha = in.readString();
+        //ativo = in.readLong();
+        //receberEmail = in.readLong();
+        idPerfil = in.readInt();
+    }  
 
 }

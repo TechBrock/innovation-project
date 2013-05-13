@@ -76,6 +76,9 @@ public class MainActivity extends Activity{
     
 	private void goToActivity(Class<? extends Activity> activityClass) {
         Intent newActivity = new Intent(this, activityClass);
+        
+        newActivity.putExtra("usuario", user); //**************************** put extras passando o objeto
+        
         startActivity(newActivity);
     }
     
@@ -131,7 +134,7 @@ public class MainActivity extends Activity{
 		protected WebUsuario[] doInBackground(WebUsuario... params) {
 			// TODO Auto-generated method stub
 			
-			String urlInfoPerfil = "http:\\www.";
+			String urlInfoPerfil = "http:\\www."; //************************ URL do web service
 			String conteudo = RequisicoesHttp.get(urlInfoPerfil);
 			
 			WebUsuario[] usuarios = null;
