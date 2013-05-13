@@ -311,4 +311,39 @@
 	width: 0px;
 }
 
+.outputTituloBik{
+	color: #31ACD6;
+	font-size: 15px;
+	font: italic;
+}
+
+.outputPreco{
+	color: #FF1493;
+	font-size: 20px;
+	font: bold;
+}
+
+.rich-table{
+	border: none;
+	border-left: none;
+	border-right: none;
+	border-bottom: none;
+	border-top: none;
+}
+
+.rich-table-row{
+	border: none;
+	border-left: none;
+	border-right: none;
+	border-bottom: none;
+	border-top: none;
+}
+.rich-table-cell{
+	border: solid;
+	border: none;
+	border-left: none;
+	border-right: none;
+	border-bottom: none;
+	border-top: none;
+}
 
