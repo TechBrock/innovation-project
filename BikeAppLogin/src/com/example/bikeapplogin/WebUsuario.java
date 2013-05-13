@@ -16,6 +16,7 @@ public class WebUsuario {
 	private char ativo;
 	private char receberEmail;
 	private int idPerfil;
+	
 	public int getId() {
 		return id;
 	}
