@@ -16,6 +16,7 @@
 	</ui:define>
 
 	<ui:define name="corpo">
+		<t:saveState value="#{ModeloBo.modeloDet}"/>
 		<div id="sliderFrame">
 			<div id="ribbon" />
 			<div id="slider">
@@ -49,19 +50,33 @@
 							</td>
 						</tr>
 						<tr>
-							<td>
+							<td align="center">
 								<h:outputText value="#{lista.nome}" styleClass="outputTituloBik"/>
 							</td>
 						</tr>
 						<tr>
-							<td>
+							<td align="center">
 								<h:outputText value="Por apenas: "/>
 								<h:outputText value="#{lista.precoAtual}" styleClass="outputPreco"/>
+							</td>
+						</tr>
+						<tr>
+							<td align="center">
+								<a4j:commandButton value="Detalhar"
+									reRender="viewModalDetalhar:modalDetalharCDiv"
+									oncomplete="Richfaces.showModalPanel('modalDetalhar')"
+									immediate="true" ajaxSingle="true">
+									<f:setPropertyActionListener value="#{lista}"
+									 target="#{ModeloBo.modeloDet}"/>
+								</a4j:commandButton>
 							</td>
 						</tr>
 					</table>
 					</div>
 			</rich:dataGrid>
 			</div>
+	</ui:define>
+	<ui:define name="modal">
+		<ui:include src="/inn001/inn01Detalhe.xhtml"/>
 	</ui:define>
 </ui:composition>

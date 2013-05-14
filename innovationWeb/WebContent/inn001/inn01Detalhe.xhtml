@@ -1,140 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
+<f:subview id="viewModalDetalhar"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"	 
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:rich="http://richfaces.org/rich"
-	xmlns:a4j="http://richfaces.org/a4j"
-	template="/inn000/templateMaster.xhtml">
+	xmlns:a4j="http://richfaces.org/a4j">
 	
-	<ui:define name="head">
-		<link href="../themes/3/js-image-slider.css" rel="stylesheet" type="text/css" />
-		<script src="../themes/3/js-image-slider.js" type="text/javascript" />
-	</ui:define>
-
-	<ui:define name="corpo">
-		<table width="1000px">
-			<tr>
-				<td width="60%">
-					<div id="sliderFrame">
-        				<div id="slider">
-           					<img src="../images/bicicletas/caloi_supra.jpg" />
-            				<img src="../images/bicicletas/caloi_supra/img1.jpg" />
-            				<img src="../images/bicicletas/caloi_supra/img2.jpg"/>
-            				<img src="../images/bicicletas/caloi_supra/img3.jpg" />
-        				</div>
-        				
-        				<!--thumbnails-->
-        				<div id="thumbs">
-        					<div class="thumb"><img src="../images/bicicletas/caloi_supra.jpg" width="60px" height="45px"/></div>
-            				<div class="thumb"><img src="../images/bicicletas/caloi_supra/img1.jpg" width="60px" height="45px"/></div>
-            				<div class="thumb"><img src="../images/bicicletas/caloi_supra/img2.jpg" width="60px" height="45px"/></div>
-            				<div class="thumb"><img src="../images/bicicletas/caloi_supra/img3.jpg" width="60px" height="45px"/></div>
-        				</div>
-        				<div id="htmlcaption3" style="display: none;">
-            				<div style="width:190px;height:240px;display:inline-block;
-            					background:white url(images/caption3.gif) no-repeat 0 0;
-            					border-radius:4px;">
-            				</div>
-        				</div>
-        				
-        				<div id="htmlcaption4" style="display: none;">
-            				<div style="width:190px;height:240px;display:inline-block;
-            					background:white url(images/caption4.gif) no-repeat 0 0;
-            					border-radius:4px;"></div>
-        					</div>
-    					</div>
-    				</td>
-					<td>
-						<fieldset class="fieldsetDetalhe" >
-							<h:outputText value="Bicicleta Caloi Supra" styleClass="outputBike"/><br/>
-							<h:outputText value="De:"/><h:outputText value="1299,00"/> <br/>
-							<h:outputText value="Por:"/><h:outputText value="1199,00" styleClass="outputValor"/>
-						</fieldset>
-						<br/>
-						<fieldset class="fieldsetDetalhe">
-							<table>
-								<tr>
-									<td>
-										<img src="../images/icon/carrinho.png" width="30px" height="30px"/>
-										<h:commandLink value="Adicionar ao carrinho" />
-									</td>
-								</tr>
-								<tr>
-									<td>
-										<img src="../images/icon/favorite.png"  width="30px" height="30px"/>
-										<h:commandLink value="Adicionar à lista de desejos"/>
-									</td>
-								</tr>
-							</table>
-    					</fieldset>
-    					<br/>
-    					<fieldset class="fieldsetDetalhe">
-							<table>
-								<tr>
-									<td align="center">
-										<a4j:commandButton image="/images/botoes/comprar.png" 
-											style="width: 100px;height: 30px;"/>
-									</td>
-								</tr>
-							</table>
-    					</fieldset>
-					</td>  
-				</tr>
-				<tr>
-					<td colspan="2">
+	<rich:modalPanel id="modalDetalhar" autosized="true" top="55"
+		resizeable="false" minWidth="800" minHeight="400" keepVisualState="true">
+		
+			<ui:decorate template="/inn000/templateModalSemFiltro.xhtml">
+			<ui:define name="corpoModal">
+					<div class="login_ident" style="height: 80px;">
 						<table>
 							<tr>
 								<td>
-									<h:outputText value="Sobre o produto" styleClass="outputTitulo"/>
+								<h:outputText value="TESTE"/>
+									<h:outputText value="#{ModeloBo.modeloDet.nome}"/>
 								</td>
 							</tr>
-							<tr>
-								<td>
-									<h:outputText value="A suprassumo das bikes de terrenos irregulares,
-						 				a Bicicleta Caloi Supra leva em seu nome sua característica TOP, 
-						 				perfeita para auxiliar na performance do ciclista durante a prática do MTB. 
-						 				Resistente e inovadora, conta com peças Shimano em seu câmbio, alavanca, 
-						 				freio a disco e pedivela, e, ainda, quadro leve em Alumínio para proporcionar 
-						 				total controle sobre a magrela durante toda a aventura." styleClass="outputDescricao"/>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<rich:spacer height="20px"/>
-								</td>
-							</tr>
-							<tr>
-								<td>
-									<h:outputText value="Indicada para ciclistas com altura acima de 1,65 m." styleClass="outputDescricao"/><br/>
-									<h:outputText value="Modelo Unissex." styleClass="outputDescricao"/><br/>
-									<h:outputText value="Indicada para Mountain Bike." styleClass="outputDescricao"/><br/>
-									<h:outputText value="Quadro: MTB Alumínio 6061 conformado." styleClass="outputDescricao"/><br/>
-									<h:outputText value="Aro: 26 36 furos parede dupla." styleClass="outputDescricao"/><br/>
-									<h:outputText value="Suspensão: em Alumínio 50 mm." styleClass="outputDescricao"/><br/>
-									<h:outputText value="Câmbio: RD-TX55 Tourney (traseiro) / FD-TX51 Tourney (dianteiro)." styleClass="outputDescricao"/><br/>
-									<h:outputText value="Alavanca de câmbio: ST-EF 51 integradas." styleClass="outputDescricao"/><br/>
-									<h:outputText value="Velocidades: 21 marchas." styleClass="outputDescricao"/><br/>
-									<h:outputText value="Garfo: Suspensão Zoom (50 mm de curso)." styleClass="outputDescricao"/><br/>
-									<h:outputText value="Pedal: VP-990 Aluminum Cage." styleClass="outputDescricao"/><br/>
-									<h:outputText value="Movimento central: MVC 887W Eixo 3T/126 mm." styleClass="outputDescricao"/><br/>
-									<h:outputText value="Pedivela: tripla / FC-M131 170 mm, 48x38x28T." styleClass="outputDescricao"/><br/>
-									<h:outputText value="Engrenagem: tripla." styleClass="outputDescricao"/><br/>
-									<h:outputText value="Corrente: HV 500." styleClass="outputDescricao"/><br/>
-									<h:outputText value="Cubo dianteiro/traseiro: em Alumínio." styleClass="outputDescricao"/><br/>
-									<h:outputText value="Pneus: EXCESS ED 26x1,95." styleClass="outputDescricao"/><br/>
-									<h:outputText value="Freio: Disc Brake mecânico." styleClass="outputDescricao"/><br/>
-									<h:outputText value="Alavanca de freio: ST-EF51." styleClass="outputDescricao"/><br/>
-									<h:outputText value="Guidão: Caloi." styleClass="outputDescricao"/><br/>
-									<h:outputText value="Manoplas: VLG-372 130 mm." styleClass="outputDescricao"/><br/>
-									<h:outputText value="Selim: Trekking Gel." styleClass="outputDescricao"/><br/>
-								</td>
-							</tr>
-						</table>
-					</td>
-				</tr>
-			</table> 
-		</ui:define>
-</ui:composition>
+						</table>	
+					</div>
+			</ui:define>
+			
+			</ui:decorate>
+	</rich:modalPanel>
+</f:subview>

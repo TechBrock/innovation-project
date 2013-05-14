@@ -23,10 +23,10 @@
 					</td>
 				</tr>
 				<tr>
-						<td>
+						<td width="400px">
 							<h:outputText value="Nome"/>
 						</td>
-						<td>
+						<td width="400px">
 							<h:inputText styleClass="login-field" value="#{ModeloBo.modeloInsert.nome}"/>
 							<h:outputText value="● Preencha o campo NOME"
 								styleClass="outputTextErro"
@@ -38,7 +38,9 @@
 							<h:outputText value="Característica"/>
 						</td>
 						<td>
-							<h:inputTextarea styleClass="login-field" value="#{ModeloBo.modeloInsert.caract}"/>
+							<h:inputTextarea styleClass="login-field" 
+								value="#{ModeloBo.modeloInsert.caract}"
+								rows="3" cols="50"/>
 							<h:outputText value="● Preencha o campo CARACTERÍSTICA" 
 								styleClass="outputTextErro"
 								rendered="#{!ModeloBo.carcValido}"/>
@@ -49,7 +51,8 @@
 							<h:outputText value="Quantidade"/>
 						</td>
 						<td>
-							<h:inputText styleClass="login-field" value="#{ModeloBo.modeloInsert.quantidade}" size="5"/>
+							<h:inputText styleClass="login-field" 
+								value="#{ModeloBo.modeloInsert.quantidade}" size="10"/>
 							<h:outputText value="● Preencha o campo QUANTIDADE" 
 								styleClass="outputTextErro"
 								rendered="#{!ModeloBo.qtdValido}"/>
@@ -57,10 +60,12 @@
 					</tr>
 					<tr>
 						<td>
-							<h:outputText value="Tamanho" />
+							<h:outputText value="Tamanho quadro (polegadas)" />
 						</td>
 						<td>
-							<h:inputText styleClass="login-field" value="#{ModeloBo.modeloInsert.tamanho}" size="5"/>
+							<h:inputText styleClass="login-field" 
+								value="#{ModeloBo.modeloInsert.tamanho}" size="10">
+							</h:inputText>
 							<h:outputText value="● Preencha o campo TAMANHO" 
 								styleClass="outputTextErro"
 								rendered="#{!ModeloBo.tamValido}"/>
@@ -68,10 +73,11 @@
 					</tr>
 					<tr>
 						<td>
-							<h:outputText value="Dimensão"/>
+							<h:outputText value="Dimensões do produto (cm)"/>
 						</td>
 						<td>
-							<h:inputText styleClass="login-field" value="#{ModeloBo.modeloInsert.dimensao}" size="5"/>
+							<h:inputText styleClass="login-field" 
+								value="#{ModeloBo.modeloInsert.dimensao}" size="10"/>
 							<h:outputText value="● Preencha o campo DIMENSÃO" 
 								styleClass="outputTextErro"
 								rendered="#{!ModeloBo.dimValido}"/>
@@ -79,10 +85,11 @@
 					</tr>
 					<tr>
 						<td>
-							<h:outputText value="Peso"/>
+							<h:outputText value="Peso máximo suportado (kg)"/>
 						</td>
 						<td>
-							<h:inputText styleClass="login-field" value="#{ModeloBo.modeloInsert.peso}"/>
+							<h:inputText styleClass="login-field" 
+								value="#{ModeloBo.modeloInsert.peso}" size="10"/>
 							<h:outputText value="● Preencha o campo PESO" 
 								styleClass="outputTextErro"
 								rendered="#{!ModeloBo.pesoValido}"/>
@@ -112,7 +119,7 @@
 					</tr>
 					<tr>
 						<td width="200px">
-							<h:outputText value="Garantia"/>
+							<h:outputText value="Garantia (anos)"/>
 						</td>
 						<td width="600px">
 							<h:inputText styleClass="login-field" value="#{ModeloBo.modeloInsert.garantia}"/>
@@ -126,7 +133,9 @@
 							<h:outputText value="Informações Adicionais"/>
 						</td>
 						<td>
-							<h:inputTextarea styleClass="login-field" value="#{ModeloBo.modeloInsert.infAdc}"/>
+							<h:inputTextarea styleClass="login-field" 
+								value="#{ModeloBo.modeloInsert.infAdc}"
+								rows="3" cols="50"/>
 							<h:outputText value="● Preencha o campo INFORMAÇÕES ADICIONAIS" 
 								styleClass="outputTextErro"
 								rendered="#{!ModeloBo.infAdcValido}"/>
@@ -174,7 +183,7 @@
 							<h:outputText value="Preço"/>
 						</td>
 						<td>
-							<h:inputText value="#{ModeloBo.modeloInsert.precoAtual}"/>
+							<h:inputText value="#{ModeloBo.modeloInsert.precoAtual}" styleClass="login-field" />
 							<h:outputText value="Preencha o campo PREÇO" 
 								rendered="#{!ModeloBo.tipoValido}"/>
 						</td>
@@ -186,7 +195,10 @@
 							<h:outputText value="Imagem Principal"/>
 						</td>
 						<td>
-							<a4j:commandButton value="up1" oncomplete="Richfaces.showModalPanel('modalUp1')"/>
+							<a4j:commandButton title="upload Imagem 1"
+								image="../images/icon/upload.png" 
+								style="width: 40px; height:40px;"
+								oncomplete="Richfaces.showModalPanel('modalUp1')"/>
 						</td>
 					</tr>
 					<tr>
@@ -194,7 +206,10 @@
 							<h:outputText value="Imagem detalhe 1"/>
 						</td>
 						<td>
-							<a4j:commandButton value="up2" oncomplete="Richfaces.showModalPanel('modalUp2')"/>
+							<a4j:commandButton title="upload Imagem 2"
+								image="../images/icon/upload.png" 
+								style="width: 40px; height:40px;"
+								oncomplete="Richfaces.showModalPanel('modalUp2')"/>
 						</td>
 					</tr>
 					<tr>
@@ -202,7 +217,10 @@
 							<h:outputText value="Imagem detalhe 1"/>
 						</td>
 						<td>
-							<a4j:commandButton value="up3" oncomplete="Richfaces.showModalPanel('modalUp3')"/>
+							<a4j:commandButton title="upload Imagem 3"
+								image="../images/icon/upload.png" 
+								style="width: 40px; height:40px;"
+								oncomplete="Richfaces.showModalPanel('modalUp3')"/>
 						</td>
 					</tr>
 					<tr>
@@ -210,7 +228,10 @@
 							<h:outputText value="Imagem detalhe 3"/>
 						</td>
 						<td>
-							<a4j:commandButton value="up4" oncomplete="Richfaces.showModalPanel('modalUp4')"/>
+							<a4j:commandButton title="upload Imagem 4"
+								image="../images/icon/upload.png" 
+								style="width: 40px; height:40px;"
+								oncomplete="Richfaces.showModalPanel('modalUp4')"/>
 						</td>
 					</tr>
 				<tr>

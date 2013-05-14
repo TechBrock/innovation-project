@@ -48,6 +48,8 @@ public class ModeloBo implements Serializable{
 	private String erroSubmit = "";
 	ArrayList<String> caminhosAl = new ArrayList<String>();
 	ArrayList<ModeloVo> modeloAl = new ArrayList<ModeloVo>();
+	final String CAMINHO = "C:\\newWork\\imagens_produto\\";
+	ModeloVo modeloDet = new ModeloVo();
 
 	public ModeloVo getModeloInsert() {
 		return modeloInsert;
@@ -225,8 +227,12 @@ public class ModeloBo implements Serializable{
 	public void setClassValido(boolean classValido) {
 		this.classValido = classValido;
 	}
-
-
+	public ModeloVo getModeloDet() {
+		return modeloDet;
+	}
+	public void setModeloDet(ModeloVo modeloDet) {
+		this.modeloDet = modeloDet;
+	}
 	public String insereProduto(){
 		int idProduto = 0;
 
@@ -257,7 +263,7 @@ public class ModeloBo implements Serializable{
 		if(modeloInsert.getImg1() == null){
 			img1Valida = false;
 		}else{
-			destino = new FileOutputStream("C:\\newWork\\innovation\\WebContent\\images\\produtos\\"+idProduto+"principal.jpeg");
+			destino = new FileOutputStream(CAMINHO+idProduto+"principal.jpeg");
 			destino.write(img1.getBytes(), 0, img1.getBytes().length);
 			destino.flush();
 			destino.close();
@@ -265,7 +271,7 @@ public class ModeloBo implements Serializable{
 		}
 
 		if(modeloInsert.getImg2() != null){
-			destino = new FileOutputStream("C:\\newWork\\innovation\\WebContent\\images\\produtos\\"+idProduto+"detalhe1.jpeg");
+			destino = new FileOutputStream(CAMINHO+idProduto+"detalhe1.jpeg");
 			destino.write(img1.getBytes(), 0, img1.getBytes().length);
 			destino.flush();
 			destino.close();
@@ -273,7 +279,7 @@ public class ModeloBo implements Serializable{
 		}
 
 		if(modeloInsert.getImg3() != null){
-			destino = new FileOutputStream("C:\\newWork\\innovation\\WebContent\\images\\produtos\\"+idProduto+"detalhe2.jpeg");
+			destino = new FileOutputStream(CAMINHO+idProduto+"detalhe2.jpeg");
 			destino.write(img1.getBytes(), 0, img1.getBytes().length);
 			destino.flush();
 			destino.close();
@@ -281,7 +287,7 @@ public class ModeloBo implements Serializable{
 		}
 
 		if(modeloInsert.getImg4() != null){
-			destino = new FileOutputStream("C:\\newWork\\innovation\\WebContent\\images\\produtos\\"+idProduto+"detalhe3.jpeg");
+			destino = new FileOutputStream(CAMINHO+idProduto+"detalhe3.jpeg");
 			destino.write(img1.getBytes(), 0, img1.getBytes().length);
 			destino.flush();
 			destino.close();
@@ -396,17 +402,18 @@ public class ModeloBo implements Serializable{
 	}
 
 	public void montaImagem(OutputStream strem, Object id){
+		String principal = null;
+		String principalNew = null;
 		FileInputStream origem = null;
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
-		String caminho = null;
 		byte[] array;
 		int x;
-
-		//		caminho = new ModeloDao().getCaminho((Integer) id);
-		//		caminho = caminho.replace("/", "\\");
+		
+		principal = new ModeloDao().getCaminho((Integer) id);
+		principalNew = principal.substring(principal.lastIndexOf("/")+1,principal.length());
 
 		try {
-			origem = new FileInputStream("C:\\newWork\\imagens_produto\\15principal.jpeg");
+			origem = new FileInputStream("C:\\newWork\\imagens_produto\\"+principalNew);
 		} catch (FileNotFoundException e1) {
 			e1.printStackTrace();
 		}
