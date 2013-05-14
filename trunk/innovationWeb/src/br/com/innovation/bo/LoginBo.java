@@ -1,9 +1,17 @@
 package br.com.innovation.bo;
 
+import java.io.Serializable;
+
 import br.com.innovation.dao.LoginDao;
 import br.com.innovation.vo.LoginVo;
 
-public class LoginBo {
+public class LoginBo implements Serializable {
+	
+	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -3165125601068089280L;
 	LoginVo login = new LoginVo();
 	LoginVo loginReturn = new LoginVo();
 	boolean cliente = true;
