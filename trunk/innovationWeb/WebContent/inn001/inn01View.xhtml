@@ -16,7 +16,7 @@
 	</ui:define>
 
 	<ui:define name="corpo">
-		<t:saveState value="#{ModeloBo.modeloDet}"/>
+		<t:saveState value="#{ModeloBo}"/>
 		<div id="sliderFrame">
 			<div id="ribbon" />
 			<div id="slider">
@@ -63,9 +63,8 @@
 						<tr>
 							<td align="center">
 								<a4j:commandButton value="Detalhar"
-									reRender="viewModalDetalhar:modalDetalharCDiv"
 									oncomplete="Richfaces.showModalPanel('modalDetalhar')"
-									immediate="true" ajaxSingle="true">
+									reRender="viewModalDetalhar:formModal">
 									<f:setPropertyActionListener value="#{lista}"
 									 target="#{ModeloBo.modeloDet}"/>
 								</a4j:commandButton>

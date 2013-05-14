@@ -9,20 +9,67 @@
 	xmlns:a4j="http://richfaces.org/a4j">
 	
 	<rich:modalPanel id="modalDetalhar" autosized="true" top="55"
-		resizeable="false" minWidth="800" minHeight="400" keepVisualState="true">
+		resizeable="false" minWidth="400" minHeight="40" keepVisualState="true">
 		
 			<ui:decorate template="/inn000/templateModalSemFiltro.xhtml">
 			<ui:define name="corpoModal">
-					<div class="login_ident" style="height: 80px;">
+				<h:panelGroup>
+					<div class="login_ident" style="height: auto;">
 						<table>
 							<tr>
-								<td>
-								<h:outputText value="TESTE"/>
-									<h:outputText value="#{ModeloBo.modeloDet.nome}"/>
+								<td colspan="4" align="center">
+									<a4j:mediaOutput element="img" mimeType="application/jpg" 
+										cacheable="false"
+										createContent="#{ModeloBo.montaImagem}"
+										value="#{ModeloBo.modeloDet.id}"
+										session="true"
+										style="width: 400px; heigh: 400px;"/>	
 								</td>
 							</tr>
-						</table>	
+							<tr>
+								<td>
+									<a4j:mediaOutput element="img" mimeType="application/jpg" 
+										cacheable="false"
+										createContent="#{ModeloBo.montaImagem}"
+										value="#{ModeloBo.modeloDet.id}"
+										session="true"
+										style="width: 100px; heigh: 100px;"/>	
+								</td>
+								<td>
+									<a4j:mediaOutput element="img" mimeType="application/jpg" 
+										cacheable="false"
+										createContent="#{ModeloBo.montaImagem}"
+										value="#{ModeloBo.modeloDet.id}"
+										session="true"
+										style="width: 100px; heigh: 100px;"/>	
+								</td>
+								<td>
+									<a4j:mediaOutput element="img" mimeType="application/jpg" 
+										cacheable="false"
+										createContent="#{ModeloBo.montaImagem}"
+										value="#{ModeloBo.modeloDet.id}"
+										session="true"
+										style="width: 100px; heigh: 100px;"/>	
+								</td>
+								<td>
+									<a4j:mediaOutput element="img" mimeType="application/jpg" 
+										cacheable="false"
+										createContent="#{ModeloBo.montaImagem}"
+										value="#{ModeloBo.modeloDet.id}"
+										session="true"
+										style="width: 100px; heigh: 100px;"/>	
+								</td>
+							</tr>
+						</table>
+					
+						
+									
+						<h:outputText value="#{ModeloBo.modeloDet.nome}"/>
+						<h:outputText value="teste"/>
+						<h:outputText value="#{ModeloBo.modeloDet.id}"/>
 					</div>
+					
+				</h:panelGroup>
 			</ui:define>
 			
 			</ui:decorate>
