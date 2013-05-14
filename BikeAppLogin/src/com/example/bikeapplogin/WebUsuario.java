@@ -6,24 +6,25 @@ import java.util.Date;
 import android.annotation.SuppressLint;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.text.format.DateFormat;
 
 @SuppressLint("SimpleDateFormat")
 public class WebUsuario implements Parcelable {
 	
-	private int id;
-	private String nome;
-	private String sobrenome;
-	private Date dataNascimento;
-	private char sexo;
-	private String cpf;
-	private String apelido;
-	private String email;
-	private String senha;
-	private char ativo;
-	private char receberEmail;
-	private int idPerfil;
+	SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 	
-	SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy"); 
+	private int id = 0;
+	private String nome = "t";
+	private String sobrenome = "t";
+	private Date dataNascimento;
+	private Character sexo = 'S';
+	private String cpf = "t";
+	private String apelido = "t";
+	private String email = "t";
+	private String senha = "t";
+	private Character ativo = 'S';
+	private Character receberEmail = 'S';
+	private int idPerfil = 0;
 	
 	public WebUsuario() {
 		// TODO Auto-generated constructor stub

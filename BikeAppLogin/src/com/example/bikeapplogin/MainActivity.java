@@ -36,7 +36,7 @@ public class MainActivity extends Activity{
         setContentView(R.layout.activity_main);
         
         user = new WebUsuario();
-		new PerfilInfo().execute();
+		//new PerfilInfo().execute();
 
         Cursor crs = null;
         
@@ -77,7 +77,7 @@ public class MainActivity extends Activity{
 	private void goToActivity(Class<? extends Activity> activityClass) {
         Intent newActivity = new Intent(this, activityClass);
         
-        newActivity.putExtra("usuario", user); //**************************** put extras passando o objeto
+        //newActivity.putExtra("usuario", user); //**************************** put extras passando o objeto
         
         startActivity(newActivity);
     }
@@ -99,8 +99,12 @@ public class MainActivity extends Activity{
     		usr.setText("");
     		psw.setText("");
     		
-    		goToActivity(PerfilActivity.class);  
-    		
+    		if(user.getAtivo() == 'S'){
+    			goToActivity(PerfilActivity.class); 
+			} else {
+				Toast.makeText(this, "Este usuário esta inativo, entre em contato com um administrador do site", Toast.LENGTH_LONG).show();
+			}
+
     	} else {
     		Toast.makeText(this, "Campo Usuário ou senha em branco !", Toast.LENGTH_SHORT).show();
     	}   	
