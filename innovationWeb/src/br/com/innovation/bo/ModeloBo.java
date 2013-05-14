@@ -383,22 +383,36 @@ public class ModeloBo implements Serializable{
 	}
 
 	public void getModelo(){
-		modeloAl = new ModeloDao().getModeloPesq(new ModeloVo());
+//		modeloAl = new ModeloDao().getModeloPesq(new ModeloVo());
 		ArrayList<Double> precoAl = new ArrayList<Double>();
-		for (ModeloVo modelo : modeloAl) {
-			precoAl = new PrecoDao().getPrecoByModelo(modelo.getId());
-			if(precoAl.size() == 1){
-				modelo.setPrecoAtual(precoAl.get(0));
-			}else if(precoAl.size() > 1){
-				if(precoAl.get(0) > precoAl.get(1)){
-					modelo.setPrecoAtual(precoAl.get(0));
-					modelo.setPrecoMaior(0.0);
-				}else{
-					modelo.setPrecoAtual(precoAl.get(0));
-					modelo.setPrecoMaior(precoAl.get(1));
-				}
-			}
-		}
+		ModeloVo modelo = new ModeloVo();
+		modelo.setAro(26);
+		modelo.setCaract("Teste Paula");
+		modelo.setDimensao("Teste Dim");
+		modelo.setGarantia(1.0);
+		modelo.setId(1);
+		modelo.setIdClassificacao(1);
+		modelo.setIdCor(1);
+		modelo.setIdTipo(1);
+		modelo.setNome("Bike da Ana");
+		modeloAl.add(modelo);
+		
+		
+		
+//		for (ModeloVo modelo : modeloAl) {
+//			precoAl = new PrecoDao().getPrecoByModelo(modelo.getId());
+//			if(precoAl.size() == 1){
+//				modelo.setPrecoAtual(precoAl.get(0));
+//			}else if(precoAl.size() > 1){
+//				if(precoAl.get(0) > precoAl.get(1)){
+//					modelo.setPrecoAtual(precoAl.get(0));
+//					modelo.setPrecoMaior(0.0);
+//				}else{
+//					modelo.setPrecoAtual(precoAl.get(0));
+//					modelo.setPrecoMaior(precoAl.get(1));
+//				}
+//			}
+//		}
 	}
 
 	public void montaImagem(OutputStream strem, Object id){
@@ -409,8 +423,9 @@ public class ModeloBo implements Serializable{
 		byte[] array;
 		int x;
 		
-		principal = new ModeloDao().getCaminho((Integer) id);
-		principalNew = principal.substring(principal.lastIndexOf("/")+1,principal.length());
+//		principal = new ModeloDao().getCaminho((Integer) id);
+//		principalNew = principal.substring(principal.lastIndexOf("/")+1,principal.length());
+		principalNew = "img_teste.jpeg";
 
 		try {
 			origem = new FileInputStream("C:\\newWork\\imagens_produto\\"+principalNew);
