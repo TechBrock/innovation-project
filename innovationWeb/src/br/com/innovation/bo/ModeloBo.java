@@ -45,6 +45,13 @@ public class ModeloBo implements Serializable{
 	private boolean corValido = true;
 	private boolean tipoValido = true;
 	private boolean classValido = true;
+	
+	private boolean showImg1 = true;
+	private boolean showImg2 = false;
+	private boolean showImg3 = false;
+	private boolean showImg4 = false;
+	
+	
 	private String erroSubmit = "";
 	ArrayList<String> caminhosAl = new ArrayList<String>();
 	ArrayList<ModeloVo> modeloAl = new ArrayList<ModeloVo>();
@@ -232,6 +239,30 @@ public class ModeloBo implements Serializable{
 	}
 	public void setModeloDet(ModeloVo modeloDet) {
 		this.modeloDet = modeloDet;
+	}
+	public boolean isShowImg1() {
+		return showImg1;
+	}
+	public void setShowImg1(boolean showImg1) {
+		this.showImg1 = showImg1;
+	}
+	public boolean isShowImg2() {
+		return showImg2;
+	}
+	public void setShowImg2(boolean showImg2) {
+		this.showImg2 = showImg2;
+	}
+	public boolean isShowImg3() {
+		return showImg3;
+	}
+	public void setShowImg3(boolean showImg3) {
+		this.showImg3 = showImg3;
+	}
+	public boolean isShowImg4() {
+		return showImg4;
+	}
+	public void setShowImg4(boolean showImg4) {
+		this.showImg4 = showImg4;
 	}
 	public String insereProduto(){
 		int idProduto = 0;
@@ -446,6 +477,113 @@ public class ModeloBo implements Serializable{
 			e.printStackTrace();
 		}
 
+	}
+	
+	public void montaImagem2(OutputStream strem, Object id){
+		String principal = null;
+		String principalNew = null;
+		FileInputStream origem = null;
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
+		byte[] array;
+		int x;
+		
+//		principal = new ModeloDao().getCaminho((Integer) id);
+//		principalNew = principal.substring(principal.lastIndexOf("/")+1,principal.length());
+		principalNew = "2img_teste.jpeg";
+
+		try {
+			origem = new FileInputStream("C:\\newWork\\imagens_produto\\"+principalNew);
+		} catch (FileNotFoundException e1) {
+			e1.printStackTrace();
+		}
+
+		try {
+			while((x = origem.read()) > -1){
+				out.write(x);
+			}
+
+			out.close();
+			origem.close();
+			array = out.toByteArray();
+			strem.write(array);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+	public void montaImagem3(OutputStream strem, Object id){
+		String principal = null;
+		String principalNew = null;
+		FileInputStream origem = null;
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
+		byte[] array;
+		int x;
+		
+//		principal = new ModeloDao().getCaminho((Integer) id);
+//		principalNew = principal.substring(principal.lastIndexOf("/")+1,principal.length());
+		principalNew = "3img_teste.jpeg";
+
+		try {
+			origem = new FileInputStream("C:\\newWork\\imagens_produto\\"+principalNew);
+		} catch (FileNotFoundException e1) {
+			e1.printStackTrace();
+		}
+
+		try {
+			while((x = origem.read()) > -1){
+				out.write(x);
+			}
+
+			out.close();
+			origem.close();
+			array = out.toByteArray();
+			strem.write(array);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+	
+	public void montaImagem4(OutputStream strem, Object id){
+		String principal = null;
+		String principalNew = null;
+		FileInputStream origem = null;
+		ByteArrayOutputStream out = new ByteArrayOutputStream();
+		byte[] array;
+		int x;
+		
+//		principal = new ModeloDao().getCaminho((Integer) id);
+//		principalNew = principal.substring(principal.lastIndexOf("/")+1,principal.length());
+		principalNew = "4img_teste.jpeg";
+
+		try {
+			origem = new FileInputStream("C:\\newWork\\imagens_produto\\"+principalNew);
+		} catch (FileNotFoundException e1) {
+			e1.printStackTrace();
+		}
+
+		try {
+			while((x = origem.read()) > -1){
+				out.write(x);
+			}
+
+			out.close();
+			origem.close();
+			array = out.toByteArray();
+			strem.write(array);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+	
+	public String doShowImg2(){
+		showImg1 = false;
+		showImg2 = false;
+		showImg3 = true;
+		showImg4 = false;
+		
+		return null;
 	}
 
 }
