@@ -242,25 +242,29 @@ public class ModeloDao {
 
 
 		query.append("select ");
-		query.append("id,");
-		query.append("nome,");
-		query.append("caracteristicas,"); 
-		query.append("quantidade, ");
-		query.append("tamanho,");
-		query.append("dimensao,");
-		query.append("peso,");
-		query.append("aro,");
-		query.append("informacoes_adicionais,");
-		query.append("garantia,");
-		query.append("material, ");
-		query.append("id_classificacao,");
-		query.append("id_tipo,");
-		query.append("id_cor,");
-		query.append("img_1,");
-		query.append("img_2,");
-		query.append("img_3,");
-		query.append("img_4");
-		query.append("	FROM TB_MODELO");
+		query.append("m.id,");
+		query.append("m.nome,");
+		query.append("m.caracteristicas,"); 
+		query.append("m.quantidade, ");
+		query.append("m.tamanho,");
+		query.append("m.dimensao,");
+		query.append("m.peso,");
+		query.append("m.aro,");
+		query.append("m.informacoes_adicionais,");
+		query.append("m.garantia,");
+		query.append("m.material, ");
+		query.append("m.id_classificacao,");
+		query.append("m.id_tipo,");
+		query.append("m.id_cor,");
+		query.append("m.img_1,");
+		query.append("m.img_2,");
+		query.append("m.img_3,");
+		query.append("m.img_4,");
+		query.append("c.nome as cor,");
+		query.append("clas.nome as class");
+		query.append("	FROM TB_MODELO m");
+		query.append("	INNER JOIN TB_COR c ON m.id_cor = c.id");
+		query.append("	INNER JOIN TB_CLASSIFICACAO clas ON m.id_classificacao = clas.id");
 
 		try{
 			conn = Conexao.connect();
@@ -288,6 +292,9 @@ public class ModeloDao {
 				modeloVo.setImg2Caminho(rset.getString("img_2"));
 				modeloVo.setImg3Caminho(rset.getString("img_3"));
 				modeloVo.setImg4Caminho(rset.getString("img_4"));
+				modeloVo.setNomeCor(rset.getString("cor"));
+				modeloVo.setNomeClassificacao(rset.getString("class"));
+				
 				modeloAl.add(modeloVo);
 			}
 			
