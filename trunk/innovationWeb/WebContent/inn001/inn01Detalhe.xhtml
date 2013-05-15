@@ -105,7 +105,9 @@
 									</table>
 								</td>
 								<td rowspan="2">
-									<a4j:commandButton value="Favorito" action="#{FavoritoBo.addToFavorite}">
+									<a4j:commandButton image="/images/icon/add_fav.png" 	
+										action="#{FavoritoBo.addToFavorite}" 
+										style="width: 100px; heigh: 100px;">
 										<f:setPropertyActionListener value="#{ModeloBo.modeloDet.id}" target="#{FavoritoBo.favoritoVo.idModelo}"/>
 										<f:setPropertyActionListener value="#{LoginBo.loginReturn.id}" target="#{FavoritoBo.favoritoVo.idUsuario}"/>
 									</a4j:commandButton>
