@@ -8,100 +8,116 @@
 	xmlns:rich="http://richfaces.org/rich"
 	xmlns:a4j="http://richfaces.org/a4j">
 	
-	<rich:modalPanel id="modalDetalhar" autosized="true" top="55" height="1000"
-		resizeable="false" minWidth="400" minHeight="40" keepVisualState="true">
+	<rich:modalPanel id="modalDetalhar" autosized="true" top="10" height="500"
+		resizeable="false" minWidth="800" minHeight="40" keepVisualState="true">
 		
 			<ui:decorate template="/inn000/templateModalSemFiltro.xhtml">
 			<ui:define name="corpoModal">
 				<h:panelGroup>
-					<div class="login_ident" style="height: auto;">
+					<div class="login_ident" style="height: 400px;">
 						<table>
 							<tr>
-								<td colspan="4" align="center" height="400px;">
-									<h:panelGroup id="groupImage">
-									
-									<a4j:mediaOutput element="img" mimeType="application/jpg" 
-										cacheable="false"
-										createContent="#{ModeloBo.montaImagem}"
-										value="#{ModeloBo.modeloDet.id}"
-										session="true"
-										style="width: 400px; heigh: 400px;"
-										rendered="#{ModeloBo.showImg1}"/>	
-									
-									<a4j:mediaOutput element="img" mimeType="application/jpg" 
-										cacheable="false"
-										createContent="#{ModeloBo.montaImagem2}"
-										value="#{ModeloBo.modeloDet.id}"
-										session="true"
-										style="width: 400px; heigh: 400px;"
-										rendered="#{ModeloBo.showImg2}"/>	
-										
-										<a4j:mediaOutput element="img" mimeType="application/jpg" 
-										cacheable="false"
-										createContent="#{ModeloBo.montaImagem3}"
-										value="#{ModeloBo.modeloDet.id}"
-										session="true"
-										style="width: 400px; heigh: 400px;"
-										rendered="#{ModeloBo.showImg3}"/>	
-										
-										<a4j:mediaOutput element="img" mimeType="application/jpg" 
-										cacheable="false"
-										createContent="#{ModeloBo.montaImagem4}"
-										value="#{ModeloBo.modeloDet.id}"
-										session="true"
-										style="width: 400px; heigh: 400px;"
-										rendered="#{ModeloBo.showImg4}"/>
-									</h:panelGroup>	
-								</td>
-							</tr>
-							<tr>
 								<td>
-									<a4j:mediaOutput element="img" mimeType="application/jpg" 
-										cacheable="false"
-										createContent="#{ModeloBo.montaImagem}"
-										value="#{ModeloBo.modeloDet.id}"
-										session="true"
-										style="width: 98px; heigh: 95px;"
-										onclick="setValues('true','false','false','false');"/>	
+									<table>
+										<tr>
+											<td colspan="4" align="center">
+												<h:panelGroup id="groupImage">
+													<a4j:mediaOutput element="img" mimeType="application/jpg" 
+														cacheable="false"
+														createContent="#{ModeloBo.montaImagem}"
+														value="#{ModeloBo.modeloDet.id}"
+														session="true"
+														style="width: 400px; heigh: 200px;"
+														rendered="#{ModeloBo.showImg1}"/>	
+													
+													<a4j:mediaOutput element="img" mimeType="application/jpg" 
+														cacheable="false"
+														createContent="#{ModeloBo.montaImagem2}"
+														value="#{ModeloBo.modeloDet.id}"
+														session="true"
+														style="width: 400px; heigh: 200px;"
+														rendered="#{ModeloBo.showImg2}"/>	
+														
+													<a4j:mediaOutput element="img" mimeType="application/jpg" 
+														cacheable="false"
+														createContent="#{ModeloBo.montaImagem3}"
+														value="#{ModeloBo.modeloDet.id}"
+														session="true"
+														style="width: 400px; heigh: 200px;"
+														rendered="#{ModeloBo.showImg3}"/>	
+														
+													<a4j:mediaOutput element="img" mimeType="application/jpg" 
+														cacheable="false"
+														createContent="#{ModeloBo.montaImagem4}"
+														value="#{ModeloBo.modeloDet.id}"
+														session="true"
+														style="width: 400px; heigh: 200px;"
+														rendered="#{ModeloBo.showImg4}"/>
+												</h:panelGroup>	
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<a4j:mediaOutput element="img" mimeType="application/jpg" 
+													cacheable="false"
+													createContent="#{ModeloBo.montaImagem}"
+													value="#{ModeloBo.modeloDet.id}"
+													session="true"
+													style="width: 98px; heigh: 95px;"
+													onclick="setValues('true','false','false','false');"/>	
+											</td>
+											<td>
+												<a4j:mediaOutput element="img" mimeType="application/jpg" 
+													cacheable="false"
+													createContent="#{ModeloBo.montaImagem2}"
+													value="#{ModeloBo.modeloDet.id}"
+													session="true"
+													style="width: 98px; heigh: 95px;"
+													onclick="setValues('false','true','false','false');"/>
+											</td>
+											<td>
+												<a4j:mediaOutput element="img" mimeType="application/jpg" 
+													cacheable="false"
+													createContent="#{ModeloBo.montaImagem3}"
+													value="#{ModeloBo.modeloDet.id}"
+													session="true"
+													style="width: 98px; heigh: 95px;"
+													onclick="setValues('false','false','true','false');"/>	
+											</td>
+											<td>
+												<a4j:mediaOutput element="img" mimeType="application/jpg" 
+													cacheable="false"
+													createContent="#{ModeloBo.montaImagem4}"
+													value="#{ModeloBo.modeloDet.id}"
+													session="true"
+													style="width: 98px; heigh: 95px;" 
+													onclick="setValues('false','false','false','true');"/>
+													
+													<a4j:jsFunction id="exibir" name="exibir" reRender="viewModalDetalhar:formModal:groupImage">
+														<a4j:actionparam name="img1" assignTo="#{ModeloBo.showImg1}"/>
+														<a4j:actionparam name="img2" assignTo="#{ModeloBo.showImg2}"/>
+														<a4j:actionparam name="img3" assignTo="#{ModeloBo.showImg3}"/>
+														<a4j:actionparam name="img4" assignTo="#{ModeloBo.showImg4}"/>
+													</a4j:jsFunction>
+													
+											</td>
+										</tr>
+									</table>
 								</td>
-								<td>
-									<a4j:mediaOutput element="img" mimeType="application/jpg" 
-										cacheable="false"
-										createContent="#{ModeloBo.montaImagem2}"
-										value="#{ModeloBo.modeloDet.id}"
-										session="true"
-										style="width: 98px; heigh: 95px;"
-										onclick="setValues('false','true','false','false');"/>
-								</td>
-								<td>
-									<a4j:mediaOutput element="img" mimeType="application/jpg" 
-										cacheable="false"
-										createContent="#{ModeloBo.montaImagem3}"
-										value="#{ModeloBo.modeloDet.id}"
-										session="true"
-										style="width: 98px; heigh: 95px;"
-										onclick="setValues('false','false','true','false');"/>	
-								</td>
-								<td>
-									<a4j:mediaOutput element="img" mimeType="application/jpg" 
-										cacheable="false"
-										createContent="#{ModeloBo.montaImagem4}"
-										value="#{ModeloBo.modeloDet.id}"
-										session="true"
-										style="width: 98px; heigh: 95px;" 
-										onclick="setValues('false','false','false','true');"/>
-										
-										<a4j:jsFunction id="exibir" name="exibir" reRender="viewModalDetalhar:formModal:groupImage">
-											<a4j:actionparam name="img1" assignTo="#{ModeloBo.showImg1}"/>
-											<a4j:actionparam name="img2" assignTo="#{ModeloBo.showImg2}"/>
-											<a4j:actionparam name="img3" assignTo="#{ModeloBo.showImg3}"/>
-											<a4j:actionparam name="img4" assignTo="#{ModeloBo.showImg4}"/>
-										</a4j:jsFunction>
-										
+								<td height="300px">
+									<h:outputText value="#{ModeloBo.modeloDet.nome}"/><br/>
+									<h:outputText value="#{ModeloBo.modeloDet.caract}"/><br/>
+									<h:outputText value="#{ModeloBo.modeloDet.quantidade}"/><br/>
+									<h:outputText value="#{ModeloBo.modeloDet.tamanho}"/><br/>
+									<h:outputText value="#{ModeloBo.modeloDet.dimensao}"/><br/>
+									<h:outputText value="#{ModeloBo.modeloDet.peso}"/><br/>
+									<h:outputText value="#{ModeloBo.modeloDet.aro}"/><br/>
+									<h:outputText value="#{ModeloBo.modeloDet.garantia}"/><br/>
 								</td>
 							</tr>
 						</table>
 					
+								
 						
 						<a4j:jsFunction id="desvincular" name="desvincular" reRender="panelTableGrupoVeiculo">
 							<a4j:actionparam name="idRegistro" assignTo="#{CtlVeiculoGrupoBo.excluirVeiculoGrupo}" />
