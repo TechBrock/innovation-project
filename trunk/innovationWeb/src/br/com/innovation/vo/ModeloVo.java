@@ -32,6 +32,8 @@ public class ModeloVo implements Serializable{
 	private String img4Caminho;
 	private Double precoAtual;
 	private Double precoMaior;
+	private String nomeCor;
+	private String nomeClassificacao;
 	
 	public Integer getId() {
 		return id;
@@ -177,4 +179,17 @@ public class ModeloVo implements Serializable{
 	public void setPrecoMaior(Double precoMaior) {
 		this.precoMaior = precoMaior;
 	}
+	public String getNomeCor() {
+		return nomeCor;
+	}
+	public void setNomeCor(String nomeCor) {
+		this.nomeCor = nomeCor;
+	}
+	public String getNomeClassificacao() {
+		return nomeClassificacao;
+	}
+	public void setNomeClassificacao(String nomeClassificacao) {
+		this.nomeClassificacao = nomeClassificacao;
+	}
+	
 }

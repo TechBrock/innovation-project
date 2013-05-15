@@ -20,11 +20,9 @@ public class FavoritoDao {
 		int count = 0;
 
 		query.append("INSERT INTO tb_favorito(");
-		query.append("id,");
 		query.append("id_modelo,");
 		query.append("id_usuario");
 		query.append(")VALUES(");
-		query.append(fav.getId()+",");
 		query.append(fav.getIdModelo()+",");
 		query.append(fav.getIdUsuario()+")");
 
