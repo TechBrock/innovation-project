@@ -12,6 +12,7 @@ import org.apache.myfaces.custom.fileupload.UploadedFile;
 import br.com.innovation.dao.ModeloDao;
 import br.com.innovation.dao.PrecoDao;
 import br.com.innovation.vo.ModeloVo;
+import br.com.innovation.vo.PrecoVo;
 public class ModeloBo implements Serializable{
 
 	/**
@@ -45,13 +46,13 @@ public class ModeloBo implements Serializable{
 	private boolean corValido = true;
 	private boolean tipoValido = true;
 	private boolean classValido = true;
-	
+
 	private boolean showImg1 = true;
 	private boolean showImg2 = false;
 	private boolean showImg3 = false;
 	private boolean showImg4 = false;
-	
-	
+
+
 	private String erroSubmit = "";
 	ArrayList<String> caminhosAl = new ArrayList<String>();
 	ArrayList<ModeloVo> modeloAl = new ArrayList<ModeloVo>();
@@ -414,36 +415,23 @@ public class ModeloBo implements Serializable{
 	}
 
 	public void getModelo(){
-//		modeloAl = new ModeloDao().getModeloPesq(new ModeloVo());
+		modeloAl = new ModeloDao().getModeloPesq(new ModeloVo());
 		ArrayList<Double> precoAl = new ArrayList<Double>();
-		ModeloVo modelo = new ModeloVo();
-		modelo.setAro(26);
-		modelo.setCaract("Teste Paula");
-		modelo.setDimensao("Teste Dim");
-		modelo.setGarantia(1.0);
-		modelo.setId(1);
-		modelo.setIdClassificacao(1);
-		modelo.setIdCor(1);
-		modelo.setIdTipo(1);
-		modelo.setNome("Bike da Ana");
-		modeloAl.add(modelo);
-		
-		
-		
-//		for (ModeloVo modelo : modeloAl) {
-//			precoAl = new PrecoDao().getPrecoByModelo(modelo.getId());
-//			if(precoAl.size() == 1){
-//				modelo.setPrecoAtual(precoAl.get(0));
-//			}else if(precoAl.size() > 1){
-//				if(precoAl.get(0) > precoAl.get(1)){
-//					modelo.setPrecoAtual(precoAl.get(0));
-//					modelo.setPrecoMaior(0.0);
-//				}else{
-//					modelo.setPrecoAtual(precoAl.get(0));
-//					modelo.setPrecoMaior(precoAl.get(1));
-//				}
-//			}
-//		}
+
+		for (ModeloVo modelo : modeloAl) {
+			precoAl = new PrecoDao().getPrecoByModelo(modelo.getId());
+			if(precoAl.size() == 1){
+				modelo.setPrecoAtual(precoAl.get(0));
+			}else if(precoAl.size() > 1){
+				if(precoAl.get(0) > precoAl.get(1)){
+					modelo.setPrecoAtual(precoAl.get(0));
+					modelo.setPrecoMaior(0.0);
+				}else{
+					modelo.setPrecoAtual(precoAl.get(0));
+					modelo.setPrecoMaior(precoAl.get(1));
+				}
+			}
+		}
 	}
 
 	public void montaImagem(OutputStream strem, Object id){
@@ -453,32 +441,33 @@ public class ModeloBo implements Serializable{
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		byte[] array;
 		int x;
-		
-//		principal = new ModeloDao().getCaminho((Integer) id);
-//		principalNew = principal.substring(principal.lastIndexOf("/")+1,principal.length());
-		principalNew = "img_teste.jpeg";
 
-		try {
-			origem = new FileInputStream("C:\\newWork\\imagens_produto\\"+principalNew);
-		} catch (FileNotFoundException e1) {
-			e1.printStackTrace();
-		}
+		if((Integer) id != null && (Integer) id > 0){
+			principal = new ModeloDao().getCaminho("img_1",(Integer) id);
+			principalNew = principal.substring(principal.lastIndexOf("/")+1,principal.length());
 
-		try {
-			while((x = origem.read()) > -1){
-				out.write(x);
+			try {
+				origem = new FileInputStream("C:\\newWork\\imagens_produto\\"+principalNew);
+			} catch (FileNotFoundException e1) {
+				e1.printStackTrace();
 			}
 
-			out.close();
-			origem.close();
-			array = out.toByteArray();
-			strem.write(array);
-		} catch (IOException e) {
-			e.printStackTrace();
+			try {
+				while((x = origem.read()) > -1){
+					out.write(x);
+				}
+
+				out.close();
+				origem.close();
+				array = out.toByteArray();
+				strem.write(array);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 
 	}
-	
+
 	public void montaImagem2(OutputStream strem, Object id){
 		String principal = null;
 		String principalNew = null;
@@ -486,28 +475,30 @@ public class ModeloBo implements Serializable{
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		byte[] array;
 		int x;
-		
-//		principal = new ModeloDao().getCaminho((Integer) id);
-//		principalNew = principal.substring(principal.lastIndexOf("/")+1,principal.length());
-		principalNew = "2img_teste.jpeg";
 
-		try {
-			origem = new FileInputStream("C:\\newWork\\imagens_produto\\"+principalNew);
-		} catch (FileNotFoundException e1) {
-			e1.printStackTrace();
-		}
+		if((Integer) id != null && (Integer) id > 0){
 
-		try {
-			while((x = origem.read()) > -1){
-				out.write(x);
+			principal = new ModeloDao().getCaminho("img_2",(Integer) id);
+			principalNew = principal.substring(principal.lastIndexOf("/")+1,principal.length());
+
+			try {
+				origem = new FileInputStream("C:\\newWork\\imagens_produto\\"+principalNew);
+			} catch (FileNotFoundException e1) {
+				e1.printStackTrace();
 			}
 
-			out.close();
-			origem.close();
-			array = out.toByteArray();
-			strem.write(array);
-		} catch (IOException e) {
-			e.printStackTrace();
+			try {
+				while((x = origem.read()) > -1){
+					out.write(x);
+				}
+
+				out.close();
+				origem.close();
+				array = out.toByteArray();
+				strem.write(array);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 
 	}
@@ -518,32 +509,34 @@ public class ModeloBo implements Serializable{
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		byte[] array;
 		int x;
-		
-//		principal = new ModeloDao().getCaminho((Integer) id);
-//		principalNew = principal.substring(principal.lastIndexOf("/")+1,principal.length());
-		principalNew = "3img_teste.jpeg";
 
-		try {
-			origem = new FileInputStream("C:\\newWork\\imagens_produto\\"+principalNew);
-		} catch (FileNotFoundException e1) {
-			e1.printStackTrace();
-		}
+		if((Integer) id != null && (Integer) id > 0){
 
-		try {
-			while((x = origem.read()) > -1){
-				out.write(x);
+			principal = new ModeloDao().getCaminho("img_3",(Integer) id);
+			principalNew = principal.substring(principal.lastIndexOf("/")+1,principal.length());
+
+			try {
+				origem = new FileInputStream("C:\\newWork\\imagens_produto\\"+principalNew);
+			} catch (FileNotFoundException e1) {
+				e1.printStackTrace();
 			}
 
-			out.close();
-			origem.close();
-			array = out.toByteArray();
-			strem.write(array);
-		} catch (IOException e) {
-			e.printStackTrace();
+			try {
+				while((x = origem.read()) > -1){
+					out.write(x);
+				}
+
+				out.close();
+				origem.close();
+				array = out.toByteArray();
+				strem.write(array);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 
 	}
-	
+
 	public void montaImagem4(OutputStream strem, Object id){
 		String principal = null;
 		String principalNew = null;
@@ -551,38 +544,39 @@ public class ModeloBo implements Serializable{
 		ByteArrayOutputStream out = new ByteArrayOutputStream();
 		byte[] array;
 		int x;
-		
-//		principal = new ModeloDao().getCaminho((Integer) id);
-//		principalNew = principal.substring(principal.lastIndexOf("/")+1,principal.length());
-		principalNew = "4img_teste.jpeg";
 
-		try {
-			origem = new FileInputStream("C:\\newWork\\imagens_produto\\"+principalNew);
-		} catch (FileNotFoundException e1) {
-			e1.printStackTrace();
-		}
+		if((Integer) id != null && (Integer) id > 0){
+			principal = new ModeloDao().getCaminho("img_4",(Integer) id);
+			principalNew = principal.substring(principal.lastIndexOf("/")+1,principal.length());
 
-		try {
-			while((x = origem.read()) > -1){
-				out.write(x);
+			try {
+				origem = new FileInputStream("C:\\newWork\\imagens_produto\\"+principalNew);
+			} catch (FileNotFoundException e1) {
+				e1.printStackTrace();
 			}
 
-			out.close();
-			origem.close();
-			array = out.toByteArray();
-			strem.write(array);
-		} catch (IOException e) {
-			e.printStackTrace();
+			try {
+				while((x = origem.read()) > -1){
+					out.write(x);
+				}
+
+				out.close();
+				origem.close();
+				array = out.toByteArray();
+				strem.write(array);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 
 	}
-	
+
 	public String doShowImg2(){
 		showImg1 = false;
 		showImg2 = false;
 		showImg3 = true;
 		showImg4 = false;
-		
+
 		return null;
 	}
 

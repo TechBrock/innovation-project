@@ -319,21 +319,21 @@ public class ModeloDao {
 		return modeloAl;
 	}
 	
-	public String getCaminho(Integer idModelo){
+	public String getCaminho(String campoImg, Integer idModelo){
 		Connection conn = null;
 		Statement stm = null;
 		ResultSet rset = null;
 		StringBuilder query = new StringBuilder();
 		String caminho = null;
 		
-		query.append("SELECT img_1 FROM TB_MODELO WHERE id = "+idModelo);
+		query.append("SELECT "+campoImg+" FROM TB_MODELO WHERE id = "+idModelo);
 		try{
 			conn = Conexao.connect();
 			stm = conn.createStatement();
 			rset = stm.executeQuery(query.toString());
 			
 			while(rset.next()){
-				caminho = rset.getString("img_1");
+				caminho = rset.getString(campoImg.toString());
 			}
 		}catch (SQLException sqlex) {
 
