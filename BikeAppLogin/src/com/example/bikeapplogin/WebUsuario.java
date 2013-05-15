@@ -9,7 +9,7 @@ import android.os.Parcelable;
 import android.text.format.DateFormat;
 
 @SuppressLint("SimpleDateFormat")
-public class WebUsuario implements Parcelable {
+public class WebUsuario {//implements Parcelable {
 	
 	SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
 	
@@ -102,7 +102,7 @@ public class WebUsuario implements Parcelable {
 	public void setIdPerfil(int idPerfil) {
 		this.idPerfil = idPerfil;
 	}
-	
+	/*
 	public WebUsuario (Parcel in) throws ParseException {  
 		readFromParcel(in);  
     } 
@@ -147,5 +147,5 @@ public class WebUsuario implements Parcelable {
         //receberEmail = in.readLong();
         idPerfil = in.readInt();
     }  
-
+*/
 }
