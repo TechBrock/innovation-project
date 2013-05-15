@@ -105,14 +105,35 @@
 									</table>
 								</td>
 								<td height="300px">
-									<h:outputText value="#{ModeloBo.modeloDet.nome}"/><br/>
-									<h:outputText value="#{ModeloBo.modeloDet.caract}"/><br/>
-									<h:outputText value="#{ModeloBo.modeloDet.quantidade}"/><br/>
-									<h:outputText value="#{ModeloBo.modeloDet.tamanho}"/><br/>
-									<h:outputText value="#{ModeloBo.modeloDet.dimensao}"/><br/>
-									<h:outputText value="#{ModeloBo.modeloDet.peso}"/><br/>
-									<h:outputText value="#{ModeloBo.modeloDet.aro}"/><br/>
-									<h:outputText value="#{ModeloBo.modeloDet.garantia}"/><br/>
+									<table>
+										<tr>
+											<td>
+												<a4j:commandButton value="Add Favoritos" action="#{FavoritoBo.addToFavorite}">
+													<f:setPropertyActionListener value="#{LoginBo.loginReturn.id}" target="#{FavoritoBo.idUsuario}"/>	
+													<f:setPropertyActionListener value="#{ModeloBo.loginReturn.id}" target="#{FavoritoBo.idModelo}"/>
+												</a4j:commandButton><br/>
+												<h:outputText value="#{FavoritoBo.countFav}"/>
+											</td>
+											<td>
+												<a4j:commandButton value="Add Carrinho"/>
+											</td>
+										</tr>
+										<tr>
+											<td colspan="2" align="center">
+												<h:outputText value="#{ModeloBo.modeloDet.nome}"/><br/>
+												<h:outputText value="#{ModeloBo.modeloDet.caract}"/><br/>
+												<h:outputText value="#{ModeloBo.modeloDet.quantidade}"/><br/>
+												<h:outputText value="#{ModeloBo.modeloDet.tamanho}"/><br/>
+												<h:outputText value="#{ModeloBo.modeloDet.dimensao}"/><br/>
+												<h:outputText value="#{ModeloBo.modeloDet.peso}"/><br/>
+												<h:outputText value="#{ModeloBo.modeloDet.aro}"/><br/>
+												<h:outputText value="#{ModeloBo.modeloDet.garantia}"/><br/>
+											</td>
+										</tr>
+									</table>
+								
+								
+									
 								</td>
 							</tr>
 						</table>
