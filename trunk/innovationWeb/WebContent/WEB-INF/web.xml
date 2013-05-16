@@ -63,9 +63,32 @@
 		<filter-name>MyFacesExtensionsFilter</filter-name>
 		<servlet-name>Faces Servlet</servlet-name>
 	</filter-mapping>
-	
+
 	<filter-mapping>
 		<filter-name>MyFacesExtensionsFilter</filter-name>
 		<url-pattern>/faces/myFacesExtensionResource/*</url-pattern>
 	</filter-mapping>
+
+	<servlet>
+		<servlet-name>Jersey REST Service</servlet-name>
+		<servlet-class>com.sun.jersey.spi.container.servlet.ServletContainer</servlet-class>
+		<init-param>
+			<param-name>com.sun.jersey.config.property.packages</param-name>
+			<param-value>br.com.innovation.service</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Jersey REST Service</servlet-name>
+		<url-pattern>/*</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>Teste Servlet</servlet-name>
+		<servlet-class>br.com.innovation.teste.Teste</servlet-class>
+	</servlet>
+
+	<servlet-mapping>
+		<servlet-name>Teste Servlet</servlet-name>
+		<url-pattern>/teste</url-pattern>
+	</servlet-mapping>
 </web-app>
