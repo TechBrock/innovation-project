@@ -194,10 +194,9 @@
 .login-field {
 	border-color: transparent;
 	font-size: 12px;
-	padding-bottom: 11px;
-	padding-top: 11px;
+	padding-bottom: 6px;
+	padding-top: 6px;
 	text-indent: 3px;
-	padding: 8px 0 9px 10px;
 	-webkit-border-radius: 6px;
 	-moz-border-radius: 6px;
 	border-radius: 6px;
@@ -239,7 +238,7 @@
 .outputTextTitulo {
 	color: #34495e;
 	font: bold;
-	font-size: 20px;
+	font-size: 15px;
 }
 
 .outputTextErro {

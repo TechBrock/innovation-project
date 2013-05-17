@@ -14,14 +14,25 @@ html, body {
 	
 }
 
-.fieldsetLogin{
+.fieldsetTopo{
 	
-	height: 40px; 
+	height: 100px; 
 	margin: 0px; 
 	border: none; 
     background-color: #34495e;
     color: #1abc9c;
     margin: 0;
+}
+
+.fieldsetlogin{
+	
+	margin: 0px; 
+	border: none; 
+    background-color: #ECC03C;
+    border-top-left-radius: 10px;
+	border-bottom-left-radius: 10px;
+	margin: 0;
+    
 }
 .links{
 	color: #31ACD6;
