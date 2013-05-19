@@ -104,12 +104,29 @@
 										</tr>
 									</table>
 								</td>
-								<td rowspan="2">
-									<a4j:commandButton image="/images/icon/add_fav.png" 	
+								<td rowspan="2" valign="top">
+									<a4j:commandButton value="Add Favorito" 	
 										action="#{FavoritoBo.addToFavorite}" 
 										style="width: 100px; heigh: 100px;">
-										<f:setPropertyActionListener value="#{ModeloBo.modeloDet.id}" target="#{FavoritoBo.favoritoVo.idModelo}"/>
-										<f:setPropertyActionListener value="#{LoginBo.loginReturn.id}" target="#{FavoritoBo.favoritoVo.idUsuario}"/>
+										<f:setPropertyActionListener value="#{ModeloBo.modeloDet.id}" 
+											target="#{FavoritoBo.favoritoVo.idModelo}"/>
+											
+										<f:setPropertyActionListener value="#{LoginBo.loginReturn.id}" 
+											target="#{FavoritoBo.favoritoVo.idUsuario}"/>
+									</a4j:commandButton>
+									
+									<a4j:commandButton value="Add Carrinho" 	
+										action="#{CarrinhoBo.addToCart}" 
+										style="width: 100px; heigh: 100px;">
+										
+										<f:setPropertyActionListener value="#{ModeloBo.modeloDet.id}" 
+											target="#{CarrinhoBo.carrinhoVo.idModelo}"/>
+										
+										<f:setPropertyActionListener value="#{ModeloBo.modeloDet.precoAtual}" 
+											target="#{CarrinhoBo.carrinhoVo.precoModelo}"/>
+											
+										<f:setPropertyActionListener value="#{LoginBo.loginReturn.id}" 
+											target="#{FavoritoBo.favoritoVo.idUsuario}"/>
 									</a4j:commandButton>
 									<br/><br/><br/><br/>
 								
@@ -131,6 +148,7 @@
 									<h:outputText value="#{ModeloBo.modeloDet.aro}"/><br/>
 									<h:outputText value="Garantia: "/>
 									<h:outputText value="#{ModeloBo.modeloDet.garantia} anos"/><br/>
+									<a4j:commandButton value="Fechar" action="inn001Return"/>
 								</td>
 							</tr>
 						</table>

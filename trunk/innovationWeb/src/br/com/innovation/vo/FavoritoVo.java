@@ -15,6 +15,8 @@ public class FavoritoVo implements Serializable{
 	private String nomeModelo;
 	private String nomeCor;
 	private String nomeClassificacao;
+	private String img1Modelo;
+	private Double preco;
 	
 	public Integer getId() {
 		return id;
@@ -52,4 +54,19 @@ public class FavoritoVo implements Serializable{
 	public void setNomeClassificacao(String nomeClassificacao) {
 		this.nomeClassificacao = nomeClassificacao;
 	}
+	
+	
+	public Double getPreco() {
+		return preco;
+	}
+	public void setPreco(Double preco) {
+		this.preco = preco;
+	}
+	public String getImg1Modelo() {
+		return img1Modelo;
+	}
+	public void setImg1Modelo(String img1Modelo) {
+		this.img1Modelo = img1Modelo;
+	}
+	
 }

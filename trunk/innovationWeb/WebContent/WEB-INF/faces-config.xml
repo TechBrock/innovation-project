@@ -105,6 +105,13 @@
 		</navigation-case>
 	</navigation-rule>
 	
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>inn004fav</from-outcome>
+			<to-view-id>/inn004/inn004favoritos.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
 	
 	<navigation-rule>
 		<navigation-case>
@@ -227,6 +234,12 @@
 		<managed-bean-name>FavoritoBo</managed-bean-name>
 		<managed-bean-class>br.com.innovation.bo.FavoritoBo</managed-bean-class>
 		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
+	
+	<managed-bean>
+		<managed-bean-name>CarrinhoBo</managed-bean-name>
+		<managed-bean-class>br.com.innovation.bo.CarrinhoBo</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 
 </faces-config>
