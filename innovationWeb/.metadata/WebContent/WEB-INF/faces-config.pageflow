@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf13680284099130" configfile="/innovation/WebContent/WEB-INF/faces-config.xml">
-  <nodes xsi:type="pageflow:PFPage" name="*" x="122" y="2866" id="pf13683878446030" outlinks="pf13683878446031 pf13683878446032 pf13683878446033 pf13683878446034 pf13683878446035 pf13683878446036 pf13683878446037 pf13683878446038 pf13683878446039 pf136838784460311 pf136838784460312 pf136838784460313 pf136838784460314 pf136838784460315 pf136838784460316 pf136838784460317 pf136838784460318 pf136838784460319 pf136838784460320 pf136838784460321 pf136838784460322 pf136838784460323 pf136838786627439" path="*"/>
+  <nodes xsi:type="pageflow:PFPage" name="*" x="122" y="2482" id="pf13683878446030" outlinks="pf13683878446031 pf13683878446032 pf13683878446033 pf13683878446034 pf13683878446035 pf13683878446036 pf13683878446037 pf13683878446038 pf13683878446039 pf136838784460311 pf136838784460312 pf136838784460313 pf136838784460314 pf136838784460315 pf136838784460316 pf136838784460317 pf136838784460318 pf136838784460319 pf136838784460320 pf136838784460321 pf136838784460322 pf136838786627439 pf13687471238620 pf13687471600044" path="*"/>
   <nodes xsi:type="pageflow:PFPage" name="bemVindo" x="338" y="178" id="pf136838784460424" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf13683878446031" path="bemVindo.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="inn000/templateMenu" x="338" y="562" id="pf136838784460425" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" inlinks="pf13683878446032" path="/inn000/templateMenu.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="inn001/inn01View" x="338" y="946" id="pf136838784460426" referenceLink="//@navigationRule.3/@navigationCase.0/@toViewId|" inlinks="pf13683878446033 pf13683878446034" path="/inn001/inn01View.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="inn001/inn01Detalhe" x="338" y="1330" id="pf136838784460427" referenceLink="//@navigationRule.4/@navigationCase.0/@toViewId|" inlinks="pf13683878446035" path="/inn001/inn01Detalhe.xhtml"/>
   <nodes xsi:type="pageflow:PFPage" name="inn002/inn002View" x="338" y="1714" id="pf136838784460428" referenceLink="//@navigationRule.5/@navigationCase.0/@toViewId|" inlinks="pf13683878446036" path="/inn002/inn002View.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="inn003/inn003View" x="338" y="2098" id="pf136838784460429" referenceLink="//@navigationRule.9/@navigationCase.0/@toViewId|" inlinks="pf13683878446037 pf13683878446038 pf13683878446039 pf136838784460323" path="/inn003/inn003View.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="inn004/inn04insert" x="338" y="2866" id="pf136838784460431" referenceLink="//@navigationRule.12/@navigationCase.0/@toViewId|" inlinks="pf136838784460311 pf136838784460312" path="/inn004/inn04insert.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="inn005/inn005View" x="338" y="3250" id="pf136838784460432" referenceLink="//@navigationRule.14/@navigationCase.0/@toViewId|" inlinks="pf136838784460313 pf136838784460314" path="/inn005/inn005View.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="inn006/inn006view" x="338" y="3634" id="pf136838784460433" referenceLink="//@navigationRule.16/@navigationCase.0/@toViewId|" inlinks="pf136838784460315 pf136838784460316" path="/inn006/inn006view.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="inn007/inn007view" x="338" y="4018" id="pf136838784460534" referenceLink="//@navigationRule.18/@navigationCase.0/@toViewId|" inlinks="pf136838784460317 pf136838784460318" path="/inn007/inn007view.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="inn008/inn008view" x="338" y="4402" id="pf136838784460535" referenceLink="//@navigationRule.20/@navigationCase.0/@toViewId|" inlinks="pf136838784460319 pf136838784460320" path="/inn008/inn008view.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="inn009/inn009view" x="338" y="4786" id="pf136838784460536" referenceLink="//@navigationRule.22/@navigationCase.0/@toViewId|" inlinks="pf136838784460321 pf136838784460322" path="/inn009/inn009view.xhtml"/>
-  <nodes xsi:type="pageflow:PFPage" name="inn003/inn003viewEdit" id="pf136838786627540" referenceLink="//@navigationRule.10/@navigationCase.0/@toViewId|" inlinks="pf136838786627439" path="/inn003/inn003viewEdit.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="inn003/inn003View" x="338" y="2098" id="pf136838784460429" referenceLink="//@navigationRule.8/@navigationCase.0/@toViewId|" inlinks="pf13683878446037 pf13683878446038 pf13683878446039" path="/inn003/inn003View.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="inn004/inn04insert" x="338" y="2482" id="pf136838784460431" referenceLink="//@navigationRule.12/@navigationCase.0/@toViewId|" inlinks="pf136838784460311 pf136838784460312 pf13687471238620" path="/inn004/inn04insert.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="inn005/inn005View" x="338" y="2866" id="pf136838784460432" referenceLink="//@navigationRule.15/@navigationCase.0/@toViewId|" inlinks="pf136838784460313 pf136838784460314" path="/inn005/inn005View.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="inn006/inn006view" x="338" y="3250" id="pf136838784460433" referenceLink="//@navigationRule.17/@navigationCase.0/@toViewId|" inlinks="pf136838784460315 pf136838784460316" path="/inn006/inn006view.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="inn007/inn007view" x="338" y="3634" id="pf136838784460534" referenceLink="//@navigationRule.19/@navigationCase.0/@toViewId|" inlinks="pf136838784460317 pf136838784460318" path="/inn007/inn007view.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="inn008/inn008view" x="338" y="4018" id="pf136838784460535" referenceLink="//@navigationRule.21/@navigationCase.0/@toViewId|" inlinks="pf136838784460319 pf136838784460320" path="/inn008/inn008view.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="inn009/inn009view" x="338" y="4402" id="pf136838784460536" referenceLink="//@navigationRule.23/@navigationCase.0/@toViewId|" inlinks="pf136838784460321 pf136838784460322" path="/inn009/inn009view.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="inn003/inn003viewEdit" x="338" y="4786" id="pf136838786627540" referenceLink="//@navigationRule.9/@navigationCase.0/@toViewId|" inlinks="pf136838786627439" path="/inn003/inn003viewEdit.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="inn004/inn004favoritos" id="pf13687471600055" referenceLink="//@navigationRule.13/@navigationCase.0/@toViewId|" inlinks="pf13687471600044" path="/inn004/inn004favoritos.xhtml"/>
   <links id="pf13683878446031" target="pf136838784460424" source="pf13683878446030" outcome="BemVindo"/>
   <links id="pf13683878446032" target="pf136838784460425" source="pf13683878446030" outcome="menu"/>
   <links id="pf13683878446033" target="pf136838784460426" source="pf13683878446030" outcome="inn001" redirect="true"/>
@@ -23,8 +24,8 @@
   <links id="pf13683878446037" target="pf136838784460429" source="pf13683878446030" outcome="inn003" redirect="true"/>
   <links id="pf13683878446038" target="pf136838784460429" source="pf13683878446030" outcome="inn003return"/>
   <links id="pf13683878446039" target="pf136838784460429" source="pf13683878446030" outcome="inn003return"/>
-  <links id="pf136838784460311" target="pf136838784460431" source="pf13683878446030" outcome="inn004ins"/>
-  <links id="pf136838784460312" target="pf136838784460431" source="pf13683878446030" outcome="inn004return" redirect="true"/>
+  <links id="pf136838784460311" target="pf136838784460431" source="pf13683878446030" outcome="inn004" redirect="true"/>
+  <links id="pf136838784460312" target="pf136838784460431" source="pf13683878446030" outcome="inn004ins"/>
   <links id="pf136838784460313" target="pf136838784460432" source="pf13683878446030" outcome="inn005" redirect="true"/>
   <links id="pf136838784460314" target="pf136838784460432" source="pf13683878446030" outcome="inn005return"/>
   <links id="pf136838784460315" target="pf136838784460433" source="pf13683878446030" outcome="inn006" redirect="true"/>
@@ -35,6 +36,7 @@
   <links id="pf136838784460320" target="pf136838784460535" source="pf13683878446030" outcome="inn008" redirect="true"/>
   <links id="pf136838784460321" target="pf136838784460536" source="pf13683878446030" outcome="inn009return"/>
   <links id="pf136838784460322" target="pf136838784460536" source="pf13683878446030" outcome="inn009" redirect="true"/>
-  <links id="pf136838784460323" target="pf136838784460429" source="pf13683878446030" outcome="inn003return"/>
   <links id="pf136838786627439" target="pf136838786627540" source="pf13683878446030" outcome="inn003Edit"/>
+  <links id="pf13687471238620" target="pf136838784460431" source="pf13683878446030" outcome="inn004return" redirect="true"/>
+  <links id="pf13687471600044" target="pf13687471600055" source="pf13683878446030" outcome="inn004fav"/>
 </pageflow:Pageflow>

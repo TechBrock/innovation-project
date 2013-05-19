@@ -29,37 +29,50 @@
 						<fieldset class="fieldsetTopo">
 							<table width="100%" align="center">
 								<tr>
-									<td>
-										<h:graphicImage url="/images/mmetodo2.png" width="200px" height="100px"/>
+									<td width="15%">
+										<h:graphicImage url="/images/icon/mmetodo3.png" width="200px" height="100px"/>
 										
 									</td>
-									<td width="20%">
-										<a4j:commandLink value="Meu cadastro" 
+									<td width="15%">
+										<a4j:commandLink value="Meu cadastro" rendered="#{LoginBo.loginReturn.id != null}"
 											styleClass="links" action="#{UsuarioBo.buscaUsuario}"
 											reRender="form1">
 											<f:setPropertyActionListener value="#{LoginBo.loginReturn.id}" 
 												target="#{UsuarioBo.idUsuario}"/>										
 										</a4j:commandLink>
 									</td>
-									<td width="20%">
-										<h:commandLink value="Meus preferidos" styleClass="links" />
+									<td width="15%">
+										<a4j:commandLink value="Meus favoritos" rendered="#{LoginBo.loginReturn.id != null}"
+											styleClass="links" 
+											action="#{FavoritoBo.getFavotiteByUser}" reRender="form1">
+											<f:setPropertyActionListener value="#{LoginBo.loginReturn.id}" 
+												target="#{FavoritoBo.idUsuario}"/>
+										</a4j:commandLink>
 									</td>
-									<td width="20%">
-										<h:commandLink value="Meus pedidos" styleClass="links" />
+									<td width="15%">
+										<h:commandLink value="Meus pedidos" rendered="#{LoginBo.loginReturn.id != null}"
+										styleClass="links" />
 									</td>
-									<td width="40%">
+									<td width="30%">
+										<h:panelGroup id="panLogado">
+										
+										</h:panelGroup>
 										<h:panelGroup id="panelNLog" rendered="#{LoginBo.loginReturn.apelido == null}">
 											<h:outputText value="Olá visitante, identifique-se:" styleClass="links" />
+											<rich:spacer width="50px"/>
 											<h:commandLink value="Aqui" action="inn002" styleClass="links" style="color: #ECC03C;" />
 										</h:panelGroup>
 									
 										<h:panelGroup id="panelSLog" rendered="#{LoginBo.loginReturn.apelido != null}">
 											<h:outputText value="Olá " styleClass="links" />
-											<h:outputText value="#{LoginBo.loginReturn.apelido}" styleClass="links" />
-											<rich:spacer width="3px" />
+											<h:outputText value="#{LoginBo.loginReturn.apelido}! Seja bem vindo!" styleClass="links" />
+											<rich:spacer width="30px" />
 											<h:commandLink value="Sair" action="#{LoginBo.logout}" styleClass="links" 
 												style="color: #ECC03C;"/>
 										</h:panelGroup>
+									</td>
+									<td width="5%">
+										<h:graphicImage url="/images/icon/carrinho.png" width="80px" height="50px"/>
 									</td>
 									
 								</tr>

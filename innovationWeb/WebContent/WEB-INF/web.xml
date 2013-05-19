@@ -80,7 +80,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>Jersey REST Service</servlet-name>
-		<url-pattern>/*</url-pattern>
+		<url-pattern>/service</url-pattern>
 	</servlet-mapping>
 	<servlet>
 		<servlet-name>Teste Servlet</servlet-name>

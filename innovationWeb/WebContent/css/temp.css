@@ -346,3 +346,12 @@
 	border-top: none;
 }
 
+.divBtnBike{
+	padding-top: 10px;
+	width: 200px;
+	height: 30px;
+	border-radius: 3px;
+	background-color: #eceff1;
+	border: none;
+	
+}

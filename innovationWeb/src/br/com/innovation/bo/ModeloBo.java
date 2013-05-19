@@ -9,10 +9,12 @@ import java.io.OutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import org.apache.myfaces.custom.fileupload.UploadedFile;
+import org.richfaces.component.html.HtmlDataGrid;
+import org.richfaces.component.html.HtmlDataTable;
+
 import br.com.innovation.dao.ModeloDao;
 import br.com.innovation.dao.PrecoDao;
 import br.com.innovation.vo.ModeloVo;
-import br.com.innovation.vo.PrecoVo;
 public class ModeloBo implements Serializable{
 
 	/**
@@ -265,6 +267,17 @@ public class ModeloBo implements Serializable{
 	public void setShowImg4(boolean showImg4) {
 		this.showImg4 = showImg4;
 	}
+	
+	public HtmlDataGrid getInitTable(){
+		getModelo();
+		return null;
+	}
+	
+	public void setInitTable(HtmlDataGrid table){}
+
+	
+	
+	
 	public String insereProduto(){
 		int idProduto = 0;
 
