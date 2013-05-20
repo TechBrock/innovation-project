@@ -30,8 +30,9 @@
 							<table width="100%" align="center">
 								<tr>
 									<td width="15%">
-										<h:graphicImage url="/images/icon/mmetodo3.png" width="200px" height="100px"/>
-										
+										<a4j:commandLink action="inn001">
+											<h:graphicImage url="/images/icon/mmetodo3.png" width="200px" height="100px"/>
+										</a4j:commandLink>												
 									</td>
 									<td width="15%">
 										<a4j:commandLink value="Meu cadastro" rendered="#{LoginBo.loginReturn.id != null}"
@@ -132,7 +133,47 @@
 							
 						</h:panelGroup>
 					</div>
+					
 			</div>
+			<h:panelGroup id="rodape" style="position:absolute;bottom:0;width:100%;" >
+						<fieldset class="fieldsetTopo">
+							<table width="100%" align="center">
+								<tr>
+									<td width="20%">
+										<h:outputText value="Sobre nós " styleClass="links" style="color: #ECC03C;"  />
+										<br/>
+										<a4j:commandLink value="Innovation Showcase" 
+											styleClass="links" action="innTeste"/>
+											<br/>
+										<a4j:commandLink value="Quem Somos" 
+											styleClass="links" action="innQuemSomos"/>
+											<br/>
+										<a4j:commandLink value="" 
+											styleClass="links" action="innTeste"/>	
+																				
+									</td>
+									<td width="20%">
+										<h:outputText value="Documentação do Projeto " styleClass="links" style="color: #ECC03C;"  />
+										<br/>
+										<a4j:commandLink value="Manual do usuário" 
+											styleClass="links" action="innTeste"/>
+										<br/>
+										<a4j:commandLink value="Modelo de relatório" 
+											styleClass="links" action="innTeste"/>
+										<br/>
+										
+									</td>
+									<td width="20%">
+											
+									</td>
+									<td width="40%">
+										
+									</td>
+									
+								</tr>
+							</table>
+						</fieldset>
+					</h:panelGroup>
 		</a4j:form>
 	</f:view>
 	<div>
