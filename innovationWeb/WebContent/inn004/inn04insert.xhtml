@@ -13,7 +13,7 @@
 	<ui:define name="conteudo">
 		<t:saveState value="#{ModeloBo}"/>
 		<h:outputText value="#{ModeloBo.erroSubmit}" />
-		<div class="login_ident" style="height: 800px; width: 800px;">
+		<div class="login_ident" style="height: 850px; width: 800px;">
 			<table>
 				<tr>
 					<td colspan="2">
@@ -235,9 +235,13 @@
 						</td>
 					</tr>
 				<tr>
-					<td colspan="2">
+				<td colspan="2" align="center">
+						<a4j:commandButton value="Cancelar" 
+							action="#{ModeloBo.insereProduto}" reRender="form1"
+							styleClass="btn btn-large btn-block btn-danger"/>
 						<a4j:commandButton value="Salvar" 
-							action="#{ModeloBo.insereProduto}" reRender="form1"/>
+							action="#{ModeloBo.insereProduto}" reRender="form1"
+							styleClass="btn btn-large btn-block btn-danger"/>
 					</td>
 				</tr>
 			</table>

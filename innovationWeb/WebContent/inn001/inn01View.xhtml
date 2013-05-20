@@ -17,6 +17,7 @@
 
 	<ui:define name="corpo">
 		<t:saveState value="#{ModeloBo}"/>
+		<t:saveState value="#{CarrinhoBo}"/>
 		<div id="sliderFrame">
 			<div id="ribbon" />
 			<div id="slider">
@@ -25,8 +26,19 @@
 				<img src="../images/promocao/pro3a.jpg" alt="Bicileta Mormaii Innovation" />
 			</div>
 		</div>
-		<a4j:commandButton value="Buscar" action="#{ModeloBo.getModelo}" reRender="form1:gridProdutos"/>
-		<rich:spacer height="100px"></rich:spacer>
+		<rich:spacer height="50px"></rich:spacer>
+		<table width="100%">
+			<tr>
+				<td align="right">
+					<a4j:commandButton image="/images/buttons/cart.png" 
+						style="width: 100px; height: 80px"
+						action="inn004carrinho"
+						reRender="form1"/>
+					<h:outputText id="tqdCarrinho" value="#{CarrinhoBo.carrinhoAl.size()}"/>
+				</td>
+			</tr>
+		</table>
+		
 			<div align="center" style="width: 100%;"	>
 			 <rich:dataGrid
 			 	id="gridProdutos" 
@@ -86,10 +98,15 @@
 								<a4j:commandButton  image="/images/buttons/cart.png"
 										style="width: 20px; heigth:20px;" 
 										title="Add. Carrinho"
-										oncomplete="Richfaces.showModalPanel('modalDetalhar')"
-										reRender="viewModalDetalhar:formModal">
+										action="#{CarrinhoBo.addToCart}"
+										reRender="form1:tqdCarrinho">
+										
 										<f:setPropertyActionListener value="#{lista}"
-									 	target="#{ModeloBo.modeloDet}"/>
+									 	target="#{CarrinhoBo.modeloVo}"/>
+									 	
+									 	<f:setPropertyActionListener value="#{LoginBo.loginReturn.id}" 
+												target="#{CarrinhoBo.carrinhoVo.idUsuario}"/>
+										
 								</a4j:commandButton>	
 								
 								</div>

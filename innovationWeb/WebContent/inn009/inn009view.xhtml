@@ -10,15 +10,23 @@
 	xmlns:t="http://myfaces.apache.org/tomahawk"
 	template="/inn000/templateViewSemFiltro.xhtml">
 	<ui:define name="tituloTela">
-		<h:outputText value="Classificação"/>
+<!-- 		<h:outputText value="Classificação"/> -->
 	</ui:define>
 
 	<ui:define name="conteudo">
 	<t:saveState value="#{ClassificacaoBo}"/>
 		<h:outputText value="#{ClassificacaoBo.erroSubmit}"/>
 	
-		<div class="login_ident" style="width:400px; height: 100px;">
+		<div class="login_ident" style="width:400px; height: 150px;">
 			<table>
+			<tr>
+				<td colspan="2">
+					<h:panelGrid styleClass="panelTitulos" style="width: 390px;">
+						<h:outputText value="Classificação" styleClass="outputTextTitulo"/>
+					</h:panelGrid>
+					<rich:spacer height="25px;"></rich:spacer>
+				</td>
+			</tr>
 			<tr>
 				<td>
 					<h:outputText value="Id" styleClass="outputTextTitulo" />
