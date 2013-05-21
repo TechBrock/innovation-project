@@ -18,6 +18,7 @@ public class LoginBo implements Serializable {
 	boolean cadValido = true;
 	boolean emailValido = true;
 	boolean senhaValida = true;
+	private Integer idLogado;
 
 	public LoginVo getLogin() {
 		return login;
@@ -38,7 +39,6 @@ public class LoginBo implements Serializable {
 		this.cliente = cliente;
 	}
 
-
 	public boolean isCadValido() {
 		return cadValido;
 	}
@@ -57,11 +57,20 @@ public class LoginBo implements Serializable {
 	public void setSenhaValida(boolean senhaValida) {
 		this.senhaValida = senhaValida;
 	}
+	public Integer getIdLogado() {
+		return idLogado;
+	}
+	public void setIdLogado(Integer idLogado) {
+		this.idLogado = idLogado;
+	}
+	
 	public String login(){
 		if(validaDados()){
 			emailValido = true;
 			senhaValida = true;
 			loginReturn = new LoginDao().getLogin(login);
+			
+			
 			if(loginReturn.getId() == null || loginReturn.getId() <= 0){
 				cadValido = false;
 			}else{
@@ -70,6 +79,7 @@ public class LoginBo implements Serializable {
 				}else{
 					cliente = false;
 				}
+				
 				return "inn001";
 
 			}
@@ -100,6 +110,7 @@ public class LoginBo implements Serializable {
 		loginReturn = new LoginVo();
 		login = new LoginVo();
 		cliente = true;
+		 new CarrinhoBo().zeraCarrinho();
 		return "inn001";
 	}
 

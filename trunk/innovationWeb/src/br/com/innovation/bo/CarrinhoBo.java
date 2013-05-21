@@ -180,5 +180,14 @@ public class CarrinhoBo implements Serializable{
 	}
 
 	public void setInitTable(HtmlDataGrid table){}
+	
+	public void zeraCarrinho(){
+		carrinhoVo = new CarrinhoVo();
+		carrinhoRemove = new CarrinhoVo();
+		carrinhoAl.clear();
+		idUser = 0;
+		totalCart = 0.0;
+		qtdCart = 0;
+	}
 
 }

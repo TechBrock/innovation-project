@@ -95,37 +95,41 @@
 			<tr>
 				<td align="center">
 					<a4j:commandButton  image="/images/buttons/boleto.png"
-						style="width:150px; height: 100px;"> 
+						style="width:150px; height: 100px;" reRender="form1"> 
+						<f:setPropertyActionListener value="false" target="#{CompraBo.eCartao}"/>
 			 		</a4j:commandButton>
 			 	</td>
 			 	
 			 	<td align="center">
 					<a4j:commandButton  image="/images/buttons/credit_card.png"
-						style="width:150px; height: 160px;"> 
+						style="width:150px; height: 160px;" reRender="form1"> 
+						<f:setPropertyActionListener value="true" target="#{CompraBo.eCartao}"/>
 			 		</a4j:commandButton>
 				</td>
 			</tr>
 		</table>
 		
+		<h:panelGroup rendered="#{CompraBo.eCartao}">
 		<table>
 			<tr>
 				<td>
 					<a4j:commandButton  image="/images/buttons/master.png"
-						style="width:150px; height: 100px;"> 
+						style="width:80px; height: 50px;"> 
 			 		</a4j:commandButton>
 				</td>
 				<td>
 					<a4j:commandButton  image="/images/buttons/Visa.png"
-						style="width:150px; height: 100px;"> 
+						style="width:80px; height: 50px;"> 
 			 		</a4j:commandButton>
 				</td>
 				<td>
 					<a4j:commandButton  image="/images/buttons/american.png"
-						style="width:150px; height: 100px;"> 
+						style="width:80px; height: 50px;"> 
 			 		</a4j:commandButton>
 				</td>
 			</tr>
-		</table>		
+		</table>
+		</h:panelGroup>	
 		
 		
 		

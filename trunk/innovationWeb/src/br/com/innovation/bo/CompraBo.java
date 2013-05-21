@@ -18,6 +18,7 @@ public class CompraBo implements Serializable{
 	UsuarioVo usuVo = new UsuarioVo();
 	CarrinhoVo carrinhoVo = new CarrinhoVo();
 	ArrayList<TelefoneVo> telAl = new ArrayList<TelefoneVo>();
+	public boolean eCartao= false;
 	
 	public UsuarioVo getUsuVo() {
 		return usuVo;
@@ -40,6 +41,13 @@ public class CompraBo implements Serializable{
 	}
 	public void setTelAl(ArrayList<TelefoneVo> telAl) {
 		this.telAl = telAl;
+	}
+	
+	public boolean iseCartao() {
+		return eCartao;
+	}
+	public void seteCartao(boolean eCartao) {
+		this.eCartao = eCartao;
 	}
 	
 	public String comprar(){
