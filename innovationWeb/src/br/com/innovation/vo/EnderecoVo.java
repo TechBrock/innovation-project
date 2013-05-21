@@ -18,7 +18,9 @@ public class EnderecoVo implements Serializable{
 	private String infAdc;
 	private Integer idUsuario;
 	private Integer idCidade;
-	private String estado;
+	private String nomeCidade;
+	private String nomeEstado;
+	private Integer idEstado;
 	
 	public Integer getId() {
 		return id;
@@ -80,11 +82,23 @@ public class EnderecoVo implements Serializable{
 	public void setIdCidade(Integer idCidade) {
 		this.idCidade = idCidade;
 	}
-	public String getEstado() {
-		return estado;
+	public String getNomeCidade() {
+		return nomeCidade;
 	}
-	public void setEstado(String estado) {
-		this.estado = estado;
+	public void setNomeCidade(String nomeCidade) {
+		this.nomeCidade = nomeCidade;
+	}
+	public String getNomeEstado() {
+		return nomeEstado;
+	}
+	public void setNomeEstado(String nomeEstado) {
+		this.nomeEstado = nomeEstado;
+	}
+	public Integer getIdEstado() {
+		return idEstado;
+	}
+	public void setIdEstado(Integer idEstado) {
+		this.idEstado = idEstado;
 	}
 	
 }

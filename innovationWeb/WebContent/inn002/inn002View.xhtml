@@ -52,8 +52,9 @@
 								<td align="center">
 									<a4j:commandButton value="Entrar" styleClass="btn btn-large btn-block btn-warning" 
 										style="width: 100px;height: 40px;"
-										action="#{LoginBo.login}"
-										reRender="form1"/>
+										action="#{LoginBo.login}" reRender="form1">
+											<f:setPropertyActionListener value="#{LoginBo.loginReturn.id}" target="#{LoginBo.idLogado}"/>
+										</a4j:commandButton>
 								</td>
 							</tr>
 						</table>

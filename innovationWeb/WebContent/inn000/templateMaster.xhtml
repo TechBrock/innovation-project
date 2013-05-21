@@ -68,8 +68,8 @@
 											<h:outputText value="Olá " styleClass="links" />
 											<h:outputText value="#{LoginBo.loginReturn.apelido}! Seja bem vindo!" styleClass="links" />
 											<rich:spacer width="30px" />
-											<h:commandLink value="Sair" action="#{LoginBo.logout}" styleClass="links" 
-												style="color: #ECC03C;"/>
+											<a4j:commandLink value="Sair" action="#{LoginBo.logout}" styleClass="links" 
+												style="color: #ECC03C;" reRender="form1"/>
 										</h:panelGroup>
 									</td>
 								</tr>

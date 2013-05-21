@@ -4,9 +4,12 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 import javax.faces.model.SelectItem;
+
+import br.com.innovation.dao.EnderecoDao;
 import br.com.innovation.dao.TelefoneDao;
 import br.com.innovation.dao.UsuarioDao;
 import br.com.innovation.enums.TipoTelefoneEnum;
+import br.com.innovation.vo.EnderecoVo;
 import br.com.innovation.vo.LoginVo;
 import br.com.innovation.vo.TelefoneVo;
 import br.com.innovation.vo.UsuarioVo;
@@ -30,6 +33,7 @@ public class UsuarioBo implements Serializable {
 	TelefoneVo telResidencialEdit = new TelefoneVo();
 	TelefoneVo telComercialEdit = new TelefoneVo();
 	TelefoneVo telCelularEdit = new TelefoneVo();
+	EnderecoVo enderecoIns = new EnderecoVo();
 
 
 
@@ -54,6 +58,18 @@ public class UsuarioBo implements Serializable {
 	private Boolean senhaValido = true;
 	private Boolean confirmValido = true;
 	private Boolean telValido = true;
+	
+	private Boolean endValido = true;
+	private Boolean numValido = true;
+	private Boolean compValido = true;
+	private Boolean bairroValido = true;
+	private Boolean cidadeValido = true;
+	private Boolean estadoValido = true;
+	private Boolean paisValido = true;
+	private Boolean infValido = true;
+	private Boolean cepValido = true;
+	private Boolean tipoValido = true;
+	
 	private String erroSubmit;
 	private Integer idUser;
 
@@ -243,7 +259,92 @@ public class UsuarioBo implements Serializable {
 	public void setIdUser(Integer idUser) {
 		this.idUser = idUser;
 	}
+	public Boolean getEndValido() {
+		return endValido;
+	}
 
+	public void setEndValido(Boolean endValido) {
+		this.endValido = endValido;
+	}
+
+	public Boolean getNumValido() {
+		return numValido;
+	}
+
+	public void setNumValido(Boolean numValido) {
+		this.numValido = numValido;
+	}
+
+	public Boolean getCompValido() {
+		return compValido;
+	}
+
+	public void setCompValido(Boolean compValido) {
+		this.compValido = compValido;
+	}
+
+	public Boolean getBairroValido() {
+		return bairroValido;
+	}
+
+	public void setBairroValido(Boolean bairroValido) {
+		this.bairroValido = bairroValido;
+	}
+
+	public Boolean getCidadeValido() {
+		return cidadeValido;
+	}
+
+	public void setCidadeValido(Boolean cidadeValido) {
+		this.cidadeValido = cidadeValido;
+	}
+
+	public Boolean getEstadoValido() {
+		return estadoValido;
+	}
+
+	public void setEstadoValido(Boolean estadoValido) {
+		this.estadoValido = estadoValido;
+	}
+
+	public Boolean getPaisValido() {
+		return paisValido;
+	}
+
+	public void setPaisValido(Boolean paisValido) {
+		this.paisValido = paisValido;
+	}
+
+	public Boolean getInfValido() {
+		return infValido;
+	}
+
+	public void setInfValido(Boolean infValido) {
+		this.infValido = infValido;
+	}
+	
+	public Boolean getCepValido() {
+		return cepValido;
+	}
+
+	public void setCepValido(Boolean cepValido) {
+		this.cepValido = cepValido;
+	}
+	public Boolean getTipoValido() {
+		return tipoValido;
+	}
+
+	public void setTipoValido(Boolean tipoValido) {
+		this.tipoValido = tipoValido;
+	}
+
+	public EnderecoVo getEnderecoIns() {
+		return enderecoIns;
+	}
+
+	public void setEnderecoIns(EnderecoVo enderecoIns) {
+		this.enderecoIns = enderecoIns;
+	}
 
 	public String inserir(){
 		int cpfExist = 0;
@@ -277,6 +378,8 @@ public class UsuarioBo implements Serializable {
 				idUsuario = new UsuarioDao().insertUsuario(usuVo);
 				if(idUsuario > 0){
 					inserirTel(idUsuario);
+					enderecoIns.setId(idUsuario);
+					inserirEnd(enderecoIns);
 					setErroSubmit("Cadastro efetuado com sucesso!");
 					login.setEmail(usuVo.getEmail());
 					login.setSenha(usuVo.getSenha());
@@ -405,6 +508,50 @@ public class UsuarioBo implements Serializable {
 			telCelular.setIdTipoTelefone(TipoTelefoneEnum.CELULAR.ordinal()+1);
 			new TelefoneDao().insertUsuario(telCelular);
 		}
+	}
+	
+	private int inserirEnd(EnderecoVo endVo){
+		boolean ok = true;
+		int countIns = 0;
+		
+		if(endVo.getBairro() == null || !endVo.getBairro().equals("")){
+			bairroValido = false;
+			ok = false;
+		}
+		if(endVo.getCep() == null || !endVo.getCep().equals("")){
+			cepValido = false;
+			ok = false;
+		}
+		if(endVo.getComplemento() == null || !endVo.getComplemento().equals("")){
+			compValido = false;
+			ok = false;
+		}
+		if(endVo.getNomeEstado() == null || !endVo.getNomeCidade().equals("")){
+			estadoValido = false;
+			ok = false;
+		}
+		if(endVo.getNomeCidade() == null || !endVo.getNomeCidade().equals("")){
+			cidadeValido = false;
+			ok = false;
+		}
+		if(endVo.getLogradouro() == null || !endVo.getLogradouro().equals("")){
+			endValido = false;
+			ok = false;
+		}
+		if(endVo.getNumero() == null || !endVo.getNumero().equals("")){
+			numValido = false;
+			ok = false;
+		}
+		if(endVo.getTipo() == null || !endVo.getTipo().equals("")){
+			tipoValido = false;
+			ok = false;
+		}
+		
+		if(ok){
+			countIns = new EnderecoDao().insertEndereco(endVo);
+		}
+		
+		return countIns;
 	}
 
 	public String buscaEmail(){

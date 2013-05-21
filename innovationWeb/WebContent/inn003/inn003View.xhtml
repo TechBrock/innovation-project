@@ -178,8 +178,17 @@
 												<h:outputText value="Endereço"/>
 											</td>
 											<td>
-												<h:inputText size="50" 
-													styleClass="login-field"/>
+												<h:inputText size="50" styleClass="login-field"
+													value="#{UsuarioBo.enderecoIns.cep}"/>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<h:outputText value="Endereço"/>
+											</td>
+											<td>
+												<h:inputText size="50" styleClass="login-field"
+													value="#{UsuarioBo.enderecoIns.logradouro}"/>
 											</td>
 										</tr>
 										<tr>
@@ -190,15 +199,15 @@
 															<h:outputText value="Numero"/>
 														</td>
 														<td>
-															<h:inputText size="5"
-																styleClass="login-field"/>
+															<h:inputText size="5" styleClass="login-field"
+																value="#{UsuarioBo.enderecoIns.numero}"/>
 														</td>
 														<td>
 															<h:outputText value="Complemento"/>
 														</td>
 														<td>
-															<h:inputText size="5"
-																styleClass="login-field"/>
+															<h:inputText size="5" styleClass="login-field"
+																value="#{UsuarioBo.enderecoIns.complemento}"/>
 														</td>
 													</tr>
 												</table>											
@@ -209,8 +218,8 @@
 												<h:outputText value="Bairro"/>
 											</td>
 											<td>
-												<h:inputSecret size="50"
-													styleClass="login-field"/>
+												<h:inputText size="50" styleClass="login-field"
+													value="#{UsuarioBo.enderecoIns.bairro}"/>
 											</td>
 										</tr>
 										<tr>
@@ -218,8 +227,8 @@
 												<h:outputText value="Cidade"/>
 											</td>
 											<td>
-												<h:inputSecret size="50" 
-													styleClass="login-field"/>
+												<h:inputText size="50" styleClass="login-field"
+													value="#{UsuarioBo.enderecoIns.nomeCidade}"/>
 											</td>
 										</tr>
 										<tr>
@@ -227,27 +236,18 @@
 												<h:outputText value="Estado"/>
 											</td>
 											<td  colspan="3">
-												<h:inputSecret size="50"
-													styleClass="login-field"/>
+												<h:inputText size="50" styleClass="login-field"
+													value="#{UsuarioBo.enderecoIns.nomeEstado}"/>
 											</td>
 										</tr>
 										
 										<tr>
 											<td>
-												<h:outputText value="País"/>
-											</td>
-											<td>
-												<h:inputSecret size="50"
-													styleClass="login-field"/>
-											</td>
-										</tr>
-										<tr>
-											<td>
 												<h:outputText value="Informações de referência" />
 											</td>
 											<td>
-												<h:inputTextarea rows="4" cols="60" 
-													styleClass="login-field"/>
+												<h:inputTextarea rows="4" cols="60" styleClass="login-field"
+													value="#{UsuarioBo.enderecoIns.infAdc}"/>
 											</td>
 										</tr>
 									</table>
