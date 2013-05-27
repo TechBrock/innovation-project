@@ -11,6 +11,7 @@
 	template="/inn000/templateViewSemFiltro.xhtml">
 
 	<ui:define name="conteudo">
+		<t:saveState value="#{UsuarioBo}"/>
 	
 		<table border="0">
 			<tr>
@@ -175,11 +176,15 @@
 										</tr>
 										<tr>
 											<td>
-												<h:outputText value="Endereço"/>
+												<h:outputText value="CEP"/>
 											</td>
 											<td>
 												<h:inputText size="50" styleClass="login-field"
 													value="#{UsuarioBo.enderecoIns.cep}"/>
+													
+												<h:outputText value="● Preencha o campo CEP" 
+													styleClass="outputTextErro"
+													rendered="#{!UsuarioBo.cepValido}"/>
 											</td>
 										</tr>
 										<tr>
@@ -189,6 +194,10 @@
 											<td>
 												<h:inputText size="50" styleClass="login-field"
 													value="#{UsuarioBo.enderecoIns.logradouro}"/>
+													
+												<h:outputText value="● Preencha o campo ENDEREÇO" 
+													styleClass="outputTextErro"
+													rendered="#{!UsuarioBo.endValido}"/>
 											</td>
 										</tr>
 										<tr>
@@ -201,6 +210,9 @@
 														<td>
 															<h:inputText size="5" styleClass="login-field"
 																value="#{UsuarioBo.enderecoIns.numero}"/>
+																<h:outputText value="● Preencha o campo NÚMERO" 
+																	styleClass="outputTextErro"
+																	rendered="#{!UsuarioBo.numValido}"/>
 														</td>
 														<td>
 															<h:outputText value="Complemento"/>
@@ -220,6 +232,10 @@
 											<td>
 												<h:inputText size="50" styleClass="login-field"
 													value="#{UsuarioBo.enderecoIns.bairro}"/>
+												
+												<h:outputText value="● Preencha o campo BAIRRO" 
+													styleClass="outputTextErro"
+													rendered="#{!UsuarioBo.bairroValido}"/>
 											</td>
 										</tr>
 										<tr>
@@ -229,6 +245,10 @@
 											<td>
 												<h:inputText size="50" styleClass="login-field"
 													value="#{UsuarioBo.enderecoIns.nomeCidade}"/>
+													
+												<h:outputText value="● Preencha o campo BAIRRO" 
+													styleClass="outputTextErro"
+													rendered="#{!UsuarioBo.cidadeValido}"/>
 											</td>
 										</tr>
 										<tr>
@@ -238,6 +258,10 @@
 											<td  colspan="3">
 												<h:inputText size="50" styleClass="login-field"
 													value="#{UsuarioBo.enderecoIns.nomeEstado}"/>
+													
+												<h:outputText value="● Preencha o campo BAIRRO" 
+													styleClass="outputTextErro"
+													rendered="#{!UsuarioBo.estadoValido}"/>
 											</td>
 										</tr>
 										

@@ -11,6 +11,7 @@ public class CidadeVo implements Serializable{
 	private Integer id;
 	private Integer idEstado;
 	private String nome;
+	private EstadoVo estado = new EstadoVo();
 	
 	public Integer getId() {
 		return id;
@@ -30,4 +31,11 @@ public class CidadeVo implements Serializable{
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
+	public EstadoVo getEstado() {
+		return estado;
+	}
+	public void setEstado(EstadoVo estado) {
+		this.estado = estado;
+	}
+	
 }

@@ -5,10 +5,15 @@ import java.util.ArrayList;
 import java.util.List;
 import javax.faces.model.SelectItem;
 
+import org.apache.poi.hssf.record.EndRecord;
+
 import br.com.innovation.dao.EnderecoDao;
 import br.com.innovation.dao.TelefoneDao;
 import br.com.innovation.dao.UsuarioDao;
+import br.com.innovation.enums.EstadoEnum;
 import br.com.innovation.enums.TipoTelefoneEnum;
+import br.com.innovation.service.CorreiosService;
+import br.com.innovation.vo.CidadeVo;
 import br.com.innovation.vo.EnderecoVo;
 import br.com.innovation.vo.LoginVo;
 import br.com.innovation.vo.TelefoneVo;
@@ -47,6 +52,7 @@ public class UsuarioBo implements Serializable {
 	private Integer anoNasc = 1;
 	private int idUsuario = 0;
 	private String email;
+	private String cep;
 	private Boolean apelidoValido = true;
 	private Boolean nomeValido = true;
 	private Boolean sobrenomeValido = true;
@@ -58,7 +64,6 @@ public class UsuarioBo implements Serializable {
 	private Boolean senhaValido = true;
 	private Boolean confirmValido = true;
 	private Boolean telValido = true;
-	
 	private Boolean endValido = true;
 	private Boolean numValido = true;
 	private Boolean compValido = true;
@@ -69,7 +74,7 @@ public class UsuarioBo implements Serializable {
 	private Boolean infValido = true;
 	private Boolean cepValido = true;
 	private Boolean tipoValido = true;
-	
+
 	private String erroSubmit;
 	private Integer idUser;
 
@@ -184,6 +189,15 @@ public class UsuarioBo implements Serializable {
 	public void setApelidoValido(Boolean apelidoValido) {
 		this.apelidoValido = apelidoValido;
 	}
+
+	public String getCep() {
+		return cep;
+	}
+
+	public void setCep(String cep) {
+		this.cep = cep;
+	}
+
 	public Boolean getNomeValido() {
 		return nomeValido;
 	}
@@ -227,6 +241,7 @@ public class UsuarioBo implements Serializable {
 	public void setEmailValido(Boolean emailValido) {
 		this.emailValido = emailValido;
 	}
+
 	public Boolean getSenhaValido() {
 		return senhaValido;
 	}
@@ -322,7 +337,7 @@ public class UsuarioBo implements Serializable {
 	public void setInfValido(Boolean infValido) {
 		this.infValido = infValido;
 	}
-	
+
 	public Boolean getCepValido() {
 		return cepValido;
 	}
@@ -353,7 +368,9 @@ public class UsuarioBo implements Serializable {
 		validaUsuario(usuVo, telResidencial);
 		LoginVo login = new LoginVo();
 		if(apelidoValido && nomeValido && sobrenomeValido && dataNascValido && cpfValido &&
-				telefoneValido && emailValido && senhaValido && confirmValido){
+				telefoneValido && emailValido && senhaValido && confirmValido && endValido && 
+				cepValido && numValido && cidadeValido && estadoValido && bairroValido){
+
 			usuVo.setCpf(usuVo.getCpf().replaceAll("-",""));
 			usuVo.setCpf(usuVo.getCpf().replace(".",""));
 
@@ -384,7 +401,7 @@ public class UsuarioBo implements Serializable {
 					login.setEmail(usuVo.getEmail());
 					login.setSenha(usuVo.getSenha());
 					new LoginBo().loginCad(login);
-					return "inn002";
+					return "inn001";
 
 				}
 			}
@@ -455,11 +472,11 @@ public class UsuarioBo implements Serializable {
 			setErroSubmit("CPF já cadastrado!");
 			insere = false;
 		}
-		
+
 		if(usuEdit.getSenha() != null && !usuEdit.getSenha().equals("")){
 			insere = editarSenha(usuEdit.getId());
 		}
-		
+
 
 		if(insere){
 			count = new UsuarioDao().edit(usuEdit);
@@ -468,14 +485,14 @@ public class UsuarioBo implements Serializable {
 				setErroSubmit("Informações editadas com sucesso!");
 			}
 		}
-		
-		
+
+
 
 	}
-	
+
 	private boolean editarSenha(Integer id){
 		String senhaAtual;
-		
+
 		senhaAtual = new UsuarioDao().getSenhaAtual(id);
 		if(senhaAtual.equals(usuEdit.getSenha())){
 			if(usuEdit.getSenhaNova().equals(usuEdit.getConfirmaSenha())){
@@ -509,68 +526,56 @@ public class UsuarioBo implements Serializable {
 			new TelefoneDao().insertUsuario(telCelular);
 		}
 	}
-	
-	private int inserirEnd(EnderecoVo endVo){
-		boolean ok = true;
+
+	public int inserirEnd(EnderecoVo endVo){
+		
 		int countIns = 0;
-		
-		if(endVo.getBairro() == null || !endVo.getBairro().equals("")){
-			bairroValido = false;
-			ok = false;
+		int cidadeId = 0;
+		int estadoId = 0;
+
+		cidadeId = new EnderecoDao().getCidade(endVo.getNomeCidade());
+		estadoId = EstadoEnum.getIdEstado(endVo.getUf());
+
+		if(cidadeId == 0){
+			cidadeId = new EnderecoDao().insertCidade(endVo.getNomeCidade(), estadoId);
 		}
-		if(endVo.getCep() == null || !endVo.getCep().equals("")){
-			cepValido = false;
-			ok = false;
-		}
-		if(endVo.getComplemento() == null || !endVo.getComplemento().equals("")){
-			compValido = false;
-			ok = false;
-		}
-		if(endVo.getNomeEstado() == null || !endVo.getNomeCidade().equals("")){
-			estadoValido = false;
-			ok = false;
-		}
-		if(endVo.getNomeCidade() == null || !endVo.getNomeCidade().equals("")){
-			cidadeValido = false;
-			ok = false;
-		}
-		if(endVo.getLogradouro() == null || !endVo.getLogradouro().equals("")){
-			endValido = false;
-			ok = false;
-		}
-		if(endVo.getNumero() == null || !endVo.getNumero().equals("")){
-			numValido = false;
-			ok = false;
-		}
-		if(endVo.getTipo() == null || !endVo.getTipo().equals("")){
-			tipoValido = false;
-			ok = false;
-		}
-		
-		if(ok){
-			countIns = new EnderecoDao().insertEndereco(endVo);
-		}
-		
+
+		endVo.setIdCidade(cidadeId);
+		endVo.setIdEstado(estadoId);
+		endVo.setIdUsuario(idUsuario);
+		countIns = new EnderecoDao().insertEndereco(endVo);
 		return countIns;
 	}
 
 	public String buscaEmail(){
 		String existeEmail = "";
 
-		if(email.equals(null) || email.equals("")){
+		if(email == null || email.equals("")){
 			setErroSubmit("Digite seu email");
+			emailValido = false;
 		}else{
 			existeEmail = new UsuarioDao().getEmailExist(email);
-			if(existeEmail==null || existeEmail.equals("")){
-				usuVo.setEmail(email);
-				return "inn003return";
-			}else{
+			if(existeEmail != null && !existeEmail.equals("")){
 				emailValido = false;
-				setErroSubmit("Já existe um usuário cadastrado com esse email!");
-
+			}else{
+				usuVo.setEmail(email);
 			}
 		}
-		return null;
+
+		if(cep == null || cep.equals("")){
+			setErroSubmit("Digite seu cep");
+			cepValido = false;
+		}else{
+			enderecoIns = new CorreiosService().consultarEndereco(cep);
+			if(enderecoIns.getLogradouro() == null || enderecoIns.getLogradouro().equals("")){
+				cepValido = false;
+			}
+		}
+
+		if(cepValido && emailValido){
+			return "inn003return";
+		}
+		return null;		
 	}
 
 
@@ -601,6 +606,26 @@ public class UsuarioBo implements Serializable {
 		if(tel.getDdd() == null || tel.getDdd() <= 0
 				|| tel.getNumero().equals(null) || tel .getNumero() <= 0 ){
 			telValido = false;
+		}
+
+		if(enderecoIns.getLogradouro() == null || enderecoIns.getLogradouro().equals("")){
+			endValido = false;
+		}
+
+		if(enderecoIns.getNumero() == null || enderecoIns.getNumero().equals("")){
+			numValido = false;
+		}
+
+		if(enderecoIns.getBairro() == null || enderecoIns.getBairro().equals("")){
+			bairroValido = false;
+		}
+
+		if(enderecoIns.getNomeCidade() == null || enderecoIns.getNomeCidade().equals("")){
+			cidadeValido  = false;
+		}
+
+		if(enderecoIns.getNomeEstado() == null || enderecoIns.getNomeEstado().equals("")){
+			estadoValido = false;
 		}
 
 	}

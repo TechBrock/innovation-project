@@ -11,7 +11,7 @@ import br.com.innovation.vo.UsuarioVo;
 
 
 public class UsuarioDao {
-	DateFormat frm = new SimpleDateFormat("yyyy-MM-yy");
+	DateFormat frm = new SimpleDateFormat("yyyy-MM-dd");
 
 	public Integer insertUsuario(UsuarioVo usu){
 		Connection conn = null;
@@ -254,6 +254,7 @@ public class UsuarioDao {
 		}
 		return usuVo.getEmail();
 	}
+	
 
 	public int getCPF(String cpf, Integer idUsuario){
 

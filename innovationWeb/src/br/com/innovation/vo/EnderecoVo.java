@@ -21,6 +21,8 @@ public class EnderecoVo implements Serializable{
 	private String nomeCidade;
 	private String nomeEstado;
 	private Integer idEstado;
+	private CidadeVo cidade = new CidadeVo();
+	private String uf;
 	
 	public Integer getId() {
 		return id;
@@ -99,6 +101,18 @@ public class EnderecoVo implements Serializable{
 	}
 	public void setIdEstado(Integer idEstado) {
 		this.idEstado = idEstado;
+	}
+	public CidadeVo getCidade() {
+		return cidade;
+	}
+	public void setCidade(CidadeVo cidade) {
+		this.cidade = cidade;
+	}
+	public String getUf() {
+		return uf;
+	}
+	public void setUf(String uf) {
+		this.uf = uf;
 	}
 	
 }

@@ -112,6 +112,29 @@
 		</navigation-case>
 	</navigation-rule>
 	
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>inn004carrinhoReturn</from-outcome>
+			<to-view-id>/inn004/inn004carrinho.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>inn004carrinho</from-outcome>
+			<to-view-id>/inn004/inn004carrinho.xhtml</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>
+	
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>inn004compra</from-outcome>
+			<to-view-id>/inn004/inn004compra.xhtml</to-view-id>
+			<redirect/>
+		</navigation-case>
+	</navigation-rule>
+	
 	
 	<navigation-rule>
 		<navigation-case>
@@ -239,6 +262,12 @@
 	<managed-bean>
 		<managed-bean-name>CarrinhoBo</managed-bean-name>
 		<managed-bean-class>br.com.innovation.bo.CarrinhoBo</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+	</managed-bean>
+	
+	<managed-bean>
+		<managed-bean-name>CompraBo</managed-bean-name>
+		<managed-bean-class>br.com.innovation.bo.CompraBo</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
 

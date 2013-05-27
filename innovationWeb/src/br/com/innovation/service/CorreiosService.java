@@ -2,6 +2,7 @@ package br.com.innovation.service;
 
 import java.util.Map;
 
+import br.com.innovation.enums.EstadoEnum;
 import br.com.innovation.vo.EnderecoVo;
 
 import com.sun.jersey.api.client.UniformInterfaceException;
@@ -62,7 +63,9 @@ public class CorreiosService extends BaseService{
 			enderecoRetorno.setCep(retorno.get("cep"));
 			enderecoRetorno.setTipo(retorno.get("tipo"));
 			enderecoRetorno.setLogradouro(retorno.get("descricao"));
-			//enderecoRetorno.getCidade().getEstado().setId(EstadoEnum.getEstado(retorno.get("uf")).getId());
+			enderecoRetorno.setNomeCidade(retorno.get("cidade"));
+			enderecoRetorno.setNomeEstado(EstadoEnum.getNomeEstado(retorno.get("uf")));
+			enderecoRetorno.setUf(retorno.get("uf"));
 			return enderecoRetorno;
 		}else{
 			return null;
