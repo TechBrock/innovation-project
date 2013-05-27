@@ -95,7 +95,9 @@
 			<tr>
 				<td align="center">
 					<a4j:commandButton  image="/images/buttons/boleto.png"
-						style="width:150px; height: 100px;" reRender="form1"> 
+						style="width:150px; height: 100px;" reRender="form1"
+						oncomplete="Richfaces.showModalPanel('modalBoleto')"> 
+						
 						<f:setPropertyActionListener value="false" target="#{CompraBo.eCartao}"/>
 			 		</a4j:commandButton>
 			 	</td>
@@ -130,15 +132,8 @@
 			</tr>
 		</table>
 		</h:panelGroup>	
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+	</ui:define>
+	<ui:define name="modal">
+		<ui:include src="/innTeste/innTesteBoleto.xhtml" />
 	</ui:define>
 </ui:composition>

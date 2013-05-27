@@ -8,10 +8,15 @@ import java.io.OutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import org.codehaus.jettison.json.JSONArray;
+import org.codehaus.jettison.json.JSONException;
+import org.codehaus.jettison.json.JSONObject;
 import org.richfaces.component.html.HtmlDataGrid;
 
 import br.com.innovation.dao.ModeloDao;
+import br.com.innovation.service.GoogleService;
 import br.com.innovation.vo.CarrinhoVo;
+import br.com.innovation.vo.EnderecoVo;
 import br.com.innovation.vo.ModeloVo;
 
 public class CarrinhoBo implements Serializable{
@@ -188,6 +193,24 @@ public class CarrinhoBo implements Serializable{
 		idUser = 0;
 		totalCart = 0.0;
 		qtdCart = 0;
+	}
+	
+	public String calcFrete(){
+		String dist;
+		EnderecoVo enderecoPartida = new EnderecoVo();
+		  enderecoPartida.getCidade().getEstado().setNome("SP");
+		  enderecoPartida.setCep("09640000");
+		  
+		  EnderecoVo enderecoChegada = new EnderecoVo();
+		  enderecoChegada.getCidade().getEstado().setNome("SP");
+		  enderecoChegada.setCep("09210320");
+		  
+		  GoogleService service = new GoogleService();
+		  JSONObject distancia = service.consultarDistanciaJSON(JSONObject.class, enderecoPartida, enderecoChegada);
+		  System.out.println(distancia);
+		  dist = distancia.toString().substring(distancia.toString().indexOf("distance"), distancia.toString().indexOf("km"));
+		  return null;
+		  
 	}
 
 }

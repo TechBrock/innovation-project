@@ -100,6 +100,7 @@
 			 		<td width="100%" colspan="2">
 			 			<h:outputText value="Valor Frete: "/>
 			 			<h:outputText value="00,00"/>
+			 			<a4j:commandButton value="calcular" action="#{CarrinhoBo.calcFrete}"/>
 			 		</td>
 			 	</tr>
 			 	<tr>
@@ -119,8 +120,8 @@
 			 		<td width="50%" align="right">
 			 			<a4j:commandButton value="Comprar" action="#{CompraBo.comprar}"
 			 				styleClass="btn btn-large btn-block btn-danger" >
-			 				<f:setPropertyActionListener value="#{LoginBo.loginReturn.id}" 
-								target="#{CompraBo.usuVo.id}"/>
+			 				<f:setPropertyActionListener value="#{LoginBo.loginReturn.id}" 	target="#{CompraBo.idUsuario}"/>
+							<f:setPropertyActionListener value="#{CarrinhoBo.totalCart}" target="#{CompraBo.valorCarrinho}"/>
 			 			</a4j:commandButton>
 			 		</td>
 			 	</tr>

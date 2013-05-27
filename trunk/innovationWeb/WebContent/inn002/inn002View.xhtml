@@ -17,6 +17,11 @@
 		</div>
 		<table>
 			<tr>
+				<td colspan="2" align="center">
+					<h:outputText value="#{UsuarioBo.erroSubmit}" />
+				</td>
+			</tr>
+			<tr>
 				<td>
 					<div class="login_ident" style="height: 230px;">
 						<table>
@@ -74,11 +79,21 @@
 								</td>
 							</tr>
 							<tr>
+								<td>
+									<h:outputText value="Digite seu CEP" styleClass="outputTextTitulo"/> 
+									<br />
+									<br /> 
+									<h:inputText size="50" styleClass="login-field" value="#{UsuarioBo.cep}"/>
+									<h:outputText value="● CEP inválido" rendered="#{!UsuarioBo.cepValido}"
+										styleClass="outputTextErro"/>
+								</td>
+							</tr>
+							<tr>
 								<td align="center">
 									<a4j:commandButton value="Continuar" styleClass="btn btn-large btn-block btn-warning" 
 										style="width: 100px;height: 40px;"
 										action="#{UsuarioBo.buscaEmail}"
-										reRender="form1">
+										 reRender="form1">
 									</a4j:commandButton>
 								</td>
 							</tr>
