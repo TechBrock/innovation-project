@@ -197,18 +197,24 @@ public class CarrinhoBo implements Serializable{
 	
 	public String calcFrete(){
 		String dist;
+		char teste = '"';
+		  
 		EnderecoVo enderecoPartida = new EnderecoVo();
 		  enderecoPartida.getCidade().getEstado().setNome("SP");
 		  enderecoPartida.setCep("09640000");
 		  
 		  EnderecoVo enderecoChegada = new EnderecoVo();
 		  enderecoChegada.getCidade().getEstado().setNome("SP");
-		  enderecoChegada.setCep("09210320");
+		  enderecoChegada.setCep("09340685");
 		  
 		  GoogleService service = new GoogleService();
 		  JSONObject distancia = service.consultarDistanciaJSON(JSONObject.class, enderecoPartida, enderecoChegada);
 		  System.out.println(distancia);
-		  dist = distancia.toString().substring(distancia.toString().indexOf("distance"), distancia.toString().indexOf("km"));
+		  
+		  dist = distancia.toString().substring(distancia.toString().indexOf(teste+"distance"+teste+":{"+teste+"text"+teste+":"), distancia.toString().indexOf("km"));
+		  dist = dist.replace(teste+"distance"+teste+":{"+teste+"text"+teste+":"+teste, "");
+		  System.out.println("-------------------------------");
+		  System.out.println(dist);
 		  return null;
 		  
 	}

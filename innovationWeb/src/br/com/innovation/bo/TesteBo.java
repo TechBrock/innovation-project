@@ -44,7 +44,7 @@ public class TesteBo {
 	}
 
 	public void gerarBoleto(OutputStream stream, Object id){
-		array = BoletoService.gerarBoleto();
+//		array = BoletoService.gerarBoleto();
 		try {
 			stream.write(array);
 		} catch (IOException e) {
