@@ -15,6 +15,7 @@ public class CarrinhoVo implements Serializable{
 	private Double valorTotal;
 	private Double valorCarrinho = 0.0;
 	private Integer idUsuario;
+	private Integer idTipoItem;
 	
 	public Integer getIdModelo() {
 		return idModelo;
@@ -66,5 +67,10 @@ public class CarrinhoVo implements Serializable{
 	public void setValorCarrinho(Double valorCarrinho) {
 		this.valorCarrinho = valorCarrinho;
 	}
-	
+	public Integer getIdTipoItem() {
+		return idTipoItem;
+	}
+	public void setIdTipoItem(Integer idTipoItem) {
+		this.idTipoItem = idTipoItem;
+	}
 }

@@ -10,8 +10,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import org.apache.myfaces.custom.fileupload.UploadedFile;
 import org.richfaces.component.html.HtmlDataGrid;
-import org.richfaces.component.html.HtmlDataTable;
-
 import br.com.innovation.dao.ModeloDao;
 import br.com.innovation.dao.PrecoDao;
 import br.com.innovation.vo.ModeloVo;

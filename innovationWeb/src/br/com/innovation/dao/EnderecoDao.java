@@ -5,6 +5,8 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+
+import br.com.innovation.enums.EstadoEnum;
 import br.com.innovation.utils.Conexao;
 import br.com.innovation.vo.EnderecoVo;
 
@@ -91,6 +93,7 @@ public class EnderecoDao {
 					endVo.setBairro(rset.getString("bairro"));
 					endVo.setNomeCidade(rset.getString("cidade"));
 					endVo.setNomeEstado(rset.getString("estado"));
+					endVo.setUf(EstadoEnum.getUfEstado(rset.getString("estado")));
 				
 			}
 		} catch (SQLException sqlex) {

@@ -1,13 +1,8 @@
 package br.com.innovation.bo;
 
-import java.io.IOException;
-import java.io.OutputStream;
-
-import br.com.innovation.service.boleto.BoletoService;
 import br.com.innovation.service.cartao.CCService;
 import br.com.innovation.vo.CartaoVo;
-
-public class TesteBo {
+public class CartaoBo {
 	/**
 	 * 
 	 */
@@ -22,17 +17,6 @@ public class TesteBo {
 	private byte[] array;
 	private boolean boletoGerado;
 
-	
-	public void gerarBoleto(OutputStream stream, Object id){
-//		array = BoletoService.gerarBoleto();
-		try {
-			stream.write(array);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	
 	public boolean isMostrarErro() {
 		return mostrarErro;
 	}
@@ -101,5 +85,20 @@ public class TesteBo {
 		this.erroSubmitBoleto = erroSubmitBoleto;
 	}
 
-		
+	public String validarCartao(){
+		int bandeira = cartaoVo.getBandeira();
+		String numeroCartao = cartaoVo.getNumero();
+		if(CCService.validarNumero(numeroCartao)){
+			if(CCService.validarBandeira(numeroCartao, bandeira)){
+				if(CCService.validarNumeroCartao(numeroCartao, bandeira)){
+					setErroSubmitCartao("Cartão Validado!");
+				}else{
+					setErroSubmitCartao("Cartão inválido!");
+				}
+			}else{
+				setErroSubmitCartao("Numero incorreto!");
+			}
+		}
+		return null;
+	}
 }

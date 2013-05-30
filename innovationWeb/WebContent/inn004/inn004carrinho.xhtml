@@ -12,14 +12,14 @@
 
 	<ui:define name="conteudo">
 	<t:saveState value="#{CarrinhoBo}"/>
-		<div class="login_ident" style="width:800px; height: 400px;">
+		<div class="login_ident" style="width:800px; height: 400px;" id="div_prin">
 			<h:panelGrid styleClass="panelTitulos" style="width: 790px;">
 						<h:outputText value="Carrinho" styleClass="outputTextTitulo"/>
 					</h:panelGrid>
 			<br/>
 			<rich:dataGrid
 			 	id="gridProdutos"
-				value="#{CarrinhoBo.carrinhoAl}" 
+					value="#{CarrinhoBo.carrinhoAl}" 
 			 	var="lista" 
 			 	columns="1" 
 			 	elements="10" 
@@ -76,7 +76,8 @@
 			 						target="#{CarrinhoBo.carrinhoVo}"/>
 			 						</a4j:support>
 			 				</h:inputText> 
-			 			</td>
+
+		 			</td>
 			 			<td width="100px">
 			 				<h:outputText value="#{lista.precoModelo}"/>
 			 			</td>
@@ -99,8 +100,7 @@
 			 	<tr>
 			 		<td width="100%" colspan="2">
 			 			<h:outputText value="Valor Frete: "/>
-			 			<h:outputText value="00,00"/>
-			 			<a4j:commandButton value="calcular" action="#{CarrinhoBo.calcFrete}"/>
+			 			<h:outputText id="outfRETE" value="#{CarrinhoBo.totalFrete}"/>
 			 		</td>
 			 	</tr>
 			 	<tr>
