@@ -13,7 +13,7 @@ public class GoogleService extends BaseService {
 	private String gerarUriGoogleDirections(EnderecoVo enderecoPartida, EnderecoVo enderecoChegada){
 		return URI_WEBSERVICE_GOOGLE_DIRECTIONS + TIPO_DOCUMENTO_JSON + 
 				"?origin=" + enderecoPartida.getCidade().getEstado().getNome()+ "+" + enderecoPartida.getCep() +"+"+ PAIS_BRASIL + 
-				"&destination=" + enderecoChegada.getCidade().getEstado().getNome() + "+" + enderecoChegada.getCep() +"+"+ PAIS_BRASIL + "&sensor=false";
+				"&destination=" + enderecoChegada.getUf()+ "+" + enderecoChegada.getCep() +"+"+ PAIS_BRASIL + "&sensor=false";
 	}
 	
 	public <T> T consultarDistanciaJSON(Class<T> responseType, EnderecoVo enderecoPartida, EnderecoVo enderecoChegada) throws UniformInterfaceException{

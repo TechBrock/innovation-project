@@ -7,17 +7,16 @@ import java.io.IOException;
 import java.io.OutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
-
-import org.codehaus.jettison.json.JSONArray;
-import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
 import org.richfaces.component.html.HtmlDataGrid;
-
+import br.com.innovation.dao.EnderecoDao;
 import br.com.innovation.dao.ModeloDao;
+import br.com.innovation.dao.UsuarioDao;
 import br.com.innovation.service.GoogleService;
 import br.com.innovation.vo.CarrinhoVo;
 import br.com.innovation.vo.EnderecoVo;
 import br.com.innovation.vo.ModeloVo;
+import br.com.innovation.vo.UsuarioVo;
 
 public class CarrinhoBo implements Serializable{
 
@@ -30,10 +29,14 @@ public class CarrinhoBo implements Serializable{
 	CarrinhoVo carrinhoRemove = new CarrinhoVo();
 	ModeloVo modeloVo = new ModeloVo();
 	ArrayList<CarrinhoVo> carrinhoAl = new ArrayList<CarrinhoVo>();
+	UsuarioVo usuVo = new UsuarioVo();
+	EnderecoVo enderecoChegada = new EnderecoVo();
 	private Integer qtdCart = 0;
 	private Double totalCart = 0.0;
+	private Double totalFrete = 0.0;
+	
 	private Integer idUser;
-
+	
 	public CarrinhoVo getCarrinhoVo() {
 		return carrinhoVo;
 	}
@@ -88,16 +91,26 @@ public class CarrinhoBo implements Serializable{
 	public void setIdUser(Integer idUser) {
 		this.idUser = idUser;
 	}
+	
+	public Double getTotalFrete() {
+		return totalFrete;
+	}
+
+	public void setTotalFrete(Double totalFrete) {
+		this.totalFrete = totalFrete;
+	}
 
 	public String addToCart(){
 		totalCart = 0.0;
 		boolean add = true;
+		Double totalKm = calcFrete();
 		carrinhoVo.setIdModelo(modeloVo.getId());
 		carrinhoVo.setPrecoModelo(modeloVo.getPrecoAtual());
 		carrinhoVo.setNomeModelo(modeloVo.getNome());
+		carrinhoVo.setIdTipoItem(modeloVo.getIdTipo()); 
 		carrinhoVo.setQtdModelo(1);
 		carrinhoVo.setValorTotal(carrinhoVo.getPrecoModelo());
-
+		
 
 		for (CarrinhoVo cart : carrinhoAl) {
 			if(cart.getIdModelo().intValue() == carrinhoVo.getIdModelo().intValue()){
@@ -111,13 +124,15 @@ public class CarrinhoBo implements Serializable{
 		}
 
 		for (CarrinhoVo cart : carrinhoAl) {
+			
 			totalCart += cart.getValorTotal();
 		}
+		getCalcValorTotal();
 		carrinhoVo = new CarrinhoVo();
 		return null;
 
 	}
-
+	
 	public String removeToCart(){
 		totalCart = 0.0;
 		carrinhoAl.remove(carrinhoRemove);
@@ -164,27 +179,42 @@ public class CarrinhoBo implements Serializable{
 
 	public String getCalcValorTotal(){
 		totalCart = 0.0;
+		double freteKm = calcFrete()/100;
+		int qtdItems = 0;
+		
+		
 		for (CarrinhoVo cart : carrinhoAl) {
+			qtdItems += cart.getQtdModelo();
 			if(cart.getIdModelo().intValue() == carrinhoVo.getIdModelo().intValue()){
 				cart.setValorTotal(carrinhoVo.getPrecoModelo()*carrinhoVo.getQtdModelo());
 			}
 		}
 
 		for (CarrinhoVo cart : carrinhoAl) {
-			totalCart += cart.getValorTotal();
+			
+			if(cart.getIdTipoItem() != null && cart.getIdTipoItem().intValue() == 1){
+				if(freteKm <=1){
+					setTotalFrete(8.57 * qtdItems);
+				}else{
+					setTotalFrete((freteKm * 8.57)* qtdItems);
+				}
+				
+			}else{
+				if(freteKm <=1){
+					setTotalFrete(8.57 * qtdItems);
+				}else{
+					setTotalFrete((freteKm * 4.25) * qtdItems);
+				}
+			}
+			
+			totalCart += cart.getValorTotal()+totalFrete;
 		}
 		carrinhoVo = new CarrinhoVo();
 
 		return "inn004carrinho";
 	}
 
-
-	public HtmlDataGrid getInitTable(){
-		getCalcValorTotal();
-		return null;
-	}
-
-	public void setInitTable(HtmlDataGrid table){}
+	
 	
 	public void zeraCarrinho(){
 		carrinhoVo = new CarrinhoVo();
@@ -195,17 +225,18 @@ public class CarrinhoBo implements Serializable{
 		qtdCart = 0;
 	}
 	
-	public String calcFrete(){
+		
+	public Double calcFrete(){
 		String dist;
 		char teste = '"';
+		
+		usuVo = new UsuarioDao().getUsuarioById(idUser);
+		enderecoChegada = new EnderecoDao().getEndByUser(idUser);
+
 		  
 		EnderecoVo enderecoPartida = new EnderecoVo();
 		  enderecoPartida.getCidade().getEstado().setNome("SP");
 		  enderecoPartida.setCep("09640000");
-		  
-		  EnderecoVo enderecoChegada = new EnderecoVo();
-		  enderecoChegada.getCidade().getEstado().setNome("SP");
-		  enderecoChegada.setCep("09340685");
 		  
 		  GoogleService service = new GoogleService();
 		  JSONObject distancia = service.consultarDistanciaJSON(JSONObject.class, enderecoPartida, enderecoChegada);
@@ -213,10 +244,8 @@ public class CarrinhoBo implements Serializable{
 		  
 		  dist = distancia.toString().substring(distancia.toString().indexOf(teste+"distance"+teste+":{"+teste+"text"+teste+":"), distancia.toString().indexOf("km"));
 		  dist = dist.replace(teste+"distance"+teste+":{"+teste+"text"+teste+":"+teste, "");
-		  System.out.println("-------------------------------");
-		  System.out.println(dist);
-		  return null;
-		  
+		  System.out.println(dist); 
+		  return Double.parseDouble(dist);
 	}
 
 }

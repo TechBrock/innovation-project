@@ -11,7 +11,7 @@
 	template="/inn000/templateViewSemFiltro.xhtml">
 
 	<ui:define name="conteudo">
-	
+		<t:saveState value="#{CartaoBo}"/>
 		<table>
 			<tr>
 				<td>
@@ -115,18 +115,26 @@
 		<table>
 			<tr>
 				<td>
-					<a4j:commandButton  image="/images/buttons/master.png"
-						style="width:80px; height: 50px;"> 
+					<a4j:commandButton  image="/images/buttons/Visa.png"
+						style="width:80px; height: 50px;"
+						action="inn004cartaoView">
+						<f:setPropertyActionListener value="0" target="#{CartaoBo.cartaoVo.bandeira}"/> 
 			 		</a4j:commandButton>
 				</td>
 				<td>
-					<a4j:commandButton  image="/images/buttons/Visa.png"
-						style="width:80px; height: 50px;"> 
+					<a4j:commandButton  image="/images/buttons/master.png"
+						style="width:80px; height: 50px;"
+						oncomplete="Richfaces.showModalPanel('modalCredito')"
+						action="inn004cartaoView"> 
+					<f:setPropertyActionListener value="1" target="#{CartaoBo.cartaoVo.bandeira}"/>
 			 		</a4j:commandButton>
 				</td>
 				<td>
 					<a4j:commandButton  image="/images/buttons/american.png"
-						style="width:80px; height: 50px;"> 
+						style="width:80px; height: 50px;"
+						oncomplete="Richfaces.showModalPanel('modalCredito')"
+						action="inn004cartaoView">	
+						<f:setPropertyActionListener value="2" target="#{CartaoBo.cartaoVo.bandeira}"/> 
 			 		</a4j:commandButton>
 				</td>
 			</tr>
@@ -135,5 +143,6 @@
 	</ui:define>
 	<ui:define name="modal">
 		<ui:include src="/innTeste/innTesteBoleto.xhtml" />
+		<ui:include src="/inn004/inn004modalCredito.xhtml" />
 	</ui:define>
 </ui:composition>

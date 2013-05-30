@@ -15,6 +15,7 @@ public class CartaoVo implements Serializable {
 		private Integer bandeira;
 		private String numero;
 		
+		
 		public Integer getBandeira() {
 			return bandeira;
 		}
@@ -27,10 +28,6 @@ public class CartaoVo implements Serializable {
 		public void setNumero(String numero) {
 			this.numero = numero;
 		}
-		
-		
-		
-
 	}
 
 

@@ -30,14 +30,14 @@ public enum EstadoEnum {
 	TO("Tocantins",27),
 	INV("",0);
 
-	private String uf;
+	private String estado;
 	private Integer id;
 
-	public String getUf() {
-		return uf;
+	public String getEstado() {
+		return estado;
 	}
-	public void setUf(String uf) {
-		this.uf = uf;
+	public void setEstado(String estado) {
+		this.estado = estado;
 	}
 	public Integer getId() {
 		return id;
@@ -45,21 +45,33 @@ public enum EstadoEnum {
 	public void setId(Integer id) {
 		this.id = id;
 	}
-	private EstadoEnum(String uf, Integer id){
-		this.uf = uf;
+	private EstadoEnum(String estado, Integer id){
+		this.estado = estado;
 		this.id = id;
 	}
 
-	public static String getNomeEstado(String uf) {
+	public static String getNomeEstado(String estado) {
 		EstadoEnum[] estadoE= EstadoEnum.values();
 
 		for(int x = 0; x < estadoE.length; x++){
-			if(estadoE[x].name().equals(uf)){
-				return estadoE[x].uf;
+			if(estadoE[x].name().equals(estado)){
+				return estadoE[x].estado;
 			}
 
 		}
-		return estadoE[27].uf;
+		return estadoE[27].estado;
+	}
+	
+	public static String getUfEstado(String est) {
+		EstadoEnum[] estadoE= EstadoEnum.values();
+
+		for(int x = 0; x < estadoE.length; x++){
+			if(estadoE[x].getEstado().equals(est)){
+				return estadoE[x].name();
+			}
+
+		}
+		return estadoE[27].name();
 	}
 	
 	public static Integer getIdEstado(String uf) {
