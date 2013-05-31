@@ -32,6 +32,7 @@ public class CarrinhoBo implements Serializable{
 	UsuarioVo usuVo = new UsuarioVo();
 	EnderecoVo enderecoChegada = new EnderecoVo();
 	private Integer qtdCart = 0;
+	private Double totalProd = 0.0;
 	private Double totalCart = 0.0;
 	private Double totalFrete = 0.0;
 	
@@ -98,6 +99,14 @@ public class CarrinhoBo implements Serializable{
 
 	public void setTotalFrete(Double totalFrete) {
 		this.totalFrete = totalFrete;
+	}
+
+	public Double getTotalProd() {
+		return totalProd;
+	}
+
+	public void setTotalProd(Double totalProd) {
+		this.totalProd = totalProd;
 	}
 
 	public String addToCart(){
@@ -206,7 +215,7 @@ public class CarrinhoBo implements Serializable{
 					setTotalFrete((freteKm * 4.25) * qtdItems);
 				}
 			}
-			
+			totalProd += cart.getValorTotal();
 			totalCart += cart.getValorTotal()+totalFrete;
 		}
 		carrinhoVo = new CarrinhoVo();
@@ -230,8 +239,8 @@ public class CarrinhoBo implements Serializable{
 		String dist;
 		char teste = '"';
 		
-		usuVo = new UsuarioDao().getUsuarioById(idUser);
-		enderecoChegada = new EnderecoDao().getEndByUser(idUser);
+		usuVo = new UsuarioDao().getUsuarioById(carrinhoVo.getIdUsuario());
+		enderecoChegada = new EnderecoDao().getEndByUser(carrinhoVo.getIdUsuario());
 
 		  
 		EnderecoVo enderecoPartida = new EnderecoVo();
