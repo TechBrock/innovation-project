@@ -135,14 +135,6 @@
 		</navigation-case>
 	</navigation-rule>
 	
-	<navigation-rule>
-		<navigation-case>
-			<from-outcome>inn004cartaoView</from-outcome>
-			<to-view-id>/inn004/inn004cartaoView.xhtml</to-view-id>
-			<redirect/>
-		</navigation-case>
-	</navigation-rule>
-	
 	
 	<navigation-rule>
 		<navigation-case>
@@ -219,14 +211,6 @@
 		</navigation-case>
 	</navigation-rule>
 	
-	<navigation-rule>
-		<navigation-case>
-			<from-outcome>inn010</from-outcome>
-			<to-view-id>/inn010/inn010view.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-	</navigation-rule>
-	
 	<managed-bean>
 		<managed-bean-name>UsuarioBo</managed-bean-name>
 		<managed-bean-class>br.com.innovation.bo.UsuarioBo</managed-bean-class>
@@ -286,10 +270,5 @@
 		<managed-bean-class>br.com.innovation.bo.CompraBo</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 	</managed-bean>
-	
-	<managed-bean>
-		<managed-bean-name>CartaoBo</managed-bean-name>
-		<managed-bean-class>br.com.innovation.bo.CartaoBo</managed-bean-class>
-		<managed-bean-scope>request</managed-bean-scope>
-	</managed-bean>
+
 </faces-config>
