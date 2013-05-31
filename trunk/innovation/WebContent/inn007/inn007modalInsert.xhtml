@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<f:subview id="viewModalInsert"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"	 
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+	
+	<rich:modalPanel id="modalInsert" autosized="true" top="55"
+		resizeable="false" minWidth="700" minHeight="40" keepVisualState="true">
+		
+			<ui:decorate template="/inn000/templateModalSemFiltro.xhtml">
+			<ui:define name="corpoModal">
+				<h:panelGroup>
+					<table>
+						<tr>
+							<td>
+								<h:outputText value="Apelido"/>
+							</td>
+							<td>
+								<h:inputText id="usuApelido" size="70" value="#{UsuarioBo.usuVo.apelido}" 
+									maxlength="30" required="true" requiredMessage="Campo Obrigatório!">
+									<a4j:support event="submit"  reRender="form1" />
+								</h:inputText>
+							</td>
+							<td>
+								<rich:message for="usuNome" />
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<h:outputText value="Nome"/>
+							</td>
+							<td>
+								<h:inputText id="usuNome" size="70" value="#{UsuarioBo.usuVo.nome}" 
+									maxlength="30" required="true" requiredMessage="Campo Obrigatório!">
+									<a4j:support event="submit"  reRender="form1" />
+								</h:inputText>
+							</td>
+							<td>
+								<rich:message for="usuNome" />
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<h:outputText value="Sobrenome" requerid="true" 
+									requiredMessage="Digite um Sobrenome"/>
+							</td>
+							<td>
+								<h:inputText id="usuSobrenome" size="70" value="#{UsuarioBo.usuVo.sobrenome}" 
+									maxlength="30" required="true" requiredMessage="Campo Obrigatório!">
+									<a4j:support event="submit"  reRender="form1" />
+								</h:inputText>
+							</td>
+							<td>
+								<rich:message for="usuSobrenome" />
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<h:outputText value="Data de Nascimento"/>
+							</td>
+							<td>
+								<h:inputText size="2" value="#{UsuarioBo.diaNasc}" maxlength="2"/>
+								<h:inputText size="2" value="#{UsuarioBo.mesNasc}" maxlength="2"/>
+								<h:inputText id="usuDataNasc" size="4" value="#{UsuarioBo.anoNasc}"
+									maxlength="4" required="true" requiredMessage="Campo Obrigatório!">
+									<a4j:support event="submit"  reRender="form1" />
+								</h:inputText>
+							</td>
+							<td>
+								<rich:message for="usuDataNasc" />
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<h:outputText value="Sexo"/>
+							</td>
+							<td>
+								<h:selectOneRadio value="#{UsuarioBo.usuVo.sexo}">
+									<f:selectItem  itemLabel="Feminino" itemValue="F"/>
+									<f:selectItem  itemLabel="Masculino" itemValue="M"/>
+								</h:selectOneRadio>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<h:outputText value="CPF"/>
+							</td>
+							<td>
+								<h:inputText id="usuCpf" size="11" value="#{UsuarioBo.usuVo.cpf}"
+									maxlength="11" required="true" requiredMessage="Campo Obrigatório!">
+									<a4j:support event="submit"  reRender="form1" />
+								</h:inputText>
+							</td>
+							<td>
+								<rich:message for="usuCpf" />
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<h:outputText value="Telefone Residencial"/>
+							</td>
+							<td>
+								<h:inputText size="2" value="#{UsuarioBo.telResidencial.ddd}" maxlength="2"/>
+								<h:inputText id="usuTelefoneResid" size="8" value="#{UsuarioBo.telResidencial.numero}" 
+									maxlength="8" required="true" requiredMessage="Campo Obrigatório!">
+									<a4j:support event="submit"  reRender="form1" />
+								</h:inputText>
+							</td>
+							<td>
+								<rich:message for="usuTelefoneResid" />
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<h:outputText value="Telefone Comercial"/>
+							</td>
+							<td>
+								<h:inputText size="2" value="#{UsuarioBo.telComercial.ddd}"/>
+								<h:inputText size="8" value="#{UsuarioBo.telComercial.numero}"/>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<h:outputText value="Telefone Celular"/>
+							</td>
+							<td>
+								<h:inputText size="2" value="#{UsuarioBo.telCelular.ddd}"/>
+								<h:inputText size="8" value="#{UsuarioBo.telCelular.numero}"/>
+							</td>
+						</tr>
+						<tr>
+							<td>
+				
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<h:outputText value="Email" />
+							</td>
+							<td>
+								<h:inputText size="70" value="#{UsuarioBo.usuVo.email}"/>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<h:outputText value="Senha" />
+							</td>
+							<td>
+								<h:inputSecret size="20" value="#{UsuarioBo.usuVo.senha}"/>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<h:outputText value="Confirmação de senha"/>
+							</td>
+							<td>
+								<h:inputSecret size="20"/>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<h:outputText value="Perfil"/>
+							</td>
+							<td>
+								<h:selectOneMenu value="#{UsuarioBo.usuVo.idPerfil }">
+									<f:selectItems value="#{PerfilBo.perfilSelectItem}"/>
+								</h:selectOneMenu>
+							</td>
+						</tr>
+						<tr>
+							<td colspan="2" align="center">
+								<a4j:commandButton value="Salvar" action="#{UsuarioBo.inserir}"
+									styleClass="btn btn-large btn-block btn-danger"/>
+								<a4j:commandButton value="Cancelar"
+									styleClass="btn btn-large btn-block btn-danger"/>
+							</td>
+						</tr>
+					</table>
+				</h:panelGroup>
+			</ui:define>
+			
+			</ui:decorate>
+	</rich:modalPanel>
+</f:subview>

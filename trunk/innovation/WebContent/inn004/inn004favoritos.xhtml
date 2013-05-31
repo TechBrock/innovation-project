@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	template="/inn000/templateViewSemFiltro.xhtml">
+	<ui:define name="tituloTela">
+		<h:outputText value="Favoritos"	/>
+	</ui:define>
+
+	<ui:define name="conteudo">
+	<t:saveState value="#{FavoritoBo}"/>
+			<rich:dataGrid
+			 	id="gridProdutos" 
+			 	value="#{FavoritoBo.favoritoAl}" 
+			 	var="lista" 
+			 	columns="4" 
+			 	elements="10" 
+			 	width="100%">
+			 	<table border="solid">
+			 		<tr>
+			 			<td>
+			 				<a4j:mediaOutput element="img" mimeType="application/jpg" 
+								cacheable="false"
+								createContent="#{FavoritoBo.montaImagem}"
+								value="#{lista.idModelo}"
+								session="true"
+								style="width: 150px; heigh: 100px;"/>
+			 			</td>
+			 			<td>
+			 				<h:outputText value="#{lista.nomeModelo}"/>
+			 			</td>
+			 			<td>
+			 				<h:outputText value="#{lista.preco}"/>
+			 			</td>
+			 		</tr>
+			 	</table>
+						 	
+			 </rich:dataGrid>
+	</ui:define>
+</ui:composition>
