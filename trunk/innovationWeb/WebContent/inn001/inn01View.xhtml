@@ -33,7 +33,7 @@
 					<a4j:commandButton image="/images/buttons/cart.png" 
 						style="width: 100px; height: 80px"
 						action="inn004carrinho"
-						reRender="form1,div_prin"/>
+						reRender="form1"/>
 					<h:outputText id="tqdCarrinho" value="#{CarrinhoBo.carrinhoAl.size()}"/>
 				</td>
 			</tr>
@@ -42,7 +42,6 @@
 			<div align="center" style="width: 100%;"	>
 			 <rich:dataGrid
 			 	id="gridProdutos" 
-			 	binding="#{ModeloBo.initTable}"
 			 	value="#{ModeloBo.modeloAl}" 
 			 	var="lista" 
 			 	columns="5" 
