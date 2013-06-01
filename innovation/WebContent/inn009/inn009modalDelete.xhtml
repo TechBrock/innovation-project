@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<f:subview id="viewModalDelete"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"	 
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j">
+	
+	<rich:modalPanel id="modalDelete" autosized="true" top="55"
+		resizeable="false" minWidth="700" minHeight="40" keepVisualState="true">
+		
+			<ui:decorate template="/inn000/templateModalSemFiltro.xhtml">
+			<ui:define name="corpoModal">
+				<h:panelGroup>
+					<table>
+						<tr>
+							<td>
+								<h:outputText value="Deseja relamente apagar essa Classificação?"/>
+							</td>
+						</tr>
+						<tr>
+							<td align="center">
+								<a4j:commandButton value="Sim" action="#{ClassificacaoBo.deletar}"  
+									reRender="viewModalInsert:formModal, form1"
+									styleClass="btn btn-large btn-block btn-danger"/>
+								<a4j:commandButton value="Não" action="inn009return"
+									styleClass="btn btn-large btn-block btn-danger"/>
+							</td>
+						</tr>
+				</table>
+				</h:panelGroup>
+			</ui:define>
+			
+			</ui:decorate>
+	</rich:modalPanel>
+</f:subview>

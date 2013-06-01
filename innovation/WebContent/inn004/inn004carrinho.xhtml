@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	template="/inn000/templateViewSemFiltro.xhtml">
+
+	<ui:define name="conteudo">
+	<t:saveState value="#{CompraBo}"/>
+	<t:saveState value="#{CarrinhoBo}"/>
+		<div class="login_ident" style="width:800px; height: 400px;">
+			<h:panelGrid styleClass="panelTitulos" style="width: 790px;">
+						<h:outputText value="Carrinho" styleClass="outputTextTitulo"/>
+					</h:panelGrid>
+			<br/>
+			<rich:dataGrid
+			 	id="gridProdutos"
+				value="#{CarrinhoBo.carrinhoAl}" 
+			 	var="lista" 
+			 	columns="1" 
+			 	elements="10" 
+			 	width="98%"
+			 	style="background-color:#eceff1"> 
+			 	<table style="background-color:white; border-radius: 6px;">
+			 		<tr>
+			 			<td width="100px">
+			 				
+			 			</td>
+			 			
+			 			<td width="200px">
+			 				
+			 			</td>
+			 			<td width="200px">
+			 				<h:outputText value="Endereço"/>
+			 			</td>
+			 			
+			 			<td width="60px">
+			 				<h:outputText value="Quantidade"/>
+			 			</td>
+			 			<td width="100px">
+			 				<h:outputText value="Valor Unitário"/>
+			 			</td>
+			 			<td width="100px">
+			 				<h:outputText value="Valor Total"/>
+			 			</td>
+			 			<td width="100px">
+			 			
+			 			</td>
+			 		</tr>
+			 		<tr>
+			 			<td width="60px">
+			 				<a4j:mediaOutput element="img" mimeType="application/jpg" 
+								cacheable="false"
+								createContent="#{CarrinhoBo.montaImagem}"
+								value="#{lista.idModelo}"
+								session="true"
+								style="width: 50px; heigh: 25px;"/>
+			 			</td>
+			 			<td width="200px">
+			 				<h:outputText value="#{lista.nomeModelo}" />
+			 			</td>
+			 			<td width="200px">
+			 				<h:outputText value="Casa"/>
+			 			</td>
+			 			<td width="100px">
+			 				<h:outputText value="Qtd."/>
+			 				<h:inputText size="2" value="#{lista.qtdModelo}">
+			 				
+			 					<a4j:support event="onblur" action="#{CarrinhoBo.getCalcValorTotal}"
+			 						reRender="form1:gridProdutos:outTotal">
+			 							<f:setPropertyActionListener value="#{lista}" 
+			 						target="#{CarrinhoBo.carrinhoVo}"/>
+			 						</a4j:support>
+			 				</h:inputText> 
+			 			</td>
+			 			<td width="100px">
+			 				<h:outputText value="#{lista.precoModelo}"/>
+			 			</td>
+			 			<td width="100px">
+			 				<h:outputText id="outTotal" value="#{lista.valorTotal}"/>
+			 			</td>
+			 			<td width="100px">
+			 				<a4j:commandButton  image="/images/buttons/trash.png" 
+			 					action="#{CarrinhoBo.removeToCart}"
+			 					style="width:50px; height: 50px;">
+			 					<f:setPropertyActionListener value="#{lista}" 
+			 						target="#{CarrinhoBo.carrinhoRemove}"/>
+			 				</a4j:commandButton> 
+			 			</td>
+			 		</tr>
+			 	</table>	
+			 </rich:dataGrid>
+			 <br/>
+			 <table width="99%">
+			 	<tr>
+			 		<td width="100%" colspan="2">
+			 			<h:outputText value="Valor Frete: "/>
+			 			<h:outputText value="#{CarrinhoBo.totalFrete}"/>
+			 			
+			 		</td>
+			 	</tr>
+			 	<tr>
+			 		<td width="100%" colspan="2">
+			 			<h:outputText value="Valor carrinho: "/>
+			 			<h:outputText id="outCart" value="#{CarrinhoBo.totalCart}"/>
+			 		</td>
+			 	</tr>
+			 	<tr>
+			 		<td width="50%" align="left">
+			 			<a4j:commandButton value="Cancelar" action="inn001"
+			 				styleClass="btn btn-large btn-block btn-danger" reRender="form1">
+			 				<f:setPropertyActionListener value="#{LoginBo.loginReturn.id}" target="#{CarrinhoBo.idUser}"/>
+			 			</a4j:commandButton>
+			 		</td>
+			 		<td width="50%" align="right">
+			 			<a4j:commandButton value="Comprar" action="#{CompraBo.comprar}"
+			 				styleClass="btn btn-large btn-block btn-danger" >
+			 				<f:setPropertyActionListener value="#{LoginBo.loginReturn.id}" 	target="#{CompraBo.idUsuario}"/>
+							<f:setPropertyActionListener value="#{CarrinhoBo.totalCart}" target="#{CompraBo.valorCarrinho}"/>
+							<f:setPropertyActionListener value="#{CarrinhoBo.totalFrete}" target="#{CompraBo.valorFrete}"/>
+							<f:setPropertyActionListener value="#{CarrinhoBo.totalProd}" target="#{CompraBo.valorProd}"/>
+							<f:setPropertyActionListener value="#{CarrinhoBo.carrinhoAl}" target="#{CompraBo.carrinhoAl}"/>
+							<f:setPropertyActionListener value="inn004compra" target="#{LoginBo.acao}"/>
+							
+			 			</a4j:commandButton>
+			 		</td>
+			 	</tr>
+			 </table>
+			</div>
+	</ui:define>
+</ui:composition>

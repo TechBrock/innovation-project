@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	template="/inn000/templateViewSemFiltro.xhtml">
+
+	<ui:define name="conteudo">
+	<t:saveState value="#{CompraBo}"/>
+	
+		<table>
+			<tr>
+				<td>
+					<table >
+						<tr>
+							<td>
+								<div class="login_ident" style="width:400px; height: 150px;">
+									<table>
+										<tr>
+											<td>
+												<h:outputText value="Número de produtos: "/>
+												<h:outputText id="tqdCarrinho" value="#{CarrinhoBo.carrinhoAl.size()}"/>
+											</td>
+										</tr>
+										<tr>	
+											<td>
+												<h:outputText value="Valor Total de produtos: "/>
+												<h:outputText id="outProd" value="#{CarrinhoBo.totalProd}"/>
+											</td>
+										</tr>
+										<tr>	
+											<td>
+												<h:outputText value="Valor do frete: "/>
+												<h:outputText id="outFrete" value="#{CompraBo.valorFrete}"/>
+											</td>
+										</tr>
+										<tr>	
+											<td>
+												<h:outputText value="Valor da compra: "/>
+												<h:outputText id="outCart" value="#{CarrinhoBo.totalCart}"/>
+											</td>
+										</tr>
+									</table>
+								</div>
+							</td>
+						</tr>
+					</table>
+				</td>
+				<td>
+					<table>
+						<tr>
+							<td>
+								<div class="login_ident" style="width:400px; height: 150px;">
+									<table>
+										<tr>
+											<td>
+												<h:outputText value="#{CompraBo.usuVo.nome}"/>
+												<h:outputText value=" #{CompraBo.usuVo.sobrenome}"/>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<h:outputText value="Email: "/>
+												<h:outputText value="#{CompraBo.usuVo.email}"/>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<h:outputText value="Telefone: "/>
+												<h:outputText value="(#{CompraBo.telAl[0].ddd}) #{CompraBo.telAl[0].numero}"/>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<h:outputText value="Endereço concatenado: "/>
+												<h:outputText value="#{CompraBo.endVo.logradouro}"/>,
+												<h:outputText value="#{CompraBo.endVo.numero}"/><br/>
+												<h:outputText value="#{CompraBo.endVo.bairro}"/><br/>
+												<h:outputText value="#{CompraBo.endVo.nomeCidade}"/><br/>
+												<h:outputText value="#{CompraBo.endVo.nomeEstado}"/><br/>
+											</td>
+										</tr>
+									</table>		
+								</div>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+		<br/><br/><br/>
+		<table>
+			<tr>
+				<td align="center" colspan="2">
+					<h:outputText value="Escolha uma forma de pagamento: "/>
+				</td>
+			</tr>
+			<tr>
+				<td align="center">
+					<a4j:commandButton  image="/images/buttons/boleto.png"
+						style="width:150px; height: 100px;" reRender="form1"
+						oncomplete="Richfaces.showModalPanel('modalBoleto')"> 
+						<f:setPropertyActionListener value="false" target="#{CompraBo.eCartao}"/>
+			 		</a4j:commandButton>
+			 	</td>
+			 	
+			 	<td align="center">
+					<a4j:commandButton  image="/images/buttons/credit_card.png"
+						style="width:150px; height: 160px;" reRender="form1"> 
+						<f:setPropertyActionListener value="true" target="#{CompraBo.eCartao}"/>
+			 		</a4j:commandButton>
+				</td>
+			</tr>
+		</table>
+		
+		<h:panelGroup rendered="#{CompraBo.eCartao}">
+		<table>
+			<tr>
+				<td>
+					<a4j:commandButton  image="/images/buttons/Visa.png"
+						style="width:80px; height: 50px;"
+						oncomplete="Richfaces.showModalPanel('modalCredito')"> 
+						<f:setPropertyActionListener value="0" target="#{CompraBo.cartaoVo.bandeira}"/>
+			 		</a4j:commandButton>
+				</td>
+				<td>
+					<a4j:commandButton  image="/images/buttons/master.png"
+						style="width:80px; height: 50px;"
+						oncomplete="Richfaces.showModalPanel('modalCredito')"> 
+						<f:setPropertyActionListener value="1" target="#{CompraBo.cartaoVo.bandeira}"/>
+			 		</a4j:commandButton>
+				</td>
+				
+				<td>
+					<a4j:commandButton  image="/images/buttons/american.png"
+						style="width:80px; height: 50px;"
+						oncomplete="Richfaces.showModalPanel('modalCredito')"> 
+						<f:setPropertyActionListener value="2" target="#{CompraBo.cartaoVo.bandeira}"/>
+			 		</a4j:commandButton>
+				</td>
+			</tr>
+		</table>
+		</h:panelGroup>	
+	</ui:define>
+	<ui:define name="modal">
+		<ui:include src="/inn004/inn004modalCredito.xhtml" />
+		<ui:include src="/innTeste/innTesteBoleto.xhtml" />
+	</ui:define>
+</ui:composition>
