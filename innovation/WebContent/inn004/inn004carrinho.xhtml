@@ -100,14 +100,18 @@
 			 	<tr>
 			 		<td width="100%" colspan="2">
 			 			<h:outputText value="Valor Frete: "/>
-			 			<h:outputText value="#{CarrinhoBo.totalFrete}"/>
+			 			<h:outputText value="#{CarrinhoBo.totalFrete}">
+			 				<f:convertNumber locale="pt_BR" pattern="0.00"/>
+			 			</h:outputText>
 			 			
 			 		</td>
 			 	</tr>
 			 	<tr>
 			 		<td width="100%" colspan="2">
 			 			<h:outputText value="Valor carrinho: "/>
-			 			<h:outputText id="outCart" value="#{CarrinhoBo.totalCart}"/>
+			 			<h:outputText id="outCart" value="#{CarrinhoBo.totalCart}">
+			 				<f:convertNumber locale="pt_BR" pattern="0.00"/>
+			 			</h:outputText>
 			 		</td>
 			 	</tr>
 			 	<tr>

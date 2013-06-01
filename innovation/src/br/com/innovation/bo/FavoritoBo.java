@@ -24,6 +24,7 @@ public class FavoritoBo implements Serializable {
 	private ArrayList<FavoritoVo> favoritoAl = new ArrayList<FavoritoVo>();
 	private Integer countFav;
 	private Integer idUsuario ;
+	private Integer idRemove;
 	
 	
 	
@@ -59,6 +60,14 @@ public class FavoritoBo implements Serializable {
 		this.idUsuario = idUsuario;
 	}
 
+	public Integer getIdRemove() {
+		return idRemove;
+	}
+
+	public void setIdRemove(Integer idRemove) {
+		this.idRemove = idRemove;
+	}
+
 	public String addToFavorite(){
 		
 		int existe = 0;
@@ -83,9 +92,10 @@ public class FavoritoBo implements Serializable {
 	
 	public void setInitTable(HtmlDataGrid table){}
 	
-	public void removeToFavorite(){
-		new FavoritoDao().delete(favoritoVo.getId());
-		countFav = new FavoritoDao().getCountFavorites(favoritoVo.getIdUsuario());
+	public String  removeToFavorite(){
+		new FavoritoDao().remove(idRemove);
+		countFav = new FavoritoDao().getCountFavorites(idRemove);
+		return "inn004fav";
 	}
 	
 	public String getFavotiteByUser(){

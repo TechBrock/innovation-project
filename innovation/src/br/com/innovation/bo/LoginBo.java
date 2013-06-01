@@ -116,7 +116,7 @@ public class LoginBo implements Serializable {
 		loginReturn = new LoginVo();
 		login = new LoginVo();
 		cliente = true;
-		new CarrinhoBo().zeraCarrinho();
+		 new CarrinhoBo().zeraCarrinho();
 		return "inn001";
 	}
 
