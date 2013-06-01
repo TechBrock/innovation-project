@@ -51,8 +51,11 @@
 										</a4j:commandLink>
 									</td>
 									<td width="15%">
-										<h:commandLink value="Meus pedidos" rendered="#{LoginBo.loginReturn.id != null}"
-										styleClass="links" />
+										<a4j:commandLink value="Meus pedidos" rendered="#{LoginBo.loginReturn.id != null}"
+										styleClass="links" action="#{PedidoBo.getPedidoByUser}" reRender="form1">
+										
+										<f:setPropertyActionListener value="#{LoginBo.loginReturn.id}"	target="#{PedidoBo.idUser}"/>
+									</a4j:commandLink>
 									</td>
 									<td width="30%">
 										<h:panelGroup id="panLogado">
