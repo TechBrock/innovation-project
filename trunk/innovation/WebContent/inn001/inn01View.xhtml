@@ -91,11 +91,11 @@
 										title="Add. Favorito"
 										action="#{FavoritoBo.addToFavorite}" 
 										style="width: 20px; heigth:20px;">
-										<f:setPropertyActionListener value="#{ModeloBo.modeloDet.id}" 
+										<f:setPropertyActionListener value="#{lista.id}" 
 											target="#{FavoritoBo.favoritoVo.idModelo}"/>
 										
 										<f:setPropertyActionListener value="#{LoginBo.loginReturn.id}" 
-												target="#{FavoritoBo.idUsuario}"/>
+												target="#{FavoritoBo.favoritoVo.idUsuario}"/>
 												
 								</a4j:commandButton>	
 								<a4j:commandButton  image="/images/buttons/cart.png"
