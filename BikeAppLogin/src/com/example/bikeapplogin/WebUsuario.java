@@ -1,35 +1,59 @@
 package com.example.bikeapplogin;
 
-import java.text.ParseException;
+import android.annotation.SuppressLint;
 import java.text.SimpleDateFormat;
 import java.util.Date;
-import android.annotation.SuppressLint;
-import android.os.Parcel;
-import android.os.Parcelable;
-import android.text.format.DateFormat;
 
 @SuppressLint("SimpleDateFormat")
-public class WebUsuario {//implements Parcelable {
+public class WebUsuario {
 	
-	SimpleDateFormat format = new SimpleDateFormat("dd/MM/yyyy");
+	SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd");
 	
 	private int id = 0;
 	private String nome = "t";
 	private String sobrenome = "t";
 	private Date dataNascimento;
-	private Character sexo = 'S';
+	//private Character sexo = 'S';
+	private int sexo = 0;
 	private String cpf = "t";
 	private String apelido = "t";
 	private String email = "t";
 	private String senha = "t";
-	private Character ativo = 'S';
-	private Character receberEmail = 'S';
-	private int idPerfil = 0;
+	//private Character ativo = 'S';
+	//private Character receberEmail = 'S';
+	private int ativo = 0;
+	private int receberEmail = 0;
+	private int telefoneResidencial = 0;
+	private int telefoneCelular = 0;
+	private int telefoneRecado = 0;
+	private String cep = "t";
+	private String tipo = "t";
+	private String logradouro = "t";
+	private String numero = "t";
+	private String complemento = "t";
+	private String bairro = "t";
+	private String informacoesAdicionais = "t";
+	private String cidade = "t";
+	private String estado = "t";
 	
-	public WebUsuario() {
-		// TODO Auto-generated constructor stub
+	public String getCidade() {
+		return cidade;
 	}
- 
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
+	}
+	public String getEstado() {
+		return estado;
+	}
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
+	public SimpleDateFormat getFormat() {
+		return format;
+	}
+	public void setFormat(SimpleDateFormat format) {
+		this.format = format;
+	}
 	public int getId() {
 		return id;
 	}
@@ -54,10 +78,10 @@ public class WebUsuario {//implements Parcelable {
 	public void setDataNascimento(Date dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
-	public char getSexo() {
+	public int getSexo() {
 		return sexo;
 	}
-	public void setSexo(char sexo) {
+	public void setSexo(int sexo) {
 		this.sexo = sexo;
 	}
 	public String getCpf() {
@@ -84,68 +108,79 @@ public class WebUsuario {//implements Parcelable {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	public char getAtivo() {
+	public int getAtivo() {
 		return ativo;
 	}
-	public void setAtivo(char ativo) {
+	public void setAtivo(int ativo) {
 		this.ativo = ativo;
 	}
-	public char getReceberEmail() {
+	public int getReceberEmail() {
 		return receberEmail;
 	}
-	public void setReceberEmail(char receberEmail) {
+	public void setReceberEmail(int receberEmail) {
 		this.receberEmail = receberEmail;
 	}
-	public int getIdPerfil() {
-		return idPerfil;
+	public int getTelefoneResidencial() {
+		return telefoneResidencial;
 	}
-	public void setIdPerfil(int idPerfil) {
-		this.idPerfil = idPerfil;
+	public void setTelefoneResidencial(int telefoneResidencial) {
+		telefoneResidencial = telefoneResidencial;
 	}
-	/*
-	public WebUsuario (Parcel in) throws ParseException {  
-		readFromParcel(in);  
-    } 
-
-	@Override
-	public int describeContents() {
-		// TODO Auto-generated method stub
-		return 0;
+	public int getTelefoneCelular() {
+		return telefoneCelular;
 	}
-
-	@Override
-	public void writeToParcel(Parcel out, int flags) {
-		// TODO Auto-generated method stub
-		
-		out.writeInt(id);  
-        out.writeString(nome);
-        out.writeString(sobrenome);
-        out.writeString(dataNascimento.toString());
-        out.writeLong(sexo);
-        out.writeString(cpf);
-        out.writeString(apelido);
-        out.writeString(email);
-        out.writeString(senha);
-        out.writeLong(ativo);
-        out.writeLong(receberEmail);
-        out.writeInt(idPerfil);
-        
+	public void setTelefoneCelular(int telefoneCelular) {
+		telefoneCelular = telefoneCelular;
+	}
+	public int getTelefoneRecado() {
+		return telefoneRecado;
+	}
+	public void setTelefoneRecado(int telefoneRecado) {
+		telefoneRecado = telefoneRecado;
+	}
+	public String getCep() {
+		return cep;
+	}
+	public void setCep(String cep) {
+		this.cep = cep;
+	}
+	public String getTipo() {
+		return tipo;
+	}
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
+	public String getLogradouro() {
+		return logradouro;
+	}
+	public void setLogradouro(String logradouro) {
+		this.logradouro = logradouro;
+	}
+	public String getNumero() {
+		return numero;
+	}
+	public void setNumero(String numero) {
+		this.numero = numero;
+	}
+	public String getComplemento() {
+		return complemento;
+	}
+	public void setComplemento(String complemento) {
+		this.complemento = complemento;
+	}
+	public String getBairro() {
+		return bairro;
+	}
+	public void setBairro(String bairro) {
+		this.bairro = bairro;
+	}
+	public String getInformacoesAdicionais() {
+		return informacoesAdicionais;
+	}
+	public void setInformacoesAdicionais(String informacoesAdicionais) {
+		this.informacoesAdicionais = informacoesAdicionais;
 	}
 	
-	private void readFromParcel(Parcel in) throws ParseException {  
-		  
-        id = in.readInt();
-        nome = in.readString();  
-        sobrenome = in.readString();
-        dataNascimento = (Date) format.parse(in.readString());
-        //sexo = (Character) in.readLong();
-        cpf = in.readString();
-        apelido = in.readString();
-        email = in.readString();
-        senha = in.readString();
-        //ativo = in.readLong();
-        //receberEmail = in.readLong();
-        idPerfil = in.readInt();
-    }  
-*/
+	
+	
 }

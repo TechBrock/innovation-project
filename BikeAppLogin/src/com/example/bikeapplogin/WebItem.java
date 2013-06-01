@@ -1,6 +1,6 @@
 package com.example.bikeapplogin;
 
-public class WebModelo {
+public class WebItem {
 	
 	private int id;
 	private String nome;
@@ -12,8 +12,8 @@ public class WebModelo {
 	private String informacoesAdicionais;
 	private double garantia;
 	private String material;
-	private int idClassificacao;
-	private int idTipoItem;
+	private String idClassificacao;
+	private String idTipoItem;
 	private String CaminhoImg1;
 	private String CaminhoImg2;
 	private String CaminhoImg3;
@@ -79,16 +79,16 @@ public class WebModelo {
 	public void setMaterial(String material) {
 		this.material = material;
 	}
-	public int getIdClassificacao() {
+	public String getIdClassificacao() {
 		return idClassificacao;
 	}
-	public void setIdClassificacao(int idClassificacao) {
+	public void setIdClassificacao(String idClassificacao) {
 		this.idClassificacao = idClassificacao;
 	}
-	public int getIdTipoItem() {
+	public String getIdTipoItem() {
 		return idTipoItem;
 	}
-	public void setIdTipoItem(int idTipoItem) {
+	public void setIdTipoItem(String idTipoItem) {
 		this.idTipoItem = idTipoItem;
 	}
 	public String getCaminhoImg1() {

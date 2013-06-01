@@ -14,10 +14,6 @@ public class PerfilActivity extends Activity{
 	
 	private DBHelper db;
 	private WebUsuario usuario = new WebUsuario();
-	private WebTelefone telefone = new WebTelefone();
-	private WebEndereco endereco = new WebEndereco();
-	private WebEstado estado = new WebEstado();
-	private WebCidade cidade = new WebCidade();
 	
 	@SuppressLint("NewApi")
 	@Override
@@ -35,7 +31,6 @@ public class PerfilActivity extends Activity{
 			TextView cpf = (TextView) findViewById(R.id.vCpf);
 			TextView apelido = (TextView) findViewById(R.id.vApelido);
 			TextView email = (TextView) findViewById(R.id.vEmail);
-			TextView dtUltimaModificacao = (TextView) findViewById(R.id.vUltimaModificacao);
 			TextView receberEmail = (TextView) findViewById(R.id.vReceberEmail);
 			TextView telResidencial = (TextView) findViewById(R.id.vTelResidencial);
 			TextView telCelular = (TextView) findViewById(R.id.vTelCelular);
@@ -50,7 +45,7 @@ public class PerfilActivity extends Activity{
 			TextView complemento = (TextView) findViewById(R.id.vComplemento);
 			TextView infoAdicionais = (TextView) findViewById(R.id.vInformar);
 
-			if(usuario.getAtivo() == 'S'){
+			if(usuario.getAtivo() != 0){
 
 				//informações usuário
 				if(!usuario.getNome().isEmpty())
@@ -59,53 +54,59 @@ public class PerfilActivity extends Activity{
 					sobrenome.setText(usuario.getSobrenome());
 				if(!usuario.getDataNascimento().toString().isEmpty())
 					dataNasc.setText(usuario.getDataNascimento().toString());
-				//if(usuario.getSexo() != ' ')
+				if(usuario.getSexo() != 0)
 					sexo.setText(usuario.getSexo());
-				cpf.setText(usuario.getCpf());
-				//if(usuario.getSexo() != ' ')
+				if(!usuario.getCpf().toString().isEmpty())
+					cpf.setText(usuario.getCpf());
+				if(!usuario.getApelido().toString().isEmpty())
 					apelido.setText(usuario.getApelido());
 				if(!usuario.getEmail().isEmpty())
 					email.setText(usuario.getEmail());
-				//if(!usuario.getEmail().isEmpty())
-				//	dtUltimaModificacao.setText("");
-				//if(usuario.getReceberEmail() != ' ')
+				if(usuario.getReceberEmail() != 0)
 					receberEmail.setText(usuario.getReceberEmail());
 
 				//informações telefone
-
-				telResidencial.setText(String.format("%s-%s-%s", telefone.getDdd(), getString(telefone.getNumero()).substring(1,4), getString(telefone.getNumero()).substring(5,8)));
-				if (Integer.bitCount(telefone.getNumero()) > 8){
-					telCelular.setText(String.format("%s-%s-%s", telefone.getDdd(), getString(telefone.getNumero()).substring(1,5), getString(telefone.getNumero()).substring(6,9)));
-				} else if (Integer.bitCount(telefone.getNumero()) == 8){
-					telCelular.setText(String.format("%s-%s-%s", telefone.getDdd(), getString(telefone.getNumero()).substring(1,4), getString(telefone.getNumero()).substring(5,8)));
+				if (Integer.bitCount(usuario.getTelefoneResidencial()) == 10){
+					telResidencial.setText(String.format("%s-%s-%s", getString(usuario.getTelefoneResidencial()).substring(1,2), getString(usuario.getTelefoneResidencial()).substring(3,6), getString(usuario.getTelefoneResidencial()).substring(7,10)));
+				} else {
+					telResidencial.setText(usuario.getTelefoneResidencial());
 				}
-
-				if (Integer.bitCount(telefone.getNumero()) > 8){
-					telRecado.setText(String.format("%s-%s-%s", telefone.getDdd(), getString(telefone.getNumero()).substring(1,5), getString(telefone.getNumero()).substring(6,9)));
-				} else if (Integer.bitCount(telefone.getNumero()) == 8){
-					telRecado.setText(String.format("%s-%s-%s", telefone.getDdd(), getString(telefone.getNumero()).substring(1,4), getString(telefone.getNumero()).substring(5,8)));
+				
+				if (Integer.bitCount(usuario.getTelefoneCelular()) > 10){
+					telCelular.setText(String.format("%s-%s-%s", getString(usuario.getTelefoneCelular()).substring(1,2), getString(usuario.getTelefoneCelular()).substring(3,6), getString(usuario.getTelefoneCelular()).substring(7,11)));
+				} else if (Integer.bitCount(usuario.getTelefoneCelular()) == 10){
+					telCelular.setText(String.format("%s-%s-%s", getString(usuario.getTelefoneCelular()).substring(1,2), getString(usuario.getTelefoneCelular()).substring(3,6), getString(usuario.getTelefoneCelular()).substring(7,10)));
+				} else {
+					telCelular.setText(usuario.getTelefoneCelular());
+				}
+				
+				if (Integer.bitCount(usuario.getTelefoneRecado()) > 10){
+					telRecado.setText(String.format("%s-%s-%s", getString(usuario.getTelefoneRecado()).substring(1,2), getString(usuario.getTelefoneRecado()).substring(3,6), getString(usuario.getTelefoneRecado()).substring(7,11)));
+				} else if (Integer.bitCount(usuario.getTelefoneRecado()) == 10){
+					telRecado.setText(String.format("%s-%s-%s", getString(usuario.getTelefoneRecado()).substring(1,2), getString(usuario.getTelefoneRecado()).substring(3,6), getString(usuario.getTelefoneRecado()).substring(7,10)));
+				} else {
+					telRecado.setText(usuario.getTelefoneRecado());
 				}
 
 				//informações endereço
-
-				if(!endereco.getLogradouro().isEmpty())
-					logradouro.setText(endereco.getLogradouro());
-				if(!endereco.getTipo().isEmpty())
-					tipo.setText(endereco.getTipo());
-				if(!endereco.getCep().isEmpty())
-					cep.setText(endereco.getCep());
-				if(!estado.getNome().isEmpty())
-					estadoProvincia.setText(estado.getNome());
-				if(!cidade.getNome().isEmpty())
-					cidadeProvincia.setText(cidade.getNome());
-				if(!endereco.getBairro().isEmpty())
-					bairro.setText(endereco.getBairro());
-				if(!endereco.getNumero().isEmpty())
-					numero.setText(endereco.getNumero());
-				if(!endereco.getComplemento().isEmpty())
-					complemento.setText(endereco.getComplemento());
-				if(!endereco.getInformacoesAdicionais().isEmpty())
-					infoAdicionais.setText(endereco.getInformacoesAdicionais());
+				if(!usuario.getLogradouro().isEmpty())
+					logradouro.setText(usuario.getLogradouro());
+				if(!usuario.getTipo().isEmpty())
+					tipo.setText(usuario.getTipo());
+				if(!usuario.getCep().isEmpty())
+					cep.setText(usuario.getCep());
+				if(!usuario.getEstado().isEmpty())
+					estadoProvincia.setText(usuario.getEstado());
+				if(!usuario.getCidade().isEmpty())
+					cidadeProvincia.setText(usuario.getCidade());
+				if(!usuario.getBairro().isEmpty())
+					bairro.setText(usuario.getBairro());
+				if(!usuario.getNumero().isEmpty())
+					numero.setText(usuario.getNumero());
+				if(!usuario.getComplemento().isEmpty())
+					complemento.setText(usuario.getComplemento());
+				if(!usuario.getInformacoesAdicionais().isEmpty())
+					infoAdicionais.setText(usuario.getInformacoesAdicionais());
 			} else {
 				Toast.makeText(this, "Este usuário esta inativo", Toast.LENGTH_SHORT).show();
 			}

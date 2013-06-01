@@ -14,6 +14,7 @@ public class RequisicoesHttp {
 	private static InputStream inputS;
 	private WebUsuario usuario;
 
+	@SuppressWarnings("finally")
 	public static String get(String endereco){
 		
 		try{
@@ -24,12 +25,13 @@ public class RequisicoesHttp {
 			
 			jSon = scn.useDelimiter("\\A").next();
 
-			return null;
+			return jSon;
 		}catch(Exception ex){
 			ex.printStackTrace();
 			return null;
 		}finally{
 			scn.close();
+			return jSon;
 		}
 
 	}

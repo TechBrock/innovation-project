@@ -7,18 +7,14 @@ public class WebCompra {
 	private int id;
 	private int ordemCompra;
 	private int qtdParcelas;
-	private double Desconto;
 	private double valorFrete;
 	private double valorCompra;
 	private int prazo;
-	private char aprovado;
 	private Date dataPedido;
 	private Date dataEntrega;
-	private int idMeioPagamento;
-	private int idTipoFrete;
-	private int idjuros;
-	private int idEndereco;
-	private int idUsusario;
+	private String meioPagamento;
+	private String tipoFrete;
+	
 	public int getId() {
 		return id;
 	}
@@ -36,12 +32,6 @@ public class WebCompra {
 	}
 	public void setQtdParcelas(int qtdParcelas) {
 		this.qtdParcelas = qtdParcelas;
-	}
-	public double getDesconto() {
-		return Desconto;
-	}
-	public void setDesconto(double desconto) {
-		Desconto = desconto;
 	}
 	public double getValorFrete() {
 		return valorFrete;
@@ -61,12 +51,6 @@ public class WebCompra {
 	public void setPrazo(int prazo) {
 		this.prazo = prazo;
 	}
-	public char getAprovado() {
-		return aprovado;
-	}
-	public void setAprovado(char aprovado) {
-		this.aprovado = aprovado;
-	}
 	public Date getDataPedido() {
 		return dataPedido;
 	}
@@ -79,35 +63,17 @@ public class WebCompra {
 	public void setDataEntrega(Date dataEntrega) {
 		this.dataEntrega = dataEntrega;
 	}
-	public int getIdMeioPagamento() {
-		return idMeioPagamento;
+	public String getMeioPagamento() {
+		return meioPagamento;
 	}
-	public void setIdMeioPagamento(int idMeioPagamento) {
-		this.idMeioPagamento = idMeioPagamento;
+	public void setMeioPagamento(String meioPagamento) {
+		this.meioPagamento = meioPagamento;
 	}
-	public int getIdTipoFrete() {
-		return idTipoFrete;
+	public String getTipoFrete() {
+		return tipoFrete;
 	}
-	public void setIdTipoFrete(int idTipoFrete) {
-		this.idTipoFrete = idTipoFrete;
+	public void setTipoFrete(String tipoFrete) {
+		this.tipoFrete = tipoFrete;
 	}
-	public int getIdjuros() {
-		return idjuros;
-	}
-	public void setIdjuros(int idjuros) {
-		this.idjuros = idjuros;
-	}
-	public int getIdEndereco() {
-		return idEndereco;
-	}
-	public void setIdEndereco(int idEndereco) {
-		this.idEndereco = idEndereco;
-	}
-	public int getIdUsusario() {
-		return idUsusario;
-	}
-	public void setIdUsusario(int idUsusario) {
-		this.idUsusario = idUsusario;
-	}
-
+	
 }

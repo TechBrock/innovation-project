@@ -1,42 +1,31 @@
 package com.example.bikeapplogin;
 
-import java.util.Date;
-
-import org.json.JSONArray;
-import org.json.JSONObject;
-
-import com.example.bikeapplogin.buscaPerfilTeste.PerfilInfo;
-
 import android.os.AsyncTask;
 import android.os.Bundle;
-//import android.annotation.SuppressLint;
-//import android.app.ActionBar.LayoutParams;
 import android.app.Activity;
 import android.app.ProgressDialog;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-//import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.View;
 import android.widget.EditText;
-//import android.widget.ImageView;
-//import android.widget.PopupWindow;
 import android.widget.Toast;
 
 public class MainActivity extends Activity{
 	
 	private DBHelper db;
-	WebUsuario user;
+	private EditText usr;
+	private EditText psw;
+	private String conteudo = null;
 
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        
-        user = new WebUsuario();
-		//new PerfilInfo().execute();
+        usr = (EditText) findViewById(R.id.user);
+    	psw = (EditText) findViewById(R.id.password);
 
         Cursor crs = null;
         
@@ -76,41 +65,43 @@ public class MainActivity extends Activity{
     
 	private void goToActivity(Class<? extends Activity> activityClass) {
         Intent newActivity = new Intent(this, activityClass);
-        
-        //newActivity.putExtra("usuario", user); //**************************** put extras passando o objeto
-        
         startActivity(newActivity);
     }
+	
+	public void login (){
+    	
+    	//Toast.makeText(this, conteudo, Toast.LENGTH_LONG).show();
+    	
+    	if("true".equals(conteudo)){
+    		if ((usr.getText().toString().trim().length() > 0) && (psw.getText().toString().trim().length() > 0)){
+    			SQLiteDatabase sql = db.getWritableDatabase();
+    		
+    			ContentValues conteudo = new ContentValues();
+    			conteudo.put("USUARIO", usr.getText().toString());
+    			conteudo.put("SENHA", psw.getText().toString());
+    		
+    			sql.insert("LOGIN", null, conteudo);
+    		
+    			usr.setText("");
+    			psw.setText("");
     
-    public void enter (View v){
-    	
-    	EditText usr = (EditText) findViewById(R.id.user);
-    	EditText psw = (EditText) findViewById(R.id.password);
-    	
-    	if((usr.getText().toString().trim().length() > 0) || (psw.getText().toString().trim().length() > 0)){
-    		SQLiteDatabase sql = db.getWritableDatabase();
-    		
-    		ContentValues conteudo = new ContentValues();
-    		conteudo.put("USUARIO", usr.getText().toString());
-    		conteudo.put("SENHA", psw.getText().toString());
-    		
-    		sql.insert("LOGIN", null, conteudo);
-    		
-    		usr.setText("");
-    		psw.setText("");
-    		
-    		if(user.getAtivo() == 'S'){
     			goToActivity(PerfilActivity.class); 
-			} else {
-				Toast.makeText(this, "Este usuário esta inativo, entre em contato com um administrador do site", Toast.LENGTH_LONG).show();
-			}
 
+    		} else {
+    			Toast.makeText(this, "Campo Usuário ou senha em branco !", Toast.LENGTH_SHORT).show();
+    		}   
     	} else {
-    		Toast.makeText(this, "Campo Usuário ou senha em branco !", Toast.LENGTH_SHORT).show();
-    	}   	
+    		Toast.makeText(this, "Usuário ou senha invalidos !", Toast.LENGTH_SHORT).show();
+    	}
+	};
+    
+    public void enter (View v) throws InterruptedException{
+    	new PerfilInfo().execute();
+    	Thread.sleep(5000);
+    	login ();
     }
     
-    public class PerfilInfo extends AsyncTask<WebUsuario, Void, WebUsuario[]> {
+    public class PerfilInfo extends AsyncTask<String, Void, String> {
 		private ProgressDialog barraCarregar;
 		
 		@Override
@@ -123,59 +114,24 @@ public class MainActivity extends Activity{
 		}
 		
 		@Override
-		protected void onPostExecute(WebUsuario[] result) {
+		protected void onPostExecute(String result) {
 			// TODO Auto-generated method stub
 			super.onPostExecute(result);
 			
 			if(result != null){
-				
-			}
-			
-			barraCarregar.dismiss();
+				barraCarregar.dismiss();
+			}			
 		}
 
 		@Override
-		protected WebUsuario[] doInBackground(WebUsuario... params) {
+		protected String doInBackground(String... params) {
 			// TODO Auto-generated method stub
 			
-			String urlInfoPerfil = "http:\\www."; //************************ URL do web service
-			String conteudo = RequisicoesHttp.get(urlInfoPerfil);
-			
-			WebUsuario[] usuarios = null;
-			
-			try {
-				JSONArray request = new JSONArray(conteudo);
-				
-				usuarios = new WebUsuario[request.length()];
-				
-				for (int i = 0; i < request.length(); i++){
-					JSONObject usuario = request.getJSONObject(i);
-					
-					user.setId(usuario.getInt("id"));
-					user.setNome(usuario.getString("nome"));
-					user.setSobrenome(usuario.getString("sobrenome"));
-					user.setDataNascimento((Date) usuario.get("dataNascimento"));
-					user.setSexo((Character) usuario.get("sexo"));
-					user.setCpf(usuario.getString("cpf"));
-					user.setApelido(usuario.getString("apelido"));
-					user.setEmail(usuario.getString("email"));
-					user.setSenha(usuario.getString("senha"));
-					user.setAtivo((Character) usuario.get("ativo"));
-					user.setReceberEmail((Character) usuario.get("receberEmail"));
-					user.setIdPerfil(usuario.getInt("idPerfil"));
-					
-					usuarios[i] = user;
-				}
-					
-				return usuarios;
-				
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-				throw new RuntimeException(e);
+			if(usr.getText().toString() != null && psw.getText().toString() != null){
+				String urlInfoPerfil = String.format("http://ec2-54-232-215-79.sa-east-1.compute.amazonaws.com:8080/metodo/MetodoService/getlogin/%s-%s", usr.getText().toString(), psw.getText().toString());
+				conteudo = RequisicoesHttp.get(urlInfoPerfil);
 			}
-			
+			return conteudo;			
 		}
-		
 	}
 }

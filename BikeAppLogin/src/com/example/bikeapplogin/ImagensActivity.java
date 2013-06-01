@@ -13,6 +13,7 @@ import android.view.ViewGroup.LayoutParams;
 
 public class ImagensActivity extends Activity implements ViewFactory{
 	
+	//private int[] fig = {R.drawable.b1, R.drawable.b2, R.drawable.b3, R.drawable.b4};
 	private int[] fig = {R.drawable.b1, R.drawable.b2, R.drawable.b3, R.drawable.b4};
 	private ImageSwitcher imgSw;
 	
