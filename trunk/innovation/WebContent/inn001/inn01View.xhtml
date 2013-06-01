@@ -18,6 +18,7 @@
 	<ui:define name="corpo">
 		<t:saveState value="#{ModeloBo}"/>
 		<t:saveState value="#{CarrinhoBo}"/>
+		<t:saveState value="#{FavoritoBo}"/>
 		<div id="sliderFrame">
 			<div id="ribbon" />
 			<div id="slider">
@@ -70,7 +71,9 @@
 						<tr>
 							<td align="center">
 								<h:outputText value="Por apenas: "/>
-								<h:outputText value="#{lista.precoAtual}" styleClass="outputPreco"/>
+								<h:outputText value="#{lista.precoAtual}" styleClass="outputPreco">
+									<f:convertNumber locale="pt_BR" pattern="0.00"/>
+								</h:outputText>
 							</td>
 						</tr>
 						<tr>

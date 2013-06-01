@@ -203,6 +203,31 @@ public class FavoritoDao {
 		return id;
 
 	}
+	
+	public int remove(Integer idRemove){
+		Connection conn = null;
+		Statement stm = null;
+		StringBuilder query = new StringBuilder();
+		int countRemove = 0;
+		
+		query.append("DELETE FROM tb_favorito WHERE id = "+idRemove);
+		
+		try{
+			conn = Conexao.connect();
+			stm = conn.createStatement();
+			countRemove = stm.executeUpdate(query.toString());
+		} catch (SQLException sqlex) {
+			System.out.println("ERRO: "+getClass().getCanonicalName()+".remove()");
+			sqlex.printStackTrace();
 
+		} catch(Exception e) {
+			System.out.println("ERRO: "+getClass().getCanonicalName()+".remove()");
+			e.printStackTrace();
+
+		} finally {
+			Conexao.disconnect(null, stm, conn);
+		}
+		return countRemove;
+	}
 
 }

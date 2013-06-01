@@ -90,5 +90,18 @@ html, body {
 	text-align:justify;
 }
 
+.textoTitulo{
+	font-size: 11px;
+	color:#34495e;
+    font-family: arial;
+	text-align:justify;
+}
+
+.textoLocalizacao{
+	font-size: 15px;
+	color:#31ACD6;
+    font-family: verdana;
+	text-align:justify;
+}
 
 
