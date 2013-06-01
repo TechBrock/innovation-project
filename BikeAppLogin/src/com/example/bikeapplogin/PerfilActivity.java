@@ -2,26 +2,70 @@ package com.example.bikeapplogin;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class PerfilActivity extends Activity{
 	
 	private DBHelper db;
-	private WebUsuario usuario = new WebUsuario();
+	private WebUsuario usuario;
+	private String usr;
+	private	String psw;
+	private String conteudo = null;
+	//private WebUsuario[] pSTask;
+	private PerfilService p;
 	
-	@SuppressLint("NewApi")
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.perfil);
 		
+		Cursor crs = null;
+        
+        try{
+        
+        	db = new DBHelper(this);
+
+        	SQLiteDatabase slc = db.getReadableDatabase();
+        	crs = slc.rawQuery("SELECT USUARIO, SENHA FROM LOGIN", null);
+        	crs.moveToFirst();
+
+        	if (crs.getCount() > 0){
+        		usr = crs.getString(0);
+        		psw = crs.getString(1);
+        	}
+        }catch(Exception ex){
+        	Toast.makeText(this, "Registros não encontrados na tabela !", Toast.LENGTH_SHORT).show();
+        }finally{
+        	crs.close();
+        }
+		
+		p = new PerfilService(PerfilActivity.this, usr, psw, conteudo);
+		p.execute();
+		usuario = p.getUsuario();
+		
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+    	perfil ();
+		
+	}
+	
+	@SuppressLint("NewApi")
+	private void perfil(){
 		try{
 			
 			TextView nome = (TextView) findViewById(R.id.vNome);
@@ -166,5 +210,7 @@ public class PerfilActivity extends Activity{
     public void callEditar (View v){
     	goToActivity(PerfilPersonalizadoActivity.class);
     }
+    
+    
 	
 }

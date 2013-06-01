@@ -68,6 +68,12 @@ public class MainActivity extends Activity{
         startActivity(newActivity);
     }
 	
+	public void enter (View v) throws InterruptedException{
+    	new  LoginService(MainActivity.this, usr.getText().toString(), psw.getText().toString(), conteudo).execute();
+    	Thread.sleep(5000);
+    	login ();
+    }
+	
 	public void login (){
     	
     	//Toast.makeText(this, conteudo, Toast.LENGTH_LONG).show();
@@ -94,44 +100,4 @@ public class MainActivity extends Activity{
     		Toast.makeText(this, "Usuário ou senha invalidos !", Toast.LENGTH_SHORT).show();
     	}
 	};
-    
-    public void enter (View v) throws InterruptedException{
-    	new PerfilInfo().execute();
-    	Thread.sleep(5000);
-    	login ();
-    }
-    
-    public class PerfilInfo extends AsyncTask<String, Void, String> {
-		private ProgressDialog barraCarregar;
-		
-		@Override
-		protected void onPreExecute() {
-			// TODO Auto-generated method stub
-			super.onPreExecute();
-			
-			barraCarregar = new ProgressDialog(MainActivity.this);
-			barraCarregar.show();
-		}
-		
-		@Override
-		protected void onPostExecute(String result) {
-			// TODO Auto-generated method stub
-			super.onPostExecute(result);
-			
-			if(result != null){
-				barraCarregar.dismiss();
-			}			
-		}
-
-		@Override
-		protected String doInBackground(String... params) {
-			// TODO Auto-generated method stub
-			
-			if(usr.getText().toString() != null && psw.getText().toString() != null){
-				String urlInfoPerfil = String.format("http://ec2-54-232-215-79.sa-east-1.compute.amazonaws.com:8080/metodo/MetodoService/getlogin/%s-%s", usr.getText().toString(), psw.getText().toString());
-				conteudo = RequisicoesHttp.get(urlInfoPerfil);
-			}
-			return conteudo;			
-		}
-	}
 }
