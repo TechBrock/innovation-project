@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	template="/inn000/templateMaster.xhtml">
+	
+	<ui:define name="head">
+		<link href="../themes/1/js-image-slider.css" rel="stylesheet" type="text/css" />
+		<script src="../themes/1/js-image-slider.js" type="text/javascript" />
+	</ui:define>
+
+	<ui:define name="corpo">
+		<t:saveState value="#{ModeloBo}"/>
+		<t:saveState value="#{CarrinhoBo}"/>
+		<div id="sliderFrame">
+			<div id="ribbon" />
+			<div id="slider">
+				<img src="../images/promocao/pro1a.jpg"	alt="Bicicleta Caloi - 29" /> 
+				<img src="../images/promocao/pro2a.jpg" alt="Bicicleta Caloi Urbe" /> 
+				<img src="../images/promocao/pro3a.jpg" alt="Bicicleta Mormaii Innovation" />
+			</div>
+		</div>
+		<rich:spacer height="50px"></rich:spacer>
+		<table width="100%">
+			<tr>
+				<td align="right">
+					<a4j:commandButton image="/images/buttons/cart.png" 
+						style="width: 100px; height: 80px"
+						action="inn004carrinho"
+						reRender="form1"/>
+					<h:outputText id="tqdCarrinho" value="#{CarrinhoBo.carrinhoAl.size()}"/>
+				</td>
+			</tr>
+		</table>
+		
+			<div align="center" style="width: 100%;"	>
+			 <rich:dataGrid
+			 	id="gridProdutos" 
+			 	binding="#{ModeloBo.initTable}"
+			 	value="#{ModeloBo.modeloAl}" 
+			 	var="lista" 
+			 	columns="5" 
+			 	elements="20" 
+			 	width="400px">
+				 
+					<div align="center" 
+						style="border:none; width: 220px; padding-top: 3px;">
+						<table width="90%">
+						<tr>
+							<td>
+								<a4j:mediaOutput element="img" mimeType="application/jpg" 
+									cacheable="false"
+									createContent="#{ModeloBo.montaImagem}"
+									value="#{lista.id}"
+									session="true"
+									style="width: 200px; heigh: 200px;"/>		
+							</td>
+						</tr>
+						<tr>
+							<td align="center">
+								<h:outputText value="#{lista.nome}" styleClass="outputTituloBik"/>
+							</td>
+						</tr>
+						<tr>
+							<td align="center">
+								<h:outputText value="Por apenas: "/>
+								<h:outputText value="#{lista.precoAtual}" styleClass="outputPreco"/>
+							</td>
+						</tr>
+						<tr>
+							<td align="center">
+								<div class="divBtnBike">
+									<a4j:commandButton  image="/images/buttons/search.png"
+										style="width: 20px; heigth:20px;" 
+										title="Detalhar"
+										oncomplete="Richfaces.showModalPanel('modalDetalhar')"
+										reRender="viewModalDetalhar:formModal">
+										<f:setPropertyActionListener value="#{lista}"
+									 	target="#{ModeloBo.modeloDet}"/>
+								</a4j:commandButton>
+								<a4j:commandButton  image="/images/buttons/heart.png"
+										title="Add. Favorito"
+										action="#{FavoritoBo.addToFavorite}" 
+										style="width: 20px; heigth:20px;">
+										<f:setPropertyActionListener value="#{ModeloBo.modeloDet.id}" 
+											target="#{FavoritoBo.favoritoVo.idModelo}"/>
+										
+										<f:setPropertyActionListener value="#{LoginBo.loginReturn.id}" 
+												target="#{FavoritoBo.idUsuario}"/>
+												
+								</a4j:commandButton>	
+								<a4j:commandButton  image="/images/buttons/cart.png"
+										style="width: 20px; heigth:20px;" 
+										title="Add. Carrinho"
+										action="#{CarrinhoBo.addToCart}"
+										reRender="form1:tqdCarrinho">
+										
+										<f:setPropertyActionListener value="#{lista}"
+									 	target="#{CarrinhoBo.modeloVo}"/>
+									 	
+									 	<f:setPropertyActionListener value="#{LoginBo.loginReturn.id}" 
+												target="#{CarrinhoBo.carrinhoVo.idUsuario}"/>
+										
+								</a4j:commandButton>	
+								
+								</div>
+								
+							</td>
+						</tr>
+					</table>
+					</div>
+			</rich:dataGrid>
+			</div>
+	</ui:define>
+	<ui:define name="modal">
+		<ui:include src="/inn001/inn01Detalhe.xhtml"/>
+	</ui:define>
+</ui:composition>

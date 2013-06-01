@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	template="/inn000/templateViewSemFiltro.xhtml">
+
+	<ui:define name="conteudo">
+		<t:saveState value="#{ModeloBo}"/>
+		<h:outputText value="#{ModeloBo.erroSubmit}" />
+		<div class="login_ident" style="height: 850px; width: 800px;">
+			<table>
+				<tr>
+					<td colspan="2">
+						<h:panelGrid styleClass="panelTitulos">
+						<h:outputText value="Produto" styleClass="outputTextTitulo" />
+						</h:panelGrid>
+					</td>
+				</tr>
+				<tr>
+						<td width="400px">
+							<h:outputText value="Nome"/>
+						</td>
+						<td width="400px">
+							<h:inputText styleClass="login-field" value="#{ModeloBo.modeloInsert.nome}"/>
+							<h:outputText value="● Preencha o campo NOME"
+								styleClass="outputTextErro"
+								rendered="#{!ModeloBo.nomeValido}"/>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<h:outputText value="Característica"/>
+						</td>
+						<td>
+							<h:inputTextarea styleClass="login-field" 
+								value="#{ModeloBo.modeloInsert.caract}"
+								rows="3" cols="50"/>
+							<h:outputText value="● Preencha o campo CARACTERÍSTICA" 
+								styleClass="outputTextErro"
+								rendered="#{!ModeloBo.carcValido}"/>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<h:outputText value="Quantidade"/>
+						</td>
+						<td>
+							<h:inputText styleClass="login-field" 
+								value="#{ModeloBo.modeloInsert.quantidade}" size="10"/>
+							<h:outputText value="● Preencha o campo QUANTIDADE" 
+								styleClass="outputTextErro"
+								rendered="#{!ModeloBo.qtdValido}"/>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<h:outputText value="Tamanho quadro (polegadas)" />
+						</td>
+						<td>
+							<h:inputText styleClass="login-field" 
+								value="#{ModeloBo.modeloInsert.tamanho}" size="10">
+							</h:inputText>
+							<h:outputText value="● Preencha o campo TAMANHO" 
+								styleClass="outputTextErro"
+								rendered="#{!ModeloBo.tamValido}"/>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<h:outputText value="Dimensões do produto (cm)"/>
+						</td>
+						<td>
+							<h:inputText styleClass="login-field" 
+								value="#{ModeloBo.modeloInsert.dimensao}" size="10"/>
+							<h:outputText value="● Preencha o campo DIMENSÃO" 
+								styleClass="outputTextErro"
+								rendered="#{!ModeloBo.dimValido}"/>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<h:outputText value="Peso máximo suportado (kg)"/>
+						</td>
+						<td>
+							<h:inputText styleClass="login-field" 
+								value="#{ModeloBo.modeloInsert.peso}" size="10"/>
+							<h:outputText value="● Preencha o campo PESO" 
+								styleClass="outputTextErro"
+								rendered="#{!ModeloBo.pesoValido}"/>
+						</td>
+					</tr>
+					<tr>
+						<td width="200px">
+							<h:outputText value="Aro"/>
+						</td>
+						<td width="600px">
+							<h:inputText styleClass="login-field" value="#{ModeloBo.modeloInsert.aro}"/>
+							<h:outputText value="● Preencha o campo ARO" 
+								styleClass="outputTextErro"
+								rendered="#{!ModeloBo.aroValido}"/>
+						</td>
+					</tr>
+					<tr>
+						<td width="200px">
+							<h:outputText value="Material"/>
+						</td>
+						<td width="600px">
+							<h:inputText styleClass="login-field" value="#{ModeloBo.modeloInsert.material}"/>
+							<h:outputText value="● Preencha o campo MATERIAL" 
+								styleClass="outputTextErro"
+								rendered="#{!ModeloBo.materialValido}"/>
+						</td>
+					</tr>
+					<tr>
+						<td width="200px">
+							<h:outputText value="Garantia (anos)"/>
+						</td>
+						<td width="600px">
+							<h:inputText styleClass="login-field" value="#{ModeloBo.modeloInsert.garantia}"/>
+							<h:outputText value="● Preencha o campo GARANTIA" 
+								styleClass="outputTextErro"
+								rendered="#{!ModeloBo.garantiaValido}"/>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<h:outputText value="Informações Adicionais"/>
+						</td>
+						<td>
+							<h:inputTextarea styleClass="login-field" 
+								value="#{ModeloBo.modeloInsert.infAdc}"
+								rows="3" cols="50"/>
+							<h:outputText value="● Preencha o campo INFORMAÇÕES ADICIONAIS" 
+								styleClass="outputTextErro"
+								rendered="#{!ModeloBo.infAdcValido}"/>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<h:outputText value="Classificação"/>
+						</td>
+						<td>
+							<h:selectOneMenu value="#{ModeloBo.modeloInsert.idClassificacao}">
+								<f:selectItems value="#{ClassificacaoBo.tipoProdutoSelectItem}"/>
+							</h:selectOneMenu>
+							<h:outputText value="Selecione uma CLASSIFICAÇÃO" 
+								rendered="#{!ModeloBo.classValido}"/>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<h:outputText value="Cor"/>
+						</td>
+						<td>
+							<h:selectOneMenu value="#{ModeloBo.modeloInsert.idCor}">
+								<f:selectItems value="#{CorBo.corItem}"/>	
+							</h:selectOneMenu>
+							<h:outputText value="Selecione uma COR" 
+								styleClass="outputTextErro"
+								rendered="#{!ModeloBo.corValido}"/>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<h:outputText value="Tipo"/>
+						</td>
+						<td>
+							<h:selectOneMenu value="#{ModeloBo.modeloInsert.idTipo}">
+								<f:selectItems value="#{TipoProdutoBo.tipoProdutoSelectItem}"/>
+							</h:selectOneMenu>
+							<h:outputText value="Selecione um TIPO" 
+								rendered="#{!ModeloBo.tipoValido}"/>
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<h:outputText value="Preço"/>
+						</td>
+						<td>
+							<h:inputText value="#{ModeloBo.modeloInsert.precoAtual}" styleClass="login-field" />
+							<h:outputText value="Preencha o campo PREÇO" 
+								rendered="#{!ModeloBo.tipoValido}"/>
+						</td>
+					</tr>
+		
+		
+					<tr>
+						<td width="200px">
+							<h:outputText value="Imagem Principal"/>
+						</td>
+						<td>
+							<a4j:commandButton title="upload Imagem 1"
+								image="../images/icon/upload.png" 
+								style="width: 40px; height:40px;"
+								oncomplete="Richfaces.showModalPanel('modalUp1')"/>
+						</td>
+					</tr>
+					<tr>
+						<td width="200px">
+							<h:outputText value="Imagem detalhe 1"/>
+						</td>
+						<td>
+							<a4j:commandButton title="upload Imagem 2"
+								image="../images/icon/upload.png" 
+								style="width: 40px; height:40px;"
+								oncomplete="Richfaces.showModalPanel('modalUp2')"/>
+						</td>
+					</tr>
+					<tr>
+						<td width="200px">
+							<h:outputText value="Imagem detalhe 1"/>
+						</td>
+						<td>
+							<a4j:commandButton title="upload Imagem 3"
+								image="../images/icon/upload.png" 
+								style="width: 40px; height:40px;"
+								oncomplete="Richfaces.showModalPanel('modalUp3')"/>
+						</td>
+					</tr>
+					<tr>
+						<td width="200px">
+							<h:outputText value="Imagem detalhe 3"/>
+						</td>
+						<td>
+							<a4j:commandButton title="upload Imagem 4"
+								image="../images/icon/upload.png" 
+								style="width: 40px; height:40px;"
+								oncomplete="Richfaces.showModalPanel('modalUp4')"/>
+						</td>
+					</tr>
+				<tr>
+				<td colspan="2" align="center">
+						<a4j:commandButton value="Cancelar" 
+							action="#{ModeloBo.insereProduto}" reRender="form1"
+							styleClass="btn btn-large btn-block btn-danger"/>
+						<a4j:commandButton value="Salvar" 
+							action="#{ModeloBo.insereProduto}" reRender="form1"
+							styleClass="btn btn-large btn-block btn-danger"/>
+					</td>
+				</tr>
+			</table>
+		</div>
+	</ui:define>
+	<ui:define name="modal">
+		<ui:include src="/inn004/inn004modalUp1.xhtml"/>
+		<ui:include src="/inn004/inn004modalUp2.xhtml"/>
+		<ui:include src="/inn004/inn004modalUp3.xhtml"/>
+		<ui:include src="/inn004/inn004modalUp4.xhtml"/>
+	</ui:define>
+</ui:composition>

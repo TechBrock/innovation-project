@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	template="/inn000/templateViewSemFiltro.xhtml">
+
+	<ui:define name="conteudo">
+		<t:saveState value="#{UsuarioBo}"/>
+	
+		<table border="0">
+			<tr>
+				<td>
+					<table>
+						<tr>
+							<td colspan="2" align="center">
+								<h:outputText value="#{UsuarioBo.erroSubmit}" />
+							</td>
+						</tr>
+						<tr>
+							<td rowspan="9" valign="top">
+								<h:graphicImage url="/images/icon/user.png" width="100px" height="100px"/>
+							</td>
+							<td>
+								<div class="login-form">
+									<table>
+										<tr>
+											<td colspan="3" align="center">
+												<h:panelGrid styleClass="panelTitulos">
+													<h:outputText value="Meus Dados" styleClass="outputTextTitulo"/>
+												</h:panelGrid>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<h:outputText value="Como prefere ser chamado"/>
+											</td>
+											<td>
+												<h:inputText id="usuApelido" size="50" value="#{UsuarioBo.usuVo.apelido}" maxlength="30"
+													 styleClass="login-field"/>
+												<h:outputText value="● Preencha o campo APELIDO" 
+													styleClass="outputTextErro"
+													rendered="#{!UsuarioBo.apelidoValido}"/>
+											</td>		
+										</tr>
+										<tr>
+											<td>
+												<h:outputText value="Nome"/>
+											</td>
+											<td>
+												<h:inputText id="usuNome" size="50" value="#{UsuarioBo.usuVo.nome}" maxlength="30" styleClass="login-field"/>
+												<h:outputText value="● Preencha o campo NOME" 
+													styleClass="outputTextErro"
+													rendered="#{!UsuarioBo.nomeValido}"/>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<h:outputText value="Sobrenome"/>
+											</td>
+											<td>
+												<h:inputText id="usuSobrenome" size="50" value="#{UsuarioBo.usuVo.sobrenome}" maxlength="30" styleClass="login-field"/>
+												<h:outputText value="● Preencha o campo SOBRENOME!" 
+													styleClass="outputTextErro"
+													rendered="#{!UsuarioBo.sobrenomeValido}"/>
+											</td>
+										</tr>	
+										<tr>
+											<td>
+												<h:outputText value="Data de Nascimento"/>
+											</td>
+											<td>
+												<table>
+													<tr>
+														<td>
+															<rich:calendar id="ldboDataStatusParam" 
+																locale="pt_BR" inputClass="maskDate" value="#{UsuarioBo.usuVo.dataNascimento}"
+																datePattern="dd/MM/yyyy"
+																weekDayLabelsShort="Dom, Seg, Ter, Qua, Qui, Sex, Sáb">
+																<f:convertDateTime pattern="dd/MM/yyyy HH:mm:ss" locale="pt_BR" timeZone="America/Sao_Paulo"/>
+															</rich:calendar>
+															<h:outputText value="● Preencha o campo DATA DE NASCIMENTO" 
+																styleClass="outputTextErro"
+																rendered="#{!UsuarioBo.dataNascValido}"/>
+														</td>
+													</tr>
+												</table>
+											</td> 
+										</tr>
+										<tr>
+											<td>
+												<h:outputText value="Sexo"/>
+											</td>
+											<td>
+												<h:selectOneRadio value="#{UsuarioBo.usuVo.sexo}">
+													<f:selectItem  itemLabel="Feminino" itemValue="F"/>
+													<f:selectItem  itemLabel="Masculino" itemValue="M"/>
+												</h:selectOneRadio>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<h:outputText value="CPF"/>
+											</td>
+											<td>
+												<h:inputText id="usuCpf" styleClass="login-field" value="#{UsuarioBo.usuVo.cpf}">
+													<rich:jQuery selector="#usuCpf" query="mask('999.999.999-99')" timing="onload"/>
+												</h:inputText>
+												<h:outputText value="● Preencha o campo CPF" 
+													styleClass="outputTextErro"
+													rendered="#{!UsuarioBo.cpfValido}"/>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<h:outputText value="Telefone Residencial"/>
+											</td>
+											<td>
+												<h:inputText size="2" maxlenght="2" value="#{UsuarioBo.telResidencial.ddd}" maxlength="2"
+													styleClass="login-field"/>
+												<h:inputText id="usuTelefoneResid" maxlenght="8" size="8" value="#{UsuarioBo.telResidencial.numero}" maxlength="8"
+													styleClass="login-field"/>
+												<h:outputText value="● Preencha o campo TELEFONE RESIDENCIAL" 
+													styleClass="outputTextErro"
+													rendered="#{!UsuarioBo.telefoneValido}"/>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<h:outputText value="Telefone Comercial"/>
+											</td>
+											<td>
+												<h:inputText size="2" maxlenght="2" value="#{UsuarioBo.telComercial.ddd}"
+													styleClass="login-field"/>
+												<h:inputText size="8" maxlenght="8" value="#{UsuarioBo.telComercial.numero}"
+													styleClass="login-field"/>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<h:outputText value="Telefone Celular"/>
+											</td>
+											<td>
+												<h:inputText size="2" maxlenght="2" value="#{UsuarioBo.telCelular.ddd}"
+													styleClass="login-field"/>
+												<h:inputText size="8" maxlenght="8" value="#{UsuarioBo.telCelular.numero}"
+													styleClass="login-field"/>
+											</td>
+										</tr>
+									</table>
+								</div>
+							</td>
+							</tr>
+							</table>
+							<br/>
+							<table>
+							
+							<tr>
+							<td rowspan="9" valign="top">
+								<h:graphicImage url="/images/icon/home.png" width="100px" height="100px"/>
+							</td>
+							<td>
+								<div class="login-form" >
+									<table>
+										<tr>
+											<td colspan="3" align="center">
+												<h:panelGrid styleClass="panelTitulos">
+													<h:outputText value="Endereço" styleClass="outputTextTitulo"/>
+												</h:panelGrid>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<h:outputText value="CEP"/>
+											</td>
+											<td>
+												<h:inputText size="50" styleClass="login-field"
+													value="#{UsuarioBo.enderecoIns.cep}" >
+														<a4j:support reRender="logr,bair,cida,esta" event="onchange" action="#{UsuarioBo.buscarCep}"/>
+													</h:inputText>
+													
+												<h:outputText value="● Preencha o campo CEP" 
+													styleClass="outputTextErro"
+													rendered="#{!UsuarioBo.cepValido}"/>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<h:outputText value="Endereço"/>
+											</td>
+											<td>
+												<h:inputText size="50" styleClass="login-field" id="logr"
+													value="#{UsuarioBo.enderecoIns.logradouro}"/>
+													
+												<h:outputText value="● Preencha o campo ENDEREÇO" 
+													styleClass="outputTextErro"
+													rendered="#{!UsuarioBo.endValido}"/>
+											</td>
+										</tr>
+										<tr>
+											<td colspan="2">
+												<table>
+													<tr>
+														<td>
+															<h:outputText value="Numero"/>
+														</td>
+														<td>
+															<h:inputText size="5" styleClass="login-field" 
+																value="#{UsuarioBo.enderecoIns.numero}"/>
+																<h:outputText value="● Preencha o campo NÚMERO" 
+																	styleClass="outputTextErro"
+																	rendered="#{!UsuarioBo.numValido}"/>
+														</td>
+														<td>
+															<h:outputText value="Complemento"/>
+														</td>
+														<td>
+															<h:inputText size="5" styleClass="login-field"
+																value="#{UsuarioBo.enderecoIns.complemento}"/>
+														</td>
+													</tr>
+												</table>											
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<h:outputText value="Bairro"/>
+											</td>
+											<td>
+												<h:inputText size="50" styleClass="login-field" id="bair"
+													value="#{UsuarioBo.enderecoIns.bairro}"/>
+												
+												<h:outputText value="● Preencha o campo BAIRRO" 
+													styleClass="outputTextErro"
+													rendered="#{!UsuarioBo.bairroValido}"/>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<h:outputText value="Cidade"/>
+											</td>
+											<td>
+												<h:inputText size="50" styleClass="login-field" id="cida"
+													value="#{UsuarioBo.enderecoIns.nomeCidade}"/>
+													
+												<h:outputText value="● Preencha o campo CIDADE" 
+													styleClass="outputTextErro"
+													rendered="#{!UsuarioBo.cidadeValido}"/>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<h:outputText value="Estado"/>
+											</td>
+											<td  colspan="3">
+												<h:inputText size="50" styleClass="login-field" id="esta"
+													value="#{UsuarioBo.enderecoIns.nomeEstado}"/>
+													
+												<h:outputText value="● Preencha o campo ESTADO" 
+													styleClass="outputTextErro"
+													rendered="#{!UsuarioBo.estadoValido}"/>
+											</td>
+										</tr>
+										
+										<tr>
+											<td>
+												<h:outputText value="Informações de referência" />
+											</td>
+											<td>
+												<h:inputTextarea rows="4" cols="60" styleClass="login-field"
+													value="#{UsuarioBo.enderecoIns.infAdc}"/>
+											</td>
+										</tr>
+									</table>
+								</div>
+							</td>
+						</tr>
+					</table>
+					<br/>
+					<table>
+						<tr>
+							<td rowspan="4" valign="top" width="110px">
+								<h:graphicImage url="/images/icon/acesso.png" width="100px" height="100px"/>
+							</td>
+							<td>
+								<div class="login-form">
+									<table>
+										<tr>
+											<td colspan="3" align="center">
+												<h:panelGrid styleClass="panelTitulos">
+													<h:outputText value="Dados de Acesso" styleClass="outputTextTitulo"/>
+												</h:panelGrid>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<h:outputText value="Email" />
+											</td>
+											<td>
+												<h:inputText id="usuEmail" size="50" value="#{UsuarioBo.usuVo.email}"
+													styleClass="login-field"/>
+												<h:outputText value="● Preencha o campo EMAIL" 
+													styleClass="outputTextErro"
+													rendered="#{!UsuarioBo.emailValido}"/>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<h:outputText value="Senha" />
+											</td>
+											<td>
+												<h:inputSecret id="usuSenha" size="20" value="#{UsuarioBo.usuVo.senha}"
+													styleClass="login-field"/>
+												<h:outputText value="● Preencha o campo SENHA" 
+													styleClass="outputTextErro"
+													rendered="#{!UsuarioBo.senhaValido}"/>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<h:outputText value="Confime sua senha"/>
+											</td>
+											<td>
+												<h:inputSecret id="usuSenhaConfirm" size="20" 
+													value="#{UsuarioBo.usuVo.confirmaSenha}"
+													styleClass="login-field"/>
+													
+												<h:outputText value="● Preencha o campo CONFIRMAÇÃO DE SENHA" 
+													styleClass="outputTextErro"
+													rendered="#{!UsuarioBo.confirmValido}"/>
+											</td>
+										</tr>
+										<tr>
+											<td>
+												<h:outputText value="Deseja receber email?"/>
+											</td>
+											<td colspan="2">
+												<h:selectOneRadio value="#{UsuarioBo.usuVo.receberEmail}">
+													<f:selectItem  itemLabel="Sim" itemValue="S"/>
+													<f:selectItem  itemLabel="Não" itemValue="N"/>
+												</h:selectOneRadio>
+											</td>
+										</tr>
+									</table>
+								</div>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="2" align="center">
+					<a4j:commandButton value="Salvar" action="#{UsuarioBo.inserir}"	
+						styleClass="btn btn-large btn-block btn-danger"
+						reRender="form1"/>
+						
+						<a4j:commandButton value="Cancelar" action="inn001"	
+						styleClass="btn btn-large btn-block btn-danger"/>
+					
+				</td>
+			</tr>
+		</table>
+		
+	</ui:define>
+</ui:composition>

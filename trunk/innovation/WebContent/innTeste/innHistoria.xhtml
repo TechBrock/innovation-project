@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:rich="http://richfaces.org/rich"
+	xmlns:a4j="http://richfaces.org/a4j"
+	xmlns:t="http://myfaces.apache.org/tomahawk"
+	template="/inn000/templateViewSemFiltro.xhtml">
+	<ui:define name="tituloTela">
+		<h:outputText value="História" />
+	</ui:define>
+
+	<ui:define name="conteudo">
+		<table class="login_ident" style="position:absolute;left:0;width:10%;">
+				<tr>
+					<td>
+						<h:outputText value="Agradecimentos"/>	
+					</td>
+			 	</tr>
+				<tr>
+					<td>
+						<h:outputLink value="http://www.metodista.br">
+							<h:graphicImage url="/innTeste/metodista.jpg"/>
+						</h:outputLink>
+					</td>
+				</tr>				
+			</table>
+		<div class="login_ident" style="width: 700px; height: 500px;" id="div1">
+			<table>
+				<tr>
+				<rich:tabPanel switchType="client">
+        <rich:tab header="História" label="História">
+        <h:graphicImage url="/innTeste/LOGO.png" width="304px" height="106px"/>
+					<br />
+            	<p class="textoPuro">A cada semestre, um novo desafio.<br />
+				Desde o início de nossa trajetória nesse curso, sempre houve um grande desafio por semestre, denominado PAP.<br />
+				Grande responsável por noites em claro, litros de energético, café, Coca-Cola...<br />
+				Traz consigo uma complexidade não presente no desenvolvimento das disciplinas lecionadas.<br /><br />
+				O primeiro semestre foi o desenvolvimento da parte documental de solução do Case "Helpdesk - acessoria do pessoal da área 
+				de TI na manutenção dos equipamentos e serviços na área de computação, em especial, em empresas".<br /><br />
+				O segundo semestre teve o tema de "Implementação de um sistema de automação de um processo manual, na qual houve o desenvolvimento de uma aplicação simples para ilustrar tal funcionalidade.<br /><br />
+				O terceiro semestre foi o desenvolvimento de uma aplicação Desktop. A história desse grupo começaria a mudar a partir daqui. Houve a quebra de grupos, e a formação de outros.
+				O tema escolhido para esse semestre foi o controle de atendimentos da Xis Informática (consultoria de TI), para gerenciar os atendimentos de consultores externos<br /><br />
+				O quarto semestre foi a transposição do sistema de controle de atendimentos da Xis Informática para a web, trazendo consigo todas as funcionalidades do sistema antigo, com a 
+				facilidade de acesso e utilização da web.<br /><br />
+				O quinto semestre foi um tema totalmente diferente de todos. A confecção de um portal para a venda de bicicletas e patinetes, totalmente via web. Houve o ingresso de duas pessoas a mais
+				no grupo, trazendo consigo habilidade e esforço que contribuiram aos talentos que nesse grupo já residiam.<br /><br />
+				</p>
+        </rich:tab>
+        <rich:tab header="Componentes" label="Componentes">
+        <h:graphicImage url="/innTeste/LOGO.png" width="304px" height="106px"/>
+					<br />
+            <p class="textoPuro">
+					Pessoas que já pertenceram a este grupo (a partir da junção do 3º semestre):<br /><br />
+					3º Semestre:<br />
+					Fabio Ferreira de Sousa<br />
+					Lucas Oliveira dos Santos<br />
+					Pedro Augusto da Silva Carvalho<br />
+					André Alves da Silva<br />
+					Ana Paula Cardoso Rodrigues<br />
+					Thiago Hideaky Watanabe<br /><br />
+					4º Semestre:<br />
+					Ana Paula Cardoso Rodrigues<br />
+					André Alves da Silva<br />
+					Thiago Hideaky Watanabe<br /><br />
+					5º Semestre:<br />
+					Ana Paula Cardoso Rodrigues<br />
+					André Alves da Silva<br />
+					Lucas Gomes Fenelon de Moraes<br />
+					Thiago Hideaky Watanabe<br />
+					Vitor Moscolini<br /><br />
+					</p>
+        </rich:tab>
+        <rich:tab header="Professores" label="Professores">
+        <h:outputLink value="http://www.metodista.br">
+							<h:graphicImage url="/innTeste/metodista.jpg"/>
+						</h:outputLink>
+					<br />
+            <p class="textoPuro">
+					Professores que nos acompanharam durante os semestres:<br /><br />
+					<table>
+						<tr>
+							<td>1º Semestre:<br />
+								Ricardo Crepalde<br /><br />
+							</td>
+							<td>2º Semestre:<br />
+								Fabio Ferreira de Sousa<br />
+								Lucas Oliveira dos Santos<br />
+								Pedro Augusto da Silva Carvalho<br />
+								André Alves da Silva<br />
+								Ana Paula Cardoso Rodrigues<br />
+								Thiago Hideaky Watanabe<br /><br />
+							</td>
+							<td>3º Semestre:<br />
+								Rafael Sakurai<br /><br />
+							</td>
+							<td>4º Semestre:<br />
+								Rafael Sakurai<br />
+								Wilson Kobayashi<br />
+								Nisflei Galoni<br />
+								Danilo<br /><br />
+							</td> 
+							<td>5º Semestre:<br />
+								André Perin<br />
+								Rafael Sakurai<br />
+								Wilson Kobayashi<br />
+								Thomas Mikio Sasaki<br />
+								Ricardo Crepalde<br />
+								Pellegrini<br />
+								Danilo<br />
+								Carlos Giroto<br /><br />
+							</td>
+						</tr>
+					</table>
+					
+					
+					
+					</p>
+        </rich:tab>
+    </rich:tabPanel>
+				
+					
+					
+				</tr>
+
+			</table>
+
+		</div>
+		
+		
+	</ui:define>
+
+</ui:composition>
