@@ -62,11 +62,11 @@ public class Email {
 				email.setTextMsg("Seu servidor de e-mail não suporta mensagem HTML");  
 
 				email.setHostName("smtp.gmail.com"); // o servidor SMTP para envio do e-mail  
-				email.addTo("ana.card.rodrigues@gmail.com", "thiago"); //destinatário  
-				email.setFrom("ana.card.rodrigues@gmail.com", "Eu"); // remetente  
+				email.addTo("metalurgicametodo@gmail.com", "metalurgicametodo@gmail.com"); //destinatário  
+				email.setFrom("metalurgicametodo@gmail.com", "metalurgicametodo@gmail.com"); // remetente  
 				email.setSubject("Teste -> Html Email"); // assunto do e-mail  
 				//        email.setMsg("Teste de Email HTML utilizando commons-email"); //conteudo do e-mail  
-				email.setAuthentication("ana.card.rodrigues@gmail.com", "guadalupedream123");  
+				email.setAuthentication("metalurgicametodo@gmail.com", "metodo123");  
 				email.setSmtpPort(465);  
 				email.setSSL(true);  
 				email.setTLS(true);  
