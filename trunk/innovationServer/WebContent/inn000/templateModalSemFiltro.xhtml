@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:rich="http://richfaces.org/rich"
+    xmlns:a4j="http://richfaces.org/a4j">
+	
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8"/>
+		<a4j:loadScript src="../js/jquery.maskedinput-1.3.min.js" />
+		<a4j:loadScript src="/js/min-teste.js"/>
+		
+		<script type="text/javascript">
+
+	    var img1;
+	    var img2;
+	    var img3;
+	    var img4;
+
+	    function setValues(img1,img2,img3,img4) {	        
+	        img1 = img1;
+	        img2 = img2;
+	        img3 = img3;
+	        img4 = img4;
+	        exibir(img1,img2,img3,img4);	
+	    }        
+	
+    
+    </script>
+		
+	</head>
+	
+	<a4j:form id="formModal">
+		<div>
+			<rich:spacer width="10"/>
+			<ui:insert name="headerModalCrUp"/>
+		</div>
+		<div align="center">
+			<ui:insert name="corpoModal"/>
+		</div>
+		<div align="center">
+			<ui:insert name="actionsModalCrUp"/>
+		</div>
+	</a4j:form>
+</html>
