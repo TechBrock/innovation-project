@@ -232,8 +232,6 @@
 			<to-view-id>/inn011/inn011detalhe.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
-	
-	
 	<navigation-rule>
 		<navigation-case>
 			<from-outcome>innQuemSomos</from-outcome>
@@ -252,6 +250,13 @@
 		<navigation-case>
 			<from-outcome>innLocalizacao</from-outcome>
 			<to-view-id>/innTeste/innLocalizacao.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>innBoleto</from-outcome>
+			<to-view-id>/innTeste/innTesteBoleto.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
