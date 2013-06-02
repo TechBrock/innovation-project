@@ -8,8 +8,17 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+
+import javax.faces.context.FacesContext;
+import javax.faces.context.FacesContextFactory;
+import javax.faces.webapp.FacesServlet;
+
 import org.ajax4jsf.component.html.HtmlPage;
 import org.apache.commons.mail.EmailException;
+import org.apache.myfaces.context.FacesContextFactoryImpl;
+
+import com.sun.faces.context.FacesContextImpl;
+
 import br.com.innovation.dao.CompraDao;
 import br.com.innovation.dao.EnderecoDao;
 import br.com.innovation.dao.TelefoneDao;
@@ -49,6 +58,7 @@ public class CompraBo implements Serializable{
 	private EnderecoVo endVo = new EnderecoVo();
 	private ArrayList<CarrinhoVo> carrinhoAl = new ArrayList<CarrinhoVo>();
 	private boolean showBoleto;
+	private boolean controlePopup;
 
 	public UsuarioVo getUsuVo() {
 		return usuVo;
@@ -165,15 +175,11 @@ public class CompraBo implements Serializable{
 	public String finalizarBoleto(){
 		qtdParcelas = 1;
 		finalizarCompra(1, endVo.getId(), usuVo.getId());
+		popularBoleto();
 		return null;
 	}
 
-	public void gerarBoleto(OutputStream stream, Object id){
-		
-		if(idUsuario != null){
-			arrayBoleto = BoletoService.gerarBoleto(usuVo, endVo,valorCarrinho);
-		}
-		
+	public void gerarBoleto(OutputStream stream, Object id){		
 		try {
 			stream.write(arrayBoleto);
 		} catch (IOException e) {
@@ -181,7 +187,13 @@ public class CompraBo implements Serializable{
 		}
 	}
 	
-	
+	public void popularBoleto(){
+		idUsuario = (Integer)FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("id");  
+		if(idUsuario != null){
+			usuVo = new UsuarioDao().getUsuarioById(idUsuario);
+			arrayBoleto = BoletoService.gerarBoleto(usuVo, endVo,valorCarrinho);
+		}
+	}
 	
 	public byte[] getArrayBoleto() {
 		return arrayBoleto;
@@ -309,4 +321,19 @@ public class CompraBo implements Serializable{
 		}
 		return ok;
 	}
+	
+	public String abrirBoleto(){
+		setControlePopup(true);
+		return "inn004compra";
+	}
+	public boolean isControlePopup() {
+		boolean retorno = controlePopup;
+		controlePopup = false;
+		return retorno;
+	}
+	public void setControlePopup(boolean controlePopup) {
+		this.controlePopup = controlePopup;
+	}
+	
+	
 }

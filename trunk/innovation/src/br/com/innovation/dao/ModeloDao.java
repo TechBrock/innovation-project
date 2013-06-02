@@ -326,6 +326,113 @@ public class ModeloDao {
 		return modeloAl;
 	}
 	
+	public ArrayList<ModeloVo> pesquisarProdutos(ModeloVo modelo){
+		Connection conn = null;
+		Statement stm = null;
+		ResultSet rset = null;
+		StringBuilder query = new StringBuilder();
+		StringBuilder query2 = new StringBuilder();
+		StringBuilder filtro = new StringBuilder();
+		ModeloVo modeloVo = new ModeloVo();
+		ArrayList<ModeloVo> modeloAl = new ArrayList<ModeloVo>();
+
+		if(modelo.getCaract() != null && !modelo.getCaract().equals("") && modelo.getNome() != null && !modelo.getNome().equals("")){
+			if(!(modelo.getCaract() != null && !modelo.getCaract().equals(""))){
+				filtro.append("WHERE  UPPER m.nome LIKE UPPER ('%"+modelo.getNome()+"%')");
+			}else if(!(modelo.getNome() != null && !modelo.getNome().equals(""))){
+				filtro.append("WHERE  UPPER tpo.nome LIKE UPPER ('%"+modelo.getCaract()+"%')");
+			}else{
+				filtro.append("WHERE  UPPER m.nome LIKE UPPER ('%"+modelo.getNome()+"%') AND UPPER tpo.nome LIKE UPPER ('%"+modelo.getCaract()+"%')");
+			}	
+		}
+		query.append("select ");
+		query.append("m.id,");
+		query.append("m.nome,");
+		query.append("m.caracteristicas,"); 
+		query.append("m.quantidade, ");
+		query.append("m.tamanho,");
+		query.append("m.dimensao,");
+		query.append("m.peso,");
+		query.append("m.aro,");
+		query.append("m.informacoes_adicionais,");
+		query.append("m.garantia,");
+		query.append("m.material, ");
+		query.append("m.id_classificacao,");
+		query.append("m.id_tipo,");
+		query.append("m.id_cor,");
+		query.append("m.img_1,");
+		query.append("m.img_2,");
+		query.append("m.img_3,");
+		query.append("m.img_4,");
+		query.append("c.nome as cor,");
+		query.append("clas.nome as class");
+		query.append("	FROM TB_MODELO m");
+		query.append("	INNER JOIN TB_COR c ON m.id_cor = c.id");
+		query.append("	INNER JOIN TB_CLASSIFICACAO clas ON m.id_classificacao = clas.id");
+		query.append("	INNER JOIN TB_TIPO_ITEM tpo ON m.id_tipo = tpo.id ");
+		query.append(filtro);
+
+		try{
+			conn = Conexao.connect();
+			stm = conn.createStatement();
+			rset = stm.executeQuery(query.toString());
+
+			while(rset.next()){
+
+				modeloVo = new ModeloVo();
+				modeloVo.setId(rset.getInt("id"));
+				modeloVo.setNome(rset.getString("nome"));
+				modeloVo.setCaract(rset.getString("caracteristicas")); 
+				modeloVo.setQuantidade(rset.getInt("quantidade"));
+				modeloVo.setTamanho(rset.getDouble("tamanho"));
+				modeloVo.setDimensao(rset.getString("dimensao"));
+				modeloVo.setPeso(rset.getDouble("peso"));
+				modeloVo.setAro(rset.getInt("aro"));
+				modeloVo.setInfAdc(rset.getString("informacoes_adicionais"));
+				modeloVo.setGarantia(rset.getDouble("garantia"));
+				modeloVo.setMaterial(rset.getString("material"));
+				modeloVo.setIdClassificacao(rset.getInt("id_classificacao"));
+				modeloVo.setIdTipo(rset.getInt("id_tipo"));
+				modeloVo.setIdCor(rset.getInt("id_cor"));
+				modeloVo.setImg1Caminho(rset.getString("img_1"));
+				modeloVo.setImg2Caminho(rset.getString("img_2"));
+				modeloVo.setImg3Caminho(rset.getString("img_3"));
+				modeloVo.setImg4Caminho(rset.getString("img_4"));
+				modeloVo.setNomeCor(rset.getString("cor"));
+				modeloVo.setNomeClassificacao(rset.getString("class"));
+				
+				modeloAl.add(modeloVo);
+			}
+			
+			rset = null;
+			for (ModeloVo mod : modeloAl) {
+				query2 = new StringBuilder();
+				query2.append("SELECT valor");
+				query2.append("	FROM tb_preco");
+				query2.append("	WHERE id_modelo = "+mod.getId());
+				query2.append("	ORDER BY id DESC limit 1");
+				
+				rset = stm.executeQuery(query2.toString());
+				while(rset.next()){
+					mod.setPrecoAtual(rset.getDouble("valor"));
+				}
+			}
+			
+			
+		}catch (SQLException sqlex) {
+
+			System.out.println("ERRO: "+getClass().getCanonicalName()+".getModeloPesq()");
+			sqlex.printStackTrace();
+
+		}finally{
+
+			Conexao.disconnect(rset, stm, conn);
+
+		}
+		return modeloAl;
+	}
+	
+	
 	public String getCaminho(String campoImg, Integer idModelo){
 		Connection conn = null;
 		Statement stm = null;
