@@ -48,6 +48,10 @@
 											action="#{FavoritoBo.getFavotiteByUser}" reRender="form1">
 											<f:setPropertyActionListener value="#{LoginBo.loginReturn.id}" 
 												target="#{FavoritoBo.idUsuario}"/>
+												
+												<f:setPropertyActionListener value="inn004fav" 
+												target="#{FavoritoBo.acao}"/>
+												
 										</a4j:commandLink>
 									</td>
 									<td width="15%">

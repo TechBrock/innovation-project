@@ -8,13 +8,13 @@
 	xmlns:rich="http://richfaces.org/rich"
 	xmlns:a4j="http://richfaces.org/a4j">
 	
-	<rich:modalPanel id="modalDetalhar" top="10" height="520" width="800"
+	<rich:modalPanel id="modalDetalhar" top="10" height="580" width="800"
 		resizeable="false" >
 		
 			<ui:decorate template="/inn000/templateModalSemFiltro.xhtml">
 			<ui:define name="corpoModal">
 				<h:panelGroup>
-					<div class="login_ident" style="width: 710px;height: 450px;">
+					<div class="login_ident" style="width: 710px;height: 500px;">
 						<table>
 							<tr>
 								<td>
@@ -105,54 +105,70 @@
 									</table>
 								</td>
 								<td rowspan="2" valign="top">
-									<a4j:commandButton value="Add Favorito" 	
+									<h:panelGroup>
+									<a4j:commandButton  image="/images/buttons/heart.png"
+										title="Add. Favorito"
 										action="#{FavoritoBo.addToFavorite}" 
-										style="width: 100px; heigh: 100px;">
+										style="width: 70px; heigth:70px;"
+										reRender="viewModalDetalhar:formModal">
 										<f:setPropertyActionListener value="#{ModeloBo.modeloDet.id}" 
 											target="#{FavoritoBo.favoritoVo.idModelo}"/>
-											
+										
 										<f:setPropertyActionListener value="#{LoginBo.loginReturn.id}" 
-											target="#{FavoritoBo.favoritoVo.idUsuario}"/>
+												target="#{FavoritoBo.favoritoVo.idUsuario}"/>
+												
 									</a4j:commandButton>
+									<h:outputText id="totFav" value="#{FavoritoBo.favoritoAl.size()}"/>
+									</h:panelGroup>
+									<h:panelGroup>	
 									
-									<a4j:commandButton value="Add Carrinho" 	
-										action="#{CarrinhoBo.addToCart}" 
-										style="width: 100px; heigh: 100px;">
+									<a4j:commandButton  image="/images/buttons/cart.png"
+										style="width: 70px; heigth:70px;" 
+										title="Add. Carrinho"
+										action="#{CarrinhoBo.addToCart}"
+										reRender="form1:tqdCarrinho, viewModalDetalhar:formModal">
 										
-										<f:setPropertyActionListener value="#{ModeloBo.modeloDet.id}" 
-											target="#{CarrinhoBo.carrinhoVo.idModelo}"/>
+										<f:setPropertyActionListener value="#{ModeloBo.modeloDet}"
+									 	target="#{CarrinhoBo.modeloVo}"/>
+									 	
+									 	<f:setPropertyActionListener value="#{LoginBo.loginReturn.id}" 
+												target="#{CarrinhoBo.carrinhoVo.idUsuario}"/>
 										
-										<f:setPropertyActionListener value="#{ModeloBo.modeloDet.precoAtual}" 
-											target="#{CarrinhoBo.carrinhoVo.precoModelo}"/>
-											
-										<f:setPropertyActionListener value="#{LoginBo.loginReturn.id}" 
-											target="#{FavoritoBo.favoritoVo.idUsuario}"/>
-									</a4j:commandButton>
+								</a4j:commandButton>
+								<h:outputText id="tqdCarrinho" value="#{CarrinhoBo.carrinhoAl.size()}"/>
+								</h:panelGroup>
 									<br/><br/><br/><br/>
 								
-									<h:outputText value="#{ModeloBo.modeloDet.nome}"/><br/>
-									<h:outputText value="#{ModeloBo.modeloDet.caract}"/><br/>
-									<h:outputText value="Cor: "/>
-									<h:outputText value="#{ModeloBo.modeloDet.nomeCor}"/><br/>
-									<h:outputText value="Recomendado para pessoas a partir de: "/>
-									<h:outputText value="#{ModeloBo.modeloDet.nomeClassificacao}"/><br/>
-									<h:outputText value="Quantidade Disponível: "/>
-									<h:outputText value="#{ModeloBo.modeloDet.quantidade}"/><br/>
-									<h:outputText value="Tamanho: "/>
-									<h:outputText value="#{ModeloBo.modeloDet.tamanho}"/><br/>
-									<h:outputText value="Dimensão: "/>
-									<h:outputText value="#{ModeloBo.modeloDet.dimensao}"/><br/>
-									<h:outputText value="Peso: "/>
-									<h:outputText value="#{ModeloBo.modeloDet.peso}"/><br/>
-									<h:outputText value="Aro: "/>
-									<h:outputText value="#{ModeloBo.modeloDet.aro}"/><br/>
-									<h:outputText value="Garantia: "/>
-									<h:outputText value="#{ModeloBo.modeloDet.garantia} anos"/><br/>
-									<a4j:commandButton value="Fechar" oncomplete="Richfaces.hideModalPanel('modalDetalhar')"/>
-									
+									<h:outputText value="#{ModeloBo.modeloDet.nome}" styleClass="outputTituloBik"/>
+									<br/>
+									<h:outputText value="#{ModeloBo.modeloDet.caract}" styleClass="outputTextDefault"/><br/>
+									<h:outputText value="Cor: " styleClass="outputTituloBik"/>
+									<h:outputText value="#{ModeloBo.modeloDet.nomeCor}" styleClass="outputTextDefault"/><br/>
+									<h:outputText value="Para pessoas a partir de: " styleClass="outputTituloBik"/>
+									<h:outputText value="#{ModeloBo.modeloDet.nomeClassificacao}" styleClass="outputTextDefault"/><br/>
+									<h:outputText value="Quantidade Disponível: " styleClass="outputTituloBik"/>
+									<h:outputText value="#{ModeloBo.modeloDet.quantidade}" styleClass="outputTextDefault"/><br/>
+									<h:outputText value="Tamanho: " styleClass="outputTituloBik"/>
+									<h:outputText value="#{ModeloBo.modeloDet.tamanho}" styleClass="outputTextDefault"/><br/>
+									<h:outputText value="Dimensão: " styleClass="outputTituloBik"/>
+									<h:outputText value="#{ModeloBo.modeloDet.dimensao}" styleClass="outputTextDefault"/><br/>
+									<h:outputText value="Peso: " styleClass="outputTituloBik"/>
+									<h:outputText value="#{ModeloBo.modeloDet.peso}" styleClass="outputTextDefault"/><br/>
+									<h:outputText value="Aro: " styleClass="outputTituloBik"/>
+									<h:outputText value="#{ModeloBo.modeloDet.aro}" styleClass="outputTextDefault"/><br/>
+									<h:outputText value="Garantia: " styleClass="outputTituloBik"/>
+									<h:outputText value="#{ModeloBo.modeloDet.garantia} anos" styleClass="outputTextDefault"/><br/>
+								</td>
+							</tr>
+							<tr>
+								<td colspan="4" align="right">
+									<a4j:commandButton value="Fechar" 
+										oncomplete="Richfaces.hideModalPanel('modalDetalhar')"
+										styleClass="btn btn-large btn-block btn-danger" />
 								</td>
 							</tr>
 						</table>
+						
 						
 						<a4j:jsFunction id="desvincular" name="desvincular" reRender="panelTableGrupoVeiculo">
 							<a4j:actionparam name="idRegistro" assignTo="#{CtlVeiculoGrupoBo.excluirVeiculoGrupo}" />
