@@ -68,14 +68,4 @@
 		<filter-name>MyFacesExtensionsFilter</filter-name>
 		<url-pattern>/faces/myFacesExtensionResource/*</url-pattern>
 	</filter-mapping>
-
-	<servlet>
-		<servlet-name>Teste Servlet</servlet-name>
-		<servlet-class>br.com.innovation.teste.Teste</servlet-class>
-	</servlet>
-
-	<servlet-mapping>
-		<servlet-name>Teste Servlet</servlet-name>
-		<url-pattern>/teste</url-pattern>
-	</servlet-mapping>
 </web-app>
