@@ -82,8 +82,13 @@
 									<a4j:commandButton  image="/images/buttons/search.png"
 										style="width: 20px; heigth:20px;" 
 										title="Detalhar"
+										action="#{FavoritoBo.getFavotiteByUser}"
 										oncomplete="Richfaces.showModalPanel('modalDetalhar')"
 										reRender="viewModalDetalhar:formModal">
+										
+										<f:setPropertyActionListener value="#{LoginBo.loginReturn.id}" 
+												target="#{FavoritoBo.idUsuario}"/>
+												
 										<f:setPropertyActionListener value="#{lista}"
 									 	target="#{ModeloBo.modeloDet}"/>
 								</a4j:commandButton>

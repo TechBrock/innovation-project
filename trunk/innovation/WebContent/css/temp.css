@@ -249,7 +249,8 @@
 }
 
 .outputTextDefault {
-	
+	font-family: verdana;
+	font-size: 14px;
 }
 
 .panelTitulos {
@@ -353,6 +354,7 @@
 	border-radius: 3px;
 	background-color: #eceff1;
 	border: none;
+	
 	
 }
 

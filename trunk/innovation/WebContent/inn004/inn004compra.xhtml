@@ -19,8 +19,15 @@
 					<table >
 						<tr>
 							<td>
-								<div class="login_ident" style="width:400px; height: 150px;">
-									<table>
+								<div class="login_ident" style="width:400px; height: 150px; padding: 0px 0px 0px 0px;">
+									<table width="400px" style="border-collapse: collapse;">
+										<tr>
+											<td>
+												<div class="divTitulo">
+													<h:outputText value="Meu Carrinho"/>
+												</div>
+											</td>
+										</tr>
 										<tr>
 											<td>
 												<h:outputText value="Número de produtos: "/>
@@ -55,14 +62,17 @@
 					<table>
 						<tr>
 							<td>
-								<div class="login_ident" style="width:400px; height: 150px;">
-									<table>
+								<div class="login_ident" style="width:400px; height: 200px; padding: 0px 0px 0px 0px;" >
+									<table width="400px" style="border-collapse: collapse;">
 										<tr>
 											<td>
-												<h:outputText value="#{CompraBo.usuVo.nome}"/>
-												<h:outputText value=" #{CompraBo.usuVo.sobrenome}"/>
+												<div class="divTitulo">
+													<h:outputText value="#{CompraBo.usuVo.nome}"/>
+													<h:outputText value=" #{CompraBo.usuVo.sobrenome}"/>
+												</div>
 											</td>
 										</tr>
+										
 										<tr>
 											<td>
 												<h:outputText value="Email: "/>
@@ -147,25 +157,40 @@
 		</table>
 		</h:panelGroup>	
 		<h:panelGroup id="panelBoleto" rendered="#{CompraBo.showBoleto}">
-			<div class="login_ident" style="width:950px; height: 200px;">
-			<table>
+			<div class="login_ident" style="width:950px; height: 250px; padding: 0px 0px 0px 0px;" >
+			<table width="950px;" style="border-collapse: collapse;">
+				<tr>
+				<td>
+					<div class="divTitulo">
+						<h:outputText value="Leia com atenção"/>
+					</div>
+				</td>
+			</tr>
 				<tr>
 					<td>
-						<h:outputText value="O boleto gerado após a confirmação de sua compra deve ser:"/><br/>
-						<h:outputText value="- Impresso e pago na agência bancária de sua preferência; ou"/><br/>
-						<h:outputText value="- Pago pela Internet, utilizando a sequência numérica do código de barras (contido na parte superior esquerda do boleto)."/><br/>
-						<h:outputText value="Validade do boleto:"/><br/>
-						<h:outputText value="O boleto tem prazo de validade de 4 dias úteis após a finalização do pedido . Se o boleto não for pago até a data de vencimento, o pedido será automaticamente cancelado."/><br/>
-						<h:outputText value="Atenção:"/><br/>
-						<h:outputText value="Não faça depósito ou transferência entre contas. O boleto não é enviado pelo correio, imprima-o e pague no banco ou pela internet. Caso você tenha um programa anti pop-up, você deverá desativá-lo antes de finalizar sua compra com esta forma de pagamento."/><br/>
+						<h:outputText value="O boleto gerado após a confirmação de sua compra deve ser:" style="font-size: 12px;"/><br/>
+						<h:outputText value="- Impresso e pago na agência bancária de sua preferência; ou" style="font-size: 12px;"/><br/>
+						<h:outputText value="- Pago pela Internet, utilizando a sequência numérica do código de
+						 barras (contido na parte superior esquerda do boleto)." style="font-size: 12px;"/><br/>
+						<h:outputText value="Validade do boleto:" style="font-size: 12px;" /><br/>
+						<h:outputText value="O boleto tem prazo de validade de 4 dias úteis após
+						 a finalização do pedido . Se o boleto não for pago até a data de vencimento, 
+						 o pedido será automaticamente cancelado." style="font-size: 12px;"/><br/>
+						<h:outputText value="Atenção:" style="font-size: 12px;"/><br/>
+						<h:outputText value="Não faça depósito ou transferência entre contas. 
+						O boleto não é enviado pelo correio, imprima-o e pague no banco ou pela internet. 
+						Caso você tenha um programa anti pop-up, você deverá desativá-lo antes de finalizar
+						 sua compra com esta forma de pagamento." style="font-size: 12px;"/><br/>
 					</td>
 				</tr>
 				<tr>
-					<td>
+					<td align="right">
 			 			<a4j:commandButton value="Finalizar Compra"
 			 				styleClass="btn btn-large btn-block btn-danger"
 			 				action="#{CompraBo.finalizarBoleto}"
-			 				oncomplete="Richfaces.showModalPanel('modalBoleto')"> 
+			 				oncomplete="Richfaces.showModalPanel('modalBoleto')" 
+			 				reRender="viewModalCredito:formModal"> 
+			 				<f:setPropertyActionListener value="#{CarrinhoBo.totalCart}" target="#{CompraBo.valorParcelado}"/>
 			 			</a4j:commandButton>
 					</td>
 				</tr>

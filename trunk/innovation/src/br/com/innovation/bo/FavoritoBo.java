@@ -25,6 +25,7 @@ public class FavoritoBo implements Serializable {
 	private Integer countFav;
 	private Integer idUsuario ;
 	private Integer idRemove;
+	private String acao = null;
 	
 	
 	
@@ -68,6 +69,15 @@ public class FavoritoBo implements Serializable {
 		this.idRemove = idRemove;
 	}
 
+	public String getAcao() {
+		return acao;
+	}
+
+	public void setAcao(String acao) {
+		this.acao = acao;
+	}
+	
+
 	public String addToFavorite(){
 		
 		int existe = 0;
@@ -100,7 +110,7 @@ public class FavoritoBo implements Serializable {
 	
 	public String getFavotiteByUser(){
 		favoritoAl = new FavoritoDao().getFavoriteByUser(idUsuario);
-		return "inn004fav";
+		return acao;
 		
 	}
 	

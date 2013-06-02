@@ -10,47 +10,68 @@
 	xmlns:t="http://myfaces.apache.org/tomahawk"
 	template="/inn000/templateViewSemFiltro.xhtml">
 	<ui:define name="tituloTela">
-		<h:outputText value="Favoritos"	/>
 	</ui:define>
 
 	<ui:define name="conteudo">
 	<t:saveState value="#{FavoritoBo}"/>
-			<rich:dataGrid
-			 	id="gridProdutos" 
-			 	value="#{FavoritoBo.favoritoAl}"
-			 	binding="#{FavoritoBo.initTable}" 
-			 	var="lista" 
-			 	columns="4" 
-			 	elements="10" 
-			 	width="100%"
-			 	style="background-color:#eceff1">
-			 	<table style="background-color:white; border-radius: 6px;">
-			 		<tr>
-			 			<td>
-			 				<a4j:mediaOutput element="img" mimeType="application/jpg" 
-								cacheable="false"
-								createContent="#{FavoritoBo.montaImagem}"
-								value="#{lista.idModelo}"
-								session="true"
-								style="width: 150px; heigh: 100px;"/>
-			 			</td>
-			 			<td>
-			 				<h:outputText value="#{lista.nomeModelo}"/>
-			 			</td>
-			 			<td>
-			 				<h:outputText value="#{lista.preco}"/>
-			 			</td>
-			 			<td>
-			 				<a4j:commandButton  image="/images/buttons/trash.png" 
-			 					action="#{FavoritoBo.removeToFavorite}"
-			 					style="width:50px; height: 50px;" reRender="form1">
-			 					<f:setPropertyActionListener value="#{lista.id}" target="#{FavoritoBo.idRemove}"/>
-			 					
-			 				</a4j:commandButton> 
-			 			</td>
-			 		</tr>
-			 	</table>
-						 	
-			 </rich:dataGrid>
+	<div class="login_ident" style="width:1200px; height: 400px; padding: 0px 0px 0px 0px;" align="left" >
+		<table width="1200px" style="border-collapse: collapse;">
+			<tr>
+				<td>
+					<div class="divTitulo">
+						<h:outputText value="Meus Favoritos"/>
+					</div>
+				</td>
+			</tr>
+			<tr>
+				<td>
+					<rich:dataGrid
+			 			id="gridProdutos" 
+			 			value="#{FavoritoBo.favoritoAl}"
+			 			binding="#{FavoritoBo.initTable}" 
+			 			var="lista" 
+			 			columns="4" 
+			 			elements="10" 
+			 			style="background-color: #eceff1;" 
+			 			align="left">
+			 			<table>
+			 				<tr>
+			 					<td align="center">
+			 						<a4j:mediaOutput element="img" mimeType="application/jpg" 
+										cacheable="false"
+										createContent="#{FavoritoBo.montaImagem}"
+										value="#{lista.idModelo}"
+										session="true"
+										style="width: 150px; heigh: 100px;"/>
+			 					</td>
+			 				</tr>
+			 				<tr>
+			 					<td align="center">
+			 						<h:outputText value="#{lista.nomeModelo}"/>
+			 					</td>
+			 				</tr>
+			 				<tr>
+			 					<td align="center">
+			 						<h:outputText value="R$ #{lista.preco}">
+			 							<f:convertNumber locale="pt_BR" pattern="0.00"/>
+			 						</h:outputText>
+			 					</td>
+			 				</tr>
+			 				<tr>
+			 					<td align="center">
+			 						<a4j:commandButton  image="/images/buttons/trash.png" 
+			 							action="#{FavoritoBo.removeToFavorite}"
+			 							style="width:50px; height: 50px;" reRender="form1">
+			 							<f:setPropertyActionListener value="#{lista.id}" target="#{FavoritoBo.idRemove}"/>
+			 						</a4j:commandButton>
+			 					</td>
+			 				</tr>
+			 			</table>
+			 		</rich:dataGrid>
+				</td>
+			</tr>
+		</table>
+			
+	</div>
 	</ui:define>
 </ui:composition>
