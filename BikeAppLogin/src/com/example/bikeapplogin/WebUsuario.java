@@ -13,16 +13,13 @@ public class WebUsuario {
 	private String nome = "t";
 	private String sobrenome = "t";
 	private Date dataNascimento;
-	//private Character sexo = 'S';
-	private int sexo = 0;
+	private String sexo = "S";
 	private String cpf = "t";
 	private String apelido = "t";
 	private String email = "t";
 	private String senha = "t";
-	//private Character ativo = 'S';
-	//private Character receberEmail = 'S';
-	private int ativo = 0;
-	private int receberEmail = 0;
+	private String ativo = "S";
+	private String receberEmail = "S";
 	private int telefoneResidencial = 0;
 	private int telefoneCelular = 0;
 	private int telefoneRecado = 0;
@@ -36,18 +33,6 @@ public class WebUsuario {
 	private String cidade = "t";
 	private String estado = "t";
 	
-	public String getCidade() {
-		return cidade;
-	}
-	public void setCidade(String cidade) {
-		this.cidade = cidade;
-	}
-	public String getEstado() {
-		return estado;
-	}
-	public void setEstado(String estado) {
-		this.estado = estado;
-	}
 	public SimpleDateFormat getFormat() {
 		return format;
 	}
@@ -78,10 +63,10 @@ public class WebUsuario {
 	public void setDataNascimento(Date dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
-	public int getSexo() {
+	public String getSexo() {
 		return sexo;
 	}
-	public void setSexo(int sexo) {
+	public void setSexo(String sexo) {
 		this.sexo = sexo;
 	}
 	public String getCpf() {
@@ -108,35 +93,35 @@ public class WebUsuario {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	public int getAtivo() {
+	public String getAtivo() {
 		return ativo;
 	}
-	public void setAtivo(int ativo) {
+	public void setAtivo(String ativo) {
 		this.ativo = ativo;
 	}
-	public int getReceberEmail() {
+	public String getReceberEmail() {
 		return receberEmail;
 	}
-	public void setReceberEmail(int receberEmail) {
+	public void setReceberEmail(String receberEmail) {
 		this.receberEmail = receberEmail;
 	}
 	public int getTelefoneResidencial() {
 		return telefoneResidencial;
 	}
 	public void setTelefoneResidencial(int telefoneResidencial) {
-		telefoneResidencial = telefoneResidencial;
+		this.telefoneResidencial = telefoneResidencial;
 	}
 	public int getTelefoneCelular() {
 		return telefoneCelular;
 	}
 	public void setTelefoneCelular(int telefoneCelular) {
-		telefoneCelular = telefoneCelular;
+		this.telefoneCelular = telefoneCelular;
 	}
 	public int getTelefoneRecado() {
 		return telefoneRecado;
 	}
 	public void setTelefoneRecado(int telefoneRecado) {
-		telefoneRecado = telefoneRecado;
+		this.telefoneRecado = telefoneRecado;
 	}
 	public String getCep() {
 		return cep;
@@ -180,7 +165,17 @@ public class WebUsuario {
 	public void setInformacoesAdicionais(String informacoesAdicionais) {
 		this.informacoesAdicionais = informacoesAdicionais;
 	}
-	
-	
+	public String getCidade() {
+		return cidade;
+	}
+	public void setCidade(String cidade) {
+		this.cidade = cidade;
+	}
+	public String getEstado() {
+		return estado;
+	}
+	public void setEstado(String estado) {
+		this.estado = estado;
+	}
 	
 }

@@ -20,8 +20,7 @@ public class PerfilActivity extends Activity{
 	private String usr;
 	private	String psw;
 	private String conteudo = null;
-	//private WebUsuario[] pSTask;
-	private PerfilService p;
+	private PerfilService perfilService;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -48,20 +47,21 @@ public class PerfilActivity extends Activity{
         }finally{
         	crs.close();
         }
-		
-		p = new PerfilService(PerfilActivity.this, usr, psw, conteudo);
-		p.execute();
-		usuario = p.getUsuario();
-		
-		try {
-			Thread.sleep(5000);
+        try {
+			loadPerfil ();
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
-    	perfil ();
+	}
+	
+	private void loadPerfil () throws InterruptedException{
 		
+		perfilService = (PerfilService) new PerfilService(PerfilActivity.this, usr, psw, conteudo, usuario).execute();
+		Thread.sleep(5000);
+		usuario = perfilService.getUsuario();
+		perfil();
 	}
 	
 	@SuppressLint("NewApi")
@@ -89,7 +89,7 @@ public class PerfilActivity extends Activity{
 			TextView complemento = (TextView) findViewById(R.id.vComplemento);
 			TextView infoAdicionais = (TextView) findViewById(R.id.vInformar);
 
-			if(usuario.getAtivo() != 0){
+			if(!usuario.getAtivo().toString().isEmpty()){
 
 				//informações usuário
 				if(!usuario.getNome().isEmpty())
@@ -98,7 +98,7 @@ public class PerfilActivity extends Activity{
 					sobrenome.setText(usuario.getSobrenome());
 				if(!usuario.getDataNascimento().toString().isEmpty())
 					dataNasc.setText(usuario.getDataNascimento().toString());
-				if(usuario.getSexo() != 0)
+				if(!usuario.getSexo().toString().isEmpty())
 					sexo.setText(usuario.getSexo());
 				if(!usuario.getCpf().toString().isEmpty())
 					cpf.setText(usuario.getCpf());
@@ -106,7 +106,7 @@ public class PerfilActivity extends Activity{
 					apelido.setText(usuario.getApelido());
 				if(!usuario.getEmail().isEmpty())
 					email.setText(usuario.getEmail());
-				if(usuario.getReceberEmail() != 0)
+				if(!usuario.getReceberEmail().toString().isEmpty())
 					receberEmail.setText(usuario.getReceberEmail());
 
 				//informações telefone

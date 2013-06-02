@@ -1,9 +1,7 @@
 package com.example.bikeapplogin;
 
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
@@ -19,6 +17,7 @@ public class MainActivity extends Activity{
 	private EditText usr;
 	private EditText psw;
 	private String conteudo = null;
+	private LoginService loginService;
 
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,8 +68,9 @@ public class MainActivity extends Activity{
     }
 	
 	public void enter (View v) throws InterruptedException{
-    	new  LoginService(MainActivity.this, usr.getText().toString(), psw.getText().toString(), conteudo).execute();
+		loginService = (LoginService) new  LoginService(MainActivity.this, usr.getText().toString(), psw.getText().toString(), conteudo).execute();
     	Thread.sleep(5000);
+    	conteudo = loginService.getUsuario();
     	login ();
     }
 	
