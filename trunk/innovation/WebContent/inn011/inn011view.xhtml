@@ -10,40 +10,68 @@
 	xmlns:t="http://myfaces.apache.org/tomahawk"
 	template="/inn000/templateViewSemFiltro.xhtml">
 	<ui:define name="tituloTela">
-		<h:outputText value="Meus Pedidos"	/>
+		
 	</ui:define>
-
+	
+	
 	<ui:define name="conteudo">
 	<t:saveState value="#{PedidoBo}"/>
-			<rich:dataGrid
-			 	id="gridProdutos" 
-			 	value="#{PedidoBo.pedidoAl}"
-			 	var="lista" 
-			 	columns="4" 
-			 	elements="10" 
-			 	width="100%"
-			 	style="background-color:#eceff1">
+		<div class="login_ident" style="width:600px; height: 400px; padding: 0px 0px 0px 0px" >
+			<table width="600px" style="border-collapse: collapse;">
+				<tr>
+					<td align="left">
+						<div class="divTitulo">
+							<h:outputText value="Meus Pedidos"/>
+						</div>
+						
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<rich:dataGrid
+			 				id="gridProdutos" 
+			 				value="#{PedidoBo.pedidoAl}"
+			 				var="lista" 
+			 				columns="4" 
+			 				elements="10" 
+			 				width="100%"
+			 				style="background-color:#eceff1">
 			 	
-			 	<rich:column>
-			 		<a4j:commandLink  value="#{lista.ordemCompra}" action="#{PedidoBo.getItemPedido}">
-			 			<f:setPropertyActionListener value="#{lista.id}" target="#{PedidoBo.idCompra}"/>
-			 		</a4j:commandLink>
-			 	</rich:column>
+						 	<rich:column>
+						 		<a4j:commandLink  value="#{lista.ordemCompra}" action="#{PedidoBo.getItemPedido}" style="font-family: verdana;font-size: 14px; height: 18px;">
+						 			<f:setPropertyActionListener value="#{lista.id}" target="#{PedidoBo.idCompra}"/>
+						 		</a4j:commandLink>
+						 	</rich:column>
+						 	
+						 	<rich:column>
+						 		<h:outputText value="#{lista.dataPedido}" 
+						 			style="font-family: verdana;font-size: 14px; height: 18px;"/>
+						 	</rich:column>
+						 	
+						 	<rich:column>
+						 		<h:outputText value="R$ #{lista.valorCompra}" 
+						 			style="font-family: verdana;font-size: 14px; height: 18px;">
+						 			<f:convertNumber locale="pt_BR" pattern="0.00"/>
+						 		</h:outputText>
+						 	</rich:column>
 			 	
-			 	<rich:column>
-			 		<h:outputText value="#{lista.dataPedido}"/>
-			 	</rich:column>
-			 	
-			 	<rich:column>
-			 		<h:outputText value="#{lista.valorCompra}"/>
-			 	</rich:column>
-			 	
-			 	<rich:column>
-			 		<h:outputText value="#{lista.valorFrete}"/>
-			 	</rich:column>
-			 	<rich:column>
-			 		<h:outputText value="#{lista.valorTotal}"/>
-			 	</rich:column>
-			 </rich:dataGrid>
+						 	<rich:column>
+						 		<h:outputText value="R$ #{lista.valorFrete}" 
+						 			style="font-family: verdana;font-size: 14px; height: 18px;">
+						 			<f:convertNumber locale="pt_BR" pattern="0.00"/>
+						 		</h:outputText>
+						 	</rich:column>
+						 	<rich:column>
+						 		<h:outputText value="R$ #{lista.valorTotal}" 
+						 			style="font-family: verdana;font-size: 14px; height: 18px;">
+						 			<f:convertNumber locale="pt_BR" pattern="0.00"/>
+						 		</h:outputText>
+						 	</rich:column>
+						 </rich:dataGrid>
+						 
+					</td>
+				</tr>
+			</table>
+		</div>
 	</ui:define>
 </ui:composition>

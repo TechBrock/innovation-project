@@ -355,3 +355,13 @@
 	border: none;
 	
 }
+
+.divTitulo{
+	font-family: verdana;
+	font-size: 16px;
+	background-color: #ECC03C;
+	padding: 8px 8px 8px 8px; 
+	color: white;
+	border-radius: 6px;
+	height: 20px;
+}

@@ -11,8 +11,8 @@ public class Conexao {
 	public static Connection connect(){
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
-			//return DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/metodo_metalurgica", "admin", "admin");
-			return DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/innovation", "root", "admin");
+			return DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/metodo_metalurgica", "admin", "admin");
+//			return DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/innovation", "root", "admin");
 
 		} catch (ClassNotFoundException e) {
 			e.printStackTrace();
