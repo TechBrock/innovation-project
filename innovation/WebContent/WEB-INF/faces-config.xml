@@ -225,6 +225,15 @@
 			<to-view-id>/inn011/inn011view.xhtml</to-view-id>
 		</navigation-case>
 	</navigation-rule>
+	
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>inn011detalhe</from-outcome>
+			<to-view-id>/inn011/inn011detalhe.xhtml</to-view-id>
+		</navigation-case>
+	</navigation-rule>
+	
+	
 	<navigation-rule>
 		<navigation-case>
 			<from-outcome>innQuemSomos</from-outcome>

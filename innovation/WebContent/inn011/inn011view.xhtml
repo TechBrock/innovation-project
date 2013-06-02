@@ -25,7 +25,9 @@
 			 	style="background-color:#eceff1">
 			 	
 			 	<rich:column>
-			 		<a4j:commandLink  value="#{lista.ordemCompra}"/>
+			 		<a4j:commandLink  value="#{lista.ordemCompra}" action="#{PedidoBo.getItemPedido}">
+			 			<f:setPropertyActionListener value="#{lista.id}" target="#{PedidoBo.idCompra}"/>
+			 		</a4j:commandLink>
 			 	</rich:column>
 			 	
 			 	<rich:column>

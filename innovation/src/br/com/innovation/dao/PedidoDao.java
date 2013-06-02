@@ -26,14 +26,14 @@ public class PedidoDao {
 		query.append("	(valor_compra + valor_frete) as total");
 		query.append("	from tb_compra");
 		query.append("	where id_usuario ="+idUser);
-		
+
 		try{
 			conn = Conexao.connect();
 			stm = conn.createStatement();
 			rset = stm.executeQuery(query.toString());
-			
+
 			while (rset.next()){
-				
+
 				pedido = new PedidoVo();
 				pedido.setId(rset.getInt("id"));
 				pedido.setOrdemCompra(rset.getInt("ordem_compra"));
@@ -41,8 +41,8 @@ public class PedidoDao {
 				pedido.setValorFrete(rset.getDouble("valor_frete"));
 				pedido.setValorTotal(rset.getDouble("total"));
 				pedidoAl.add(pedido);
-				
-				
+
+
 			}
 		} catch (SQLException sqlex) {
 			System.out.println("ERRO: "+getClass().getCanonicalName()+".getPedido()");
@@ -58,5 +58,47 @@ public class PedidoDao {
 		return pedidoAl;
 
 	}
-	
+
+
+	public ArrayList<ModeloVo> getItemCompra(Integer idCompra){
+		Connection conn = null;
+		Statement stm = null;
+		ResultSet rset = null;
+		StringBuilder query = new StringBuilder();
+		ModeloVo modeloVo = new ModeloVo();
+		ArrayList<ModeloVo> modeloAl = new ArrayList<ModeloVo>();
+		
+		query.append("SELECT mo.nome, mo.informacoes_adicionais");
+		query.append("	FROM tb_compra_item ci");
+		query.append("	INNER JOIN tb_compra co ON ci.id_compra = co.id");
+		query.append("	INNER JOIN tb_modelo mo ON ci.id_modelo = mo.id");
+		query.append("	WHERE ci.id_compra ="+idCompra);
+		
+		try{
+			conn = Conexao.connect();
+			stm = conn.createStatement();
+			rset = stm.executeQuery(query.toString());
+			
+			while(rset.next()){
+				
+				modeloVo = new ModeloVo();
+				modeloVo.setNome(rset.getString("nome"));
+				modeloVo.setInfAdc(rset.getString("informacoes_adicionais"));
+				modeloAl.add(modeloVo);
+				
+			}
+		} catch (SQLException sqlex) {
+			System.out.println("ERRO: "+getClass().getCanonicalName()+".getItemCompra()");
+			sqlex.printStackTrace();
+
+		} catch(Exception e) {
+			System.out.println("ERRO: "+getClass().getCanonicalName()+".getPgetItemCompraedido()");
+			e.printStackTrace();
+
+		} finally {
+			Conexao.disconnect(rset, stm, conn);
+		}
+		return modeloAl;
+	}
+
 }
