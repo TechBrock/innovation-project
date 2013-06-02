@@ -59,6 +59,8 @@
 										style="width: 100px;height: 40px;"
 										action="#{LoginBo.login}" reRender="form1">
 											<f:setPropertyActionListener value="#{LoginBo.loginReturn.id}" target="#{LoginBo.idLogado}"/>
+											<f:setPropertyActionListener value="#{LoginBo.loginReturn.id}" target="#{CompraBo.idUsuario}"/>
+											
 										</a4j:commandButton>
 								</td>
 							</tr>

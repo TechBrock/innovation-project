@@ -26,15 +26,57 @@
 				<img src="../images/promocao/pro2a.jpg" alt="Bicicleta Caloi Urbe" /> 
 				<img src="../images/promocao/pro3a.jpg" alt="Bicicleta Mormaii Innovation" />
 			</div>
-		</div>
+		</div>	
+		
 		<rich:spacer height="50px"></rich:spacer>
+		<div>
+		<rich:spacer height="50px"></rich:spacer>
+			<table>	
+				<tr>
+					<td>
+						<h:inputText id="codProduto" size="70" value="#{ModeloBo.modeloPesquisa.nome}" maxlength="30"/>
+					</td>
+					<td>
+						<rich:comboBox defaultLabel="Tipo de Produto" id="comboPrincipal" value="#{ModeloBo.modeloPesquisa.caract}">
+				            <f:selectItem itemValue="Bicicleta"/>
+				            <f:selectItem itemValue="Patinete"/>
+			      		</rich:comboBox>
+					</td>
+					<td>
+						<a4j:commandButton value="Pesquisar" styleClass="btn btn-large btn-block btn-warning" 
+										style="width: 100px;height: 40px;"
+										action="#{ModeloBo.pesquisarProdutos}" reRender="form1">
+										</a4j:commandButton>
+					</td>
+				</tr>
+				<tr>
+				<h:outputText value="Olá " styleClass="links" rendered="#{ModeloBo.modeloAl.size()}==null || #{ModeloBo.modeloAl.size()}==0"/>
+				
+				
+				
+				</tr>
+			</table>
+				
+	      		
+				
+		
+		</div>
+		
+		
 		<table width="100%">
+			
 			<tr>
 				<td align="right">
-					<a4j:commandButton image="/images/buttons/cart.png" 
-						style="width: 100px; height: 80px"
-						action="inn004carrinho"
+					<h:panelGroup id="carrinhos">
+					<a4j:commandButton image="/images/buttons/cartVermelho.png" 
+						style="width: 100px; height: 80px" rendered="#{CarrinhoBo.carrinhoAl.size() == 0}"
+						 disabled="#{CarrinhoBo.carrinhoAl.size() == 0}"
 						reRender="form1"/>
+					<a4j:commandButton image="/images/buttons/cartVerde.png" 
+						style="width: 100px; height: 80px" rendered="#{CarrinhoBo.carrinhoAl.size() != 0}"
+						action="inn004carrinho" disabled="#{CarrinhoBo.carrinhoAl.size() == 0}"
+						reRender="form1"/>
+					</h:panelGroup>
 					<h:outputText id="tqdCarrinho" value="#{CarrinhoBo.carrinhoAl.size()}"/>
 				</td>
 			</tr>
@@ -107,7 +149,7 @@
 										style="width: 20px; heigth:20px;" 
 										title="Add. Carrinho"
 										action="#{CarrinhoBo.addToCart}"
-										reRender="form1:tqdCarrinho">
+										reRender="form1:tqdCarrinho,form1:carrinhos">
 										
 										<f:setPropertyActionListener value="#{lista}"
 									 	target="#{CarrinhoBo.modeloVo}"/>

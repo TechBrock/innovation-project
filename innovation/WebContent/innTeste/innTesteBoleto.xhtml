@@ -1,33 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<f:subview id="viewModalInsert"
-	xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"	 
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:rich="http://richfaces.org/rich"
 	xmlns:a4j="http://richfaces.org/a4j">
-	
-	<rich:modalPanel id="modalBoleto" autosized="true" top="5"
-		resizeable="false" minWidth="400" minHeight="40" keepVisualState="true">
-		
-			<ui:decorate template="/inn000/templateModalSemFiltro.xhtml">
-			<ui:define name="corpoModal">
-				<h:panelGroup>
+
+	<head>
+		<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>
+			<h:outputText value="metodo.com.br" />
+		</title>
+
+		<link rel="stylesheet" type="text/css" href="../css/main.css" />
+		<link rel="stylesheet" type="text/css" href="../css/temp.css" />
+		<script type="text/javascript" src="../js/jquery.maskedinput-1.3.min.js"/>
+
+		<ui:insert name="head" />
+	</head>
+	<body>
+		<f:view>
+			<a4j:form id="formBoleto" >
+				
+			<h:panelGroup>
 					<div class="login_ident" style="overflow: auto;">
 						<table>
 							<tr>
 								<td>
 								<a4j:mediaOutput element="img" mimeType="application/jpg" 
-									cacheable="false"
-									createContent="#{CompraBo.gerarBoleto}"
-									session="true"
+									cacheable="false" createContent="#{CompraBo.gerarBoleto}"
+									session="true" 
 									style="width: 602px; heigh: 400px;"/>		
 								</td>
 							</tr>
 							<tr>
 								<td>
-								<a4j:commandButton value="Fechar" action="inn004compra"
+								<a4j:commandButton value="Fechar" onclick="window.close();"
 									styleClass="btn btn-large btn-block btn-danger" />
 								</td>
 								<td>
@@ -39,8 +49,8 @@
 					</div>
 					
 				</h:panelGroup>
-			</ui:define>
-			
-			</ui:decorate>
-	</rich:modalPanel>
-</f:subview>
+		</a4j:form>
+	</f:view>
+	
+</body>
+</html>
