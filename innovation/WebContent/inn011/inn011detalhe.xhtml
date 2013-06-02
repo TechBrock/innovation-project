@@ -10,28 +10,48 @@
 	xmlns:t="http://myfaces.apache.org/tomahawk"
 	template="/inn000/templateViewSemFiltro.xhtml">
 	<ui:define name="tituloTela">
-		<h:outputText value="Itens do meu pedido"	/>
 	</ui:define>
 
 	<ui:define name="conteudo">
 	<t:saveState value="#{PedidoBo}"/>
+		
 			<rich:dataGrid
 			 	id="gridProdutos" 
 			 	value="#{PedidoBo.modeloAl}"
 			 	var="lista" 
 			 	columns="4" 
 			 	elements="10" 
-			 	width="100%"
-			 	style="background-color:#eceff1">
-			 	
+			 	style="background-color:white">
 			 	<rich:column>
-			 		<h:outputText value="#{lista.nome}"/>
+			 		<div class="login_ident" style="width:250px; height: 450px; padding: 0px 0px 0px 0px;" align="center" >
+			 			<table  style="border-collapse: collapse;" width="250px">
+			 				<tr>
+			 					<td>
+			 						<div class="divTitulo">
+										<h:outputText value="Item" style="height: 20px"/>
+									</div>
+			 						
+			 					</td>
+			 				</tr>
+			 				<tr>
+			 					<td>
+			 					
+			 					</td>
+			 				</tr>
+			 			</table>
+			 		<br/>
+			 		<a4j:mediaOutput element="img" mimeType="application/jpg" 
+								cacheable="false"
+								createContent="#{PedidoBo.montaImagem}"
+								value="#{lista.id}"
+								session="true"
+								style="width: 150px; heigh: 100px;"/>
+								<br/>
+								<h:outputText value="#{lista.nome}" styleClass="outputTituloBik"/>
+								<br/>	
+			 					<h:outputText value="#{lista.infAdc}" style="font-family: verdana;font-size: 14px; height: 18px;"/>
+			 				</div>
 			 	</rich:column>
-			 	
-			 	<rich:column>
-			 		<h:outputText value="#{lista.infAdc}"/>
-			 	</rich:column>
-			 	
 			 </rich:dataGrid>
 	</ui:define>
 </ui:composition>

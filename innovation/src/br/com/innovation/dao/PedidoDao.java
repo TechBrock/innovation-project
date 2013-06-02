@@ -37,6 +37,7 @@ public class PedidoDao {
 				pedido = new PedidoVo();
 				pedido.setId(rset.getInt("id"));
 				pedido.setOrdemCompra(rset.getInt("ordem_compra"));
+				pedido.setDataPedido(rset.getDate("data_pedido"));
 				pedido.setValorCompra(rset.getDouble("valor_compra"));
 				pedido.setValorFrete(rset.getDouble("valor_frete"));
 				pedido.setValorTotal(rset.getDouble("total"));
@@ -68,7 +69,7 @@ public class PedidoDao {
 		ModeloVo modeloVo = new ModeloVo();
 		ArrayList<ModeloVo> modeloAl = new ArrayList<ModeloVo>();
 		
-		query.append("SELECT mo.nome, mo.informacoes_adicionais");
+		query.append("SELECT mo.id, mo.nome, mo.informacoes_adicionais");
 		query.append("	FROM tb_compra_item ci");
 		query.append("	INNER JOIN tb_compra co ON ci.id_compra = co.id");
 		query.append("	INNER JOIN tb_modelo mo ON ci.id_modelo = mo.id");
@@ -82,6 +83,7 @@ public class PedidoDao {
 			while(rset.next()){
 				
 				modeloVo = new ModeloVo();
+				modeloVo.setId(rset.getInt("id"));
 				modeloVo.setNome(rset.getString("nome"));
 				modeloVo.setInfAdc(rset.getString("informacoes_adicionais"));
 				modeloAl.add(modeloVo);
