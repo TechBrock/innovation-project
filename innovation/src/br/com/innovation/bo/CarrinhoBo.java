@@ -129,7 +129,6 @@ public class CarrinhoBo implements Serializable{
 		carrinhoVo.setQtdModelo(1);
 		carrinhoVo.setValorTotal(carrinhoVo.getPrecoModelo());
 		
-
 		for (CarrinhoVo cart : carrinhoAl) {
 			if(cart.getIdModelo().intValue() == carrinhoVo.getIdModelo().intValue()){
 				add = false;
@@ -159,7 +158,7 @@ public class CarrinhoBo implements Serializable{
 			totalCart += cart.getValorTotal();
 		}
 
-		return "inn004carrinhoReturn";
+		return getCalcValorTotal();
 	}
 
 	public void montaImagem(OutputStream strem, Object id){

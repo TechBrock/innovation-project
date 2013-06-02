@@ -2,6 +2,8 @@ package br.com.innovation.bo;
 
 import java.io.Serializable;
 
+import javax.faces.context.FacesContext;
+
 import br.com.innovation.dao.LoginDao;
 import br.com.innovation.vo.LoginVo;
 
@@ -82,6 +84,8 @@ public class LoginBo implements Serializable {
 			}else{
 				if(loginReturn.getIdPerfil() == 1){
 					cliente = true;
+					FacesContext.getCurrentInstance().getExternalContext().getSessionMap().put("id", loginReturn.getId());
+					idLogado = loginReturn.getId();
 				}else{
 					cliente = false;
 				}

@@ -593,4 +593,22 @@ public class ModeloBo implements Serializable{
 		return null;
 	}
 
+	
+	/** Início dos atributos/Métodos para pesquisa de produto*/
+	private ModeloVo modeloPesquisa = new ModeloVo();
+	
+	public String pesquisarProdutos(){
+		setModeloAl(new ModeloDao().pesquisarProdutos(modeloPesquisa));
+		return "inn001";
+	}
+	public ModeloVo getModeloPesquisa() {
+		return modeloPesquisa;
+	}
+	public void setModeloPesquisa(ModeloVo modeloPesquisa) {
+		this.modeloPesquisa = modeloPesquisa;
+	}
+	
+	
+	
+	
 }
