@@ -72,7 +72,6 @@
 												</div>
 											</td>
 										</tr>
-										
 										<tr>
 											<td>
 												<h:outputText value="Email: "/>
@@ -113,7 +112,7 @@
 			<tr>
 				<td align="center">
 					<a4j:commandButton  image="/images/buttons/boleto.png"
-						style="width:150px; height: 100px;" reRender="form1"> 
+						style="width:150px; height: 100px;" reRender="form1" action="#{CompraBo.finalizarBoleto}"> 
 						<f:setPropertyActionListener value="false" target="#{CompraBo.eCartao}"/>
 						<f:setPropertyActionListener value="true" target="#{CompraBo.showBoleto}"/>
 			 		</a4j:commandButton>
@@ -187,11 +186,9 @@
 					<td align="right">
 			 			<a4j:commandButton value="Finalizar Compra"
 			 				styleClass="btn btn-large btn-block btn-danger"
-			 				action="#{CompraBo.finalizarBoleto}"
-			 				oncomplete="Richfaces.showModalPanel('modalBoleto')" 
-			 				reRender="viewModalCredito:formModal"> 
-			 				<f:setPropertyActionListener value="#{CarrinhoBo.totalCart}" target="#{CompraBo.valorParcelado}"/>
+			 				onclick="window.open('http://localhost:8080/innovation/innTeste/innTesteBoleto.jsf', 'popupWindowName', 'dependent=yes, menubar=no, toolbar=no'); return false;"> 
 			 			</a4j:commandButton>
+			 			
 					</td>
 				</tr>
 			</table>
@@ -201,6 +198,5 @@
 	</ui:define>
 	<ui:define name="modal">
 		<ui:include src="/inn004/inn004modalCredito.xhtml" />
-		<ui:include src="/innTeste/innTesteBoleto.xhtml" />
 	</ui:define>
 </ui:composition>
