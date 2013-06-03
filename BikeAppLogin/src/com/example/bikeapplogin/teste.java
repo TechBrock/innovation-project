@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 import android.widget.ImageView;
 import android.widget.PopupWindow;
 
@@ -13,7 +15,18 @@ public class teste extends Activity{
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.teste);
+		//setContentView(R.layout.teste);
+		
+		WebView web = new WebView(this);
+		WebSettings w = web.getSettings();
+		w.setSavePassword(false);
+		w.setSaveFormData(false);
+		w.setJavaScriptCanOpenWindowsAutomatically(true);
+		w.setSupportZoom(false);
+		
+		web.loadUrl("http://www.google.com.br");
+		
+		setContentView(web);
 	}
 	
 	@Override
@@ -22,6 +35,7 @@ public class teste extends Activity{
 		super.onDestroy();
 	}
 	
+	/*
 	View itemView;
 	
 	public teste (View w){
@@ -42,6 +56,7 @@ public class teste extends Activity{
 		
 		pop.showAsDropDown(w, 2, -1);
 	}
+	*/
 	
 	/*
 	 *     View itemView;

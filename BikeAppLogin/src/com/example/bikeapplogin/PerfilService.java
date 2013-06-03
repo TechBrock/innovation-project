@@ -63,7 +63,7 @@ public class PerfilService extends AsyncTask<WebUsuario, Void, WebUsuario[]> {
 		
 		
 		try {
-			JSONArray request = new JSONArray(url);//requisicao);
+			JSONArray request = new JSONArray(requisicao);
 			
 			usuarios = new WebUsuario[request.length()];
 			

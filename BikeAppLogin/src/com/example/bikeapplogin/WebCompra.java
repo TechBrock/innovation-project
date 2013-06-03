@@ -1,5 +1,4 @@
 package com.example.bikeapplogin;
-import java.util.Date;
 
 
 public class WebCompra {
@@ -7,13 +6,15 @@ public class WebCompra {
 	private int id;
 	private int ordemCompra;
 	private int qtdParcelas;
-	private double valorFrete;
-	private double valorCompra;
+	private String valorFrete;
+	private String valorCompra;
 	private int prazo;
-	private Date dataPedido;
-	private Date dataEntrega;
+	private String dataPedido;
+	private String dataEntrega;
 	private String meioPagamento;
 	private String tipoFrete;
+	private int quantidade;
+	private String itens;
 	
 	public int getId() {
 		return id;
@@ -33,16 +34,16 @@ public class WebCompra {
 	public void setQtdParcelas(int qtdParcelas) {
 		this.qtdParcelas = qtdParcelas;
 	}
-	public double getValorFrete() {
+	public String getValorFrete() {
 		return valorFrete;
 	}
-	public void setValorFrete(double valorFrete) {
+	public void setValorFrete(String valorFrete) {
 		this.valorFrete = valorFrete;
 	}
-	public double getValorCompra() {
+	public String getValorCompra() {
 		return valorCompra;
 	}
-	public void setValorCompra(double valorCompra) {
+	public void setValorCompra(String valorCompra) {
 		this.valorCompra = valorCompra;
 	}
 	public int getPrazo() {
@@ -51,16 +52,16 @@ public class WebCompra {
 	public void setPrazo(int prazo) {
 		this.prazo = prazo;
 	}
-	public Date getDataPedido() {
+	public String getDataPedido() {
 		return dataPedido;
 	}
-	public void setDataPedido(Date dataPedido) {
+	public void setDataPedido(String dataPedido) {
 		this.dataPedido = dataPedido;
 	}
-	public Date getDataEntrega() {
+	public String getDataEntrega() {
 		return dataEntrega;
 	}
-	public void setDataEntrega(Date dataEntrega) {
+	public void setDataEntrega(String dataEntrega) {
 		this.dataEntrega = dataEntrega;
 	}
 	public String getMeioPagamento() {
@@ -74,6 +75,18 @@ public class WebCompra {
 	}
 	public void setTipoFrete(String tipoFrete) {
 		this.tipoFrete = tipoFrete;
+	}
+	public int getQuantidade() {
+		return quantidade;
+	}
+	public void setQuantidade(int quantidade) {
+		this.quantidade = quantidade;
+	}
+	public String getItens() {
+		return itens;
+	}
+	public void setItens(String itens) {
+		this.itens = itens;
 	}
 	
 }
