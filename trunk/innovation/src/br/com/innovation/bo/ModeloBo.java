@@ -317,7 +317,7 @@ public class ModeloBo implements Serializable{
 
 		if(modeloInsert.getImg2() != null){
 			destino = new FileOutputStream(CAMINHO+idProduto+"detalhe1.jpeg");
-			destino.write(img1.getBytes(), 0, img1.getBytes().length);
+			destino.write(img2.getBytes(), 0, img2.getBytes().length);
 			destino.flush();
 			destino.close();
 			caminhosAl.add("'C:/newWork/imagens_produto/"+idProduto+"detalhe1.jpeg'");
@@ -325,7 +325,7 @@ public class ModeloBo implements Serializable{
 
 		if(modeloInsert.getImg3() != null){
 			destino = new FileOutputStream(CAMINHO+idProduto+"detalhe2.jpeg");
-			destino.write(img1.getBytes(), 0, img1.getBytes().length);
+			destino.write(img3.getBytes(), 0, img3.getBytes().length);
 			destino.flush();
 			destino.close();
 			caminhosAl.add("'C:/newWork/imagens_produto/"+idProduto+"detalhe2.jpeg'");
@@ -333,7 +333,7 @@ public class ModeloBo implements Serializable{
 
 		if(modeloInsert.getImg4() != null){
 			destino = new FileOutputStream(CAMINHO+idProduto+"detalhe3.jpeg");
-			destino.write(img1.getBytes(), 0, img1.getBytes().length);
+			destino.write(img4.getBytes(), 0, img4.getBytes().length);
 			destino.flush();
 			destino.close();
 			caminhosAl.add("'C:/newWork/imagens_produto/"+idProduto+"detalhe3.jpeg'");
@@ -353,13 +353,13 @@ public class ModeloBo implements Serializable{
 		return "inn004ins";
 	}
 	public String uploadImg3() throws IOException{
-		if(img2 != null ){
+		if(img3 != null ){
 			modeloInsert.setImg3(img3.getBytes());
 		}
 		return "inn004ins";
 	}
 	public String uploadImg4() throws IOException{
-		if(img2 != null ){
+		if(img4 != null ){
 			modeloInsert.setImg4(img4.getBytes());
 		}
 		return "inn004ins";
