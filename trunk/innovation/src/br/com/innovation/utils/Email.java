@@ -7,7 +7,7 @@ import org.apache.commons.mail.HtmlEmail;
 
 public class Email {
 
-	public static void enviaEmailCompra(Integer ordem, String usuario) throws EmailException, MalformedURLException {  
+	public static void enviaEmailCompra(Integer ordem, String usuario, String endereco) throws EmailException, MalformedURLException {  
 
 		HtmlEmail email = new HtmlEmail();  
 		StringBuilder emailMsg = new StringBuilder();
@@ -62,7 +62,7 @@ public class Email {
 				email.setTextMsg("Seu servidor de e-mail não suporta mensagem HTML");  
 
 				email.setHostName("smtp.gmail.com"); // o servidor SMTP para envio do e-mail  
-				email.addTo("metalurgicametodo@gmail.com", "metalurgicametodo@gmail.com"); //destinatário  
+				email.addTo(endereco, usuario); //destinatário  
 				email.setFrom("metalurgicametodo@gmail.com", "metalurgicametodo@gmail.com"); // remetente  
 				email.setSubject("Teste -> Html Email"); // assunto do e-mail  
 				//        email.setMsg("Teste de Email HTML utilizando commons-email"); //conteudo do e-mail  

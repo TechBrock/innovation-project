@@ -151,13 +151,7 @@ public class CarrinhoBo implements Serializable{
 	}
 	
 	public String removeToCart(){
-		totalCart = 0.0;
 		carrinhoAl.remove(carrinhoRemove);
-
-		for (CarrinhoVo cart : carrinhoAl) {
-			totalCart += cart.getValorTotal();
-		}
-
 		return getCalcValorTotal();
 	}
 
@@ -197,13 +191,18 @@ public class CarrinhoBo implements Serializable{
 	public String getCalcValorTotal(){
 		totalCart = 0.0;
 		totalProd = 0.0;
+		totalFrete = 0.0;
+		qtdItems = 0;
+		
 		double freteKm = calcFrete()/100;
 		
 		
 		for (CarrinhoVo cart : carrinhoAl) {
 			qtdItems += cart.getQtdModelo();
-			if(cart.getIdModelo().intValue() == carrinhoVo.getIdModelo().intValue()){
-				cart.setValorTotal(carrinhoVo.getPrecoModelo()*carrinhoVo.getQtdModelo());
+			if(carrinhoVo.getIdModelo() != null && carrinhoVo.getIdModelo().intValue() > 0){
+				if(cart.getIdModelo().intValue() == carrinhoVo.getIdModelo().intValue()){
+					cart.setValorTotal(carrinhoVo.getPrecoModelo()*carrinhoVo.getQtdModelo());
+				}
 			}
 		}
 

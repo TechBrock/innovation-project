@@ -242,7 +242,7 @@ public class CompraBo implements Serializable{
 		
 		if(compraProd.size() > 0){
 			try {
-				Email.enviaEmailCompra(compraIns.getOrdemCompra(), usuVo.getApelido());
+				Email.enviaEmailCompra(compraIns.getOrdemCompra(), usuVo.getApelido(), usuVo.getEmail());
 				acao = "inn004confirm";
 			} catch (MalformedURLException e) {
 				
