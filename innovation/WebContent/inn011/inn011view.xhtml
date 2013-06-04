@@ -16,8 +16,8 @@
 	
 	<ui:define name="conteudo">
 	<t:saveState value="#{PedidoBo}"/>
-		<div class="login_ident" style="width:600px; height: 400px; padding: 0px 0px 0px 0px" >
-			<table width="600px" style="border-collapse: collapse;">
+		<div class="login_ident" style="width:700px; height: 400px; padding: 0px 0px 0px 0px" >
+			<table width="700px" style="border-collapse: collapse;">
 				<tr>
 					<td align="left">
 						<div class="divTitulo">
@@ -28,44 +28,73 @@
 				</tr>
 				<tr>
 					<td>
+						<table width="700px">
+							<tr>
+								<td width="140px" align="center">
+									<h:outputText value="Ordem"></h:outputText>
+								</td>
+								<td width="140px">
+									<h:outputText value="Data da compra"/>
+								</td>
+								<td width="140px" align="center">
+									<h:outputText value="Total produtos"/>
+								</td>
+								<td width="140px" align="center">
+									<h:outputText value="Total frete"/>
+								</td>
+								<td width="140px" align="center">
+									<h:outputText value="Total"/>
+								</td>
+							</tr>
+						</table>
 						<rich:dataGrid
 			 				id="gridProdutos" 
 			 				value="#{PedidoBo.pedidoAl}"
 			 				var="lista" 
 			 				columns="1" 
 			 				elements="10" 
-			 				width="100%"
+			 				width="700px"
 			 				style="background-color:#eceff1">
 			 	
-						 	<rich:column>
+						 	<rich:column width="140px">
+						 		<div align="center">
 						 		<a4j:commandLink  value="#{lista.ordemCompra}" action="#{PedidoBo.getItemPedido}" style="font-family: verdana;font-size: 14px; height: 18px;">
 						 			<f:setPropertyActionListener value="#{lista.id}" target="#{PedidoBo.idCompra}"/>
 						 		</a4j:commandLink>
+						 		</div>
 						 	</rich:column>
 						 	
-						 	<rich:column>
+						 	<rich:column width="140px">
+						 		<div align="center">
 						 		<h:outputText value="#{lista.dataPedido}" 
 						 			style="font-family: verdana;font-size: 14px; height: 18px;"/>
+						 		</div>
 						 	</rich:column>
 						 	
-						 	<rich:column>
+						 	<rich:column width="140px">
+						 		<div align="center">
 						 		<h:outputText value="R$ #{lista.valorCompra}" 
 						 			style="font-family: verdana;font-size: 14px; height: 18px;">
-						 			<f:convertNumber locale="pt_BR" pattern="0.00"/>
+						 			<f:convertNumber pattern="#,##0.00" minFractionDigits="2" />
 						 		</h:outputText>
+						 		</div>
 						 	</rich:column>
 			 	
-						 	<rich:column>
+						 	<rich:column width="140px">
+						 		<div align="center">
 						 		<h:outputText value="R$ #{lista.valorFrete}" 
 						 			style="font-family: verdana;font-size: 14px; height: 18px;">
-						 			<f:convertNumber locale="pt_BR" pattern="0.00"/>
+						 			<f:convertNumber pattern="#,##0.00" minFractionDigits="2" />
 						 		</h:outputText>
+						 		</div>
 						 	</rich:column>
-						 	<rich:column>
+						 	<rich:column width="140px">
+						 		<div align="center">
 						 		<h:outputText value="R$ #{lista.valorTotal}" 
 						 			style="font-family: verdana;font-size: 14px; height: 18px;">
-						 			<f:convertNumber locale="pt_BR" pattern="0.00"/>
+						 			<f:convertNumber pattern="#,##0.00" minFractionDigits="2" />
 						 		</h:outputText>
+						 		</div>
 						 	</rich:column>
 						 </rich:dataGrid>
 						 
