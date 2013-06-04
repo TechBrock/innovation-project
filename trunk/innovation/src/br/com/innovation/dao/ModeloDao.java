@@ -336,13 +336,13 @@ public class ModeloDao {
 		ModeloVo modeloVo = new ModeloVo();
 		ArrayList<ModeloVo> modeloAl = new ArrayList<ModeloVo>();
 
-		if(modelo.getCaract() != null && !modelo.getCaract().equals("") && modelo.getNome() != null && !modelo.getNome().equals("")){
+		if((modelo.getCaract() != null && !modelo.getCaract().equals("")) || (modelo.getNome() != null && !modelo.getNome().equals(""))){
 			if(!(modelo.getCaract() != null && !modelo.getCaract().equals(""))){
-				filtro.append("WHERE  UPPER m.nome LIKE UPPER ('%"+modelo.getNome()+"%')");
+				filtro.append("WHERE  UPPER (m.nome) LIKE UPPER ('%"+modelo.getNome()+"%')");
 			}else if(!(modelo.getNome() != null && !modelo.getNome().equals(""))){
-				filtro.append("WHERE  UPPER tpo.nome LIKE UPPER ('%"+modelo.getCaract()+"%')");
+				filtro.append("WHERE  UPPER (tpo.nome) LIKE UPPER ('%"+modelo.getCaract()+"%')");
 			}else{
-				filtro.append("WHERE  UPPER m.nome LIKE UPPER ('%"+modelo.getNome()+"%') AND UPPER tpo.nome LIKE UPPER ('%"+modelo.getCaract()+"%')");
+				filtro.append("WHERE  UPPER (m.nome) LIKE UPPER ('%"+modelo.getNome()+"%') AND UPPER (tpo.nome) LIKE UPPER ('%"+modelo.getCaract()+"%')");
 			}	
 		}
 		query.append("select ");
