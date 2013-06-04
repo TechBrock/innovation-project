@@ -21,6 +21,7 @@ public class teste extends Activity{
 		w.setSupportZoom(false);
 		
 		web.loadUrl("http://www.google.com.br");
+		//lucas
 		
 		setContentView(web);
 	}
