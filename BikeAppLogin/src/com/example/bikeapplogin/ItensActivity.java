@@ -18,12 +18,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class ItensActivity extends Activity {
-	
-	//private ArrayList<String> item;
-	//public ItemListAdapter itAdapter;
+
 	public  ItensListAdapter itAdapter;
 	public WebItem webItemcaminhoImg;
-	public ArrayList<String> imgs, nomes;
 	private DBHelper db;
 	private ArrayList<WebItem> wItens;
 	private capturaImagens cap;
@@ -33,14 +30,10 @@ public class ItensActivity extends Activity {
 		// TODO Auto-generated constructor stub
 		cap = new capturaImagens();
 		wItens = new ArrayList<WebItem>();
-		imgs = new ArrayList<String>();
-		nomes = new ArrayList<String>();
 
 		//itens que recebem o objeto	
 		for (WebItem webItem : wItens) {
 			wItens.add(webItem);
-			imgs.add(webItem.getCaminhoImg1());
-			nomes.add(webItem.getNome());
 		}
 		
 		//item = new ArrayList<String>();
@@ -55,13 +48,15 @@ public class ItensActivity extends Activity {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.itens);
+		
+		Bundle extras = getIntent().getExtras();
+		idUsuario = extras.getInt("id_usuario");
+		
+		//itservice = (ItensService) new ItensService(this).execute();
 
 		ListView listaItens = (ListView) findViewById(R.id.listaItens);
 		this.itAdapter = new ItensListAdapter(this, R.layout.listaitens, wItens);	
 		listaItens.setAdapter(this.itAdapter);
-		
-		Bundle extras = getIntent().getExtras();
-		idUsuario = extras.getInt("id_usuario");
 	}	
 	
 	public void adicionaIten (){
@@ -80,10 +75,6 @@ public class ItensActivity extends Activity {
 	
     public void callPerfil (View v){
     	goToActivity(PerfilActivity.class);
-    } 
-    
-    public void callOfertas (View v){
-    	goToActivity(ItensActivity.class);
     } 
     
     public void callCompras (View v){
@@ -122,6 +113,8 @@ public class ItensActivity extends Activity {
     public class ItensListAdapter extends ArrayAdapter<WebItem>{
 		
 		private ArrayList<WebItem> lstItem;// = new ArrayList<WebItem>();
+		private WebItem it;
+		private ItensService itemService;
 
 		public ItensListAdapter(Context context, int textViewResourceId, ArrayList<WebItem> itens) {
 			super(context, textViewResourceId, itens);
@@ -133,8 +126,18 @@ public class ItensActivity extends Activity {
 		public View getView(final int position, View convertView, ViewGroup parent) {
 			// TODO Auto-generated method stub
 			
+			it = lstItem.get(position);
 			View listaView = convertView;
 			ImageView imgBike;
+			
+			itemService = (ItensService) new ItensService(ItensActivity.this, it).execute();
+			try {
+				Thread.sleep(5000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			it = itemService.getItem();
 			
 			if(listaView == null)
 			{
@@ -142,7 +145,7 @@ public class ItensActivity extends Activity {
 				listaView = lif.inflate(R.layout.listaitens, null);
 				
 				imgBike = (ImageView) listaView.findViewById(R.id.rotulobike);
-				Bitmap bm = Bitmap.createBitmap(cap.getImage(this.getContext(), imgs.get(position)).getDrawingCache());
+				Bitmap bm = Bitmap.createBitmap(cap.getImage(this.getContext(), it.getCaminhoImg1()).getDrawingCache());
 				imgBike.setImageBitmap(bm);
 				imgBike.setOnClickListener(new ImageView.OnClickListener()
 											{
@@ -151,7 +154,7 @@ public class ItensActivity extends Activity {
 													// TODO Auto-generated method stub
 													//goToActivity(ItemActivity.class);
 													Intent newActivity = new Intent(ItensActivity.this, ItemActivity.class);
-													newActivity.putExtra("Item", lstItem.get(position));
+													newActivity.putExtra("Item", it);
 													newActivity.putExtra("id_usuario", idUsuario);
 													startActivity(newActivity);
 												}
@@ -160,7 +163,7 @@ public class ItensActivity extends Activity {
 			}
 			
 			TextView descricao = (TextView) listaView.findViewById(R.id.nomebike);
-			descricao.setText(nomes.get(position));
+			descricao.setText(it.getNome());
 			
 			return listaView;	
 				

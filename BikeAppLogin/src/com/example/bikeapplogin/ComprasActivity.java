@@ -1,7 +1,6 @@
 package com.example.bikeapplogin;
 
 import java.util.ArrayList;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -18,21 +17,21 @@ import android.widget.Toast;
 
 public class ComprasActivity extends Activity{
 
-	private ArrayList<String> pedido;
-	public ItemListAdapter pdAdapter;
+	private ArrayList<WebCompra> wCompras;
+	public CompraListAdapter pdAdapter;
 	public TextView nPedido;
+	
+	//public ArrayList<String> ordemCompra,dataEfetuado,itens,quantidade,valor,valorFrete,tipoFrete,meioPagamento,quantidadeParcelas,prazo,dataEntregue;
 	private DBHelper db;
+	private int idUsuario;
 	
 	public ComprasActivity (){
 		// TODO Auto-generated constructor stub
-		pedido = new ArrayList<String>();
-				
-		//itens que recebem o objeto
-				
-		pedido.add("Pedido 1");
-		pedido.add("Pedido 2");
-		pedido.add("Pedido 3");
-		pedido.add("Pedido 4");
+		wCompras = new ArrayList<WebCompra>();
+		
+		for (WebCompra webCompra : wCompras) {
+			wCompras.add(webCompra);
+		}
 	}
 	
 	@Override
@@ -41,16 +40,22 @@ public class ComprasActivity extends Activity{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.compras);
 		
-		ListView listaPedidos = (ListView) findViewById(R.id.listaPedidos);
-		this.pdAdapter = new ItemListAdapter(this, R.layout.listacompras, pedido);	
-		listaPedidos.setAdapter(this.pdAdapter);
+		Bundle extras = getIntent().getExtras();
+		idUsuario = extras.getInt("id_usuario");
 		
-		nPedido = (TextView) findViewById(R.id.QtdCompra);
-		nPedido.setText(String.format("4 %s", nPedido.getText().toString()));
+		ListView listaPedidos = (ListView) findViewById(R.id.listaPedidos);
+		this.pdAdapter = new CompraListAdapter(this, R.layout.listacompras, wCompras);	
+		listaPedidos.setAdapter(this.pdAdapter);
 	}
 	
 	private void goToActivity(Class<? extends Activity> activityClass) {
         Intent newActivity = new Intent(this, activityClass);
+        startActivity(newActivity);
+    }
+	
+	private void goToActivityIdUsuarioItem(Class<? extends Activity> activityClass, int idUsuario) {
+		Intent newActivity = new Intent(this, activityClass);
+        newActivity.putExtra("id_usuario", idUsuario);
         startActivity(newActivity);
     }
     
@@ -61,13 +66,9 @@ public class ComprasActivity extends Activity{
     public void callOfertas (View v){
     	goToActivity(ItensActivity.class);
     } 
-    
-    public void callCompras (View v){
-    	goToActivity(ComprasActivity.class);
-    } 
    
     public void callFavoritos (View v){
-    	goToActivity(FavoritoActivity.class);
+    	goToActivityIdUsuarioItem(FavoritoActivity.class, idUsuario);
     }
     
     public void callLogin (View v){
@@ -95,32 +96,65 @@ public class ComprasActivity extends Activity{
     	goToActivity(MainActivity.class);
     }
     
-    public class ItemListAdapter extends ArrayAdapter<String>{
+    public class CompraListAdapter extends ArrayAdapter<String>{
 		
-		private ArrayList<String> lstItem;
+		private ArrayList<WebCompra> lstCompra;
+		private WebCompra compra;
+		private String conteudo = null;
+		private CompraService compraService;
 
-		public ItemListAdapter(Context context, int textViewResourceId, ArrayList<String> itens) {
-			super(context, textViewResourceId, itens);
+		public CompraListAdapter(Context context, int textViewResourceId, ArrayList<WebCompra> wCompras) {
+			super(context, textViewResourceId, wCompras.toArray().length);
 			// TODO Auto-generated constructor stub
-			
-			this.lstItem = itens;
+			this.lstCompra = wCompras;
 		}
 		
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
 			// TODO Auto-generated method stub
 			
+			compra = lstCompra.get(position);
 			View listaView = convertView;
+			
+			compraService = (CompraService) new CompraService(ComprasActivity.this, idUsuario, conteudo, compra).execute();
+			try {
+				Thread.sleep(5000);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			compra = compraService.getCompra();
 			
 			if(listaView == null)
 			{
 				LayoutInflater lif = getLayoutInflater();
 				listaView = lif.inflate(R.layout.listacompras, null);
 			}
-
 			
-			TextView nPedido = (TextView) listaView.findViewById(R.id.numeroPedido);
-			nPedido.setText("00000001");
+			TextView orCompra = (TextView) listaView.findViewById(R.id.numeroPedido);
+			TextView dtEfetuado = (TextView) listaView.findViewById(R.id.vDataPedido);
+			TextView item = (TextView) listaView.findViewById(R.id.vItensPedido);
+			TextView qtd = (TextView) listaView.findViewById(R.id.vQtdItenPedido);
+			TextView vl = (TextView) listaView.findViewById(R.id.vValorCompra);
+			TextView vlFrete = (TextView) listaView.findViewById(R.id.vValorFrete);
+			TextView tpfrete = (TextView) listaView.findViewById(R.id.vTipoFrete);
+			TextView mPag = (TextView) listaView.findViewById(R.id.vMeioPagamento);
+			TextView qtdPar = (TextView) listaView.findViewById(R.id.vQtdParcelas);
+			TextView pz = (TextView) listaView.findViewById(R.id.vPrazo);
+			TextView etg = (TextView) listaView.findViewById(R.id.vDataEntrega);
+			
+			orCompra.setText(compra.getId());
+			dtEfetuado.setText(compra.getDataPedido());
+			item.setText(compra.getItens());
+			qtd.setText(compra.getQuantidade());
+			vl.setText(compra.getValorCompra());
+			vlFrete.setText(compra.getValorFrete());
+			tpfrete.setText(compra.getTipoFrete());
+			mPag.setText(compra.getMeioPagamento());
+			qtdPar.setText(compra.getQtdParcelas());
+			pz.setText(compra.getPrazo());
+			etg.setText(compra.getDataEntrega());
+
 			
 			return listaView;	
 				

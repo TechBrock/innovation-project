@@ -172,7 +172,7 @@ public class PerfilActivity extends Activity{
     }
     
     public void callOfertas (View v){
-    	goToActivityIdUsuario(FavoritoActivity.class, usuario.getId());
+    	goToActivity(FavoritoActivity.class);
     } 
    
     public void callFavoritos (View v){
