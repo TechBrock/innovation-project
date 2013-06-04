@@ -76,7 +76,11 @@
 											<h:outputText value="#{LoginBo.loginReturn.apelido}! Seja bem vindo!" styleClass="links" />
 											<rich:spacer width="30px" />
 											<a4j:commandLink value="Sair" action="#{LoginBo.logout}" styleClass="links" 
-												style="color: #ECC03C;" reRender="form1"/>
+												style="color: #ECC03C;" reRender="form1">
+												<a4j:support event="onclick" action="#{CarrinhoBo.zeraCarrinho}"/>
+												<a4j:support event="onclick" action="#{CompraBo.zeraCompra}"/>
+												
+												</a4j:commandLink>
 										</h:panelGroup>
 									</td>
 								</tr>
