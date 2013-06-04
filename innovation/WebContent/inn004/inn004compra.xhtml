@@ -12,6 +12,7 @@
 	
 
 	<ui:define name="conteudo">
+	<a4j:page onload="#{CompraBo.initTable}"/>
 	<t:saveState value="#{CompraBo}"/>
 		<table>
 			<tr>
@@ -37,19 +38,25 @@
 										<tr>	
 											<td>
 												<h:outputText value="Valor Total de produtos: "/>
-												<h:outputText id="outProd" value="#{CarrinhoBo.totalProd}"/>
+												<h:outputText id="outProd" value="#{CarrinhoBo.totalProd}">
+													<f:convertNumber pattern="#,##0.00" minFractionDigits="2" />
+												</h:outputText>
 											</td>
 										</tr>
 										<tr>	
 											<td>
 												<h:outputText value="Valor do frete: "/>
-												<h:outputText id="outFrete" value="#{CompraBo.valorFrete}"/>
+												<h:outputText id="outFrete" value="#{CompraBo.valorFrete}">
+													<f:convertNumber pattern="#,##0.00" minFractionDigits="2"/>
+												</h:outputText>
 											</td>
 										</tr>
 										<tr>	
 											<td>
 												<h:outputText value="Valor da compra: "/>
-												<h:outputText id="outCart" value="#{CarrinhoBo.totalCart}"/>
+												<h:outputText id="outCart" value="#{CarrinhoBo.totalCart}">
+													<f:convertNumber pattern="#,##0.00" minFractionDigits="2"  />
+												</h:outputText>
 											</td>
 										</tr>
 									</table>
@@ -86,7 +93,7 @@
 										</tr>
 										<tr>
 											<td>
-												<h:outputText value="Endereço concatenado: "/>
+												<h:outputText value="Endereço: "/>
 												<h:outputText value="#{CompraBo.endVo.logradouro}"/>,
 												<h:outputText value="#{CompraBo.endVo.numero}"/><br/>
 												<h:outputText value="#{CompraBo.endVo.bairro}"/><br/>
@@ -122,6 +129,7 @@
 					<a4j:commandButton  image="/images/buttons/credit_card.png"
 						style="width:150px; height: 160px;" reRender="form1"> 
 						<f:setPropertyActionListener value="true" target="#{CompraBo.eCartao}"/>
+						<f:setPropertyActionListener value="false" target="#{CompraBo.showBoleto}"/>
 			 		</a4j:commandButton>
 				</td>
 			</tr>
@@ -186,7 +194,7 @@
 					<td align="right">
 			 			<a4j:commandButton value="Finalizar Compra"
 			 				styleClass="btn btn-large btn-block btn-danger"
-			 				onclick="window.open('http://localhost:8080/innovation/innTeste/innTesteBoleto.jsf', 'popupWindowName', 'dependent=yes, menubar=no, toolbar=no'); return false;"> 
+			 				onclick="window.open('http://localhost:8081/innovation/innTeste/innTesteBoleto.jsf', 'popupWindowName', 'dependent=yes, menubar=no, toolbar=no'); return false;">
 			 			</a4j:commandButton>
 			 			
 					</td>
