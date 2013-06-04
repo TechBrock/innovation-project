@@ -2,8 +2,6 @@ package com.example.bikeapplogin;
 
 import java.util.ArrayList;
 
-import com.example.bikeapplogin.ComprasActivity.ItemListAdapter;
-
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -17,7 +15,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class FavoritoActivity extends Activity{

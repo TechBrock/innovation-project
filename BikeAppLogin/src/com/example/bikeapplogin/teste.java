@@ -2,12 +2,8 @@ package com.example.bikeapplogin;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
-import android.widget.ImageView;
-import android.widget.PopupWindow;
 
 public class teste extends Activity{
 

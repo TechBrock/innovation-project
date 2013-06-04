@@ -11,13 +11,13 @@ import android.widget.ImageView;
 import android.widget.ViewSwitcher.ViewFactory;
 import android.view.ViewGroup.LayoutParams; 
 
+@SuppressWarnings("deprecation")
 public class ImagensActivity extends Activity implements ViewFactory{
 	
 	//private int[] fig = {R.drawable.b1, R.drawable.b2, R.drawable.b3, R.drawable.b4};
 	private int[] fig = {R.drawable.b1, R.drawable.b2, R.drawable.b3, R.drawable.b4};
 	private ImageSwitcher imgSw;
-	
-	@SuppressWarnings("deprecation")
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
@@ -46,7 +46,6 @@ public class ImagensActivity extends Activity implements ViewFactory{
 		});
 	}
 	
-	@SuppressWarnings("deprecation")
 	@Override
 	public View makeView() {
 		// TODO Auto-generated method stub
