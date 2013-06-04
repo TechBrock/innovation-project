@@ -87,7 +87,7 @@ public class ItensActivity extends Activity {
     } 
     
     public void callCompras (View v){
-    	goToActivity(ComprasActivity.class);
+    	goToActivityIdUsuarioItem(ComprasActivity.class, idUsuario);
     } 
    
     public void callFavoritos (View v){

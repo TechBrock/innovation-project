@@ -1,6 +1,9 @@
 package com.example.bikeapplogin;
 
+import java.util.List;
+
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.animation.AnimationUtils;
@@ -17,12 +20,19 @@ public class ImagensActivity extends Activity implements ViewFactory{
 	//private int[] fig = {R.drawable.b1, R.drawable.b2, R.drawable.b3, R.drawable.b4};
 	private int[] fig = {R.drawable.b1, R.drawable.b2, R.drawable.b3, R.drawable.b4};
 	private ImageSwitcher imgSw;
+	private List<String> caminhos;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.imagens);
+        
+        Intent ItensExtra= getIntent();
+        caminhos.add(ItensExtra.getExtras().getString("caminho1"));
+        caminhos.add(ItensExtra.getExtras().getString("caminho2"));
+        caminhos.add(ItensExtra.getExtras().getString("caminho3"));
+        caminhos.add(ItensExtra.getExtras().getString("caminho4"));
 		
 		imgSw = (ImageSwitcher) findViewById(R.id.imagemOptions);
 		imgSw.setFactory(this);
@@ -30,7 +40,7 @@ public class ImagensActivity extends Activity implements ViewFactory{
 		imgSw.setOutAnimation(AnimationUtils.loadAnimation(this, android.R.anim.fade_out));
 		
 		Gallery gall = (Gallery) findViewById(R.id.galeriaImagens);
-		gall.setAdapter(new ImagemAdapter(this, fig, new Gallery.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)));
+		gall.setAdapter(new ImagemAdapter(this, caminhos, new Gallery.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)));
 		gall.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
 			
 			@Override

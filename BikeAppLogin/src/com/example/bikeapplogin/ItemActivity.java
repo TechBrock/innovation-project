@@ -3,10 +3,12 @@ package com.example.bikeapplogin;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 public class ItemActivity extends Activity{
 	
@@ -14,6 +16,8 @@ public class ItemActivity extends Activity{
 	private WebItem Item;
 	private capturaImagens cap;
 	private int idUsuario;
+	private ItemFavoritoService itfavservice;
+	private String conteudo = null;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -23,8 +27,8 @@ public class ItemActivity extends Activity{
 		
 		Intent ItensExtra= getIntent();
 		Item = (WebItem) ItensExtra.getSerializableExtra("Item");
-		Bundle extras = getIntent().getExtras();
-		idUsuario = extras.getInt("id_usuario");
+		//Bundle extras = getIntent().getExtras();
+		idUsuario = ItensExtra.getExtras().getInt("id_usuario");
 		
 		ImageView img = (ImageView) findViewById(R.id.btPopBike);
 		Bitmap bm = Bitmap.createBitmap(cap.getImage(ItemActivity.this, Item.getCaminhoImg1()).getDrawingCache());
@@ -64,6 +68,15 @@ public class ItemActivity extends Activity{
         newActivity.putExtra("id_usuario", idUsuario);
         newActivity.putExtra("id_modelo", Item.getId());
         startActivity(newActivity);
+        
+        itfavservice = (ItemFavoritoService) new ItemFavoritoService(ItemActivity.this, idUsuario, Item.getId(), conteudo).execute();
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		favorito(conteudo = itfavservice.getFavorito());
 	}
 	
 	public void callImg (View v){
@@ -73,5 +86,24 @@ public class ItemActivity extends Activity{
         newActivity.putExtra("caminho3", Item.getCaminhoImg3());
         newActivity.putExtra("caminho4", Item.getCaminhoImg4());
         startActivity(newActivity);
+	}
+	
+	@SuppressWarnings("unused")
+	private void killBike (View v){
+		Intent newActivity = new Intent(this, ItensActivity.class);
+        startActivity(newActivity);
+	}
+	
+	public void favorito (String fav){
+		
+		if("true".equals(fav)){
+			ImageView estrela = (ImageView) findViewById(R.id.btPopBikeFavorito);
+			Drawable dbImgItem = getResources().getDrawable(R.drawable.logoestrelainvertida);
+			estrela.setImageDrawable(dbImgItem);
+			
+			Toast.makeText(this, "este item agora é favorito !", Toast.LENGTH_SHORT).show();
+		}else{
+			Toast.makeText(this, "Não foi possível tornar este item favorito !", Toast.LENGTH_LONG).show();
+		}
 	}
 }
