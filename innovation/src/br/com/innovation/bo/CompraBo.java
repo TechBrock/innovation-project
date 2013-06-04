@@ -8,17 +8,9 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
-
 import javax.faces.context.FacesContext;
-import javax.faces.context.FacesContextFactory;
-import javax.faces.webapp.FacesServlet;
-
 import org.ajax4jsf.component.html.HtmlPage;
 import org.apache.commons.mail.EmailException;
-import org.apache.myfaces.context.FacesContextFactoryImpl;
-
-import com.sun.faces.context.FacesContextImpl;
-
 import br.com.innovation.dao.CompraDao;
 import br.com.innovation.dao.EnderecoDao;
 import br.com.innovation.dao.TelefoneDao;
@@ -172,10 +164,19 @@ public class CompraBo implements Serializable{
 	
 	public void setInitTable(HtmlPage table){}
 	
+	public String zeraCompra(){
+		usuVo = new UsuarioVo();
+		telAl.clear();
+		endVo = new EnderecoVo();
+		
+		return null;
+	}
+	
 	public String finalizarBoleto(){
 		qtdParcelas = 1;
 		finalizarCompra(1, endVo.getId(), usuVo.getId());
 		popularBoleto();
+		new CarrinhoBo().restartCarrinho();
 		return null;
 	}
 
@@ -190,7 +191,9 @@ public class CompraBo implements Serializable{
 	public void popularBoleto(){
 		idUsuario = (Integer)FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("id");  
 		if(idUsuario != null){
+			endVo = new EnderecoDao().getEndByUser(idUsuario);
 			usuVo = new UsuarioDao().getUsuarioById(idUsuario);
+			telAl = new TelefoneDao().getTelefoneByUser(idUsuario);
 			arrayBoleto = BoletoService.gerarBoleto(usuVo, endVo,valorCarrinho);
 		}
 	}
@@ -251,6 +254,7 @@ public class CompraBo implements Serializable{
 				e.printStackTrace();
 			}
 		}
+		new CarrinhoBo().restartCarrinho();
 		return acao;
 		
 	}
