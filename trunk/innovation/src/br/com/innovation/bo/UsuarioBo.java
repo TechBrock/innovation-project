@@ -74,6 +74,7 @@ public class UsuarioBo implements Serializable {
 	private Boolean infValido = true;
 	private Boolean cepValido = true;
 	private Boolean tipoValido = true;
+	EnderecoVo enderecoEdit = new EnderecoVo();
 
 	private String erroSubmit;
 	private Integer idUser;
@@ -360,6 +361,15 @@ public class UsuarioBo implements Serializable {
 	public void setEnderecoIns(EnderecoVo enderecoIns) {
 		this.enderecoIns = enderecoIns;
 	}
+	
+	public EnderecoVo getEnderecoEdit() {
+		return enderecoEdit;
+	}
+
+	public void setEnderecoEdit(EnderecoVo enderecoEdit) {
+		this.enderecoEdit = enderecoEdit;
+	}
+	
 
 	public String inserir(){
 		int cpfExist = 0;
@@ -416,6 +426,7 @@ public class UsuarioBo implements Serializable {
 		ArrayList<TelefoneVo> telUser = new ArrayList<TelefoneVo>();
 		usuEdit = new UsuarioDao().getUsuarioById(idUsuario);
 		telUser = buscaTelefone(idUsuario);
+		enderecoEdit = new EnderecoDao().getEndByUser(usuEdit.getId());
 
 		for (TelefoneVo telefoneVo : telUser){
 
