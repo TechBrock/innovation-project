@@ -1,14 +1,14 @@
 package com.example.bikeapplogin;
 
 import android.annotation.SuppressLint;
-import java.text.SimpleDateFormat;
+
+import java.io.Serializable;
 import java.util.Date;
 
 @SuppressLint("SimpleDateFormat")
-public class WebUsuario {
-	
-	SimpleDateFormat format = new SimpleDateFormat("yyyy-mm-dd");
-	
+public class WebUsuario implements Serializable{
+
+	private static final long serialVersionUID = 1L;
 	private int id = 0;
 	private String nome = "t";
 	private String sobrenome = "t";
@@ -33,12 +33,6 @@ public class WebUsuario {
 	private String cidade = "t";
 	private String estado = "t";
 	
-	public SimpleDateFormat getFormat() {
-		return format;
-	}
-	public void setFormat(SimpleDateFormat format) {
-		this.format = format;
-	}
 	public int getId() {
 		return id;
 	}

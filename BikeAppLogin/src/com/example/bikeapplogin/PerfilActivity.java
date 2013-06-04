@@ -160,22 +160,23 @@ public class PerfilActivity extends Activity{
         Intent newActivity = new Intent(this, activityClass);
         startActivity(newActivity);
     }
-    
-    public void callPerfil (View v){
-    	goToActivity(PerfilActivity.class);
-    } 
-    
+	
+	private void goToActivityIdUsuario(Class<? extends Activity> activityClass, int idUsuario) {
+        Intent newActivity = new Intent(this, activityClass);
+        newActivity.putExtra("id_usuario", idUsuario);
+        startActivity(newActivity);
+    }  
     
     public void callCompras (View v){
-    	goToActivity(ComprasActivity.class);
+    	goToActivityIdUsuario(FavoritoActivity.class, usuario.getId());
     }
     
     public void callOfertas (View v){
-    	goToActivity(ItensActivity.class);
+    	goToActivityIdUsuario(FavoritoActivity.class, usuario.getId());
     } 
    
     public void callFavoritos (View v){
-    	goToActivity(FavoritoActivity.class);
+    	goToActivityIdUsuario(FavoritoActivity.class, usuario.getId());
     } 
     
     public void callLogin (View v){
@@ -196,7 +197,7 @@ public class PerfilActivity extends Activity{
         		//goToActivity(PerfilActivity.class);
         	}
         }catch(Exception ex){
-        	Toast.makeText(this, "Campo Usuário ou senha em branco !", Toast.LENGTH_SHORT).show();
+        	Toast.makeText(this, "Não existe usuário logado !", Toast.LENGTH_SHORT).show();
         }finally{
         	crs.close();
         }
@@ -205,7 +206,8 @@ public class PerfilActivity extends Activity{
     }
     
     public void callEditar (View v){
-    	goToActivity(PerfilPersonalizadoActivity.class);
+    	Intent newActivity = new Intent(PerfilActivity.this, PerfilPersonalizadoActivity.class);
+		newActivity.putExtra("Usuario", usuario);
     }
     
     

@@ -1,16 +1,12 @@
 package com.example.bikeapplogin;
 
 import java.util.ArrayList;
-import java.util.List;
-
-import android.app.ActionBar.LayoutParams;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,8 +14,6 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.PopupMenu;
-import android.widget.PopupWindow;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -33,8 +27,9 @@ public class ItensActivity extends Activity {
 	private DBHelper db;
 	private ArrayList<WebItem> wItens;
 	private capturaImagens cap;
+	private int idUsuario;
 	
-	public ItensActivity(){//List<WebItem> wItens) {
+	public ItensActivity(){
 		// TODO Auto-generated constructor stub
 		cap = new capturaImagens();
 		wItens = new ArrayList<WebItem>();
@@ -64,6 +59,9 @@ public class ItensActivity extends Activity {
 		ListView listaItens = (ListView) findViewById(R.id.listaItens);
 		this.itAdapter = new ItensListAdapter(this, R.layout.listaitens, wItens);	
 		listaItens.setAdapter(this.itAdapter);
+		
+		Bundle extras = getIntent().getExtras();
+		idUsuario = extras.getInt("id_usuario");
 	}	
 	
 	public void adicionaIten (){
@@ -71,6 +69,12 @@ public class ItensActivity extends Activity {
 	
 	private void goToActivity(Class<? extends Activity> activityClass) {
         Intent newActivity = new Intent(this, activityClass);
+        startActivity(newActivity);
+    }
+	
+	private void goToActivityIdUsuarioItem(Class<? extends Activity> activityClass, int idUsuario) {
+		Intent newActivity = new Intent(this, activityClass);
+        newActivity.putExtra("id_usuario", idUsuario);
         startActivity(newActivity);
     }
 	
@@ -87,7 +91,7 @@ public class ItensActivity extends Activity {
     } 
    
     public void callFavoritos (View v){
-    	goToActivity(FavoritoActivity.class);
+    	goToActivityIdUsuarioItem(FavoritoActivity.class, idUsuario);
     }
     
     public void callLogin (View v){
@@ -148,6 +152,8 @@ public class ItensActivity extends Activity {
 													//goToActivity(ItemActivity.class);
 													Intent newActivity = new Intent(ItensActivity.this, ItemActivity.class);
 													newActivity.putExtra("Item", lstItem.get(position));
+													newActivity.putExtra("id_usuario", idUsuario);
+													startActivity(newActivity);
 												}
 						                  	}
 										  );

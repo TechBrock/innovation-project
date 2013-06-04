@@ -13,6 +13,7 @@ public class ItemActivity extends Activity{
 	//private  ItensExtra;
 	private WebItem Item;
 	private capturaImagens cap;
+	private int idUsuario;
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -22,8 +23,8 @@ public class ItemActivity extends Activity{
 		
 		Intent ItensExtra= getIntent();
 		Item = (WebItem) ItensExtra.getSerializableExtra("Item");
-		
-		//(ImageView) imgBike = (ImageView);// cap.getImage(this.getContext(), imgs.get(position));
+		Bundle extras = getIntent().getExtras();
+		idUsuario = extras.getInt("id_usuario");
 		
 		ImageView img = (ImageView) findViewById(R.id.btPopBike);
 		Bitmap bm = Bitmap.createBitmap(cap.getImage(ItemActivity.this, Item.getCaminhoImg1()).getDrawingCache());
@@ -57,12 +58,20 @@ public class ItemActivity extends Activity{
 		
 	}
 	
-	private void goToActivity(Class<? extends Activity> activityClass) {
-        Intent newActivity = new Intent(this, activityClass);
+	@SuppressWarnings("unused")
+	private void tornaBikeFavorita(View v){
+		Intent newActivity = new Intent(this, ItemFavoritoService.class);
+        newActivity.putExtra("id_usuario", idUsuario);
+        newActivity.putExtra("id_modelo", Item.getId());
         startActivity(newActivity);
-    }
+	}
 	
 	public void callImg (View v){
-		goToActivity(ImagensActivity.class);
+		Intent newActivity = new Intent(this, ImagensActivity.class);
+        newActivity.putExtra("caminho1", Item.getCaminhoImg1());
+        newActivity.putExtra("caminho2", Item.getCaminhoImg2());
+        newActivity.putExtra("caminho3", Item.getCaminhoImg3());
+        newActivity.putExtra("caminho4", Item.getCaminhoImg4());
+        startActivity(newActivity);
 	}
 }
