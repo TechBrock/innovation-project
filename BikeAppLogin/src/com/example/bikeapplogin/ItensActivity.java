@@ -1,6 +1,7 @@
 package com.example.bikeapplogin;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import android.app.ActionBar.LayoutParams;
 import android.app.Activity;
@@ -8,6 +9,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -23,20 +25,34 @@ import android.widget.Toast;
 
 public class ItensActivity extends Activity {
 	
-	private ArrayList<String> item;
-	public ItemListAdapter itAdapter;
+	//private ArrayList<String> item;
+	//public ItemListAdapter itAdapter;
+	public  ItensListAdapter itAdapter;
+	public WebItem webItemcaminhoImg;
+	public ArrayList<String> imgs, nomes;
 	private DBHelper db;
+	private ArrayList<WebItem> wItens;
+	private capturaImagens cap;
 	
-	public ItensActivity() {
+	public ItensActivity(){//List<WebItem> wItens) {
 		// TODO Auto-generated constructor stub
-		item = new ArrayList<String>();
+		cap = new capturaImagens();
+		wItens = new ArrayList<WebItem>();
+		imgs = new ArrayList<String>();
+		nomes = new ArrayList<String>();
+
+		//itens que recebem o objeto	
+		for (WebItem webItem : wItens) {
+			wItens.add(webItem);
+			imgs.add(webItem.getCaminhoImg1());
+			nomes.add(webItem.getNome());
+		}
 		
-		//itens que recebem o objeto
-		
-		item.add("Descrição 1");
-		item.add("Descrição 2");
-		item.add("Descrição 3");
-		item.add("Descrição 4");
+		//item = new ArrayList<String>();
+		//item.add("Descrição 1");
+		//item.add("Descrição 2");
+		//item.add("Descrição 3");
+		//item.add("Descrição 4");
 	}
 	
 	@Override
@@ -46,7 +62,7 @@ public class ItensActivity extends Activity {
 		setContentView(R.layout.itens);
 
 		ListView listaItens = (ListView) findViewById(R.id.listaItens);
-		this.itAdapter = new ItemListAdapter(this, R.layout.listaitens, item);	
+		this.itAdapter = new ItensListAdapter(this, R.layout.listaitens, wItens);	
 		listaItens.setAdapter(this.itAdapter);
 	}	
 	
@@ -57,7 +73,7 @@ public class ItensActivity extends Activity {
         Intent newActivity = new Intent(this, activityClass);
         startActivity(newActivity);
     }
-    
+	
     public void callPerfil (View v){
     	goToActivity(PerfilActivity.class);
     } 
@@ -98,22 +114,19 @@ public class ItensActivity extends Activity {
     	
     	goToActivity(MainActivity.class);
     }
-    
-    
-    
-    public class ItemListAdapter extends ArrayAdapter<String>{
-		
-		private ArrayList<String> lstItem;
 
-		public ItemListAdapter(Context context, int textViewResourceId, ArrayList<String> itens) {
+    public class ItensListAdapter extends ArrayAdapter<WebItem>{
+		
+		private ArrayList<WebItem> lstItem;// = new ArrayList<WebItem>();
+
+		public ItensListAdapter(Context context, int textViewResourceId, ArrayList<WebItem> itens) {
 			super(context, textViewResourceId, itens);
 			// TODO Auto-generated constructor stub
-			
 			this.lstItem = itens;
 		}
 		
 		@Override
-		public View getView(int position, View convertView, ViewGroup parent) {
+		public View getView(final int position, View convertView, ViewGroup parent) {
 			// TODO Auto-generated method stub
 			
 			View listaView = convertView;
@@ -125,51 +138,27 @@ public class ItensActivity extends Activity {
 				listaView = lif.inflate(R.layout.listaitens, null);
 				
 				imgBike = (ImageView) listaView.findViewById(R.id.rotulobike);
+				Bitmap bm = Bitmap.createBitmap(cap.getImage(this.getContext(), imgs.get(position)).getDrawingCache());
+				imgBike.setImageBitmap(bm);
 				imgBike.setOnClickListener(new ImageView.OnClickListener()
-						{
-					
-							View itemView;
-					
-							@Override
-							public void onClick(View v) {
-								// TODO Auto-generated method stub
-								goToActivity(ItemActivity.class);
-								/*
-								LayoutInflater callPop = (LayoutInflater) getBaseContext().getSystemService(LAYOUT_INFLATER_SERVICE);
-								itemView = callPop.inflate(R.layout.item, null);
-								
-								final PopupWindow pop = new PopupWindow(itemView);
-								
-								ImageView ImgSair = (ImageView) itemView.findViewById(R.id.btSairPopBike);
-								ImgSair.setOnClickListener(new ImageView.OnClickListener()
-										{
-											@Override
-											public void onClick(View v) {
-												// TODO Auto-generated method stub
-												pop.dismiss();	
-											}
-										});	
-								
-								pop.showAsDropDown(v, 2, -1);
-								*/
-							}
-						});
+											{
+												@Override
+												public void onClick(View v) {
+													// TODO Auto-generated method stub
+													//goToActivity(ItemActivity.class);
+													Intent newActivity = new Intent(ItensActivity.this, ItemActivity.class);
+													newActivity.putExtra("Item", lstItem.get(position));
+												}
+						                  	}
+										  );
 			}
-
-			//String str = lstItem.get(position); //pega as informações de cada objeto
-			
-			//contextualização de cada item
-				
-			imgBike = (ImageView) listaView.findViewById(R.id.rotulobike);
-			Drawable dbImgItem = getResources().getDrawable(R.drawable.bike);
-			imgBike.setImageDrawable(dbImgItem);
-			//top.setText(str.getNome());
 			
 			TextView descricao = (TextView) listaView.findViewById(R.id.nomebike);
-			descricao.setText("DESCRICAO");
+			descricao.setText(nomes.get(position));
 			
 			return listaView;	
 				
 		}
 	}
+    
 }

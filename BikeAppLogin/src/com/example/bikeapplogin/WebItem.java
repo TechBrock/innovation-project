@@ -1,7 +1,10 @@
 package com.example.bikeapplogin;
 
-public class WebItem {
+import java.io.Serializable;
+
+public class WebItem implements Serializable{
 	
+	private static final long serialVersionUID = 1L;
 	private int id;
 	private String nome;
 	private String caracteristica;
