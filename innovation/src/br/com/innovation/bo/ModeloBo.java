@@ -430,21 +430,25 @@ public class ModeloBo implements Serializable{
 	public void getModelo(){
 		modeloAl = new ModeloDao().getModeloPesq(new ModeloVo());
 		ArrayList<Double> precoAl = new ArrayList<Double>();
-
-		for (ModeloVo modelo : modeloAl) {
-			precoAl = new PrecoDao().getPrecoByModelo(modelo.getId());
-			if(precoAl.size() == 1){
-				modelo.setPrecoAtual(precoAl.get(0));
-			}else if(precoAl.size() > 1){
-				if(precoAl.get(0) > precoAl.get(1)){
+		//if(modeloPesquisa==null){
+			for (ModeloVo modelo : modeloAl) {
+				precoAl = new PrecoDao().getPrecoByModelo(modelo.getId());
+				if(precoAl.size() == 1){
 					modelo.setPrecoAtual(precoAl.get(0));
-					modelo.setPrecoMaior(0.0);
-				}else{
-					modelo.setPrecoAtual(precoAl.get(0));
-					modelo.setPrecoMaior(precoAl.get(1));
+				}else if(precoAl.size() > 1){
+					if(precoAl.get(0) > precoAl.get(1)){
+						modelo.setPrecoAtual(precoAl.get(0));
+						modelo.setPrecoMaior(0.0);
+					}else{
+						modelo.setPrecoAtual(precoAl.get(0));
+						modelo.setPrecoMaior(precoAl.get(1));
+					}
 				}
-			}
-		}
+			}	
+//		}else{
+//			setModeloAl(new ModeloDao().pesquisarProdutos(modeloPesquisa));
+//		}
+		
 	}
 
 	public void montaImagem(OutputStream strem, Object id){
