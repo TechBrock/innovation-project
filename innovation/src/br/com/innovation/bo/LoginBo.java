@@ -4,7 +4,12 @@ import java.io.Serializable;
 
 import javax.faces.context.FacesContext;
 
+import org.ajax4jsf.component.html.HtmlPage;
+
+import br.com.innovation.dao.EnderecoDao;
 import br.com.innovation.dao.LoginDao;
+import br.com.innovation.dao.TelefoneDao;
+import br.com.innovation.dao.UsuarioDao;
 import br.com.innovation.vo.LoginVo;
 
 public class LoginBo implements Serializable {
@@ -72,6 +77,13 @@ public class LoginBo implements Serializable {
 	public void setAcao(String acao) {
 		this.acao = acao;
 	}
+	public void clean(){
+		cadValido = true;
+		emailValido = true;
+		senhaValida = true;
+	}
+	
+	
 	public String login(){
 		if(validaDados()){
 			emailValido = true;
