@@ -52,8 +52,8 @@ public class Email {
 
 
 				// adiciona uma imagem ao corpo da mensagem e retorna seu id  
-				URL url = new URL("http://www.apache.org/images/asf_logo_wide.gif");  
-				String cid = email.embed(url, "Apache logo");     
+				URL url = new URL("http://localhost:8081/innovation/inn012/inn012.jsf");  
+				String cid = email.embed(url, "Metodo logo");     
 
 				// configura a mensagem para o formato HTML  
 				email.setHtmlMsg(emailMsg.toString());  
@@ -64,7 +64,7 @@ public class Email {
 				email.setHostName("smtp.gmail.com"); // o servidor SMTP para envio do e-mail  
 				email.addTo(endereco, usuario); //destinatário  
 				email.setFrom("metalurgicametodo@gmail.com", "metalurgicametodo@gmail.com"); // remetente  
-				email.setSubject("Teste -> Html Email"); // assunto do e-mail  
+				email.setSubject("Confirmação de compra."); // assunto do e-mail  
 				//        email.setMsg("Teste de Email HTML utilizando commons-email"); //conteudo do e-mail  
 				email.setAuthentication("metalurgicametodo@gmail.com", "metodo123");  
 				email.setSmtpPort(465);  
