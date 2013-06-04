@@ -98,6 +98,7 @@
 								 			oncomplete="Richfaces.hideModalPanel('modalCredito')">
 								 			<f:setPropertyActionListener value="#{LoginBo.loginReturn.id}" 	target="#{CompraBo.idUsuario}"/>
 											<f:setPropertyActionListener value="#{CarrinhoBo.totalCart}" target="#{CompraBo.valorCarrinho}"/>
+											<a4j:support event="oncomplete" action="#{CarrinhoBo.zeraCarrinho}"/>
 								 		</a4j:commandButton>
 								 	</td>
 								</tr>
