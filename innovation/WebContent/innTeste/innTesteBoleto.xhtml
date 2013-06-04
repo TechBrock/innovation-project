@@ -38,11 +38,13 @@
 							<tr>
 								<td>
 								<a4j:commandButton value="Fechar" onclick="window.close();"
-									styleClass="btn btn-large btn-block btn-danger" />
+									styleClass="btn btn-large btn-block btn-danger" reRender="form1" action="#{CarrinhoBo.zeraCarrinho}">
+								</a4j:commandButton>
 								</td>
 								<td>
-								<a4j:commandButton value="Imprimir" action="innTeste"
-									styleClass="btn btn-large btn-block btn-danger"/>
+								<a4j:commandButton value="Imprimir" onclick="window.close();"
+									styleClass="btn btn-large btn-block btn-danger" reRender="form1" action="#{CarrinhoBo.zeraCarrinho}">
+								</a4j:commandButton>
 								</td>
 							</tr>
 						</table>	
