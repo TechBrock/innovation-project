@@ -232,13 +232,16 @@ public class CarrinhoBo implements Serializable{
 
 	
 	
-	public void zeraCarrinho(){
+	public String zeraCarrinho(){
 		carrinhoVo = new CarrinhoVo();
 		carrinhoRemove = new CarrinhoVo();
+		carrinhoAl = new ArrayList<CarrinhoVo>();
 		carrinhoAl.clear();
 		idUser = 0;
 		totalCart = 0.0;
 		qtdCart = 0;
+		
+		return null;
 	}
 	
 		
@@ -265,6 +268,12 @@ public class CarrinhoBo implements Serializable{
 			  return Double.parseDouble(dist);
 		  }
 		  return 0.;
+	}
+	
+	public void restartCarrinho(){
+		carrinhoAl.clear();
+		carrinhoRemove = new CarrinhoVo();
+		carrinhoVo = new CarrinhoVo();
 	}
 
 }
