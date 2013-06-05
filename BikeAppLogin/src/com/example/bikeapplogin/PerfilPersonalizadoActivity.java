@@ -28,6 +28,7 @@ public class PerfilPersonalizadoActivity extends Activity{
 	EditText cpf ;
 	EditText apl;
 	EditText email;
+	EditText senha;
 	CheckBox rcEmail;
 	EditText telRes;
 	EditText telCel;
@@ -37,6 +38,7 @@ public class PerfilPersonalizadoActivity extends Activity{
 	EditText lg;
 	EditText comp;
 	EditText br;
+	EditText num;
 	EditText info;
 	EditText cid;
 	EditText est;
@@ -58,6 +60,7 @@ public class PerfilPersonalizadoActivity extends Activity{
 		cpf = (EditText) findViewById(R.id.vCpfEdit);
 		apl = (EditText) findViewById(R.id.vApelidoEdit);
 		email = (EditText) findViewById(R.id.vEmailEdit);
+		senha = (EditText) findViewById(R.id.vSenhaEdit);
 		rcEmail = (CheckBox) findViewById(R.id.vReceberEmailEdit);
 		telRes = (EditText) findViewById(R.id.vTelResidencialEdit);
 		telCel = (EditText) findViewById(R.id.vTelCelularEdit);
@@ -67,13 +70,14 @@ public class PerfilPersonalizadoActivity extends Activity{
 		lg = (EditText) findViewById(R.id.vLogradouroEdit);
 		comp = (EditText) findViewById(R.id.vComplementoEdit);
 		br = (EditText) findViewById(R.id.vBairroEdit);
+		num = (EditText) findViewById(R.id.vNumeroEdit);
 		info = (EditText) findViewById(R.id.vInformarEdit);
 		cid = (EditText) findViewById(R.id.vCidadeEdit);
 		est = (EditText) findViewById(R.id.vEstadoEdit);
 
 		nm.setText(wUser.getNome());
 		sn.setText(wUser.getSobrenome());
-		dtnasc.setText(wUser.getNome());
+		dtnasc.setText(wUser.getDataNascimento());
 
 		if (wUser.getSexo().equals("M")){
 			sx1.setChecked(true);
@@ -91,14 +95,15 @@ public class PerfilPersonalizadoActivity extends Activity{
 			rcEmail.setChecked(true);
 		}
 
-		telRes.setText(wUser.getTelefoneResidencial());
-		telCel.setText(wUser.getTelefoneCelular());
-		telRec.setText(wUser.getTelefoneRecado());
+		telRes.setText(String.format("%s", wUser.getTelefoneResidencial()));
+		telCel.setText(String.format("%s", wUser.getTelefoneCelular()));
+		telRec.setText(String.format("%s", wUser.getTelefoneRecado()));
 		cep.setText(wUser.getCep());
 		tp.setText(wUser.getTipo());
 		lg.setText(wUser.getLogradouro());
 		comp.setText(wUser.getComplemento());
 		br.setText(wUser.getBairro());
+		num.setText(wUser.getNumero());
 		info.setText(wUser.getInformacoesAdicionais());
 		cid.setText(wUser.getCidade());
 		est.setText(wUser.getEstado());
@@ -163,23 +168,6 @@ public class PerfilPersonalizadoActivity extends Activity{
 	}
 
 	public void callCancelarPerfil (View v){
-		confirmarExclusao();
+		goToActivity(PerfilActivity.class);
 	}
-
-	public AlertDialog confirmarExclusao() {
-		AlertDialog.Builder builder = new AlertDialog.Builder(this);
-		builder.setTitle("Cancelar");
-		builder.setMessage("Deseja cancelar as alterações ?");
-		builder.setPositiveButton("Sim", new DialogInterface.OnClickListener() {
-			@Override
-			public void onClick(DialogInterface dialog, int which) {
-				goToActivity(PerfilActivity.class);
-			}
-		}
-				);
-		builder.setNegativeButton("Não", null);
-
-		return builder.create();
-	}
-
 }

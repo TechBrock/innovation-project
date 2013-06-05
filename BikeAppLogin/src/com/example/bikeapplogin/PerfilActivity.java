@@ -216,7 +216,8 @@ public class PerfilActivity extends Activity{
 
 	public void callEditar (View v){
 		Intent newActivity = new Intent(PerfilActivity.this, PerfilPersonalizadoActivity.class);
-		//newActivity.putExtra("Usuario", usuario);
+		newActivity.putExtra("Usuario", usuario);
+		startActivity(newActivity);
 	}
 
 	public boolean checkConnect(){
