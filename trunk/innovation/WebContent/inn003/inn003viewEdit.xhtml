@@ -164,8 +164,9 @@
 											</td>
 											<td>
 												<h:inputText size="50" styleClass="login-field"
-													value="#{UsuarioBo.enderecoIns.cep}" >
-														<a4j:support reRender="logr,bair,cida,esta" event="onchange" action="#{UsuarioBo.buscarCep}"/>
+													value="#{UsuarioBo.enderecoEdit.cep}" >
+														<a4j:support reRender="logr,bair,cida,esta" event="onchange" 
+														action="#{UsuarioBo.buscarCep}"/>
 													</h:inputText>
 													
 												<h:outputText value="● Preencha o campo CEP" 
@@ -179,7 +180,7 @@
 											</td>
 											<td>
 												<h:inputText size="50" styleClass="login-field" id="logr"
-													value="#{UsuarioBo.enderecoIns.logradouro}"/>
+													value="#{UsuarioBo.enderecoEdit.logradouro}"/>
 													
 												<h:outputText value="● Preencha o campo ENDEREÇO" 
 													styleClass="outputTextErro"
@@ -195,7 +196,7 @@
 														</td>
 														<td>
 															<h:inputText size="5" styleClass="login-field" 
-																value="#{UsuarioBo.enderecoIns.numero}"/>
+																value="#{UsuarioBo.enderecoEdit.numero}"/>
 																<h:outputText value="● Preencha o campo NÚMERO" 
 																	styleClass="outputTextErro"
 																	rendered="#{!UsuarioBo.numValido}"/>
@@ -205,7 +206,7 @@
 														</td>
 														<td>
 															<h:inputText size="5" styleClass="login-field"
-																value="#{UsuarioBo.enderecoIns.complemento}"/>
+																value="#{UsuarioBo.enderecoEdit.complemento}"/>
 														</td>
 													</tr>
 												</table>											
@@ -217,7 +218,7 @@
 											</td>
 											<td>
 												<h:inputText size="50" styleClass="login-field" id="bair"
-													value="#{UsuarioBo.enderecoIns.bairro}"/>
+													value="#{UsuarioBo.enderecoEdit.bairro}"/>
 												
 												<h:outputText value="● Preencha o campo BAIRRO" 
 													styleClass="outputTextErro"
@@ -230,7 +231,7 @@
 											</td>
 											<td>
 												<h:inputText size="50" styleClass="login-field" id="cida"
-													value="#{UsuarioBo.enderecoIns.nomeCidade}"/>
+													value="#{UsuarioBo.enderecoEdit.nomeCidade}"/>
 													
 												<h:outputText value="● Preencha o campo CIDADE" 
 													styleClass="outputTextErro"
@@ -243,7 +244,7 @@
 											</td>
 											<td  colspan="3">
 												<h:inputText size="50" styleClass="login-field" id="esta"
-													value="#{UsuarioBo.enderecoIns.nomeEstado}"/>
+													value="#{UsuarioBo.enderecoEdit.nomeEstado}"/>
 													
 												<h:outputText value="● Preencha o campo ESTADO" 
 													styleClass="outputTextErro"
@@ -257,26 +258,7 @@
 											</td>
 											<td>
 												<h:inputTextarea rows="4" cols="60" styleClass="login-field"
-													value="#{UsuarioBo.enderecoIns.infAdc}"/>
-											</td>
-										</tr>
-										
-										<tr>
-											<td>
-												<h:outputText value="País"/>
-											</td>
-											<td>
-												<h:inputSecret size="50"
-													styleClass="login-field"/>
-											</td>
-										</tr>
-										<tr>
-											<td>
-												<h:outputText value="Informações de referência" />
-											</td>
-											<td>
-												<h:inputTextarea rows="4" cols="60" 
-													styleClass="login-field"/>
+													value="#{UsuarioBo.enderecoEdit.infAdc}"/>
 											</td>
 										</tr>
 									</table>
