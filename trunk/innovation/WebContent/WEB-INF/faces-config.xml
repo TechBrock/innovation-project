@@ -260,7 +260,13 @@
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
-	
+	<navigation-rule>
+		<navigation-case>
+			<from-outcome>innMetodoQuemSomos</from-outcome>
+			<to-view-id>/innTeste/innMetodoQuemSomos.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
 	
 	
 	<managed-bean>
