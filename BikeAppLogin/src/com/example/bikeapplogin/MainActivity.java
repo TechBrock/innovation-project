@@ -69,7 +69,7 @@ public class MainActivity extends Activity{
 	
 	public void enter (View v) throws InterruptedException{
 		loginService = (LoginService) new  LoginService(MainActivity.this, usr.getText().toString(), psw.getText().toString(), conteudo).execute();
-    	Thread.sleep(5000);
+    	Thread.sleep(20000);
     	conteudo = loginService.getUsuario();
     	login ();
     }
