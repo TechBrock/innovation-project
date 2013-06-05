@@ -53,7 +53,7 @@ public class ModeloBo implements Serializable{
 	private boolean showImg2 = false;
 	private boolean showImg3 = false;
 	private boolean showImg4 = false;
-
+	private boolean efiltro = false;
 
 	private String erroSubmit = "";
 	ArrayList<String> caminhosAl = new ArrayList<String>();
@@ -268,8 +268,14 @@ public class ModeloBo implements Serializable{
 		this.showImg4 = showImg4;
 	}
 	
+	public boolean isEfiltro() {
+		return efiltro;
+	}
+	public void setEfiltro(boolean efiltro) {
+		this.efiltro = efiltro;
+	}
 	public HtmlDataGrid getInitTable(){
-		getModelo();
+			getModelo();
 		return null;
 	}
 	
@@ -602,8 +608,8 @@ public class ModeloBo implements Serializable{
 	private ModeloVo modeloPesquisa = new ModeloVo();
 	
 	public String pesquisarProdutos(){
-		setModeloAl(new ModeloDao().pesquisarProdutos(modeloPesquisa));
-		return "inn001";
+		modeloAl = new ModeloDao().pesquisarProdutos(modeloPesquisa);
+		return null;
 	}
 	public ModeloVo getModeloPesquisa() {
 		return modeloPesquisa;
