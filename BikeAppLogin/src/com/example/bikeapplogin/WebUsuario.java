@@ -12,7 +12,7 @@ public class WebUsuario implements Serializable{
 	private int id = 0;
 	private String nome = "t";
 	private String sobrenome = "t";
-	private Date dataNascimento;
+	private String dataNascimento;
 	private String sexo = "S";
 	private String cpf = "t";
 	private String apelido = "t";
@@ -51,10 +51,10 @@ public class WebUsuario implements Serializable{
 	public void setSobrenome(String sobrenome) {
 		this.sobrenome = sobrenome;
 	}
-	public Date getDataNascimento() {
+	public String getDataNascimento() {
 		return dataNascimento;
 	}
-	public void setDataNascimento(Date dataNascimento) {
+	public void setDataNascimento(String dataNascimento) {
 		this.dataNascimento = dataNascimento;
 	}
 	public String getSexo() {

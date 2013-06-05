@@ -45,7 +45,7 @@ public class FavoritoService extends AsyncTask <WebFavorito, Void, WebFavorito[]
 	protected WebFavorito[] doInBackground(WebFavorito... params) {
 		// TODO Auto-generated method stub
 		
-		String url = "http://ec2-54-232-215-79.sa-east-1.compute.amazonaws.com:8080/metodo/service/getfavorito/";
+		String url = "http://ec2-54-232-215-79.sa-east-1.compute.amazonaws.com:8080/metodo/service/getfavoritos/";
 		
 		if( iduser != 0){
 

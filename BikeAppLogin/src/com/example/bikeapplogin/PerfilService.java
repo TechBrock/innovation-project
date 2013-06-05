@@ -74,7 +74,7 @@ public class PerfilService extends AsyncTask<WebUsuario, Void, WebUsuario[]> {
 				user.setId(usuario.getInt("id"));
 				user.setNome(usuario.getString("nome"));
 				user.setSobrenome(usuario.getString("sobrenome"));
-				user.setDataNascimento((Date) usuario.get("dataNascimento"));
+				user.setDataNascimento((String) usuario.get("dataNascimento"));
 				user.setSexo( usuario.getString("sexo"));
 				user.setCpf(usuario.getString("cpf"));
 				user.setApelido(usuario.getString("apelido"));

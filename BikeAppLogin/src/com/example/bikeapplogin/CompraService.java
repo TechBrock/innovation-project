@@ -47,7 +47,7 @@ public class CompraService extends AsyncTask<WebCompra, Void, WebCompra[]>{
 	protected WebCompra[] doInBackground(WebCompra... params) {
 		// TODO Auto-generated method stub
 
-		String url = "http://ec2-54-232-215-79.sa-east-1.compute.amazonaws.com:8080/metodo/service/getcompra/";
+		String url = "http://ec2-54-232-215-79.sa-east-1.compute.amazonaws.com:8080/metodo/service/getcompras/";
 
 		if( iduser != 0){
 

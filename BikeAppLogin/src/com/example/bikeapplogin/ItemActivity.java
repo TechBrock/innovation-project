@@ -27,7 +27,6 @@ public class ItemActivity extends Activity{
 		
 		Intent ItensExtra= getIntent();
 		Item = (WebItem) ItensExtra.getSerializableExtra("Item");
-		//Bundle extras = getIntent().getExtras();
 		idUsuario = ItensExtra.getExtras().getInt("id_usuario");
 		
 		ImageView img = (ImageView) findViewById(R.id.btPopBike);

@@ -39,7 +39,7 @@ public class FavoritoExcluiService extends AsyncTask <String, Void, String>{
 	protected String doInBackground(String... params) {
 		// TODO Auto-generated method stub
 		
-		String url = "http://ec2-54-232-215-79.sa-east-1.compute.amazonaws.com:8080/metodo/service/delfavorito/";
+		String url = "http://ec2-54-232-215-79.sa-east-1.compute.amazonaws.com:8080/metodo/service/delfavoritos/";
 		
 		if( idfavorito != 0){
 			String urlInfoPerfil = String.format("%s%s", url, idfavorito);

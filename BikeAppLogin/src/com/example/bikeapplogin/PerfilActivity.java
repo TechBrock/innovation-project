@@ -44,6 +44,7 @@ public class PerfilActivity extends Activity{
         }finally{
         	crs.close();
         }
+        
         try {
 			loadPerfil ();
 		} catch (InterruptedException e) {

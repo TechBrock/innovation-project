@@ -38,7 +38,7 @@ public class PerfilMergeService extends AsyncTask<String, Void, String> {
 	protected String doInBackground(String... params) {
 		// TODO Auto-generated method stub
 		
-		String url = "http://ec2-54-232-215-79.sa-east-1.compute.amazonaws.com:8080/metodo/service/updateUsuario/";
+		String url = "http://ec2-54-232-215-79.sa-east-1.compute.amazonaws.com:8080/metodo/service/updateusuario/";
 		
 		String urlInfoPerfil = String.format("%s%s-%s-%s-%s-%s-%s-%s-%s-%s-%s-%s-%s-%s-%s-%s-%s-%s-%s-%s-%s-%s-%s-%s", url, 
 												user.getId(),

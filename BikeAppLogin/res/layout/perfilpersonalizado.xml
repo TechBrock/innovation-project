@@ -704,7 +704,8 @@
                 android:id="@+id/btnSalvarPerfil"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:src="@drawable/salvar" />
+                android:src="@drawable/salvar" 
+                android:onClick="callSalvarPerfil" />
 
             <ImageView
                 android:id="@+id/btnCancelarPerfil"
