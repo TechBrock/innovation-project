@@ -23,7 +23,7 @@ public class ItensActivity extends Activity {
 	public WebItem webItemcaminhoImg;
 	private DBHelper db;
 	private ArrayList<WebItem> wItens;
-	private capturaImagens cap;
+	private CapturaImagens cap;
 	private int idUsuario;
 	private ItensService itemService;
 	
@@ -43,7 +43,7 @@ public class ItensActivity extends Activity {
 		setContentView(R.layout.itens);
 		Bundle extras = getIntent().getExtras();
 		idUsuario = extras.getInt("id_usuario");
-		cap = new capturaImagens();
+		cap = new CapturaImagens();
 		
 		itemService = (ItensService) new ItensService(ItensActivity.this, wItens).execute();
 		try {

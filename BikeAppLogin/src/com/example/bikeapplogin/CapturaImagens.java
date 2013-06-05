@@ -8,7 +8,7 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 
 @SuppressLint("SetJavaScriptEnabled")
-public class capturaImagens extends Activity{
+public class CapturaImagens extends Activity{
 	
 	public View getImage(Context cont, String caminho) {
 		setContentView(R.layout.webview); 

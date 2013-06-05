@@ -11,61 +11,65 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class PerfilActivity extends Activity{
-	
+
 	private DBHelper db;
 	private WebUsuario usuario;
 	private String usr;
 	private	String psw;
 	private String conteudo = null;
 	private PerfilService perfilService;
-	
+	private ConnectionNetwork conn;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.perfil);
-		
+
 		Cursor crs = null;
-        
-        try{
-        
-        	db = new DBHelper(this);
 
-        	SQLiteDatabase slc = db.getReadableDatabase();
-        	crs = slc.rawQuery("SELECT USUARIO, SENHA FROM LOGIN", null);
-        	crs.moveToFirst();
+		try{
 
-        	if (crs.getCount() > 0){
-        		usr = crs.getString(0);
-        		psw = crs.getString(1);
-        	}
-        }catch(Exception ex){
-        	Toast.makeText(this, "Registros não encontrados na tabela !", Toast.LENGTH_SHORT).show();
-        }finally{
-        	crs.close();
-        }
-        
-        try {
+			db = new DBHelper(this);
+
+			SQLiteDatabase slc = db.getReadableDatabase();
+			crs = slc.rawQuery("SELECT USUARIO, SENHA FROM LOGIN", null);
+			crs.moveToFirst();
+
+			if (crs.getCount() > 0){
+				usr = crs.getString(0);
+				psw = crs.getString(1);
+			}
+		}catch(Exception ex){
+			Toast.makeText(this, "Registros não encontrados na tabela !", Toast.LENGTH_SHORT).show();
+		}finally{
+			crs.close();
+		}
+
+		try {
 			loadPerfil ();
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
+
 	}
-	
+
 	private void loadPerfil () throws InterruptedException{
-		
-		perfilService = (PerfilService) new PerfilService(PerfilActivity.this, usr, psw, conteudo, usuario).execute();
-		Thread.sleep(5000);
-		usuario = perfilService.getUsuario();
-		perfil();
+		if(conn.checkConnect()){
+			perfilService = (PerfilService) new PerfilService(PerfilActivity.this, usr, psw, conteudo, usuario).execute();
+			Thread.sleep(5000);
+			usuario = perfilService.getUsuario();
+			perfil();
+		}else{
+			Toast.makeText(this, R.drawable.wifi, Toast.LENGTH_LONG).show();
+		}
 	}
-	
+
 	@SuppressLint("NewApi")
 	private void perfil(){
 		try{
-			
+
 			TextView nome = (TextView) findViewById(R.id.vNome);
 			TextView sobrenome = (TextView) findViewById(R.id.vSobrenome);
 			TextView dataNasc = (TextView) findViewById(R.id.vDataNasc);
@@ -113,7 +117,7 @@ public class PerfilActivity extends Activity{
 				} else {
 					telResidencial.setText(usuario.getTelefoneResidencial());
 				}
-				
+
 				if (Integer.bitCount(usuario.getTelefoneCelular()) > 10){
 					telCelular.setText(String.format("%s-%s-%s", getString(usuario.getTelefoneCelular()).substring(1,2), getString(usuario.getTelefoneCelular()).substring(3,6), getString(usuario.getTelefoneCelular()).substring(7,11)));
 				} else if (Integer.bitCount(usuario.getTelefoneCelular()) == 10){
@@ -121,7 +125,7 @@ public class PerfilActivity extends Activity{
 				} else {
 					telCelular.setText(usuario.getTelefoneCelular());
 				}
-				
+
 				if (Integer.bitCount(usuario.getTelefoneRecado()) > 10){
 					telRecado.setText(String.format("%s-%s-%s", getString(usuario.getTelefoneRecado()).substring(1,2), getString(usuario.getTelefoneRecado()).substring(3,6), getString(usuario.getTelefoneRecado()).substring(7,11)));
 				} else if (Integer.bitCount(usuario.getTelefoneRecado()) == 10){
@@ -158,59 +162,59 @@ public class PerfilActivity extends Activity{
 	}
 
 	private void goToActivity(Class<? extends Activity> activityClass) {
-        Intent newActivity = new Intent(this, activityClass);
-        startActivity(newActivity);
-    }
-	
+		Intent newActivity = new Intent(this, activityClass);
+		startActivity(newActivity);
+	}
+
 	private void goToActivityIdUsuario(Class<? extends Activity> activityClass, int idUsuario) {
-        Intent newActivity = new Intent(this, activityClass);
-        newActivity.putExtra("id_usuario", idUsuario);
-        startActivity(newActivity);
-    }  
-    
-    public void callCompras (View v){
-    	goToActivityIdUsuario(FavoritoActivity.class, usuario.getId());
-    }
-    
-    public void callOfertas (View v){
-    	goToActivity(FavoritoActivity.class);
-    } 
-   
-    public void callFavoritos (View v){
-    	goToActivityIdUsuario(FavoritoActivity.class, usuario.getId());
-    } 
-    
-    public void callLogin (View v){
-    	
-    	Cursor crs = null;
-        
-        try{
-        
-        	db = new DBHelper(this);
+		Intent newActivity = new Intent(this, activityClass);
+		newActivity.putExtra("id_usuario", idUsuario);
+		startActivity(newActivity);
+	}  
 
-        	SQLiteDatabase slc = db.getReadableDatabase();
-        	SQLiteDatabase dlt = db.getWritableDatabase();
-        	crs = slc.rawQuery("SELECT USUARIO FROM LOGIN", null);
-        	crs.moveToFirst();
+	public void callCompras (View v){
+		goToActivityIdUsuario(FavoritoActivity.class, usuario.getId());
+	}
 
-        	if (crs.getCount() > 0){
-        		dlt.delete("LOGIN", null, null);
-        		//goToActivity(PerfilActivity.class);
-        	}
-        }catch(Exception ex){
-        	Toast.makeText(this, "Não existe usuário logado !", Toast.LENGTH_SHORT).show();
-        }finally{
-        	crs.close();
-        }
-    	
-    	goToActivity(MainActivity.class);
-    }
-    
-    public void callEditar (View v){
-    	Intent newActivity = new Intent(PerfilActivity.this, PerfilPersonalizadoActivity.class);
+	public void callOfertas (View v){
+		goToActivity(FavoritoActivity.class);
+	} 
+
+	public void callFavoritos (View v){
+		goToActivityIdUsuario(FavoritoActivity.class, usuario.getId());
+	} 
+
+	public void callLogin (View v){
+
+		Cursor crs = null;
+
+		try{
+
+			db = new DBHelper(this);
+
+			SQLiteDatabase slc = db.getReadableDatabase();
+			SQLiteDatabase dlt = db.getWritableDatabase();
+			crs = slc.rawQuery("SELECT USUARIO FROM LOGIN", null);
+			crs.moveToFirst();
+
+			if (crs.getCount() > 0){
+				dlt.delete("LOGIN", null, null);
+				//goToActivity(PerfilActivity.class);
+			}
+		}catch(Exception ex){
+			Toast.makeText(this, "Não existe usuário logado !", Toast.LENGTH_SHORT).show();
+		}finally{
+			crs.close();
+		}
+
+		goToActivity(MainActivity.class);
+	}
+
+	public void callEditar (View v){
+		Intent newActivity = new Intent(PerfilActivity.this, PerfilPersonalizadoActivity.class);
 		newActivity.putExtra("Usuario", usuario);
-    }
-    
-    
-	
+	}
+
+
+
 }

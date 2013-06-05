@@ -16,7 +16,7 @@ public class ImagemAdapter extends BaseAdapter{
 	//private final int[] imgs;
 	private List<String> imgs;
 	private final LayoutParams paramters;
-	private capturaImagens cap;
+	private CapturaImagens cap;
 	
 	public ImagemAdapter (Context ctx, List<String> imagens, LayoutParams params) {
 		this.contX = ctx;
