@@ -100,6 +100,7 @@ public class LoginBo implements Serializable {
 					idLogado = loginReturn.getId();
 				}else{
 					cliente = false;
+					acao = "inn001";
 				}
 
 				return acao;

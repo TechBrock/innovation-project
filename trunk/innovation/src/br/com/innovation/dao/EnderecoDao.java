@@ -112,6 +112,7 @@ public class EnderecoDao {
 		query.append("	FROM tb_endereco ende");
 		query.append("	INNER JOIN tb_cidade cid ON ende.id_cidade = cid.id");
 		query.append("	INNER JOIN tb_estado est ON cid.id_estado = est.id;");
+		query.append("	WHERE ende.id_usuario="+id);
 		
 		try{
 			conn = Conexao.connect();

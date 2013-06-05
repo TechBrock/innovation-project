@@ -35,7 +35,7 @@
 											style="font-family: verdana; font-size: 16px;"/>
 									</td>
 									<td>
-										<h:inputText size="20" value="#{CompraBo.cartaoVo.numero}" styleClass="login-field"/>
+										<h:inputText size="20" value="#{CompraBo.cartaoVo.numero}" styleClass="login-field" maxlength="16"/>
 									</td>
 								</tr>
 								<tr>
@@ -44,7 +44,7 @@
 											style="font-family: verdana; font-size: 16px;"/>
 									</td>
 									<td>
-										<h:inputText size="20" styleClass="login-field"/>
+										<h:inputText size="20" styleClass="login-field" maxlength="3"/>
 									</td>
 								</tr>
 								<tr>
@@ -95,7 +95,7 @@
 								 	<td width="50%" align="right">
 								 		<a4j:commandButton value="Finalizar Compra" action="#{CompraBo.validarCartao}"
 								 			styleClass="btn btn-large btn-block btn-danger"
-								 			oncomplete="Richfaces.hideModalPanel('modalCredito')">
+								 			>
 								 			<f:setPropertyActionListener value="#{LoginBo.loginReturn.id}" 	target="#{CompraBo.idUsuario}"/>
 											<f:setPropertyActionListener value="#{CarrinhoBo.totalCart}" target="#{CompraBo.valorCarrinho}"/>
 											<a4j:support event="oncomplete" action="#{CarrinhoBo.zeraCarrinho}"/>
