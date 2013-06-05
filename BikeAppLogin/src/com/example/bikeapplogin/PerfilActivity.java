@@ -2,9 +2,12 @@ package com.example.bikeapplogin;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo.State;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -18,13 +21,13 @@ public class PerfilActivity extends Activity{
 	private	String psw;
 	private String conteudo = null;
 	private PerfilService perfilService;
-	private ConnectionNetwork conn;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.perfil);
+		usuario = new WebUsuario();
 
 		Cursor crs = null;
 
@@ -56,7 +59,8 @@ public class PerfilActivity extends Activity{
 	}
 
 	private void loadPerfil () throws InterruptedException{
-		if(conn.checkConnect()){
+		if(checkConnect()){
+			//usuario.setNome("V");
 			perfilService = (PerfilService) new PerfilService(PerfilActivity.this, usr, psw, conteudo, usuario).execute();
 			Thread.sleep(5000);
 			usuario = perfilService.getUsuario();
@@ -115,7 +119,7 @@ public class PerfilActivity extends Activity{
 				if (Integer.bitCount(usuario.getTelefoneResidencial()) == 10){
 					telResidencial.setText(String.format("%s-%s-%s", getString(usuario.getTelefoneResidencial()).substring(1,2), getString(usuario.getTelefoneResidencial()).substring(3,6), getString(usuario.getTelefoneResidencial()).substring(7,10)));
 				} else {
-					telResidencial.setText(usuario.getTelefoneResidencial());
+					telResidencial.setText(String.format("%s",usuario.getTelefoneResidencial()));
 				}
 
 				if (Integer.bitCount(usuario.getTelefoneCelular()) > 10){
@@ -123,7 +127,7 @@ public class PerfilActivity extends Activity{
 				} else if (Integer.bitCount(usuario.getTelefoneCelular()) == 10){
 					telCelular.setText(String.format("%s-%s-%s", getString(usuario.getTelefoneCelular()).substring(1,2), getString(usuario.getTelefoneCelular()).substring(3,6), getString(usuario.getTelefoneCelular()).substring(7,10)));
 				} else {
-					telCelular.setText(usuario.getTelefoneCelular());
+					telCelular.setText(String.format("%s",usuario.getTelefoneCelular()));
 				}
 
 				if (Integer.bitCount(usuario.getTelefoneRecado()) > 10){
@@ -131,7 +135,7 @@ public class PerfilActivity extends Activity{
 				} else if (Integer.bitCount(usuario.getTelefoneRecado()) == 10){
 					telRecado.setText(String.format("%s-%s-%s", getString(usuario.getTelefoneRecado()).substring(1,2), getString(usuario.getTelefoneRecado()).substring(3,6), getString(usuario.getTelefoneRecado()).substring(7,10)));
 				} else {
-					telRecado.setText(usuario.getTelefoneRecado());
+					telRecado.setText(String.format("%s",usuario.getTelefoneRecado()));
 				}
 
 				//informações endereço
@@ -212,9 +216,20 @@ public class PerfilActivity extends Activity{
 
 	public void callEditar (View v){
 		Intent newActivity = new Intent(PerfilActivity.this, PerfilPersonalizadoActivity.class);
-		newActivity.putExtra("Usuario", usuario);
+		//newActivity.putExtra("Usuario", usuario);
 	}
 
-
+	public boolean checkConnect(){
+		
+		ConnectivityManager conn = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+		
+		if(conn.getNetworkInfo(0).getState() == State.CONNECTED){
+			return true;
+		} else if (conn.getNetworkInfo(1).getState() == State.CONNECTED){
+			return true;
+		}else{
+			return false;
+		}
+	}
 
 }

@@ -1,8 +1,11 @@
 package com.example.bikeapplogin;
 
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo.State;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.ContentValues;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -18,7 +21,6 @@ public class MainActivity extends Activity{
 	private EditText psw;
 	private String conteudo = null;
 	private LoginService loginService;
-	private ConnectionNetwork conn;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -69,13 +71,13 @@ public class MainActivity extends Activity{
 	}
 
 	public void enter (View v) throws InterruptedException{
-		if(conn.checkConnect()){
+		if(checkConnect()){
 			loginService = (LoginService) new  LoginService(MainActivity.this, usr.getText().toString(), psw.getText().toString(), conteudo).execute();
-			Thread.sleep(20000);
+			Thread.sleep(5000);
 			conteudo = loginService.getUsuario();
 			login ();
 		}else{
-			Toast.makeText(this, R.drawable.wifi, Toast.LENGTH_LONG).show();
+			Toast.makeText(this, "Sem acesso a rede", Toast.LENGTH_LONG).show();
 		}
 	}
 
@@ -104,5 +106,18 @@ public class MainActivity extends Activity{
 		} else {
 			Toast.makeText(this, "Usuário ou senha invalidos !", Toast.LENGTH_SHORT).show();
 		}
-	};
+	}
+	
+	public boolean checkConnect (){
+		
+		ConnectivityManager conn = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+		
+		if(conn.getNetworkInfo(0).getState() == State.CONNECTED){
+			return true;
+		} else if (conn.getNetworkInfo(1).getState() == State.CONNECTED){
+			return true;
+		}else{
+			return false;
+		}
+	}
 }

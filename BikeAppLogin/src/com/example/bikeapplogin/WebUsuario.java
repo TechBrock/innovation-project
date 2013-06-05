@@ -5,12 +5,11 @@ import android.annotation.SuppressLint;
 import java.io.Serializable;
 import java.util.Date;
 
-@SuppressLint("SimpleDateFormat")
 public class WebUsuario implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	private int id = 0;
-	private String nome = "t";
+	private String nome="t";
 	private String sobrenome = "t";
 	private String dataNascimento;
 	private String sexo = "S";

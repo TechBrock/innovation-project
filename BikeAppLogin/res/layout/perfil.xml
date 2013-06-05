@@ -24,9 +24,9 @@
 	        android:orientation="vertical" >
 	        
 	        <LinearLayout
-		        android:layout_width="match_parent"
-		        android:layout_height="wrap_content"
-		        android:orientation="horizontal" >
+	            android:layout_width="fill_parent"
+	            android:layout_height="wrap_content"
+	            android:orientation="horizontal" >
 	
 	            <Button
 	                android:id="@+id/button1Perfil"
@@ -59,14 +59,13 @@
 	                android:layout_weight="1"
 	                android:background="@drawable/logoestrela"
 	                android:onClick="callFavoritos"/>
-	            
+
 	            <Button
 	                android:id="@+id/buttonSairPerfil"
-	                android:layout_width="match_parent"
+	                android:layout_width="wrap_content"
 	                android:layout_height="wrap_content"
-	                android:layout_weight="1"
-	                android:text="Exit" 
-	                android:onClick="callLogin"/>
+	                android:onClick="callLogin"
+	                android:text="Exit" />
 		    
 		    </LinearLayout>
 	    </LinearLayout>
@@ -604,6 +603,13 @@
 	                android:layout_height="fill_parent"
 	                android:onClick="callEditar"
 	                android:src="@drawable/btneditar" />
+	            
+	            <Button
+	                android:id="@+id/buttonSairPerfil2"
+	                android:layout_width="match_parent"
+	                android:layout_height="wrap_content"
+	                android:onClick="callLogin"
+	                android:text="Exit" />
 	            
 		    </LinearLayout>    
 	

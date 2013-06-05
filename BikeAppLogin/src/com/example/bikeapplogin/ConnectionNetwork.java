@@ -19,6 +19,9 @@ public class ConnectionNetwork extends Activity{
 	}
 	
 	public boolean checkConnect (){
+		
+		ConnectivityManager conn = conn = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+		
 		if(conn.getNetworkInfo(0).getState() == State.CONNECTED){
 			return true;
 		} else if (conn.getNetworkInfo(1).getState() == State.CONNECTED){

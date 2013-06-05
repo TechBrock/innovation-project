@@ -1,15 +1,12 @@
 package com.example.bikeapplogin;
 
-import java.util.Date;
-
-import org.json.JSONArray;
+//import org.json.JSONArray;
 import org.json.JSONObject;
-
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.AsyncTask;
 
-public class PerfilService extends AsyncTask<WebUsuario, Void, WebUsuario[]> {
+public class PerfilService extends AsyncTask<WebUsuario, Void, WebUsuario> {
 	private ProgressDialog barraCarregar;
 	private Context cont;
 	private String userLogin;
@@ -35,7 +32,7 @@ public class PerfilService extends AsyncTask<WebUsuario, Void, WebUsuario[]> {
 	}
 	
 	@Override
-	protected void onPostExecute(WebUsuario[] result) {
+	protected void onPostExecute(WebUsuario result) {
 		// TODO Auto-generated method stub
 		super.onPostExecute(result);
 		
@@ -47,9 +44,11 @@ public class PerfilService extends AsyncTask<WebUsuario, Void, WebUsuario[]> {
 	}
 
 	@Override
-	protected WebUsuario[] doInBackground(WebUsuario... params) {
+	protected WebUsuario doInBackground(WebUsuario... params) {
 		// TODO Auto-generated method stub
 
+		//WebUsuario user = null;
+		
 		String url = "http://ec2-54-232-215-79.sa-east-1.compute.amazonaws.com:8080/metodo/service/getusuario/";
 		//String url = String.format("%sid%s:%s21%s,%snome%s:%sLucas%s,%ssobrenome%s:%sTeste13%s,%sdatanascimento%s:%s2013-06-02%s,%ssexo%s:%sM%s,%scpf%s:%s5%s,%sapelido%s:%sLucasT13%s,%semail%s:%st%s,%sativo%s:%sS%s,%sreceberemail%s:%sN%s,%stelefoneresidencial%s:%s0%s,%stelefonecelular%s:%s0%s,%stelefonerecado%s:%s0%s,%slogradouro%s:%sAmancio de Carvalho%s,%stipologradouro%s:%sRua%s,%scep%s:%s09456786%s,%sestado%s:%sSão Paulo%s,%sbairro%s:%sBaeta Neves%s,%scidade%s:%sSão Bernardo do Campo%s,%snumero%s:%s123%s,%scomplemento%s:%sapto. 2%s,%sinformacoes%s:%sPrximo ao Sonda%s", "\"");
 		
@@ -59,43 +58,46 @@ public class PerfilService extends AsyncTask<WebUsuario, Void, WebUsuario[]> {
 			requisicao = RequisicoesHttp.getString(urlInfoPerfil);
 		}
 
-		WebUsuario[] usuarios = null;
+		//WebUsuario[] usuarios = null;
+		WebUsuario usuarios = null;
 		
 		
 		try {
-			JSONArray request = new JSONArray(requisicao);
+			//JSONObject jSon = new JSONObject(requisicao);
+			//JSONArray request = jSon.getJSONArray("");
 			
-			usuarios = new WebUsuario[request.length()];
+			usuarios = new WebUsuario();
 			
-			for (int i = 0; i < request.length(); i++){
-				JSONObject usuario = request.getJSONObject(i);
+			//for (int i = 0; i < request.length(); i++){
+				JSONObject usuario = new JSONObject(requisicao);
 				
 				
-				user.setId(usuario.getInt("id"));
+				user.setId(Integer.parseInt(usuario.getString("id")));
 				user.setNome(usuario.getString("nome"));
 				user.setSobrenome(usuario.getString("sobrenome"));
-				user.setDataNascimento((String) usuario.get("dataNascimento"));
+				user.setDataNascimento((String) usuario.get("datanascimento"));
 				user.setSexo( usuario.getString("sexo"));
 				user.setCpf(usuario.getString("cpf"));
 				user.setApelido(usuario.getString("apelido"));
 				user.setEmail(usuario.getString("email"));
 				user.setAtivo(usuario.getString("ativo"));
-				user.setReceberEmail(usuario.getString("receberEmail"));
-				user.setTelefoneResidencial(usuario.getInt("telefoneresidencial"));
-				user.setTelefoneCelular(usuario.getInt("telefonecelular"));
-				user.setTelefoneRecado(usuario.getInt("telefonerecado"));
+				user.setReceberEmail(usuario.getString("receberemail"));
+				user.setTelefoneResidencial(Integer.parseInt(usuario.getString("telefoneresidencial")));
+				user.setTelefoneCelular(Integer.parseInt(usuario.getString("telefonecelular")));
+				user.setTelefoneRecado(Integer.parseInt(usuario.getString("telefonerecado")));
 				user.setLogradouro(usuario.getString("logradouro"));
 				user.setTipo(usuario.getString("tipologradouro"));
 				user.setCep(usuario.getString("cep"));
 				user.setEstado(usuario.getString("estado"));
-				user.setBairro(usuario.getString("bsirro"));
+				user.setBairro(usuario.getString("bairro"));
 				user.setCidade(usuario.getString("cidade"));
 				user.setNumero(usuario.getString("numero"));
 				user.setComplemento(usuario.getString("complemento"));
 				user.setInformacoesAdicionais(usuario.getString("informacoes"));
 
-				usuarios[i] = user;
-			}
+				usuarios = user;
+				//usuarios[i] = user;
+			//}
 				
 			return usuarios;
 			
