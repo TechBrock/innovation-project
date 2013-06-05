@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+xmlns:ui="http://java.sun.com/jsf/facelets"
+xmlns:f="http://java.sun.com/jsf/core"
+xmlns:h="http://java.sun.com/jsf/html"
+xmlns:rich="http://richfaces.org/rich"
+xmlns:a4j="http://richfaces.org/a4j"
+xmlns:t="http://myfaces.apache.org/tomahawk"
+template="/inn000/templateViewSemFiltro.xhtml">
+<ui:define name="tituloTela">
+  <h:outputText value="Quem Somos?" />
+</ui:define>
+
+<ui:define name="conteudo">
+  <table class="login_ident" style="position:absolute;left:0;width:10%;">
+   <tr>
+    <td>
+    <h:outputText value="Agradecimentos"/>?  
+    </td>
+    </tr>
+   <tr>
+    <td>
+    <h:outputLink value="http://www.metodista.br">
+    <h:graphicImage url="/innTeste/metodista.jpg"/>
+    </h:outputLink>
+    </td>
+   </tr>
+    </table>
+  <div class="login_ident" style="width: 500px; height: 400px;" id="div1">
+    <table>
+      <tr>
+        <h:graphicImage url="/innTeste/LOGO.png" width="304px" height="106px"/>
+        <br/>
+      </tr>
+      <tr>
+        <p class="textoPuro">
+        <h:outputText class="textoPuro" value="Este grupo tem a base formada no 3º semestre, na qual foi desenvolvida a marca Innovation de 
+qualidade em trabalhos acadêmicos."></h:outputText>
+        <br></br>Este semestre somos o grupo 03 do 5º semestre de ADS, da <a href="http://www.metodista.br">Universidade Metodista de São Paulo</a>.
+        <br></br>Com os conhecimentos e técnicas que nos foram passadas, o grupo conseguiu desenvolver um trabalho completo,
+        com ampla abrangência com relação aos conteúdos solicitados. Foi de grande valia o esforço coletivo com relação ao desenvolvimento de todos os
+        trabalhos deste semestre, todos as noites em claro, dias virados, força de vontade para pesquisar, estudar, entender.
+        <br></br> Como esse semestre não permitiu com que todos os componentes participassem de todas as etapas, é
+        de suma importância que se evidencie cada etapa cumprida por cada componente do grupo:
+        <p class="textoNomes">Ana Paula Cardoso Rodrigues: Desenvolvimento de TODO o sistema web</p>
+        <p class="textoNomes">Lucas Gomes Fenelon de Moraes: Desenvolvimento do sistema Android e modelagem do banco de dados</p>
+        <p class="textoNomes">André Alves da Silva: Confecção de trabalhos de disciplinas periféricas</p>
+        <p class="textoNomes">Vitor Moscolini: Confecção de trabalhos de disciplinas periféricas</p>
+        <p class="textoNomes">Thiago Hideaky Watanabe: Documentação e integração entre os sistemas</p>
+        
+        
+        </p>
+
+        
+        
+      </tr>
+
+    </table>
+
+  </div>
+  
+  
+</ui:define>
+
+</ui:composition>
