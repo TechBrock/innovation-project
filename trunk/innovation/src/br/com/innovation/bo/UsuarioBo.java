@@ -631,6 +631,9 @@ public class UsuarioBo implements Serializable {
 		if(tel.getDdd() == null || tel.getDdd() <= 0
 				|| tel.getNumero().equals(null) || tel .getNumero() <= 0 ){
 			telValido = false;
+			tel.setDdd(null);
+			tel.setNumero(null);
+			
 		}
 
 		if(enderecoIns.getLogradouro() == null || enderecoIns.getLogradouro().equals("")){
@@ -639,6 +642,7 @@ public class UsuarioBo implements Serializable {
 
 		if(enderecoIns.getNumero() == null || enderecoIns.getNumero().equals("")){
 			numValido = false;
+			enderecoIns.setNumero(null);
 		}
 
 		if(enderecoIns.getBairro() == null || enderecoIns.getBairro().equals("")){
