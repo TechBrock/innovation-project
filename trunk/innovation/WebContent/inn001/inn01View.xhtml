@@ -16,6 +16,7 @@
 	</ui:define>
 
 	<ui:define name="corpo">
+		<a4j:page onload="#{ModeloBo.initTable}"/>
 		<t:saveState value="#{ModeloBo}"/>
 		<t:saveState value="#{CarrinhoBo}"/>
 		<t:saveState value="#{FavoritoBo}"/>
@@ -44,22 +45,16 @@
 					</td>
 					<td>
 						<a4j:commandButton value="Pesquisar" styleClass="btn btn-large btn-block btn-warning" 
-										style="width: 100px;height: 40px;"
-										action="#{ModeloBo.pesquisarProdutos}" reRender="form1">
-										</a4j:commandButton>
+							style="width: 100px;height: 40px;"
+							action="#{ModeloBo.pesquisarProdutos}" reRender="form1:gridProdutos">
+							<f:setPropertyActionListener value="true" target="#{ModeloBo.efiltro}"/>
+						</a4j:commandButton>
 					</td>
 				</tr>
 				<tr>
 				<h:outputText value="Olá " styleClass="links" rendered="#{ModeloBo.modeloAl.size()}==null || #{ModeloBo.modeloAl.size()}==0"/>
-				
-				
-				
 				</tr>
 			</table>
-				
-	      		
-				
-		
 		</div>
 		
 		
@@ -85,7 +80,6 @@
 			<div align="center" style="width: 100%;"	>
 			 <rich:dataGrid
 			 	id="gridProdutos" 
-			 	binding="#{ModeloBo.initTable}"
 			 	value="#{ModeloBo.modeloAl}" 
 			 	var="lista" 
 			 	columns="5" 
