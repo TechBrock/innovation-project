@@ -31,38 +31,7 @@
 					alt="Bicicleta Mormaii Innovation" />
 			</div>
 		</div>
-		<table class="fieldsetTopo"
-			style="position: absolute; left: 0; width: 5%; height: 20%">
-			<tr>
-				<td><h:outputText value="Produtos" styleClass="links" /> 
-				<br />
-				<br />
-				<br />
-					<a4j:commandLink value="Bicicletas" styleClass="links"
-						style="color: #ECC03C;" action="#{ModeloBo.pesquisarProdutos}"
-						reRender="form1:gridProdutos">
-						
-						<f:setPropertyActionListener value="Bicicleta"
-							target="#{ModeloBo.modeloPesquisa.caract}" />
-						<f:setPropertyActionListener value="true"
-							target="#{ModeloBo.efiltro}" />
-							
-					</a4j:commandLink>
-					<br />
-					<a4j:commandLink value="Patinetes" styleClass="links"
-						style="color: #ECC03C;" action="#{ModeloBo.pesquisarProdutos}"
-						reRender="form1:gridProdutos">
-						
-						<f:setPropertyActionListener value="Patinete"
-							target="#{ModeloBo.modeloPesquisa.caract}" />
-						<f:setPropertyActionListener value="true"
-							target="#{ModeloBo.efiltro}" />
-							
-					</a4j:commandLink>
-				</td>
-			</tr>
-
-		</table>
+		
 		<rich:spacer height="50px"></rich:spacer>
 		<div>
 			<rich:spacer height="50px"></rich:spacer>
