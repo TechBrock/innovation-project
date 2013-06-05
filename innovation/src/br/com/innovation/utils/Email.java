@@ -52,7 +52,7 @@ public class Email {
 
 
 				// adiciona uma imagem ao corpo da mensagem e retorna seu id  
-				URL url = new URL("http://localhost:8081/innovation/inn012/inn012.jsf");  
+				URL url = new URL("http://ec2-54-232-215-79.sa-east-1.compute.amazonaws.com:8080/innovation/inn012/inn012.jsf");  
 				String cid = email.embed(url, "Metodo logo");     
 
 				// configura a mensagem para o formato HTML  
