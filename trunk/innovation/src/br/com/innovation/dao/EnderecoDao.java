@@ -56,6 +56,41 @@ public class EnderecoDao {
 		}
 		return idEnd;
 	}
+	
+	public int editEndereco(EnderecoVo endEdit, Integer idUser){
+		Connection conn = null;
+		Statement stm = null;
+		StringBuilder query = new StringBuilder();
+		int idEnd = 0;
+
+		query.append("UPDATE TB_ENDERECO SET");
+		query.append("CEP = "+endEdit.getCep());
+		query.append(",LOGRADOURO = "+endEdit.getLogradouro());
+		query.append(",NUMERO = "+endEdit.getNumero());
+		query.append(",COMPLEMENTO = "+endEdit.getComplemento());
+		query.append(",BAIRRO = "+endEdit.getBairro());
+		query.append(",INFORMACOES_ADICIONAIS = "+endEdit.getInfAdc());
+		
+
+		try{
+			conn = Conexao.connect();
+			stm = conn.createStatement();
+			idEnd = stm.executeUpdate(query.toString());
+
+		} catch (SQLException sqlex) {
+			System.out.println("ERRO: "+getClass().getCanonicalName()+".insertEndereco()");
+			sqlex.printStackTrace();
+
+		} catch(Exception e) {
+			System.out.println("ERRO: "+getClass().getCanonicalName()+".insertEndereco()");
+			e.printStackTrace();
+
+		} finally {
+			Conexao.disconnect(null, stm, conn);
+		}
+		return idEnd;
+	}
+
 
 	public EnderecoVo  getEndByUser(Integer id){
 
