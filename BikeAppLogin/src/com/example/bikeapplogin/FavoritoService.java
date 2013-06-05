@@ -1,5 +1,7 @@
 package com.example.bikeapplogin;
 
+import java.util.ArrayList;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 import android.app.ProgressDialog;
@@ -12,13 +14,12 @@ public class FavoritoService extends AsyncTask <WebFavorito, Void, WebFavorito[]
 	private ProgressDialog barraCarregar;
 	private Context cont;
 	private int iduser;
-	private String requisicao;
-	private WebFavorito wfavorito;
+	private JSONArray requisicao;
+	private ArrayList<WebFavorito> wfavorito;
 	
-	public FavoritoService(Context ctx, int id, String rqs, WebFavorito wF ){
+	public FavoritoService(Context ctx, int id, ArrayList<WebFavorito> wF ){
 		this.cont = ctx;
 		this.iduser = id;
-		this.requisicao = rqs;
 		this.wfavorito = wF;
 	}
 	
@@ -49,25 +50,25 @@ public class FavoritoService extends AsyncTask <WebFavorito, Void, WebFavorito[]
 		if( iduser != 0){
 
 			String urlInfoPerfil = String.format("%s%s", url, iduser);
-			requisicao = RequisicoesHttp.get(urlInfoPerfil);
+			requisicao = RequisicoesHttp.getJsonArray(urlInfoPerfil);
 		}
 
 		WebFavorito[] favoritos = null;
 		
 		
 		try {
-			JSONArray request = new JSONArray(requisicao);
+			JSONArray request = requisicao;
 			
 			favoritos = new WebFavorito[request.length()];
 			
 			for (int i = 0; i < request.length(); i++){
 				JSONObject favorito = request.getJSONObject(i);
 				
-				wfavorito.setId(favorito.getInt("id"));
-				wfavorito.setNomeItem(favorito.getString("nomitem"));
-				wfavorito.setCaminhoImg1("caminhoimg1");
+				wfavorito.get(i).setId(favorito.getInt("id"));
+				wfavorito.get(i).setNomeItem(favorito.getString("nomitem"));
+				wfavorito.get(i).setCaminhoImg1("caminhoimg1");
 
-				favoritos[i] = wfavorito;
+				favoritos[i] = wfavorito.get(i);
 			}
 				
 			return favoritos;
@@ -79,7 +80,7 @@ public class FavoritoService extends AsyncTask <WebFavorito, Void, WebFavorito[]
 		}		
 	}
 	
-	public WebFavorito getFavorito(){
+	public ArrayList<WebFavorito> getFavorito(){
 		return wfavorito;
 	}
 	

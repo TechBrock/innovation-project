@@ -44,7 +44,7 @@ public class LoginService extends AsyncTask<String, Void, String> {
 		
 		if( user != null && password != null){
 			String urlInfoPerfil = String.format("%s%s-%s", url, user, password);
-			requisicao = RequisicoesHttp.get(urlInfoPerfil);
+			requisicao = RequisicoesHttp.getString(urlInfoPerfil);
 		}
 		return requisicao;			
 	}

@@ -43,8 +43,7 @@
 	            android:id="@+id/btFavorito"
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
-	            android:onClick="tornaBikeFavorita"
-	            android:src="@drawable/logoestrela" />
+	            android:src="@drawable/logoestrelainvertida" />
 	        
 	   </LinearLayout>
 		

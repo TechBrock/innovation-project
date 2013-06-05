@@ -45,7 +45,7 @@ public class ItemFavoritoService extends AsyncTask<String, Void, String> {
 		
 		if( idUsuario != 0 && idModelo != 0){
 			String urlInfoPerfil = String.format("%s%s-%s", url, idUsuario, idModelo);
-			requisicao = RequisicoesHttp.get(urlInfoPerfil);
+			requisicao = RequisicoesHttp.getString(urlInfoPerfil);
 		}
 		return requisicao;			
 	}

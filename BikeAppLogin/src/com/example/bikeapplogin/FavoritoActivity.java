@@ -7,6 +7,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,24 +16,20 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class FavoritoActivity extends Activity{
-	
-	private ArrayList<String> item;
+
 	public ItemListAdapter fvAdapter;
 	private DBHelper db;
+	private ArrayList<WebFavorito> wFav;
+	private capturaImagens cap;
+	private int idUsuario;
+	private FavoritoService favoritoService;
 	
 	public FavoritoActivity (){
 		// TODO Auto-generated constructor stub
-		item = new ArrayList<String>();
-				
-		//itens que recebem o objeto
-				
-		item.add("Item 1");
-		item.add("Item 2");
-		item.add("Item 3");
-		item.add("Item 4");
 	}
 	
 	@Override
@@ -40,14 +37,37 @@ public class FavoritoActivity extends Activity{
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.favoritos);
+		Bundle extras = getIntent().getExtras();
+		idUsuario = extras.getInt("id_usuario");
+		cap = new capturaImagens();
+		
+		favoritoService = (FavoritoService) new FavoritoService(FavoritoActivity.this, idUsuario, wFav).execute();
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		wFav= favoritoService.getFavorito();
+
+		//itens que recebem o objeto	
+		//for (WebFavorito webFavorito : wFav) {
+		//	wFav.add(webFavorito);
+		//}
 		
 		ListView listaPedidos = (ListView) findViewById(R.id.listaFavoritos);
-		this.fvAdapter = new ItemListAdapter(this, R.layout.listafavorito, item);	
+		this.fvAdapter = new ItemListAdapter(this, R.layout.listafavorito, wFav);	
 		listaPedidos.setAdapter(this.fvAdapter);
 	}
 	
 	private void goToActivity(Class<? extends Activity> activityClass) {
         Intent newActivity = new Intent(this, activityClass);
+        startActivity(newActivity);
+    }
+	
+	private void goToActivityIdUsuarioItem(Class<? extends Activity> activityClass, int idUsuario) {
+		Intent newActivity = new Intent(this, activityClass);
+        newActivity.putExtra("id_usuario", idUsuario);
         startActivity(newActivity);
     }
     
@@ -60,12 +80,8 @@ public class FavoritoActivity extends Activity{
     } 
     
     public void callCompras (View v){
-    	goToActivity(ComprasActivity.class);
+    	goToActivityIdUsuarioItem(ComprasActivity.class, idUsuario);
     } 
-   
-    public void callFavoritos (View v){
-    	goToActivity(FavoritoActivity.class);
-    }
     
     public void callLogin (View v){
     	Cursor crs = null;
@@ -84,7 +100,7 @@ public class FavoritoActivity extends Activity{
         		goToActivity(PerfilActivity.class);
         	}
         }catch(Exception ex){
-        	Toast.makeText(this, "Campo Usuário ou senha em branco !", Toast.LENGTH_SHORT).show();
+        	Toast.makeText(this, "Impossível deletar Login!", Toast.LENGTH_SHORT).show();
         }finally{
         	crs.close();
         }
@@ -92,51 +108,67 @@ public class FavoritoActivity extends Activity{
     	goToActivity(MainActivity.class);
     }
     
-    public class ItemListAdapter extends ArrayAdapter<String>{
+    public class ItemListAdapter extends ArrayAdapter<WebFavorito>{
+    	
+    	private ArrayList<WebFavorito> lstFav;
+    	private FavoritoExcluiService favoritoExcluiService;
+    	private String conteudo = null;
 
-		public ItemListAdapter(Context context, int textViewResourceId, ArrayList<String> itens) {
-			super(context, textViewResourceId, itens);
+		public ItemListAdapter(Context context, int textViewResourceId, ArrayList<WebFavorito> wFavItem) {
+			super(context, textViewResourceId, wFavItem);
 			// TODO Auto-generated constructor stub
+			this.lstFav = wFavItem;
 		}
 		
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
 			// TODO Auto-generated method stub
-			
 			View listaView = convertView;
 			ImageView imgFavorita;
+			ImageView imgFavoritaDel;
 			
 			if(listaView == null)
 			{
 				LayoutInflater lif = getLayoutInflater();
 				listaView = lif.inflate(R.layout.listafavorito, null);
 				
-				imgFavorita = (ImageView) listaView.findViewById(R.id.btFavorito);
-				imgFavorita.setOnClickListener(new ImageView.OnClickListener()
-						{
-					
-							@Override
-							public void onClick(View v) {
-								// TODO Auto-generated method stub
-								
-								//validar se é favorito pelo id do objeto e não desta forma abaixo MUDAR ISSO
-								
-								ImageView imgEstrela = (ImageView) findViewById(R.id.btFavorito);
-								Drawable dbImgItem = getResources().getDrawable(R.drawable.logoestrela);
-								
-								if(imgEstrela.getDrawable().getChangingConfigurations() == dbImgItem.getChangingConfigurations()){
-									Drawable dbImgestrelaInvertida = getResources().getDrawable(R.drawable.logoestrelainvertida);
-									imgEstrela.setImageDrawable(dbImgestrelaInvertida);
-									//goToActivity(ItemActivity.class);
-								}else{
-									imgEstrela.setImageDrawable(dbImgItem);
-								}
-							}
-						});
+				imgFavorita = (ImageView) listaView.findViewById(R.id.imagemFavorito);
+				Bitmap bm = Bitmap.createBitmap(cap.getImage(this.getContext(), lstFav.get(position).getCaminhoImg1()).getDrawingCache());
+				imgFavorita.setImageBitmap(bm);
+				
+				imgFavoritaDel = (ImageView) listaView.findViewById(R.id.btFavorito);
+				imgFavoritaDel.setOnClickListener(new ImageView.OnClickListener()
+													{
+														@Override
+														public void onClick(View v) {
+															// TODO Auto-generated method stub															
+															favoritoExcluiService = (FavoritoExcluiService) new FavoritoExcluiService(FavoritoActivity.this, idUsuario, conteudo).execute();
+															try {
+																Thread.sleep(5000);
+															} catch (InterruptedException e) {
+																// TODO Auto-generated catch block
+																e.printStackTrace();
+															}
+															conteudo = favoritoExcluiService.getFavorito();
+															delFavorito (conteudo);
+														}
+													}
+												  );
+				TextView descricao = (TextView) listaView.findViewById(R.id.nomebike);
+				descricao.setText(lstFav.get(position).getNomeItem());
+				
 			}
 			
 			return listaView;	
 				
+		}
+		
+		private void delFavorito (String fav){
+			if("true".equals(fav)){			
+				Toast.makeText(this.getContext(), "Este item não é mais favorito!", Toast.LENGTH_SHORT).show();
+			}else{
+				Toast.makeText(this.getContext(), "Não foi possível deletar este item dos favoritos!", Toast.LENGTH_LONG).show();
+			}
 		}
 	}
 	

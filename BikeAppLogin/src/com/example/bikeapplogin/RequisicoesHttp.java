@@ -5,9 +5,12 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.util.Scanner;
 
+import org.json.JSONArray;
+
 public class RequisicoesHttp {
 	
-	private static String jSon;
+	private static String jSonString;
+	private static JSONArray jSonArray;
 	private static Scanner scn;
 	private static URL url;
 	private static URLConnection urlConn;
@@ -15,7 +18,7 @@ public class RequisicoesHttp {
 	private WebUsuario usuario;
 
 	@SuppressWarnings("finally")
-	public static String get(String endereco){
+	public static String getString(String endereco){
 		
 		try{
 			url = new URL(endereco);
@@ -23,23 +26,44 @@ public class RequisicoesHttp {
 			inputS = urlConn.getInputStream();
 			scn = new Scanner(inputS);
 			
-			jSon = scn.useDelimiter("\\A").next();
+			jSonString = scn.useDelimiter("\\A").next();
 
-			return jSon;
+			return jSonString;
 		}catch(Exception ex){
 			ex.printStackTrace();
 			return null;
 		}finally{
 			scn.close();
-			return jSon;
+			return jSonString;
+		}
+
+	}
+	
+	@SuppressWarnings("finally")
+	public static JSONArray getJsonArray(String endereco){
+		
+		try{
+			url = new URL(endereco);
+			urlConn = url.openConnection();
+			inputS = urlConn.getInputStream();
+			scn = new Scanner(inputS);
+			
+			//jSonArray = scn.useDelimiter("\\A").next();
+
+			return jSonArray;
+		}catch(Exception ex){
+			ex.printStackTrace();
+			return null;
+		}finally{
+			scn.close();
+			return jSonArray;
 		}
 
 	}
 	
 	public WebUsuario usuario (){
 		usuario = new WebUsuario();
-		
-		
+
 		return usuario;
 	}
 	

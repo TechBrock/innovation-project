@@ -20,18 +20,14 @@ public class ComprasActivity extends Activity{
 	private ArrayList<WebCompra> wCompras;
 	public CompraListAdapter pdAdapter;
 	public TextView nPedido;
-	
+	private CompraService compraService;
 	//public ArrayList<String> ordemCompra,dataEfetuado,itens,quantidade,valor,valorFrete,tipoFrete,meioPagamento,quantidadeParcelas,prazo,dataEntregue;
 	private DBHelper db;
 	private int idUsuario;
 	
 	public ComprasActivity (){
 		// TODO Auto-generated constructor stub
-		wCompras = new ArrayList<WebCompra>();
 		
-		for (WebCompra webCompra : wCompras) {
-			wCompras.add(webCompra);
-		}
 	}
 	
 	@Override
@@ -39,10 +35,22 @@ public class ComprasActivity extends Activity{
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.compras);
-		
 		Bundle extras = getIntent().getExtras();
 		idUsuario = extras.getInt("id_usuario");
 		
+		compraService = (CompraService) new CompraService(ComprasActivity.this, idUsuario, wCompras).execute();
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		wCompras = compraService.getCompra();
+		
+		//for (WebCompra webCompra : wCompras) {
+		//	wCompras.add(webCompra);
+		//}
+
 		ListView listaPedidos = (ListView) findViewById(R.id.listaPedidos);
 		this.pdAdapter = new CompraListAdapter(this, R.layout.listacompras, wCompras);	
 		listaPedidos.setAdapter(this.pdAdapter);
@@ -88,7 +96,7 @@ public class ComprasActivity extends Activity{
         		goToActivity(PerfilActivity.class);
         	}
         }catch(Exception ex){
-        	Toast.makeText(this, "Campo Usuário ou senha em branco !", Toast.LENGTH_SHORT).show();
+        	Toast.makeText(this, "Impossível deletar Login!", Toast.LENGTH_SHORT).show();
         }finally{
         	crs.close();
         }
@@ -99,9 +107,6 @@ public class ComprasActivity extends Activity{
     public class CompraListAdapter extends ArrayAdapter<String>{
 		
 		private ArrayList<WebCompra> lstCompra;
-		private WebCompra compra;
-		private String conteudo = null;
-		private CompraService compraService;
 
 		public CompraListAdapter(Context context, int textViewResourceId, ArrayList<WebCompra> wCompras) {
 			super(context, textViewResourceId, wCompras.toArray().length);
@@ -112,18 +117,8 @@ public class ComprasActivity extends Activity{
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
 			// TODO Auto-generated method stub
-			
-			compra = lstCompra.get(position);
+
 			View listaView = convertView;
-			
-			compraService = (CompraService) new CompraService(ComprasActivity.this, idUsuario, conteudo, compra).execute();
-			try {
-				Thread.sleep(5000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			compra = compraService.getCompra();
 			
 			if(listaView == null)
 			{
@@ -143,17 +138,17 @@ public class ComprasActivity extends Activity{
 			TextView pz = (TextView) listaView.findViewById(R.id.vPrazo);
 			TextView etg = (TextView) listaView.findViewById(R.id.vDataEntrega);
 			
-			orCompra.setText(compra.getId());
-			dtEfetuado.setText(compra.getDataPedido());
-			item.setText(compra.getItens());
-			qtd.setText(compra.getQuantidade());
-			vl.setText(compra.getValorCompra());
-			vlFrete.setText(compra.getValorFrete());
-			tpfrete.setText(compra.getTipoFrete());
-			mPag.setText(compra.getMeioPagamento());
-			qtdPar.setText(compra.getQtdParcelas());
-			pz.setText(compra.getPrazo());
-			etg.setText(compra.getDataEntrega());
+			orCompra.setText(lstCompra.get(position).getId());
+			dtEfetuado.setText(lstCompra.get(position).getDataPedido());
+			item.setText(lstCompra.get(position).getItens());
+			qtd.setText(lstCompra.get(position).getQuantidade());
+			vl.setText(lstCompra.get(position).getValorCompra());
+			vlFrete.setText(lstCompra.get(position).getValorFrete());
+			tpfrete.setText(lstCompra.get(position).getTipoFrete());
+			mPag.setText(lstCompra.get(position).getMeioPagamento());
+			qtdPar.setText(lstCompra.get(position).getQtdParcelas());
+			pz.setText(lstCompra.get(position).getPrazo());
+			etg.setText(lstCompra.get(position).getDataEntrega());
 
 			
 			return listaView;	

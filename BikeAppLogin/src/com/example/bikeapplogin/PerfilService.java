@@ -56,7 +56,7 @@ public class PerfilService extends AsyncTask<WebUsuario, Void, WebUsuario[]> {
 		if( userLogin != null && password != null){
 		
 			String urlInfoPerfil = String.format("%s%s-%s", url, userLogin, password);
-			requisicao = RequisicoesHttp.get(urlInfoPerfil);
+			requisicao = RequisicoesHttp.getString(urlInfoPerfil);
 		}
 
 		WebUsuario[] usuarios = null;

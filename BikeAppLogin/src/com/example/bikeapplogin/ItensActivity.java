@@ -25,17 +25,10 @@ public class ItensActivity extends Activity {
 	private ArrayList<WebItem> wItens;
 	private capturaImagens cap;
 	private int idUsuario;
+	private ItensService itemService;
 	
 	public ItensActivity(){
-		// TODO Auto-generated constructor stub
-		cap = new capturaImagens();
-		wItens = new ArrayList<WebItem>();
-
-		//itens que recebem o objeto	
-		for (WebItem webItem : wItens) {
-			wItens.add(webItem);
-		}
-		
+		// TODO Auto-generated constructor stub		
 		//item = new ArrayList<String>();
 		//item.add("Descrição 1");
 		//item.add("Descrição 2");
@@ -48,12 +41,24 @@ public class ItensActivity extends Activity {
 		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.itens);
-		
 		Bundle extras = getIntent().getExtras();
 		idUsuario = extras.getInt("id_usuario");
+		cap = new capturaImagens();
 		
-		//itservice = (ItensService) new ItensService(this).execute();
+		itemService = (ItensService) new ItensService(ItensActivity.this, wItens).execute();
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		wItens= itemService.getItem();
 
+		//itens que recebem o objeto	
+		//for (WebItem webItem : wItens) {
+		//	wItens.add(webItem);
+		//}
+	
 		ListView listaItens = (ListView) findViewById(R.id.listaItens);
 		this.itAdapter = new ItensListAdapter(this, R.layout.listaitens, wItens);	
 		listaItens.setAdapter(this.itAdapter);
@@ -102,7 +107,7 @@ public class ItensActivity extends Activity {
         		goToActivity(PerfilActivity.class);
         	}
         }catch(Exception ex){
-        	Toast.makeText(this, "Campo Usuário ou senha em branco !", Toast.LENGTH_SHORT).show();
+        	Toast.makeText(this, "Impossível deletar Login!", Toast.LENGTH_SHORT).show();
         }finally{
         	crs.close();
         }
@@ -112,9 +117,7 @@ public class ItensActivity extends Activity {
 
     public class ItensListAdapter extends ArrayAdapter<WebItem>{
 		
-		private ArrayList<WebItem> lstItem;// = new ArrayList<WebItem>();
-		private WebItem it;
-		private ItensService itemService;
+		private ArrayList<WebItem> lstItem;
 
 		public ItensListAdapter(Context context, int textViewResourceId, ArrayList<WebItem> itens) {
 			super(context, textViewResourceId, itens);
@@ -125,27 +128,16 @@ public class ItensActivity extends Activity {
 		@Override
 		public View getView(final int position, View convertView, ViewGroup parent) {
 			// TODO Auto-generated method stub
-			
-			it = lstItem.get(position);
 			View listaView = convertView;
 			ImageView imgBike;
-			
-			itemService = (ItensService) new ItensService(ItensActivity.this, it).execute();
-			try {
-				Thread.sleep(5000);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			it = itemService.getItem();
-			
+
 			if(listaView == null)
 			{
 				LayoutInflater lif = getLayoutInflater();
 				listaView = lif.inflate(R.layout.listaitens, null);
 				
 				imgBike = (ImageView) listaView.findViewById(R.id.rotulobike);
-				Bitmap bm = Bitmap.createBitmap(cap.getImage(this.getContext(), it.getCaminhoImg1()).getDrawingCache());
+				Bitmap bm = Bitmap.createBitmap(cap.getImage(this.getContext(), lstItem.get(position).getCaminhoImg1()).getDrawingCache());
 				imgBike.setImageBitmap(bm);
 				imgBike.setOnClickListener(new ImageView.OnClickListener()
 											{
@@ -154,7 +146,7 @@ public class ItensActivity extends Activity {
 													// TODO Auto-generated method stub
 													//goToActivity(ItemActivity.class);
 													Intent newActivity = new Intent(ItensActivity.this, ItemActivity.class);
-													newActivity.putExtra("Item", it);
+													newActivity.putExtra("Item", lstItem.get(position));
 													newActivity.putExtra("id_usuario", idUsuario);
 													startActivity(newActivity);
 												}
@@ -163,7 +155,7 @@ public class ItensActivity extends Activity {
 			}
 			
 			TextView descricao = (TextView) listaView.findViewById(R.id.nomebike);
-			descricao.setText(it.getNome());
+			descricao.setText(lstItem.get(position).getNome());
 			
 			return listaView;	
 				

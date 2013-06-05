@@ -66,7 +66,7 @@ public class PerfilMergeService extends AsyncTask<String, Void, String> {
 												user.getEstado()
 											);
 		
-		requisicao = RequisicoesHttp.get(urlInfoPerfil);
+		requisicao = RequisicoesHttp.getString(urlInfoPerfil);
 		
 		return requisicao;			
 	}

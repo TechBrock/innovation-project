@@ -1,5 +1,7 @@
 package com.example.bikeapplogin;
 
+import java.util.ArrayList;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 import android.app.ProgressDialog;
@@ -10,10 +12,10 @@ public class ItensService extends AsyncTask<WebItem, Void, WebItem[]> {
 	
 	private ProgressDialog barraCarregar;
 	private Context cont;
-	private WebItem item;
-	private String requisicao;
+	private ArrayList<WebItem> item;
+	private JSONArray requisicao;
 	
-	public ItensService(Context ctx, WebItem item){
+	public ItensService(Context ctx, ArrayList<WebItem> item){
 		this.cont = ctx;
 		this.item = item;
 	}
@@ -43,37 +45,37 @@ public class ItensService extends AsyncTask<WebItem, Void, WebItem[]> {
 		String url = "http://ec2-54-232-215-79.sa-east-1.compute.amazonaws.com:8080/metodo/service/getitens/";
 		
 		String urlInfoPerfil = String.format("%s", url);
-		requisicao = RequisicoesHttp.get(urlInfoPerfil);
+		requisicao = RequisicoesHttp.getJsonArray(urlInfoPerfil);
 		
 		WebItem[] itens = null;
 		
 		
 		try {
-			JSONArray request = new JSONArray(requisicao);
+			JSONArray request = requisicao;
 			
 			itens = new WebItem[request.length()];
 			
 			for (int i = 0; i < request.length(); i++){
 				JSONObject itm = request.getJSONObject(i);
 
-				item.setId(itm.getInt("id"));
-				item.setNome(itm.getString("nome"));
-				item.setCaracteristica(itm.getString("caracteristica"));
-				item.setTamanho(itm.getString("tamanho"));
-				item.setDimensao(itm.getString("dimensao"));
-				item.setPeso(itm.getString("peso"));
-				item.setAro(itm.getInt("aro"));
-				item.setInformacoesAdicionais(itm.getString("adicionais"));
-				item.setGarantia(itm.getString("garantia"));
-				item.setMaterial(itm.getString("material"));
-				item.setClassificacao(itm.getString("classificacao"));
-				item.setTipoItem(itm.getString("tipoitem"));
-				item.setCaminhoImg1(itm.getString("caminhoimg1"));
-				item.setCaminhoImg2(itm.getString("caminhoimg2"));
-				item.setCaminhoImg3(itm.getString("caminhoimg3"));
-				item.setCaminhoImg4(itm.getString("caminhoimg4"));		
+				item.get(i).setId(itm.getInt("id"));
+				item.get(i).setNome(itm.getString("nome"));
+				item.get(i).setCaracteristica(itm.getString("caracteristica"));
+				item.get(i).setTamanho(itm.getString("tamanho"));
+				item.get(i).setDimensao(itm.getString("dimensao"));
+				item.get(i).setPeso(itm.getString("peso"));
+				item.get(i).setAro(itm.getInt("aro"));
+				item.get(i).setInformacoesAdicionais(itm.getString("adicionais"));
+				item.get(i).setGarantia(itm.getString("garantia"));
+				item.get(i).setMaterial(itm.getString("material"));
+				item.get(i).setClassificacao(itm.getString("classificacao"));
+				item.get(i).setTipoItem(itm.getString("tipoitem"));
+				item.get(i).setCaminhoImg1(itm.getString("caminhoimg1"));
+				item.get(i).setCaminhoImg2(itm.getString("caminhoimg2"));
+				item.get(i).setCaminhoImg3(itm.getString("caminhoimg3"));
+				item.get(i).setCaminhoImg4(itm.getString("caminhoimg4"));		
 
-				itens[i] = item;
+				itens[i] = item.get(i);
 			}
 				
 			return itens;
@@ -85,7 +87,7 @@ public class ItensService extends AsyncTask<WebItem, Void, WebItem[]> {
 		}		
 	}
 	
-	public WebItem getItem (){
+	public ArrayList<WebItem> getItem (){
 		return item;
 	}
 	

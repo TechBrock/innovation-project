@@ -43,7 +43,7 @@ public class FavoritoExcluiService extends AsyncTask <String, Void, String>{
 		
 		if( idfavorito != 0){
 			String urlInfoPerfil = String.format("%s%s", url, idfavorito);
-			requisicao = RequisicoesHttp.get(urlInfoPerfil);
+			requisicao = RequisicoesHttp.getString(urlInfoPerfil);
 		}
 		return requisicao;			
 	}

@@ -1,5 +1,7 @@
 package com.example.bikeapplogin;
 
+import java.util.ArrayList;
+
 import org.json.JSONArray;
 import org.json.JSONObject;
 import android.app.ProgressDialog;
@@ -11,13 +13,12 @@ public class CompraService extends AsyncTask<WebCompra, Void, WebCompra[]>{
 	private ProgressDialog barraCarregar;
 	private Context cont;
 	private int iduser;
-	private String requisicao;
-	private WebCompra comp;
+	private JSONArray requisicao;
+	private ArrayList<WebCompra> comp;
 		
-	public CompraService(Context ctx, int id, String rqs, WebCompra wcp){
+	public CompraService(Context ctx, int id, ArrayList<WebCompra> wcp){
 		this.cont = ctx;
 		this.iduser = id;
-		this.requisicao = rqs;
 		this.comp = wcp;
 	}
 
@@ -51,34 +52,34 @@ public class CompraService extends AsyncTask<WebCompra, Void, WebCompra[]>{
 		if( iduser != 0){
 
 			String urlInfoPerfil = String.format("%s%s", url, iduser);
-			requisicao = RequisicoesHttp.get(urlInfoPerfil);
+			requisicao = RequisicoesHttp.getJsonArray(urlInfoPerfil);
 		}
 
 		WebCompra[] pedidos = null;
 
 
 		try {
-			JSONArray request = new JSONArray(requisicao);
+			JSONArray request = requisicao;
 
 			pedidos = new WebCompra[request.length()];
 
 			for (int i = 0; i < request.length(); i++){
 				JSONObject pedido = request.getJSONObject(i);
 
-				comp.setId(pedido.getInt("id"));
-				comp.setOrdemCompra(pedido.getInt("ordemcompra"));
-				comp.setQtdParcelas(pedido.getInt("qtdparcelas"));
-				comp.setValorFrete(pedido.getString("valorfrete"));
-				comp.setValorCompra(pedido.getString("valorcompra"));
-				comp.setPrazo(pedido.getInt("prazoentrega"));
-				comp.setDataPedido(pedido.getString("datapedido"));
-				comp.setDataEntrega(pedido.getString("dataentrega"));
-				comp.setMeioPagamento(pedido.getString("meiopagamento"));
-				comp.setTipoFrete(pedido.getString("tipofrete"));
-				comp.setItens(pedido.getString("itens"));
-				comp.setQuantidade(pedido.getInt("quantidade"));
+				comp.get(i).setId(pedido.getInt("id"));
+				comp.get(i).setOrdemCompra(pedido.getInt("ordemcompra"));
+				comp.get(i).setQtdParcelas(pedido.getInt("qtdparcelas"));
+				comp.get(i).setValorFrete(pedido.getString("valorfrete"));
+				comp.get(i).setValorCompra(pedido.getString("valorcompra"));
+				comp.get(i).setPrazo(pedido.getInt("prazoentrega"));
+				comp.get(i).setDataPedido(pedido.getString("datapedido"));
+				comp.get(i).setDataEntrega(pedido.getString("dataentrega"));
+				comp.get(i).setMeioPagamento(pedido.getString("meiopagamento"));
+				comp.get(i).setTipoFrete(pedido.getString("tipofrete"));
+				comp.get(i).setItens(pedido.getString("itens"));
+				comp.get(i).setQuantidade(pedido.getInt("quantidade"));
 
-				pedidos[i] = comp;
+				pedidos[i] = comp.get(i);
 			}
 
 			return pedidos;
@@ -91,7 +92,7 @@ public class CompraService extends AsyncTask<WebCompra, Void, WebCompra[]>{
 
 	}
 
-	public WebCompra getCompra (){
+	public ArrayList<WebCompra> getCompra (){
 		return comp;
 	}
 
