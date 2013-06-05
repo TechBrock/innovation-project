@@ -13,8 +13,8 @@ import br.com.innovation.dao.UsuarioDao;
 import br.com.innovation.vo.LoginVo;
 
 public class LoginBo implements Serializable {
-	
-	
+
+
 	/**
 	 * 
 	 */
@@ -82,15 +82,15 @@ public class LoginBo implements Serializable {
 		emailValido = true;
 		senhaValida = true;
 	}
-	
-	
+
+
 	public String login(){
-		if(validaDados()){
+		if(validaDados(login)){
 			emailValido = true;
 			senhaValida = true;
 			loginReturn = new LoginDao().getLogin(login);
-			
-			
+
+
 			if(loginReturn.getId() == null || loginReturn.getId() <= 0){
 				cadValido = false;
 			}else{
@@ -101,30 +101,18 @@ public class LoginBo implements Serializable {
 				}else{
 					cliente = false;
 				}
-				
+
 				return acao;
 
 			}
 		}
 		return null;
 	}
-	
-	public void loginCad(LoginVo loginVo){
-		if(validaDados()){
-			emailValido = true;
-			senhaValida = true;
-			loginReturn = new LoginDao().getLogin(loginVo);
-			if(loginReturn.getId() == null || loginReturn.getId() <= 0){
-				cadValido = false;
-			}else{
-				if(loginReturn.getIdPerfil() == 1){
-					cliente = true;
-				}else{
-					cliente = false;
-				}
 
-			}
-		}
+	public String loginCad(LoginVo loginVo){
+		loginReturn = new LoginDao().getLogin(loginVo);
+		return "inn001";
+
 	}
 
 
@@ -132,11 +120,11 @@ public class LoginBo implements Serializable {
 		loginReturn = new LoginVo();
 		login = new LoginVo();
 		cliente = true;
-		 new CarrinhoBo().zeraCarrinho();
+		new CarrinhoBo().zeraCarrinho();
 		return "inn001";
 	}
 
-	private boolean validaDados(){
+	private boolean validaDados(LoginVo login){
 		boolean ok = true;
 		if(login.getEmail() == null || login.getEmail().equals("")){
 			emailValido = false;

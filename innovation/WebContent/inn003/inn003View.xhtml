@@ -12,6 +12,7 @@
 
 	<ui:define name="conteudo">
 		<t:saveState value="#{UsuarioBo}"/>
+		<t:saveState value="#{LoginBo}"/>
 	
 		<table border="0">
 			<tr>
@@ -127,7 +128,7 @@
 													styleClass="login-field"/>
 												<h:outputText value="● Preencha o campo TELEFONE RESIDENCIAL" 
 													styleClass="outputTextErro"
-													rendered="#{!UsuarioBo.telefoneValido}"/>
+													rendered="#{!UsuarioBo.telValido}"/>
 											</td>
 										</tr>
 										<tr>
