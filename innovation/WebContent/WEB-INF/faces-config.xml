@@ -328,5 +328,11 @@
 		<managed-bean-class>br.com.innovation.bo.PedidoBo</managed-bean-class>
 		<managed-bean-scope>request</managed-bean-scope>
 	</managed-bean>
+   
+  <managed-bean>
+		<managed-bean-name>CartaoBo</managed-bean-name>
+		<managed-bean-class>br.com.innovation.bo.CartaoBo</managed-bean-class>
+		<managed-bean-scope>request</managed-bean-scope>
+	</managed-bean>
 
 </faces-config>
