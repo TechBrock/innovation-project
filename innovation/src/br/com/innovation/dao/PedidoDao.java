@@ -26,6 +26,7 @@ public class PedidoDao {
 		query.append("	(valor_compra + valor_frete) as total");
 		query.append("	from tb_compra");
 		query.append("	where id_usuario ="+idUser);
+		query.append("	order by id desc");
 
 		try{
 			conn = Conexao.connect();

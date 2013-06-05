@@ -16,7 +16,7 @@
 	
 	<ui:define name="conteudo">
 	<t:saveState value="#{PedidoBo}"/>
-		<div class="login_ident" style="width:700px; height: 400px; padding: 0px 0px 0px 0px" >
+		<div class="login_ident" style="width:720px; height: 400px; padding: 0px 0px 0px 0px;" >
 			<table width="700px" style="border-collapse: collapse;">
 				<tr>
 					<td align="left">
@@ -47,12 +47,12 @@
 								</td>
 							</tr>
 						</table>
+						<div style="width:720px; height: 400px;overflow: auto;">
 						<rich:dataGrid
 			 				id="gridProdutos" 
 			 				value="#{PedidoBo.pedidoAl}"
 			 				var="lista" 
 			 				columns="1" 
-			 				elements="10" 
 			 				width="700px"
 			 				style="background-color:#eceff1">
 			 	
@@ -97,7 +97,7 @@
 						 		</div>
 						 	</rich:column>
 						 </rich:dataGrid>
-						 
+						 </div>
 					</td>
 				</tr>
 			</table>
