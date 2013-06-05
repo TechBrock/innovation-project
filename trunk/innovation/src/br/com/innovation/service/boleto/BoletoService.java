@@ -11,7 +11,6 @@ import br.com.caelum.stella.boleto.Sacado;
 import br.com.caelum.stella.boleto.bancos.BancoDoBrasil;
 import br.com.caelum.stella.boleto.transformer.BoletoGenerator;
 import br.com.innovation.vo.BoletoVo;
-import br.com.innovation.vo.CompraVo;
 import br.com.innovation.vo.EnderecoVo;
 import br.com.innovation.vo.UsuarioVo;
 

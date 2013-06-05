@@ -37,12 +37,12 @@
 							</tr>
 							<tr>
 								<td>
-								<a4j:commandButton value="Fechar" onclick="window.close();"
+								<a4j:commandButton value="Fechar" id="botaofechar" onclick="window.close();"
 									styleClass="btn btn-large btn-block btn-danger" reRender="form1" action="#{CarrinhoBo.zeraCarrinho}">
 								</a4j:commandButton>
 								</td>
 								<td>
-								<a4j:commandButton value="Imprimir" onclick="window.close();"
+								<a4j:commandButton value="Imprimir" id="botaoimprimir" onclick="window.print();" oncomplete="window.close();"
 									styleClass="btn btn-large btn-block btn-danger" reRender="form1" action="#{CarrinhoBo.zeraCarrinho}">
 								</a4j:commandButton>
 								</td>
